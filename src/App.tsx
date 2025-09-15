@@ -203,7 +203,7 @@ function Footer() {
         </div>
         <div className="mt-8 flex items-center justify-between border-t pt-6 text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} Vextor. All rights reserved.</p>
-          <p>Design & build • Light/Dark toggle included.</p>
+          <p>Design & build by Jaymin</p>
         </div>
       </div>
     </footer>
