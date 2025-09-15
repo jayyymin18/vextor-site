@@ -300,7 +300,7 @@ function HomePage() {
         </div>
       </Section>
 
-      <Section eyebrow="What clients say" title="Reviews & testimonials" subtitle="Hypothetical quotes to illustrate layout.">
+      <Section eyebrow="What clients say" title="Reviews & testimonials" subtitle="Quotes to illustrate layout.">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
             {name:'Brain Cronin', role:'Founder, BuilderTek', text:'Vextor cut our case resolution time by 31% and finally gave us dashboards the team actually uses.'},
