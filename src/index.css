@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light dark; }
+body { @apply bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50; }
+
+.bg-background { @apply bg-white dark:bg-neutral-900; }
+.bg-card { @apply bg-white dark:bg-neutral-800; }
+.text-foreground { @apply text-neutral-900 dark:text-neutral-50; }
+.text-muted-foreground { @apply text-neutral-600 dark:text-neutral-200; }
+.border { @apply border-neutral-200 dark:border-neutral-700; }
+.card-border { @apply border border-neutral-200 dark:border-neutral-700; }
