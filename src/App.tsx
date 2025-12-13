@@ -10,7 +10,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import {
   Sparkles, Rocket, Workflow, Handshake, CheckCircle2, Mail, Phone, MapPin, ArrowRight,
   CalendarCheck2, Cloud, ShieldCheck, Linkedin, Github, ExternalLink,
-  Sun, Moon, Compass, LifeBuoy, LayoutDashboard, Star, Menu, X
+  Sun, Moon, Compass, LifeBuoy, LayoutDashboard, Star, Menu, X, MapPinned
 } from 'lucide-react'
 
 // Theme context
@@ -267,7 +267,7 @@ function Footer() {
             <div className="mb-2 font-medium">Contact</div>
             <p className="flex items-center gap-2"><Mail className="size-4" /> hello@vextor.co</p>
             <p className="flex items-center gap-2"><Phone className="size-4" /> +91 9016070659</p>
-            <p className="flex items-center gap-2"><MapPin className="size-4" /> 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</p>
+            <p className="flex items-start gap-2"><MapPinned className="mt-0.5 size-5" /> 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</p>
             <div className="mt-4">
               <img src="https://www.odigo.com/wp-content/uploads/2022/06/SALESFORCE-PARTNER.png" alt="Salesforce Partner" className="h-10 w-auto opacity-90" loading="lazy" />
             </div>
@@ -663,7 +663,7 @@ function ContactPage() {
               <CardContent className="space-y-3 text-sm text-foreground">
                 <p className="flex items-center gap-2"><Mail className="size-4" /> hello@vextor.co</p>
                 <p className="flex items-center gap-2"><Phone className="size-4" /> +91 9016070659</p>
-                <p className="flex items-center gap-2"><MapPin className="size-4" /> 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</p>
+                <p className="flex items-start gap-2"><MapPinned className="mt-0.5 size-5" /> 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</p>
                 <div className="flex items-center gap-3 pt-2">
                   <a href="#" aria-label="LinkedIn" className="inline-flex items-center gap-2 text-sm underline-offset-4 hover:underline" onClick={(e)=>e.preventDefault()}><Linkedin className="size-4" /> LinkedIn</a>
                   <a href="#" aria-label="GitHub" className="inline-flex items-center gap-2 text-sm underline-offset-4 hover:underline" onClick={(e)=>e.preventDefault()}><Github className="size-4" /> GitHub</a>
