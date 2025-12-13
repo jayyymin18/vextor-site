@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root { color-scheme: light dark; }
-body { @apply bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50; }
+body { @apply bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50 antialiased; }
 
 .bg-background { @apply bg-white dark:bg-neutral-900; }
 .bg-card { @apply bg-white dark:bg-neutral-800; }
