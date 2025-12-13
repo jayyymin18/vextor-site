@@ -11,3 +11,11 @@ body { @apply bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50
 .text-muted-foreground { @apply text-neutral-600 dark:text-neutral-200; }
 .border { @apply border-neutral-200 dark:border-neutral-700; }
 .card-border { @apply border border-neutral-200 dark:border-neutral-700; }
+
+@media (min-width: 768px) {
+  /* Snap sections into view on larger screens to create a page-by-page feel */
+  body {
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 80px; /* account for sticky header */
+  }
+}
