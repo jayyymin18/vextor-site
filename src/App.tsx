@@ -107,8 +107,11 @@ const Chip = ({ children }: { children: React.ReactNode }) => (
 
 function Section({ id, eyebrow, title, subtitle, children, snap }:{ id?: string; eyebrow?: string; title?: string; subtitle?: string; children?: React.ReactNode; snap?: boolean; }) {
   const snapClasses = snap ? 'md:min-h-[90vh] md:snap-start md:snap-always md:flex md:flex-col md:justify-center' : ''
+  const bandedClasses = 'relative overflow-hidden md:odd:bg-white/90 md:even:bg-neutral-50/70 dark:md:odd:bg-neutral-900/60 dark:md:even:bg-neutral-900/70'
   return (
-    <section id={id} className={`py-16 sm:py-24 ${snapClasses}`}>
+    <section id={id} className={`py-16 sm:py-24 ${snapClasses} ${bandedClasses}`}>
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(90%_70%_at_50%_0%,hsl(var(--foreground)/0.04),transparent)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neutral-200/70 to-transparent dark:via-neutral-700/60" />
       <div className="mx-auto max-w-6xl px-4">
         {(eyebrow || title) && (
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={fadeUp} className="mb-10 text-center">
@@ -292,7 +295,7 @@ function HomePage() {
   )
   return (
     <main className="md:snap-y md:snap-mandatory">
-      <section className="relative overflow-hidden md:flex md:min-h-[90vh] md:snap-start md:snap-always md:flex-col md:justify-center">
+      <section className="relative overflow-hidden md:flex md:min-h-[90vh] md:snap-start md:snap-always md:flex-col md:justify-center md:border-b md:border-neutral-200 md:bg-gradient-to-b md:from-white md:via-white md:to-neutral-50 dark:md:border-neutral-800 dark:md:from-neutral-900 dark:md:via-neutral-900 dark:md:to-neutral-900/70">
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60rem_60rem_at_10%_10%,hsl(var(--foreground)/0.06),transparent)]" />
         <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 w-1/2 bg-gradient-to-l from-fuchsia-500/10 via-rose-500/10 to-transparent" />
 
