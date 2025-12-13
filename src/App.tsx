@@ -298,10 +298,10 @@ function HomePage() {
         <div className="mx-auto max-w-6xl px-4 py-20 sm:py-28">
           <div className="grid items-center gap-10 md:grid-cols-2">
             <motion.div initial="hidden" animate="show" variants={fadeUp}>
-              <Badge className="mb-4 bg-foreground text-background">Salesforce Consulting • Service-Based • Partner-Led</Badge>
-              <h1 className="text-balance text-4xl font-semibold leading-tight sm:text-5xl">Ship Salesforce outcomes—not just orgs.</h1>
+              <Badge className="mb-4 bg-foreground text-background">Revenue • Retention • Efficiency</Badge>
+              <h1 className="text-balance text-4xl font-semibold leading-tight sm:text-5xl">Make Salesforce a growth and operations lever.</h1>
               <p className="mt-4 max-w-xl text-muted-foreground">
-                We’re a service-based Salesforce consultancy that helps startups and enterprises automate onboarding, scale revenue operations, launch secure portals, and keep their orgs healthy. We are a <strong className="text-foreground">Salesforce Consulting Partner</strong> and <strong className="text-foreground">Salesforce ISV Partner</strong>.
+                We’re a service-based Salesforce consultancy that ties architecture to board metrics—faster revenue cycles, higher retention, lower cost-to-serve, and audit-ready governance. We are a <strong className="text-foreground">Salesforce Consulting Partner</strong> and <strong className="text-foreground">Salesforce ISV Partner</strong>.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-2">
                 <PartnerBadge label="Salesforce Consulting Partner" />
@@ -362,6 +362,26 @@ function HomePage() {
       <Section eyebrow="Trusted by teams" subtitle="We partner with product and operations leaders to modernize their Salesforce stack.">
         <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground">
           <Chip>ISV & SaaS</Chip><Chip>Fintech</Chip><Chip>Manufacturing</Chip><Chip>Healthcare</Chip><Chip>Retail & eCom</Chip>
+        </div>
+      </Section>
+
+      <Section eyebrow="Business outcomes" title="What leadership cares about" subtitle="Programs mapped to revenue, retention, and risk goals—so the board sees the impact.">
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            { title: 'Revenue velocity', metric: '+12–24% faster cycles', desc: 'Guided selling, cleaner pipeline hygiene, and approvals that move deals without friction.', icon: <Rocket className="size-5" /> },
+            { title: 'Customer loyalty', metric: '8–15 pt CSAT lift', desc: 'Service playbooks, knowledge, and proactive outreach that reduce churn and escalations.', icon: <Handshake className="size-5" /> },
+            { title: 'Risk & compliance', metric: 'Audit-ready controls', desc: 'Sharing, SSO, and monitoring baked into delivery—no surprises during security reviews.', icon: <ShieldCheck className="size-5" /> },
+          ].map((item, i) => (
+            <Card key={i} className="rounded-2xl card-border bg-card">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg text-foreground">{item.icon}{item.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <div className="text-2xl font-semibold text-foreground">{item.metric}</div>
+                <p className="text-sm text-muted-foreground">{item.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </Section>
 
