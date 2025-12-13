@@ -237,7 +237,7 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="mt-16 bg-gradient-to-b from-transparent via-neutral-50 to-white py-12 dark:via-neutral-950 dark:to-neutral-950">
+    <footer className="mt-16 bg-white py-12 text-foreground dark:bg-neutral-950">
       <div className="mx-auto max-w-6xl px-4">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="space-y-3">
@@ -277,7 +277,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-10 flex flex-col gap-3 border-t border-neutral-200/70 pt-6 text-xs text-muted-foreground dark:border-neutral-800/70 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-neutral-200/80 pt-6 text-xs text-muted-foreground dark:border-neutral-800/70 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Vextor. All rights reserved.</p>
           <p>Design & built by Jaymin</p>
         </div>
