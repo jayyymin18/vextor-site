@@ -271,7 +271,7 @@ function Footer() {
             <div className="mb-3 text-sm font-medium">Contact</div>
             <a href="mailto:hello@vextor.co" className="flex items-center gap-2 underline-offset-4 hover:underline"><Mail className="size-4" /> hello@vextor.co</a>
             <a href="tel:+919016070659" className="flex items-center gap-2 underline-offset-4 hover:underline"><Phone className="size-4" /> +91 9016070659</a>
-            <a href="https://maps.google.com/?q=7th%20floor,%20The%20Link,%20Vijay%20Cross%20Rd,%20Navrangpura,%20Ahmedabad,%20Gujarat%20380009" className="flex items-start gap-2 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer"><MapPinned className="mt-0.5 size-5" /> 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</a>
+            <a href="https://maps.google.com/?q=7th%20floor,%20The%20Link,%20Vijay%20Cross%20Rd,%20Navrangpura,%20Ahmedabad,%20Gujarat%20380009" className="flex items-start gap-2 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer"><MapPinned className="mt-0.5 size-6 shrink-0" /> 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</a>
             <div className="pt-2">
               <img src="https://www.odigo.com/wp-content/uploads/2022/06/SALESFORCE-PARTNER.png" alt="Salesforce Partner" className="h-10 w-auto opacity-90" loading="lazy" />
             </div>
@@ -689,7 +689,7 @@ function ContactPage() {
               <CardContent className="space-y-3 text-sm text-foreground">
                 <a href="mailto:hello@vextor.co" className="flex items-center gap-2 underline-offset-4 hover:underline"><Mail className="size-4" /> hello@vextor.co</a>
                 <a href="tel:+919016070659" className="flex items-center gap-2 underline-offset-4 hover:underline"><Phone className="size-4" /> +91 9016070659</a>
-                <a href="https://maps.google.com/?q=7th%20floor,%20The%20Link,%20Vijay%20Cross%20Rd,%20Navrangpura,%20Ahmedabad,%20Gujarat%20380009" className="flex items-start gap-2 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer"><MapPinned className="mt-0.5 size-5" /> 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</a>
+                <a href="https://maps.google.com/?q=7th%20floor,%20The%20Link,%20Vijay%20Cross%20Rd,%20Navrangpura,%20Ahmedabad,%20Gujarat%20380009" className="flex items-start gap-2 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer"><MapPinned className="mt-0.5 size-6 shrink-0" /> 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</a>
                 <div className="flex items-center gap-3 pt-2">
                   <a href="#" aria-label="LinkedIn" className="inline-flex items-center gap-2 text-sm underline-offset-4 hover:underline" onClick={(e)=>e.preventDefault()}><Linkedin className="size-4" /> LinkedIn</a>
                   <a href="#" aria-label="GitHub" className="inline-flex items-center gap-2 text-sm underline-offset-4 hover:underline" onClick={(e)=>e.preventDefault()}><Github className="size-4" /> GitHub</a>
