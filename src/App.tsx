@@ -289,6 +289,19 @@ function HomePage() {
       <ShieldCheck className="size-4" /> {label}
     </span>
   )
+  const brandStack = [
+    { name: 'Salesforce', short: 'SF', from: '#00A1E0', to: '#0B5CAB' },
+    { name: 'Stripe', short: 'ST', from: '#635BFF', to: '#4834D4' },
+    { name: 'QuickBooks', short: 'QB', from: '#2CA01C', to: '#0F7D0F' },
+    { name: 'Bill.com', short: 'BL', from: '#FF7A00', to: '#FF9F1C' },
+    { name: 'PayPal', short: 'PP', from: '#012C6C', to: '#009CDE' },
+    { name: 'AWS', short: 'AWS', from: '#232F3E', to: '#FF9900' },
+    { name: 'Azure', short: 'AZ', from: '#0078D4', to: '#004578' },
+    { name: 'Microsoft', short: 'MS', from: '#F35325', to: '#81BC06' },
+    { name: 'Sage', short: 'SG', from: '#00A859', to: '#007A3D' },
+    { name: 'Oracle', short: 'OR', from: '#E90019', to: '#A80000' },
+    { name: 'Dropbox', short: 'DB', from: '#0061FE', to: '#0A46CE' },
+  ]
   return (
     <main>
       <section className="relative overflow-hidden">
@@ -382,6 +395,41 @@ function HomePage() {
               </CardContent>
             </Card>
           ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Ecosystem" title="Platforms we build with" subtitle="A sampling of the systems we integrate and automate—cycling continuously.">
+        <div className="relative overflow-hidden rounded-2xl border card-border bg-card px-4 py-6">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-card to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-card to-transparent" />
+          <div className="logo-marquee" role="presentation">
+            <div className="logo-marquee-track">
+              {brandStack.map((b, i) => (
+                <div key={b.name + i} className="logo-pill" aria-label={b.name} title={b.name}>
+                  <span
+                    className="logo-pill-dot"
+                    style={{ background: `linear-gradient(135deg, ${b.from}, ${b.to})` }}
+                  >
+                    {b.short}
+                  </span>
+                  <span className="logo-pill-name">{b.name}</span>
+                </div>
+              ))}
+            </div>
+            <div className="logo-marquee-track" aria-hidden="true">
+              {brandStack.map((b, i) => (
+                <div key={b.name + 'dupe' + i} className="logo-pill">
+                  <span
+                    className="logo-pill-dot"
+                    style={{ background: `linear-gradient(135deg, ${b.from}, ${b.to})` }}
+                  >
+                    {b.short}
+                  </span>
+                  <span className="logo-pill-name">{b.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </Section>
 
