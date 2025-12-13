@@ -4,8 +4,8 @@ import { cn } from '@/lib/utils'
 export const Card = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'rounded-2xl bg-card border border-neutral-200/70 dark:border-neutral-800/70 shadow-sm transition duration-200',
-      'hover:-translate-y-0.5 hover:shadow-md',
+      'rounded-2xl bg-card card-border shadow-[0_18px_46px_rgba(255,205,218,0.24)] dark:shadow-[0_18px_46px_rgba(0,0,0,0.35)] transition duration-200 backdrop-blur-[1px]',
+      'hover:-translate-y-0.5 hover:shadow-[0_22px_54px_rgba(255,205,218,0.32)] dark:hover:shadow-[0_22px_54px_rgba(0,0,0,0.45)]',
       className
     )}
     {...props}

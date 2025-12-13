@@ -28,25 +28,31 @@ function ensureThemeStyles(theme: 'light' | 'dark') {
   }
   const light = `
     .light, :root:not(.dark){
-      --background: 0 0% 100%;
-      --foreground: 222 47% 11%;
-      --muted-foreground: 222 15% 35%;
-      --card: 0 0% 100%;
-      --border: 220 13% 91%;
-      --accent: 0 0% 98%;
+      --background: 23 72% 97%;
+      --foreground: 232 32% 18%;
+      --muted-foreground: 230 16% 42%;
+      --card: 18 70% 99%;
+      --border: 20 35% 86%;
+      --accent: 210 55% 95%;
     }`
   const dark = `
     .dark{
-      --background: 222 47% 6%;
-      --foreground: 210 40% 98%;
-      --muted-foreground: 210 15% 85%;
-      --card: 222 47% 10%;
-      --border: 217 32% 20%;
-      --accent: 222 47% 12%;
+      --background: 235 30% 12%;
+      --foreground: 28 66% 94%;
+      --muted-foreground: 230 20% 72%;
+      --card: 235 26% 16%;
+      --border: 230 22% 26%;
+      --accent: 260 32% 22%;
     }`
   const base = `
     :root{color-scheme: light dark}
-    body{background-color:hsl(var(--background));color:hsl(var(--foreground));}
+    body{
+      background-color:hsl(var(--background));
+      color:hsl(var(--foreground));
+      background-image:
+        radial-gradient(1100px 1100px at 12% 8%, hsla(340, 82%, 88%, 0.45), transparent),
+        radial-gradient(1100px 1100px at 82% 0%, hsla(200, 80%, 88%, 0.35), transparent);
+    }
     .bg-background{background-color:hsl(var(--background));}
     .bg-card{background-color:hsl(var(--card));}
     .text-foreground{color:hsl(var(--foreground));}
@@ -102,7 +108,7 @@ const navItems = [
   { to: '/contact', label: 'Contact' },
 ] as const
 const Chip = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium">{children}</span>
+  <span className="inline-flex items-center rounded-full card-border bg-white/70 px-3 py-1 text-xs font-medium text-foreground backdrop-blur-sm dark:bg-white/10">{children}</span>
 )
 
 function Section({ id, eyebrow, title, subtitle, children }:{ id?: string; eyebrow?: string; title?: string; subtitle?: string; children?: React.ReactNode; }) {
@@ -111,7 +117,7 @@ function Section({ id, eyebrow, title, subtitle, children }:{ id?: string; eyebr
       <div className="mx-auto max-w-6xl px-4">
         {(eyebrow || title) && (
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={fadeUp} className="mb-10 text-center">
-            {eyebrow && (<span className="inline-block rounded-full bg-gradient-to-r from-fuchsia-500 via-rose-500 to-amber-500 px-3 py-1 text-xs font-medium text-white">{eyebrow}</span>)}
+            {eyebrow && (<span className="inline-block rounded-full bg-[linear-gradient(120deg,#ffd9e5,#ffe6c7,#d7f0ff)] px-3 py-1 text-xs font-medium text-[#2d2435] shadow-sm">{eyebrow}</span>)}
             {title && <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h2>}
             {subtitle && <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">{subtitle}</p>}
           </motion.div>
@@ -200,7 +206,7 @@ function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.15 }}
-            className="border-t bg-background/95 shadow-lg backdrop-blur sm:hidden"
+            className="border-t border-[hsl(var(--border))] bg-background/95 shadow-lg backdrop-blur sm:hidden"
           >
             <div className="mx-auto max-w-6xl space-y-4 px-4 py-4">
               <div className="grid gap-2">
@@ -237,7 +243,7 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="mt-16 bg-neutral-50 py-12 text-foreground dark:bg-neutral-950">
+    <footer className="mt-16 bg-gradient-to-br from-[#fff4e6] via-[#f3e8ff] to-[#e0f4ff] py-12 text-foreground dark:from-[#12121c] dark:via-[#161827] dark:to-[#0f111a]">
       <div className="mx-auto max-w-6xl px-4">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="space-y-3">
@@ -277,7 +283,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-10 flex flex-col gap-3 border-t border-neutral-200/80 pt-6 text-xs text-muted-foreground dark:border-neutral-800/70 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-[hsl(var(--border))] pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Vextor. All rights reserved.</p>
           <p>Design & built by Jaymin</p>
         </div>
@@ -296,13 +302,13 @@ function HomePage() {
   return (
     <main>
       <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60rem_60rem_at_10%_10%,hsl(var(--foreground)/0.06),transparent)]" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 w-1/2 bg-gradient-to-l from-fuchsia-500/10 via-rose-500/10 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60rem_60rem_at_12%_12%,rgba(255,196,217,0.4),transparent)]" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 w-1/2 bg-gradient-to-l from-[#dff3ff]/70 via-[#ffe6f7]/60 to-transparent" />
 
         <div className="mx-auto max-w-6xl px-4 py-20 sm:py-28">
           <div className="grid items-center gap-10 md:grid-cols-2">
             <motion.div initial="hidden" animate="show" variants={fadeUp}>
-              <Badge className="mb-4 bg-foreground text-background">Revenue • Retention • Efficiency</Badge>
+              <Badge className="mb-4">Revenue • Retention • Efficiency</Badge>
               <h1 className="text-balance text-4xl font-semibold leading-tight sm:text-5xl">Make Salesforce a growth and operations lever.</h1>
               <p className="mt-4 max-w-xl text-muted-foreground">
                 We’re a service-based Salesforce consultancy that ties architecture to board metrics—faster revenue cycles, higher retention, lower cost-to-serve, and audit-ready governance. We are a <strong className="text-foreground">Salesforce Consulting Partner</strong> and <strong className="text-foreground">Salesforce ISV Partner</strong>.
@@ -322,11 +328,11 @@ function HomePage() {
 
             {/* Right visual column */}
             <div className="relative">
-              <div className="pointer-events-none absolute -right-10 -top-10 h-64 w-64 rounded-full bg-gradient-to-tr from-fuchsia-500/25 via-rose-500/25 to-amber-400/25 blur-3xl" />
+              <div className="pointer-events-none absolute -right-10 -top-10 h-64 w-64 rounded-full bg-gradient-to-tr from-[#ffd9e5]/80 via-[#ffe6c7]/80 to-[#d7f0ff]/80 blur-3xl" />
               <div className="relative mx-auto grid max-w-sm gap-4">
                 <div className="rounded-2xl border card-border bg-card p-5 shadow-sm">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-fuchsia-600 via-rose-500 to-amber-400 text-white">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-[#ffd9e5] via-[#ffe6c7] to-[#d7f0ff] text-[#2d2435]">
                       <Rocket className="size-5" />
                     </div>
                     <div>
@@ -337,7 +343,7 @@ function HomePage() {
                 </div>
                 <div className="rounded-2xl border card-border bg-card p-5 shadow-sm">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-500 via-sky-500 to-blue-500 text-white">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-[#d8f3ff] via-[#e5e8ff] to-[#d7f7f7] text-[#0f2f3c]">
                       <ShieldCheck className="size-5" />
                     </div>
                     <div>
@@ -348,7 +354,7 @@ function HomePage() {
                 </div>
                 <div className="rounded-2xl border card-border bg-card p-5 shadow-sm">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-green-500 text-white">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-[#dff3e3] via-[#f2f7d5] to-[#ffe9d6] text-[#1f3a2a]">
                       <Workflow className="size-5" />
                     </div>
                     <div>

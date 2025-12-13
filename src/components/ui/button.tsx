@@ -19,10 +19,11 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          'inline-flex items-center justify-center rounded-xl font-medium transition-colors',
+          'inline-flex items-center justify-center rounded-xl font-medium transition duration-200 shadow-sm',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[rgba(255,194,214,0.65)] focus-visible:ring-offset-transparent',
           variant === 'outline'
-            ? 'border card-border bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-800'
-            : 'bg-neutral-900 text-white hover:opacity-90 dark:bg-white dark:text-neutral-900',
+            ? 'border card-border bg-transparent text-foreground hover:bg-[rgba(255,218,232,0.5)] dark:hover:bg-[rgba(59,52,76,0.7)]'
+            : 'bg-[linear-gradient(120deg,#ffd9e5,#ffe6c7,#d7f0ff)] text-slate-900 shadow-[0_14px_34px_rgba(255,205,218,0.5)] hover:shadow-[0_18px_44px_rgba(255,205,218,0.6)] dark:text-slate-900',
           sizeClasses[size],
           className,
         )}
