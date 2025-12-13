@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Routes, Route, Link, useLocation, Navigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -10,7 +10,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import {
   Sparkles, Rocket, Workflow, Handshake, CheckCircle2, Mail, Phone, MapPin, ArrowRight,
   CalendarCheck2, Cloud, ShieldCheck, Linkedin, Github, ExternalLink,
-  Sun, Moon, Compass, LifeBuoy, LayoutDashboard, Star
+  Sun, Moon, Compass, LifeBuoy, LayoutDashboard, Star, Menu, X
 } from 'lucide-react'
 
 // Theme context
@@ -93,6 +93,13 @@ function ThemeToggle() {
 
 // Shared UI
 const fadeUp = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.6 } } } as const
+const navItems = [
+  { to: '/services', label: 'Services' },
+  { to: '/industries', label: 'Industries' },
+  { to: '/approach-results', label: 'Approach & Results' },
+  { to: '/about', label: 'About' },
+  { to: '/contact', label: 'Contact' },
+] as const
 const Chip = ({ children }: { children: React.ReactNode }) => (
   <span className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium">{children}</span>
 )
@@ -126,17 +133,33 @@ function Shell({ children }:{ children: React.ReactNode }) {
   )
 }
 
-function NavLink({ to, children }:{ to: string; children: React.ReactNode; }) {
+function NavLink({ to, children, onClick, className }:{ to: string; children: React.ReactNode; onClick?: () => void; className?: string; }) {
   const location = useLocation()
   const active = location.pathname === to
   return (
-    <Link to={to} className={`text-sm transition hover:text-foreground ${active ? 'text-foreground' : 'text-muted-foreground'}`}>
+    <Link
+      to={to}
+      onClick={onClick}
+      className={`text-sm transition hover:text-foreground ${active ? 'text-foreground' : 'text-muted-foreground'} ${className || ''}`}
+    >
       {children}
     </Link>
   )
 }
 
 function Header() {
+  const location = useLocation()
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [location.pathname])
+
+  useEffect(() => {
+    document.body.classList.toggle('overflow-hidden', mobileOpen)
+    return () => document.body.classList.remove('overflow-hidden')
+  }, [mobileOpen])
+
   return (
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/50">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
@@ -149,16 +172,64 @@ function Header() {
         </Link>
         <nav className="hidden sm:flex">
           <div className="flex items-center gap-6">
-            <NavLink to="/services">Services</NavLink>
-            <NavLink to="/industries">Industries</NavLink>
-            <NavLink to="/approach-results">Approach & Results</NavLink>
-            <NavLink to="/about">About</NavLink>
-            <NavLink to="/contact">Contact</NavLink>
+            {navItems.map((item) => (
+              <NavLink key={item.to} to={item.to}>{item.label}</NavLink>
+            ))}
             <Link to="/contact"><Button className="rounded-2xl">Book a call <ArrowRight className="ml-2 size-4" /></Button></Link>
             <ThemeToggle />
           </div>
         </nav>
+        <div className="flex items-center gap-2 sm:hidden">
+          <Link to="/contact"><Button size="sm" className="rounded-2xl">Book a call</Button></Link>
+          <Button
+            variant="outline"
+            size="icon"
+            className="rounded-xl"
+            onClick={() => setMobileOpen((open) => !open)}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          >
+            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </Button>
+        </div>
       </div>
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.15 }}
+            className="border-t bg-background/95 shadow-lg backdrop-blur sm:hidden"
+          >
+            <div className="mx-auto max-w-6xl space-y-4 px-4 py-4">
+              <div className="grid gap-2">
+                {navItems.map((item) => (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center justify-between rounded-xl border border-transparent bg-accent-surface px-4 py-3 text-foreground"
+                  >
+                    <span>{item.label}</span>
+                    <ArrowRight className="size-4 text-muted-foreground" />
+                  </NavLink>
+                ))}
+              </div>
+              <div className="flex flex-col gap-3">
+                <Link to="/contact" onClick={() => setMobileOpen(false)}><Button className="w-full rounded-2xl">Book a call <CalendarCheck2 className="ml-2 size-4" /></Button></Link>
+                <div className="flex flex-wrap items-center gap-2">
+                  <ThemeToggle />
+                  <Chip>Avg. reply &lt; 12h</Chip>
+                </div>
+              </div>
+              <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+                <span className="flex items-center gap-2"><Mail className="size-4" /> hello@vextor.co</span>
+                <span className="flex items-center gap-2"><Phone className="size-4" /> +91 9016070659</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }
@@ -201,7 +272,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-8 flex items-center justify-between border-t pt-6 text-xs text-muted-foreground">
+        <div className="mt-8 flex flex-col gap-3 border-t pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Vextor. All rights reserved.</p>
           <p>Design & built by Jaymin</p>
         </div>
