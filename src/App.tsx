@@ -105,13 +105,9 @@ const Chip = ({ children }: { children: React.ReactNode }) => (
   <span className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium">{children}</span>
 )
 
-function Section({ id, eyebrow, title, subtitle, children, snap }:{ id?: string; eyebrow?: string; title?: string; subtitle?: string; children?: React.ReactNode; snap?: boolean; }) {
-  const snapClasses = snap ? 'md:min-h-[90vh] md:snap-start md:snap-always md:flex md:flex-col md:justify-center' : ''
-  const bandedClasses = 'relative overflow-hidden md:odd:bg-white/90 md:even:bg-neutral-50/70 dark:md:odd:bg-neutral-900/60 dark:md:even:bg-neutral-900/70'
+function Section({ id, eyebrow, title, subtitle, children }:{ id?: string; eyebrow?: string; title?: string; subtitle?: string; children?: React.ReactNode; }) {
   return (
-    <section id={id} className={`py-16 sm:py-24 ${snapClasses} ${bandedClasses}`}>
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(90%_70%_at_50%_0%,hsl(var(--foreground)/0.04),transparent)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neutral-200/70 to-transparent dark:via-neutral-700/60" />
+    <section id={id} className="py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-4">
         {(eyebrow || title) && (
           <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={fadeUp} className="mb-10 text-center">
@@ -294,8 +290,8 @@ function HomePage() {
     </span>
   )
   return (
-    <main className="md:snap-y md:snap-mandatory">
-      <section className="relative overflow-hidden md:flex md:min-h-[90vh] md:snap-start md:snap-always md:flex-col md:justify-center md:border-b md:border-neutral-200 md:bg-gradient-to-b md:from-white md:via-white md:to-neutral-50 dark:md:border-neutral-800 dark:md:from-neutral-900 dark:md:via-neutral-900 dark:md:to-neutral-900/70">
+    <main>
+      <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60rem_60rem_at_10%_10%,hsl(var(--foreground)/0.06),transparent)]" />
         <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 w-1/2 bg-gradient-to-l from-fuchsia-500/10 via-rose-500/10 to-transparent" />
 
@@ -363,13 +359,13 @@ function HomePage() {
         </div>
       </section>
 
-      <Section snap eyebrow="Trusted by teams" subtitle="We partner with product and operations leaders to modernize their Salesforce stack.">
+      <Section eyebrow="Trusted by teams" subtitle="We partner with product and operations leaders to modernize their Salesforce stack.">
         <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground">
           <Chip>ISV & SaaS</Chip><Chip>Fintech</Chip><Chip>Manufacturing</Chip><Chip>Healthcare</Chip><Chip>Retail & eCom</Chip>
         </div>
       </Section>
 
-      <Section snap eyebrow="Business outcomes" title="What leadership cares about" subtitle="Programs mapped to revenue, retention, and risk goals—so the board sees the impact.">
+      <Section eyebrow="Business outcomes" title="What leadership cares about" subtitle="Programs mapped to revenue, retention, and risk goals—so the board sees the impact.">
         <div className="grid gap-6 md:grid-cols-3">
           {[
             { title: 'Revenue velocity', metric: '+12–24% faster cycles', desc: 'Guided selling, cleaner pipeline hygiene, and approvals that move deals without friction.', icon: <Rocket className="size-5" /> },
@@ -389,7 +385,7 @@ function HomePage() {
         </div>
       </Section>
 
-      <Section snap eyebrow="Why Vextor" title="Service-based, value-obsessed" subtitle="Clear outcomes, transparent delivery, and long-term care.">
+      <Section eyebrow="Why Vextor" title="Service-based, value-obsessed" subtitle="Clear outcomes, transparent delivery, and long-term care.">
         <div className="grid gap-6 lg:grid-cols-3">
           {[{k:'Outcome over output',d:'We map every sprint to business KPIs—time-to-onboard, win-rate, CSAT.'},{k:'Architected right',d:'Security, sharing, and data model choices that scale with your roadmap.'},{k:'Care & SLAs',d:'Post-go-live support with defined response times and proactive health checks.'}].map((w,i)=> (
             <Card key={i} className="rounded-2xl card-border bg-card"><CardHeader><CardTitle className="text-lg">{w.k}</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">{w.d}</p></CardContent></Card>
@@ -397,7 +393,7 @@ function HomePage() {
         </div>
       </Section>
 
-      <Section snap eyebrow="What clients say" title="Reviews & testimonials" subtitle="Quotes to illustrate layout.">
+      <Section eyebrow="What clients say" title="Reviews & testimonials" subtitle="Quotes to illustrate layout.">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
             {name:'Brain Cronin', role:'Founder, BuilderTek', text:'Vextor cut our case resolution time by 31% and finally gave us dashboards the team actually uses.'},
@@ -410,7 +406,7 @@ function HomePage() {
         </div>
       </Section>
 
-      <Section snap eyebrow="Start here" title="Ready to make Salesforce your advantage?" subtitle="Tell us about your goals—next, we’ll share a tailored plan and timeline.">
+      <Section eyebrow="Start here" title="Ready to make Salesforce your advantage?" subtitle="Tell us about your goals—next, we’ll share a tailored plan and timeline.">
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link to="/contact"><Button size="lg" className="rounded-2xl">Book a 30‑min call<CalendarCheck2 className="ml-2 size-4" /></Button></Link>
           <Chip>Avg. reply time: <strong className="ml-1">&lt; 12h</strong></Chip>
@@ -437,8 +433,8 @@ function ServicesPage() {
     { name: 'Partner Portal', points: ['Secure Experience Cloud','RBAC + sharing','Self-serve knowledge'] },
   ]
   return (
-    <main className="md:snap-y md:snap-mandatory">
-      <Section snap eyebrow="What we do" title="Services built around outcomes" subtitle="Strategic consulting, hands-on engineering, and long-term care—so your org keeps working as hard as your team.">
+    <main>
+      <Section eyebrow="What we do" title="Services built around outcomes" subtitle="Strategic consulting, hands-on engineering, and long-term care—so your org keeps working as hard as your team.">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => (
             <Card key={i} className="rounded-2xl card-border bg-card"><CardHeader><CardTitle className="flex items-center gap-2 text-lg text-foreground">{s.icon}{s.name}</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">{s.bullet.map((b,j)=>(<li key={j} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 size-4" />{b}</li>))}</ul></CardContent></Card>
@@ -446,7 +442,7 @@ function ServicesPage() {
         </div>
       </Section>
 
-      <Section snap eyebrow="Solutions" title="Prebuilt accelerators" subtitle="Kickstart common journeys with our opinionated blueprints.">
+      <Section eyebrow="Solutions" title="Prebuilt accelerators" subtitle="Kickstart common journeys with our opinionated blueprints.">
         <div className="grid gap-6 md:grid-cols-2">
           {accelerators.map((s, i) => (
             <Card key={i} className="rounded-2xl card-border bg-card"><CardHeader><CardTitle className="text-lg text-foreground">{s.name}</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">{s.points.map((p,j)=>(<li key={j} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 size-4" />{p}</li>))}</ul></CardContent></Card>
@@ -454,7 +450,7 @@ function ServicesPage() {
         </div>
       </Section>
 
-      <Section snap eyebrow="Engagement models" title="How we can work together">
+      <Section eyebrow="Engagement models" title="How we can work together">
         <div className="grid gap-6 md:grid-cols-3">
           {[{n:'Project-based',d:'Fixed-scope delivery with milestones and demos.'},{n:'Dedicated squad',d:'Cross-functional team (admin, dev, QA) on a monthly retainer.'},{n:'Support & Care',d:'SLA-based support with proactive health checks.'}].map((e,i)=>(
             <Card key={i} className="rounded-2xl card-border bg-card"><CardHeader><CardTitle className="text-lg text-foreground">{e.n}</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">{e.d}</p></CardContent></Card>
@@ -481,8 +477,8 @@ function IndustriesPage() {
     { name: 'Real Estate', text: 'Broker onboarding, deal rooms, service requests.' },
   ]
   return (
-    <main className="md:snap-y md:snap-mandatory">
-      <Section snap eyebrow="Where we play" title="Industries & patterns">
+    <main>
+      <Section eyebrow="Where we play" title="Industries & patterns">
         <div className="grid gap-6 md:grid-cols-2">
           {rows.map((r,i)=>(
             <Card key={i} className="rounded-2xl card-border bg-card"><CardHeader><CardTitle className="flex items-center gap-2 text-lg text-foreground"><Compass className="size-5" /> {r.name}</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">{r.text}</p></CardContent></Card>
@@ -514,8 +510,8 @@ function ApproachResultsPage() {
     { title: 'Field Service Dispatching', summary: 'Optimized scheduling & inventory; improved first-visit resolution and utilization.' },
   ]
   return (
-    <main className="md:snap-y md:snap-mandatory">
-      <Section snap eyebrow="Our approach" title="From discovery to value, fast" subtitle="Transparent delivery with weekly demos and no surprises.">
+    <main>
+      <Section eyebrow="Our approach" title="From discovery to value, fast" subtitle="Transparent delivery with weekly demos and no surprises.">
         <div className="grid gap-6 md:grid-cols-4">
           {stages.map((s,i)=>(
             <Card key={i} className="rounded-2xl card-border bg-card">
@@ -529,7 +525,7 @@ function ApproachResultsPage() {
         </div>
       </Section>
 
-      <Section snap eyebrow="Selected work" title="Results we’ve delivered" subtitle="Hypothetical examples to show structure.">
+      <Section eyebrow="Selected work" title="Results we’ve delivered" subtitle="Hypothetical examples to show structure.">
         <div className="grid gap-6 lg:grid-cols-3">
           {items.map((w,i)=>(
             <Card key={i} className="rounded-2xl card-border bg-card"><CardHeader><CardTitle className="text-3xl text-foreground">{w.kpi}</CardTitle><p className="text-sm text-muted-foreground">{w.label}</p></CardHeader><CardContent><p className="text-sm text-foreground">{w.desc}</p></CardContent></Card>
@@ -537,7 +533,7 @@ function ApproachResultsPage() {
         </div>
       </Section>
 
-      <Section snap eyebrow="In-depth" title="Case study summaries">
+      <Section eyebrow="In-depth" title="Case study summaries">
         <div className="grid gap-6 md:grid-cols-3">
           {stories.map((s,i)=>(
             <Card key={i} className="rounded-2xl card-border bg-card"><CardHeader><CardTitle className="text-lg text-foreground">{s.title}</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">{s.summary}</p><div className="pt-4"><Link to="/contact" className="text-sm underline-offset-4 hover:underline">Discuss this approach →</Link></div></CardContent></Card>
@@ -545,7 +541,7 @@ function ApproachResultsPage() {
         </div>
       </Section>
 
-      <Section snap eyebrow="Client reviews" title="What customers say">
+      <Section eyebrow="Client reviews" title="What customers say">
         <div className="grid gap-6 md:grid-cols-3">
           {[
             {n:'Ravi T.', r:'CTO, SaaS', t:'Their architects saved us months by getting the sharing model right from day one.'},
@@ -577,8 +573,8 @@ function AboutPage() {
     </Card>
   )
   return (
-    <main className="md:snap-y md:snap-mandatory">
-      <Section snap eyebrow="Who we are" title="Vextor is a service‑based Salesforce consultancy" subtitle="Founded in India, partnering globally. We combine architecture-first thinking with pragmatic delivery.">
+    <main>
+      <Section eyebrow="Who we are" title="Vextor is a service‑based Salesforce consultancy" subtitle="Founded in India, partnering globally. We combine architecture-first thinking with pragmatic delivery.">
         <div className="grid gap-6 md:grid-cols-2">
           <Card className="rounded-2xl card-border bg-card">
             <CardHeader><CardTitle className="text-foreground">Company overview</CardTitle></CardHeader>
@@ -597,14 +593,14 @@ function AboutPage() {
         </div>
       </Section>
 
-      <Section snap eyebrow="Recognitions" title="Partners & ecosystem">
+      <Section eyebrow="Recognitions" title="Partners & ecosystem">
         <div className="grid gap-6 md:grid-cols-2">
           <PartnerBadgeCard title="Salesforce Consulting Partner" caption="Recognized for solution design, implementation, and long-term adoption." />
           <PartnerBadgeCard title="Salesforce ISV Partner" caption="Experience building and supporting managed package products on the platform." />
         </div>
       </Section>
 
-      <Section snap eyebrow="How we engage" title="Principles & ways of working">
+      <Section eyebrow="How we engage" title="Principles & ways of working">
         <div className="grid gap-6 md:grid-cols-2">
           <Card className="rounded-2xl card-border bg-card"><CardHeader><CardTitle className="text-foreground">Our principles</CardTitle></CardHeader><CardContent className="space-y-2 text-sm text-muted-foreground"><p>Outcomes over output.</p><p>Security by default.</p><p>Automate ruthlessly; document what matters.</p></CardContent></Card>
           <Card className="rounded-2xl card-border bg-card"><CardHeader><CardTitle className="text-foreground">Engagement model</CardTitle></CardHeader><CardContent className="space-y-2 text-sm text-muted-foreground"><p>Small, senior teams that integrate with yours.</p><p>Weekly demos and open comms.</p><p>Clear milestones, no surprises.</p></CardContent></Card>
@@ -623,8 +619,8 @@ function ContactPage() {
     setForm({ name: '', email: '', message: '' })
   }
   return (
-    <main className="md:snap-y md:snap-mandatory">
-      <Section snap eyebrow="Contact" title="Say hello">
+    <main>
+      <Section eyebrow="Contact" title="Say hello">
         <div className="grid gap-6 md:grid-cols-2">
           <Card className="rounded-2xl card-border bg-card">
             <CardHeader><CardTitle className="text-foreground">Start a project</CardTitle></CardHeader>
