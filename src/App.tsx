@@ -237,7 +237,7 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="mt-16 bg-white py-12 text-foreground dark:bg-neutral-950">
+    <footer className="mt-16 bg-neutral-50 py-12 text-foreground dark:bg-neutral-950">
       <div className="mx-auto max-w-6xl px-4">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="space-y-3">
