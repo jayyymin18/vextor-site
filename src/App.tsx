@@ -401,7 +401,18 @@ function HomePage() {
             {name:'Vicki Lipinski', role:'Acts Housing', text:'Portal rollout was smooth and secure. The team’s weekly demos kept us aligned throughout.'},
             {name:'Brian Kwong', role:'betterpartners', text:'Our reporting is trustworthy now. Decisions are faster and more confident.'}
           ].map((t,i)=> (
-            <Card key={i} className="rounded-2xl card-border bg-card"><CardHeader><CardTitle className="flex items-center gap-2 text-foreground">{Array.from({length:5}).map((_,j)=>(<Star key={j} className="size-4" />))}</CardTitle></CardHeader><CardContent><p className="text-sm text-foreground">“{t.text}”</p><p className="mt-3 text-xs text-muted-foreground">— {t.name}, {t.role}</p></CardContent></Card>
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30, rotateX: 8 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.45, delay: i * 0.08 } }}
+              viewport={{ once: true, amount: 0.25 }}
+              className="will-change-transform"
+            >
+              <Card className="rounded-2xl card-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                <CardHeader><CardTitle className="flex items-center gap-2 text-foreground">{Array.from({length:5}).map((_,j)=>(<Star key={j} className="size-4" />))}</CardTitle></CardHeader>
+                <CardContent><p className="text-sm text-foreground">“{t.text}”</p><p className="mt-3 text-xs text-muted-foreground">— {t.name}, {t.role}</p></CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </Section>
@@ -548,7 +559,18 @@ function ApproachResultsPage() {
             {n:'Elena P.', r:'VP CX', t:'We finally have CSAT trending up and fewer escalations thanks to the new workflows.'},
             {n:'David L.', r:'Head of RevOps', t:'Our reporting is trustworthy now. Decisions are faster and more confident.'}
           ].map((c,i)=>(
-            <Card key={i} className="rounded-2xl card-border bg-card"><CardHeader><CardTitle className="flex items-center gap-1 text-foreground">{Array.from({length:5}).map((_,j)=>(<Star key={j} className="size-4" />))}</CardTitle></CardHeader><CardContent><p className="text-sm text-foreground">“{c.t}”</p><p className="mt-3 text-xs text-muted-foreground">— {c.n}, {c.r}</p></CardContent></Card>
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30, rotateX: 8 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.45, delay: i * 0.1 } }}
+              viewport={{ once: true, amount: 0.25 }}
+              className="will-change-transform"
+            >
+              <Card className="rounded-2xl card-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+                <CardHeader><CardTitle className="flex items-center gap-1 text-foreground">{Array.from({length:5}).map((_,j)=>(<Star key={j} className="size-4" />))}</CardTitle></CardHeader>
+                <CardContent><p className="text-sm text-foreground">“{c.t}”</p><p className="mt-3 text-xs text-muted-foreground">— {c.n}, {c.r}</p></CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </Section>
