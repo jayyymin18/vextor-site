@@ -67,8 +67,9 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
       const stored = localStorage.getItem('vextor-theme') as 'light' | 'dark' | null
       if (stored) return stored
     } catch {}
-    const prefersDark = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-    return prefersDark ? 'dark' : 'light'
+    const hour = new Date().getHours()
+    const isDaytime = hour >= 6 && hour < 18
+    return isDaytime ? 'light' : 'dark'
   })
   useEffect(() => {
     const root = document.documentElement
