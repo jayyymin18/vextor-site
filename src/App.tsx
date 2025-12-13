@@ -164,7 +164,7 @@ function Header() {
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/50">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link to="/" className="group inline-flex items-end gap-2" aria-label="Vextor home">
-          <div className="h-8 w-8 rounded-xl bg-gradient-to-tr from-fuchsia-600 via-rose-500 to-amber-400 shadow" />
+          <img src="/favicon.svg" alt="Vextor" className="h-8 w-8 rounded-xl shadow" />
           <div className="leading-none">
             <div className="text-xl font-bold tracking-tight">Vextor</div>
             <div className="text-[10px] text-muted-foreground opacity-70 group-hover:opacity-100">Solution</div>
