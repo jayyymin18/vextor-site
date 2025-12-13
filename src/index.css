@@ -32,9 +32,9 @@ body { @apply bg-white text-neutral-900 dark:bg-neutral-900 dark:text-neutral-50
   gap: 0.75rem;
   padding: 0.55rem 1rem 0.55rem 0.7rem;
   border-radius: 9999px;
-  background: rgba(255,255,255,0.95);
-  border: 1px solid rgba(15,23,42,0.08);
-  box-shadow: 0 10px 40px rgba(15,23,42,0.08);
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(15,23,42,0.06);
+  box-shadow: 0 6px 30px rgba(15,23,42,0.06);
   color: #0f172a;
   backdrop-filter: blur(2px);
 }
