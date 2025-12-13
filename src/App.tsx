@@ -162,7 +162,7 @@ function Header() {
   }, [mobileOpen])
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/50">
+    <header className="sticky top-0 z-50 bg-background/80 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/50">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link to="/" className="group inline-flex items-end gap-2" aria-label="Vextor home">
           <img src="/favicon.svg" alt="Vextor" className="h-8 w-8 rounded-xl shadow" />
