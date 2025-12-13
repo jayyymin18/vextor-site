@@ -289,18 +289,6 @@ function HomePage() {
       <ShieldCheck className="size-4" /> {label}
     </span>
   )
-  const brandStack = [
-    { name: 'Salesforce', short: 'Salesforce', color: '#00A1E0', icon: 'salesforce' },
-    { name: 'Stripe', short: 'Stripe', color: '#635BFF', icon: 'stripe' },
-    { name: 'QuickBooks', short: 'QuickBooks', color: '#2CA01C', icon: 'quickbooks' },
-    { name: 'PayPal', short: 'PayPal', color: '#00457C', icon: 'paypal' },
-    { name: 'AWS', short: 'AWS', color: '#FF9900', icon: 'amazonaws' },
-    { name: 'Azure', short: 'Azure', color: '#0078D4', icon: 'microsoftazure' },
-    { name: 'Microsoft', short: 'Microsoft', color: '#0067B8', icon: 'microsoft' },
-    { name: 'Sage', short: 'Sage', color: '#00A859', icon: 'sage' },
-    { name: 'Oracle', short: 'Oracle', color: '#E62020', icon: 'oracle' },
-    { name: 'Dropbox', short: 'Dropbox', color: '#0061FE', icon: 'dropbox' },
-  ]
   return (
     <main>
       <section className="relative overflow-hidden">
@@ -394,37 +382,6 @@ function HomePage() {
               </CardContent>
             </Card>
           ))}
-        </div>
-      </Section>
-
-      <Section eyebrow="Ecosystem" title="Platforms we build with" subtitle="A sampling of the systems we integrate and automate—rotating continuously.">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-white via-neutral-50 to-white px-4 py-6 shadow-sm ring-1 ring-neutral-200/60 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900 dark:ring-neutral-800/60">
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent dark:from-neutral-900" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent dark:from-neutral-900" />
-          <div className="logo-marquee" role="presentation">
-            <div className="logo-marquee-track">
-              {brandStack.map((b, i) => (
-                <div key={b.name + i} className="logo-pill" aria-label={b.name} title={b.name}>
-                  <span
-                    className="logo-icon"
-                    style={{ ['--logo-url' as string]: `url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${b.icon}.svg')`, color: b.color } as React.CSSProperties}
-                  />
-                  <span className="logo-pill-name">{b.name}</span>
-                </div>
-              ))}
-            </div>
-            <div className="logo-marquee-track" aria-hidden="true">
-              {brandStack.map((b, i) => (
-                <div key={b.name + 'dupe' + i} className="logo-pill">
-                  <span
-                    className="logo-icon"
-                    style={{ ['--logo-url' as string]: `url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${b.icon}.svg')`, color: b.color } as React.CSSProperties}
-                  />
-                  <span className="logo-pill-name">{b.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </Section>
 
