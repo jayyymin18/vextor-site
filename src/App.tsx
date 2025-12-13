@@ -237,43 +237,47 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="border-t py-10">
+    <footer className="mt-16 bg-gradient-to-b from-transparent via-neutral-50 to-white py-12 dark:via-neutral-950 dark:to-neutral-950">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="grid gap-8 sm:grid-cols-3">
-          <div className="max-w-sm">
-            <div className="mb-2 text-lg font-semibold">Vextor</div>
-            <p className="text-sm text-muted-foreground">A service-based Salesforce consulting studio. We design, build, and support secure, scalable solutions across Sales, Service, and Experience Cloud.</p>
-          </div>
-          <div className="grid grid-cols-2 gap-6 text-sm">
-            <div>
-              <div className="mb-2 font-medium">Company</div>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><Link to="/services" className="hover:text-foreground">Services</Link></li>
-                <li><Link to="/industries" className="hover:text-foreground">Industries</Link></li>
-                <li><Link to="/approach-results" className="hover:text-foreground">Approach & Results</Link></li>
-                <li><Link to="/about" className="hover:text-foreground">About</Link></li>
-              </ul>
+        <div className="grid gap-10 md:grid-cols-4">
+          <div className="space-y-3">
+            <div className="flex items-center gap-3">
+              <img src="/favicon.svg" alt="Vextor" className="h-9 w-9 rounded-xl shadow-sm" />
+              <div>
+                <div className="text-lg font-semibold">Vextor</div>
+                <div className="text-xs text-muted-foreground">Salesforce consulting studio</div>
+              </div>
             </div>
-            <div>
-              <div className="mb-2 font-medium">Legal</div>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>Privacy</li>
-                <li>Terms</li>
-                <li>Security</li>
-              </ul>
-            </div>
+            <p className="text-sm text-muted-foreground">Architecture-first delivery for revenue, retention, and efficiency. Based in Ahmedabad, partnering globally.</p>
           </div>
-          <div className="text-sm text-foreground">
-            <div className="mb-2 font-medium">Contact</div>
+          <div>
+            <div className="mb-3 text-sm font-medium text-foreground">Company</div>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><Link to="/services" className="underline-offset-4 hover:underline">Services</Link></li>
+              <li><Link to="/industries" className="underline-offset-4 hover:underline">Industries</Link></li>
+              <li><Link to="/approach-results" className="underline-offset-4 hover:underline">Approach & Results</Link></li>
+              <li><Link to="/about" className="underline-offset-4 hover:underline">About</Link></li>
+            </ul>
+          </div>
+          <div>
+            <div className="mb-3 text-sm font-medium text-foreground">Resources</div>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><Link to="/contact" className="underline-offset-4 hover:underline">Contact</Link></li>
+              <li><span className="text-muted-foreground/80">Privacy & Terms</span></li>
+              <li><span className="text-muted-foreground/80">Security</span></li>
+            </ul>
+          </div>
+          <div className="space-y-2 text-sm text-foreground">
+            <div className="mb-3 text-sm font-medium">Contact</div>
             <a href="mailto:hello@vextor.co" className="flex items-center gap-2 underline-offset-4 hover:underline"><Mail className="size-4" /> hello@vextor.co</a>
             <a href="tel:+919016070659" className="flex items-center gap-2 underline-offset-4 hover:underline"><Phone className="size-4" /> +91 9016070659</a>
             <a href="https://maps.google.com/?q=7th%20floor,%20The%20Link,%20Vijay%20Cross%20Rd,%20Navrangpura,%20Ahmedabad,%20Gujarat%20380009" className="flex items-start gap-2 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer"><MapPinned className="mt-0.5 size-5" /> 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</a>
-            <div className="mt-4">
+            <div className="pt-2">
               <img src="https://www.odigo.com/wp-content/uploads/2022/06/SALESFORCE-PARTNER.png" alt="Salesforce Partner" className="h-10 w-auto opacity-90" loading="lazy" />
             </div>
           </div>
         </div>
-        <div className="mt-8 flex flex-col gap-3 border-t pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-neutral-200/70 pt-6 text-xs text-muted-foreground dark:border-neutral-800/70 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Vextor. All rights reserved.</p>
           <p>Design & built by Jaymin</p>
         </div>
