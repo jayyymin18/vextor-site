@@ -224,8 +224,8 @@ function Header() {
                 </div>
               </div>
               <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-                <span className="flex items-center gap-2"><Mail className="size-4" /> hello@vextor.co</span>
-                <span className="flex items-center gap-2"><Phone className="size-4" /> +91 9016070659</span>
+                <a href="mailto:hello@vextor.co" className="flex items-center gap-2 underline-offset-4 hover:underline"><Mail className="size-4" /> hello@vextor.co</a>
+                <a href="tel:+919016070659" className="flex items-center gap-2 underline-offset-4 hover:underline"><Phone className="size-4" /> +91 9016070659</a>
               </div>
             </div>
           </motion.div>
@@ -265,9 +265,9 @@ function Footer() {
           </div>
           <div className="text-sm text-foreground">
             <div className="mb-2 font-medium">Contact</div>
-            <p className="flex items-center gap-2"><Mail className="size-4" /> hello@vextor.co</p>
-            <p className="flex items-center gap-2"><Phone className="size-4" /> +91 9016070659</p>
-            <p className="flex items-start gap-2"><MapPinned className="mt-0.5 size-5" /> 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</p>
+            <a href="mailto:hello@vextor.co" className="flex items-center gap-2 underline-offset-4 hover:underline"><Mail className="size-4" /> hello@vextor.co</a>
+            <a href="tel:+919016070659" className="flex items-center gap-2 underline-offset-4 hover:underline"><Phone className="size-4" /> +91 9016070659</a>
+            <a href="https://maps.google.com/?q=7th%20floor,%20The%20Link,%20Vijay%20Cross%20Rd,%20Navrangpura,%20Ahmedabad,%20Gujarat%20380009" className="flex items-start gap-2 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer"><MapPinned className="mt-0.5 size-5" /> 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</a>
             <div className="mt-4">
               <img src="https://www.odigo.com/wp-content/uploads/2022/06/SALESFORCE-PARTNER.png" alt="Salesforce Partner" className="h-10 w-auto opacity-90" loading="lazy" />
             </div>
@@ -673,7 +673,7 @@ function ContactPage() {
 
                 <Button type="submit" className="w-full rounded-2xl">Send message</Button>
                 <p className="text-xs text-muted-foreground">
-                  We’ll reply from hello@vextor.co.
+                  We’ll reply from <a href="mailto:hello@vextor.co" className="underline-offset-4 hover:underline">hello@vextor.co</a>.
                 </p>
               </form>
             </CardContent>
@@ -683,9 +683,9 @@ function ContactPage() {
             <Card className="rounded-2xl card-border bg-card">
               <CardHeader><CardTitle className="text-foreground">Contact details</CardTitle></CardHeader>
               <CardContent className="space-y-3 text-sm text-foreground">
-                <p className="flex items-center gap-2"><Mail className="size-4" /> hello@vextor.co</p>
-                <p className="flex items-center gap-2"><Phone className="size-4" /> +91 9016070659</p>
-                <p className="flex items-start gap-2"><MapPinned className="mt-0.5 size-5" /> 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</p>
+                <a href="mailto:hello@vextor.co" className="flex items-center gap-2 underline-offset-4 hover:underline"><Mail className="size-4" /> hello@vextor.co</a>
+                <a href="tel:+919016070659" className="flex items-center gap-2 underline-offset-4 hover:underline"><Phone className="size-4" /> +91 9016070659</a>
+                <a href="https://maps.google.com/?q=7th%20floor,%20The%20Link,%20Vijay%20Cross%20Rd,%20Navrangpura,%20Ahmedabad,%20Gujarat%20380009" className="flex items-start gap-2 underline-offset-4 hover:underline" target="_blank" rel="noopener noreferrer"><MapPinned className="mt-0.5 size-5" /> 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</a>
                 <div className="flex items-center gap-3 pt-2">
                   <a href="#" aria-label="LinkedIn" className="inline-flex items-center gap-2 text-sm underline-offset-4 hover:underline" onClick={(e)=>e.preventDefault()}><Linkedin className="size-4" /> LinkedIn</a>
                   <a href="#" aria-label="GitHub" className="inline-flex items-center gap-2 text-sm underline-offset-4 hover:underline" onClick={(e)=>e.preventDefault()}><Github className="size-4" /> GitHub</a>
