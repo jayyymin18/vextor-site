@@ -290,17 +290,17 @@ function HomePage() {
     </span>
   )
   const brandStack = [
-    { name: 'Salesforce', short: 'SF', from: '#00A1E0', to: '#0B5CAB' },
-    { name: 'Stripe', short: 'ST', from: '#635BFF', to: '#4834D4' },
-    { name: 'QuickBooks', short: 'QB', from: '#2CA01C', to: '#0F7D0F' },
-    { name: 'Bill.com', short: 'BL', from: '#FF7A00', to: '#FF9F1C' },
-    { name: 'PayPal', short: 'PP', from: '#012C6C', to: '#009CDE' },
-    { name: 'AWS', short: 'AWS', from: '#232F3E', to: '#FF9900' },
-    { name: 'Azure', short: 'AZ', from: '#0078D4', to: '#004578' },
-    { name: 'Microsoft', short: 'MS', from: '#F35325', to: '#81BC06' },
-    { name: 'Sage', short: 'SG', from: '#00A859', to: '#007A3D' },
-    { name: 'Oracle', short: 'OR', from: '#E90019', to: '#A80000' },
-    { name: 'Dropbox', short: 'DB', from: '#0061FE', to: '#0A46CE' },
+    { name: 'Salesforce', short: 'SF', color: '#00A1E0', icon: 'salesforce' },
+    { name: 'Stripe', short: 'Stripe', color: '#635BFF', icon: 'stripe' },
+    { name: 'QuickBooks', short: 'QB', color: '#2CA01C', icon: 'quickbooks' },
+    { name: 'Bill.com', short: 'Bill.com', color: '#FF7A00', icon: 'billcom' },
+    { name: 'PayPal', short: 'PayPal', color: '#00457C', icon: 'paypal' },
+    { name: 'AWS', short: 'AWS', color: '#FF9900', icon: 'amazonaws' },
+    { name: 'Azure', short: 'Azure', color: '#0078D4', icon: 'microsoftazure' },
+    { name: 'Microsoft', short: 'Microsoft', color: '#737373', icon: 'microsoft' },
+    { name: 'Sage', short: 'Sage', color: '#00A859', icon: 'sage' },
+    { name: 'Oracle', short: 'Oracle', color: '#E62020', icon: 'oracle' },
+    { name: 'Dropbox', short: 'Dropbox', color: '#0061FE', icon: 'dropbox' },
   ]
   return (
     <main>
@@ -398,20 +398,18 @@ function HomePage() {
         </div>
       </Section>
 
-      <Section eyebrow="Ecosystem" title="Platforms we build with" subtitle="A sampling of the systems we integrate and automate—cycling continuously.">
-        <div className="relative overflow-hidden rounded-2xl border card-border bg-card px-4 py-6">
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-card to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-card to-transparent" />
+      <Section eyebrow="Ecosystem" title="Platforms we build with" subtitle="A sampling of the systems we integrate and automate—rotating continuously.">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-neutral-50 via-white to-neutral-50 px-4 py-6 shadow-sm dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900">
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent dark:from-neutral-900" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent dark:from-neutral-900" />
           <div className="logo-marquee" role="presentation">
             <div className="logo-marquee-track">
               {brandStack.map((b, i) => (
                 <div key={b.name + i} className="logo-pill" aria-label={b.name} title={b.name}>
                   <span
-                    className="logo-pill-dot"
-                    style={{ background: `linear-gradient(135deg, ${b.from}, ${b.to})` }}
-                  >
-                    {b.short}
-                  </span>
+                    className="logo-icon"
+                    style={{ ['--logo-url' as string]: `url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${b.icon}.svg')`, color: b.color } as React.CSSProperties}
+                  />
                   <span className="logo-pill-name">{b.name}</span>
                 </div>
               ))}
@@ -420,11 +418,9 @@ function HomePage() {
               {brandStack.map((b, i) => (
                 <div key={b.name + 'dupe' + i} className="logo-pill">
                   <span
-                    className="logo-pill-dot"
-                    style={{ background: `linear-gradient(135deg, ${b.from}, ${b.to})` }}
-                  >
-                    {b.short}
-                  </span>
+                    className="logo-icon"
+                    style={{ ['--logo-url' as string]: `url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${b.icon}.svg')`, color: b.color } as React.CSSProperties}
+                  />
                   <span className="logo-pill-name">{b.name}</span>
                 </div>
               ))}
