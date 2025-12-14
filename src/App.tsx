@@ -101,6 +101,57 @@ const navItems = [
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ] as const
+
+const BASE_URL = 'https://vextor.co'
+const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`
+const BRAND_KEYWORDS = 'Vextor, Vextor Solution, Vextor Solution LLP, Vextor Solution Ahmedabad, Vextor Solution Salesforce'
+
+type SEOConfig = {
+  title: string
+  description: string
+  keywords?: string
+  canonicalPath?: string
+  image?: string
+}
+
+function usePageSEO(meta: SEOConfig) {
+  useEffect(() => {
+    const { title, description, keywords, canonicalPath, image } = meta
+    if (!title || !description) return
+    const canonicalUrl = canonicalPath ? `${BASE_URL}${canonicalPath}` : `${BASE_URL}${window.location.pathname}`
+    const imageUrl = image || DEFAULT_OG_IMAGE
+
+    const upsertMeta = (attr: 'name' | 'property', name: string, content: string) => {
+      let tag = document.head.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement | null
+      if (!tag) {
+        tag = document.createElement('meta')
+        tag.setAttribute(attr, name)
+        document.head.appendChild(tag)
+      }
+      tag.setAttribute('content', content)
+    }
+
+    document.title = title
+    upsertMeta('name', 'description', description)
+    if (keywords) upsertMeta('name', 'keywords', keywords)
+    upsertMeta('property', 'og:title', title)
+    upsertMeta('property', 'og:description', description)
+    upsertMeta('property', 'og:url', canonicalUrl)
+    upsertMeta('property', 'og:image', imageUrl)
+    upsertMeta('name', 'twitter:title', title)
+    upsertMeta('name', 'twitter:description', description)
+    upsertMeta('name', 'twitter:image', imageUrl)
+
+    let canonicalLink = document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link')
+      canonicalLink.rel = 'canonical'
+      document.head.appendChild(canonicalLink)
+    }
+    canonicalLink.href = canonicalUrl
+  }, [meta.title, meta.description, meta.keywords, meta.canonicalPath, meta.image])
+}
+
 const Chip = ({ children }: { children: React.ReactNode }) => (
   <span className="inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium">{children}</span>
 )
@@ -242,13 +293,13 @@ function Footer() {
         <div className="grid gap-10 md:grid-cols-4">
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <img src="/favicon.svg" alt="Vextor" className="h-9 w-9 rounded-xl shadow-sm" />
+              <img src="/favicon.svg" alt="Vextor Solution LLP logo" className="h-9 w-9 rounded-xl shadow-sm" />
               <div>
-                <div className="text-lg font-semibold">Vextor</div>
-                <div className="text-xs text-muted-foreground">Salesforce consulting studio</div>
+                <div className="text-lg font-semibold">Vextor Solution LLP</div>
+                <div className="text-xs text-muted-foreground">Salesforce consulting studio in Ahmedabad</div>
               </div>
             </div>
-            <p className="text-sm text-muted-foreground">Architecture-first delivery for revenue, retention, and efficiency. Based in Ahmedabad, partnering globally.</p>
+            <p className="text-sm text-muted-foreground">Architecture-first Salesforce delivery for revenue, retention, and efficiency. Also known as Vextor Solution, headquartered in Ahmedabad and partnering globally.</p>
           </div>
           <div>
             <div className="mb-3 text-sm font-medium text-foreground">Company</div>
@@ -288,6 +339,12 @@ function Footer() {
 
 // Pages
 function HomePage() {
+  usePageSEO({
+    title: 'Vextor Solution LLP | Salesforce Partner in Ahmedabad',
+    description: 'Vextor Solution LLP (Vextor Solution) is an Ahmedabad-based Salesforce consulting and ISV partner turning Salesforce into a growth and operations lever.',
+    keywords: `${BRAND_KEYWORDS}, Salesforce consulting Ahmedabad, Salesforce partner India, Salesforce ISV partner, architecture-first Salesforce`,
+    canonicalPath: '/',
+  })
   const PartnerBadge = ({ label }:{ label: string }) => (
     <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium">
       <ShieldCheck className="size-4" /> {label}
@@ -302,15 +359,16 @@ function HomePage() {
         <div className="mx-auto max-w-6xl px-4 py-20 sm:py-28">
           <div className="grid items-center gap-10 md:grid-cols-2">
             <motion.div initial="hidden" animate="show" variants={fadeUp}>
-              <Badge className="mb-4 bg-foreground text-background">Revenue • Retention • Efficiency</Badge>
-              <h1 className="text-balance text-4xl font-semibold leading-tight sm:text-5xl">Make Salesforce a growth and operations lever.</h1>
+              <Badge className="mb-4 bg-foreground text-background">Vextor Solution LLP • Ahmedabad Salesforce Partner</Badge>
+              <h1 className="text-balance text-4xl font-semibold leading-tight sm:text-5xl">Vextor Solution LLP turns Salesforce into a growth and operations lever.</h1>
               <p className="mt-4 max-w-xl text-muted-foreground">
-                We’re a service-based Salesforce consultancy that ties architecture to board metrics—faster revenue cycles, higher retention, lower cost-to-serve, and audit-ready governance. We are a <strong className="text-foreground">Salesforce Consulting Partner</strong> and <strong className="text-foreground">Salesforce ISV Partner</strong>.
+                Vextor Solution LLP (also known as Vextor Solution or simply Vextor) is an Ahmedabad-based Salesforce consulting and ISV partner. We tie architecture to board metrics—faster revenue cycles, higher retention, lower cost-to-serve, and audit-ready governance. We are a <strong className="text-foreground">Salesforce Consulting Partner</strong> and <strong className="text-foreground">Salesforce ISV Partner</strong>.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-2">
                 <PartnerBadge label="Salesforce Consulting Partner" />
                 <PartnerBadge label="Salesforce ISV Partner" />
               </div>
+              <p className="mt-2 text-sm text-muted-foreground">Headquartered in Ahmedabad, serving clients across India, the US, UK, and the Middle East.</p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <Link to="/contact"><Button className="rounded-2xl" size="lg">Get a proposal <Rocket className="ml-2 size-4" /></Button></Link>
                 <Link to="/approach-results" className="inline-flex items-center text-sm"><span className="underline-offset-4 hover:underline">See our work</span><ExternalLink className="ml-2 size-4" /></Link>
@@ -433,6 +491,12 @@ function HomePage() {
 }
 
 function ServicesPage() {
+  usePageSEO({
+    title: 'Salesforce Services | Vextor Solution LLP',
+    description: 'Salesforce consulting services from Vextor Solution LLP (Vextor Solution) in Ahmedabad: architecture, implementations, integrations, analytics, and managed services.',
+    keywords: `${BRAND_KEYWORDS}, Salesforce consulting Ahmedabad, Salesforce partner India, Salesforce services, Salesforce implementation partner`,
+    canonicalPath: '/services',
+  })
   const services = [
     { icon: <Sparkles className="size-5" />, name: 'Advisory & Architecture', bullet: ['Org assessments & roadmaps','Security & sharing model','Data model & governance'] },
     { icon: <Cloud className="size-5" />, name: 'Implementation', bullet: ['Sales/Service/Experience Cloud','Flows, LWC, Apex','Field Service, CPQ'] },
@@ -449,7 +513,7 @@ function ServicesPage() {
   ]
   return (
     <main>
-      <Section eyebrow="What we do" title="Services built around outcomes" subtitle="Strategic consulting, hands-on engineering, and long-term care—so your org keeps working as hard as your team.">
+      <Section eyebrow="What we do" title="Services built around outcomes" subtitle="Strategic consulting, hands-on engineering, and long-term care from Ahmedabad-based Vextor Solution LLP—so your org keeps working as hard as your team.">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => (
             <Card key={i} className="rounded-2xl card-border bg-card"><CardHeader><CardTitle className="flex items-center gap-2 text-lg text-foreground">{s.icon}{s.name}</CardTitle></CardHeader><CardContent><ul className="space-y-2 text-sm text-muted-foreground">{s.bullet.map((b,j)=>(<li key={j} className="flex items-start gap-2"><CheckCircle2 className="mt-0.5 size-4" />{b}</li>))}</ul></CardContent></Card>
@@ -477,6 +541,12 @@ function ServicesPage() {
 }
 
 function IndustriesPage() {
+  usePageSEO({
+    title: 'Industries | Vextor Solution LLP Salesforce Partner',
+    description: 'Vextor Solution LLP (Vextor Solution) applies Salesforce patterns for SaaS, fintech, manufacturing, healthcare, and more from our Ahmedabad delivery center.',
+    keywords: `${BRAND_KEYWORDS}, Salesforce partner Ahmedabad, Salesforce industries, Salesforce consulting India`,
+    canonicalPath: '/industries',
+  })
   const rows = [
     { name: 'ISV & SaaS', text: 'Subscription ops, entitlement, in-app support, partner portals.' },
     { name: 'Fintech', text: 'KYC/AML workflows, dispute handling, collections, reporting.' },
@@ -505,6 +575,12 @@ function IndustriesPage() {
 }
 
 function ApproachResultsPage() {
+  usePageSEO({
+    title: 'Approach & Results | Vextor Solution LLP Salesforce Consultants',
+    description: 'See how Vextor Solution LLP (Vextor Solution) delivers Salesforce projects: discovery, design, build, and adoption with measurable results.',
+    keywords: `${BRAND_KEYWORDS}, Salesforce consulting Ahmedabad, Salesforce partner India, Salesforce case studies`,
+    canonicalPath: '/approach-results',
+  })
   const stages = [
     { stage: 'Discover', time: '10–15 days', blurb: 'Workshops, audit, roadmap' },
     { stage: 'Design', time: '1–2 weeks', blurb: 'Solution design, security' },
@@ -583,6 +659,12 @@ function ApproachResultsPage() {
 }
 
 function AboutPage() {
+  usePageSEO({
+    title: 'About Vextor Solution LLP | Ahmedabad Salesforce Consulting Partner',
+    description: 'Learn about Vextor Solution LLP (Vextor Solution), an Ahmedabad-based Salesforce consulting and ISV partner focused on architecture-first delivery.',
+    keywords: `${BRAND_KEYWORDS}, Salesforce partner Ahmedabad, Salesforce consulting studio India`,
+    canonicalPath: '/about',
+  })
   const PartnerBadgeCard = ({ title, caption }:{ title: string; caption: string }) => (
     <Card className="rounded-2xl card-border bg-card">
       <CardHeader>
@@ -600,12 +682,13 @@ function AboutPage() {
   )
   return (
     <main>
-      <Section eyebrow="Who we are" title="Vextor is a service‑based Salesforce consultancy" subtitle="Founded in India, partnering globally. We combine architecture-first thinking with pragmatic delivery.">
+      <Section eyebrow="Who we are" title="Vextor Solution LLP is a service-based Salesforce consultancy" subtitle="Founded in India, partnering globally. We combine architecture-first thinking with pragmatic delivery.">
         <div className="grid gap-6 md:grid-cols-2">
           <Card className="rounded-2xl card-border bg-card">
             <CardHeader><CardTitle className="text-foreground">Company overview</CardTitle></CardHeader>
             <CardContent className="space-y-2 text-sm text-muted-foreground">
               <p>We help product and operations teams turn Salesforce into a competitive advantage. Our focus is on durable architecture, maintainable automation, and measurable outcomes.</p>
+              <p>Vextor Solution LLP (registered in India, also called Vextor Solution or Vextor) is headquartered in Ahmedabad and supports customers across India, the US, the UK, and the Middle East.</p>
               <p>We operate as an extension of your team with small, senior squads—solution architects, certified developers, admins, and QA—engaged through transparent sprints and SLAs.</p>
             </CardContent>
           </Card>
@@ -637,6 +720,12 @@ function AboutPage() {
 }
 
 function ContactPage() {
+  usePageSEO({
+    title: 'Contact Vextor Solution LLP | Salesforce Partner Ahmedabad',
+    description: 'Reach Vextor Solution LLP (Vextor Solution), an Ahmedabad-based Salesforce consulting partner. Book a call or email hello@vextor.co.',
+    keywords: `${BRAND_KEYWORDS}, contact Vextor Solution, Salesforce partner Ahmedabad`,
+    canonicalPath: '/contact',
+  })
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm({ ...form, [e.target.name]: e.target.value })
   const handleSubmit = (e: React.FormEvent) => {
@@ -646,7 +735,7 @@ function ContactPage() {
   }
   return (
     <main>
-      <Section eyebrow="Contact" title="Say hello">
+      <Section eyebrow="Contact" title="Say hello" subtitle="Talk with Vextor Solution LLP, a Salesforce partner based in Ahmedabad.">
         <div className="grid gap-6 md:grid-cols-2">
           <Card className="rounded-2xl card-border bg-card">
             <CardHeader><CardTitle className="text-foreground">Start a project</CardTitle></CardHeader>
