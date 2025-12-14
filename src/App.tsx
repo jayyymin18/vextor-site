@@ -362,7 +362,7 @@ function HomePage() {
               <Badge className="mb-4 bg-foreground text-background">Vextor • Ahmedabad Salesforce Partner</Badge>
               <h1 className="text-balance text-4xl font-semibold leading-tight sm:text-5xl">Vextor turns Salesforce into a growth and operations lever.</h1>
               <p className="mt-4 max-w-xl text-muted-foreground">
-                Vextor (officially Vextor Solution LLP and also known as Vextor Solution) is an Ahmedabad-based Salesforce consulting and ISV partner. We tie architecture to board metrics—faster revenue cycles, higher retention, lower cost-to-serve, and audit-ready governance. We are a <strong className="text-foreground">Salesforce Consulting Partner</strong> and <strong className="text-foreground">Salesforce ISV Partner</strong>.
+                Vextor is an Ahmedabad-based Salesforce consulting and ISV partner. We tie architecture to board metrics—faster revenue cycles, higher retention, lower cost-to-serve, and audit-ready governance. We are a <strong className="text-foreground">Salesforce Consulting Partner</strong> and <strong className="text-foreground">Salesforce ISV Partner</strong>.
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-2">
                 <PartnerBadge label="Salesforce Consulting Partner" />
