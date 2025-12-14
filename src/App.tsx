@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import {
   Sparkles, Rocket, Workflow, Handshake, CheckCircle2, Mail, Phone, MapPin, ArrowRight,
   CalendarCheck2, Cloud, ShieldCheck, Linkedin, Github, ExternalLink,
@@ -815,6 +815,7 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Shell>
+      <SpeedInsights />
     </ThemeProvider>
   )
 }
