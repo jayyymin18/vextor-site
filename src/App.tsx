@@ -144,11 +144,20 @@ const salesforceServices: SalesforceService[] = [
 ]
 
 const revealUp = {
-  hidden: { opacity: 0, y: 22 },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.52, ease: 'easeOut' },
+    transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+}
+
+const staggerChildren = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.08,
+    },
   },
 }
 
@@ -156,13 +165,11 @@ function usePageMeta(title: string, description: string) {
   useEffect(() => {
     document.title = title
     let meta = document.querySelector('meta[name="description"]') as HTMLMetaElement | null
-
     if (!meta) {
       meta = document.createElement('meta')
       meta.setAttribute('name', 'description')
       document.head.appendChild(meta)
     }
-
     meta.content = description
   }, [title, description])
 }
@@ -174,8 +181,10 @@ function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
   return (
     <Link
       to={to}
-      className={`text-sm font-medium tracking-[0.01em] transition-colors ${
-        isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
+      className={`text-[0.82rem] font-medium tracking-[0.01em] transition-colors duration-150 ${
+        isActive
+          ? 'text-foreground'
+          : 'text-muted-foreground hover:text-foreground'
       }`}
       aria-current={isActive ? 'page' : undefined}
     >
@@ -189,23 +198,29 @@ function SectionIntro({
   title,
   summary,
   align = 'left',
+  dark = false,
 }: {
   eyebrow?: string
   title: string
   summary?: string
   align?: 'left' | 'center'
+  dark?: boolean
 }) {
   return (
     <motion.div
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.15 }}
       variants={revealUp}
       className={align === 'center' ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl'}
     >
-      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-      <h2 className="section-title">{title}</h2>
-      {summary ? <p className="section-summary">{summary}</p> : null}
+      {eyebrow ? (
+        <p className={`eyebrow ${dark ? 'text-accent-soft' : ''}`}>{eyebrow}</p>
+      ) : null}
+      <h2 className={`section-title ${dark ? 'text-deep-foreground' : ''}`}>{title}</h2>
+      {summary ? (
+        <p className={`section-summary ${dark ? '!text-deep-muted' : ''}`}>{summary}</p>
+      ) : null}
     </motion.div>
   )
 }
@@ -233,7 +248,9 @@ function Visual({
         style={objectPosition ? { objectPosition } : undefined}
       />
       {caption ? (
-        <figcaption className="border-t border-border/80 px-4 py-3 text-xs text-muted-foreground">{caption}</figcaption>
+        <figcaption className="border-t border-border/70 px-5 py-3 text-[0.72rem] leading-relaxed text-muted-foreground">
+          {caption}
+        </figcaption>
       ) : null}
     </figure>
   )
@@ -255,23 +272,47 @@ function Layout({ children }: { children: React.ReactNode }) {
   )
 }
 
+/* ─────────────────────────────────────────────────────────────
+   HEADER
+   ───────────────────────────────────────────────────────────── */
 function Header() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
     setOpen(false)
   }, [location.pathname])
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background shadow-[0_8px_20px_-18px_rgba(15,23,42,0.45)]">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" aria-label="Vextor home" className="inline-flex flex-col leading-none">
+    <header
+      className={`sticky top-0 z-50 border-b border-border/60 bg-background/96 backdrop-blur-md transition-shadow duration-200 ${
+        scrolled ? 'shadow-[0_4px_24px_-12px_rgba(30,27,23,0.18)]' : ''
+      }`}
+    >
+      <div className="mx-auto flex h-[66px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+
+        {/* Brand */}
+        <Link
+          to="/"
+          aria-label="Vextor home"
+          className="inline-flex items-center gap-2.5 group"
+        >
+          <span
+            className="brand-mark transition-opacity duration-150 group-hover:opacity-80"
+            aria-hidden="true"
+          />
           <span className="brand-word">Vextor</span>
-          <span className="brand-sub">VEXTOR SOLUTION LLP</span>
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
             <NavLink key={item.to} to={item.to}>
               {item.label}
@@ -279,37 +320,44 @@ function Header() {
           ))}
           <Link to="/contact">
             <Button className="btn-solid" size="md">
-              Book a Consultation <ArrowRight className="ml-2 size-4" />
+              Start a Conversation <ArrowRight className="ml-2 size-3.5" />
             </Button>
           </Link>
         </nav>
 
+        {/* Mobile toggle */}
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-xl border border-border p-2 text-foreground transition hover:bg-card md:hidden"
+          className="inline-flex items-center justify-center rounded-[6px] border border-border p-2 text-muted-foreground transition hover:bg-card hover:text-foreground md:hidden"
           onClick={() => setOpen((prev) => !prev)}
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label="Toggle menu"
         >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          {open ? <X className="size-4.5" /> : <Menu className="size-4.5" />}
         </button>
       </div>
 
+      {/* Mobile menu */}
       {open ? (
-        <div id="mobile-nav" className="border-t border-border bg-background md:hidden">
-          <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
+        <div
+          id="mobile-nav"
+          className="border-t border-border/60 bg-background/98 backdrop-blur-md md:hidden"
+        >
+          <div className="mx-auto flex max-w-7xl flex-col gap-0.5 px-4 py-4 sm:px-6">
             {navItems.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
-                className="rounded-xl px-3 py-2 text-sm font-medium text-foreground transition hover:bg-card"
+                className="rounded-[6px] px-3 py-2.5 text-[0.83rem] font-medium text-foreground transition hover:bg-card"
               >
                 {item.label}
               </Link>
             ))}
-            <Link to="/contact" className="mt-2">
-              <Button className="btn-solid w-full justify-center">Discuss Your Salesforce Roadmap</Button>
+            <Link to="/contact" className="mt-3">
+              <Button className="btn-solid w-full justify-center" size="lg">
+                Start a Conversation
+              </Button>
             </Link>
           </div>
         </div>
@@ -318,85 +366,96 @@ function Header() {
   )
 }
 
+/* ─────────────────────────────────────────────────────────────
+   FOOTER
+   ───────────────────────────────────────────────────────────── */
 function Footer() {
   return (
-    <footer className="border-t border-border bg-footer">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.9fr]">
-          <div className="space-y-4">
-            <p className="eyebrow">Vextor Solution LLP</p>
-            <h2 className="text-2xl font-semibold tracking-tight">
-              Salesforce consulting for operationally complex teams, with dedicated BuilderTek specialization.
-            </h2>
-            <p className="max-w-xl text-sm leading-7 text-muted-foreground">
-              We help businesses design and scale Salesforce architecture, automation, custom development,
-              integrations, and managed support. BuilderTek customers can engage us for specialized workflow
-              customization and operational support.
+    <footer className="bg-deep text-deep-foreground border-t border-[hsl(0_0%_0%/0.25)]">
+      <div className="mx-auto max-w-7xl px-4 pt-16 pb-10 sm:px-6 lg:px-8">
+
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_0.7fr_0.9fr]">
+
+          {/* Brand column */}
+          <div className="space-y-5">
+            <Link to="/" className="inline-flex items-center gap-2.5">
+              <span className="brand-mark" aria-hidden="true" />
+              <span
+                className="font-['DM_Serif_Display',Georgia,serif] text-xl font-normal tracking-[-0.02em] text-deep-foreground"
+              >
+                Vextor
+              </span>
+            </Link>
+            <p className="max-w-sm text-[0.875rem] leading-[1.82] text-deep-muted">
+              Salesforce consulting for operationally complex teams, with dedicated BuilderTek
+              specialization for construction and project-driven environments.
             </p>
+            <div className="flex flex-col gap-2.5 text-[0.82rem] text-deep-muted">
+              <a
+                href="mailto:hello@vextor.co"
+                className="inline-flex items-center gap-2 transition-colors hover:text-accent-soft"
+              >
+                <Mail className="size-3.5 text-accent" />
+                hello@vextor.co
+              </a>
+              <a
+                href="tel:+919016070659"
+                className="inline-flex items-center gap-2 transition-colors hover:text-accent-soft"
+              >
+                <Phone className="size-3.5 text-accent" />
+                +91 90160 70659
+              </a>
+              <span className="inline-flex items-center gap-2">
+                <MapPin className="size-3.5 text-accent" />
+                Ahmedabad, India
+              </span>
+            </div>
           </div>
 
+          {/* Navigation */}
           <div>
-            <h3 className="footer-title">Pages</h3>
-            <ul className="mt-4 space-y-3 text-sm">
-              <li>
-                <Link className="hover:text-accent" to="/services">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-accent" to="/industries">
-                  Industries
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-accent" to="/work">
-                  Work
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-accent" to="/about">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-accent" to="/contact">
-                  Contact
-                </Link>
-              </li>
+            <p className="footer-title">Navigation</p>
+            <ul className="mt-5 space-y-3">
+              {navItems.map((item) => (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
+                    className="text-[0.83rem] text-deep-muted transition-colors hover:text-accent-soft"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
+          {/* Specializations */}
           <div>
-            <h3 className="footer-title">Contact</h3>
-            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">
-                <Mail className="size-4 text-accent" />
-                <a href="mailto:hello@vextor.co" className="hover:text-accent">
-                  hello@vextor.co
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="size-4 text-accent" />
-                <a href="tel:+919016070659" className="hover:text-accent">
-                  +91 90160 70659
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <MapPin className="size-4 text-accent" /> Ahmedabad, India
-              </li>
+            <p className="footer-title">Specializations</p>
+            <ul className="mt-5 space-y-3 text-[0.83rem] text-deep-muted">
+              <li>Salesforce Architecture</li>
+              <li>Automation &amp; Workflow</li>
+              <li>Apex &amp; LWC Development</li>
+              <li>Integration Engineering</li>
+              <li>BuilderTek Workflows</li>
+              <li>Managed Support</li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-border pt-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        {/* Bottom bar */}
+        <div className="mt-14 flex flex-col gap-1.5 border-t border-[hsl(0_0%_100%/0.07)] pt-6 text-[0.7rem] text-deep-muted sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Vextor Solution LLP. All rights reserved.</p>
-          <p>Salesforce consulting | BuilderTek specialization | Managed support</p>
+          <p className="tracking-wide">Salesforce Consulting &nbsp;·&nbsp; BuilderTek Specialization &nbsp;·&nbsp; India</p>
         </div>
       </div>
     </footer>
   )
 }
 
+/* ─────────────────────────────────────────────────────────────
+   HOME PAGE
+   ───────────────────────────────────────────────────────────── */
 function HomePage() {
   usePageMeta(
     'Vextor | Salesforce Consulting and BuilderTek Specialization',
@@ -428,14 +487,17 @@ function HomePage() {
 
   const whyVextor = [
     {
+      label: '01',
       title: 'Operationally grounded',
       body: 'We design systems around how teams actually run work, approvals, and handoffs.',
     },
     {
+      label: '02',
       title: 'Senior execution',
       body: 'Architecture and engineering are delivered by experienced practitioners, not handoff chains.',
     },
     {
+      label: '03',
       title: 'Long-term accountability',
       body: 'Our support model keeps delivery momentum and platform quality after go-live.',
     },
@@ -443,54 +505,82 @@ function HomePage() {
 
   return (
     <main>
+
+      {/* ── Hero ──────────────────────────────────────────── */}
       <section className="hero-wrap">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
-          <motion.div initial="hidden" animate="show" variants={revealUp} className="space-y-7">
-            <Badge className="badge-premium">Salesforce Consulting Partner for Operations Teams</Badge>
-            <h1 className="hero-title">Salesforce consulting built for businesses that run on process quality.</h1>
-            <p className="hero-copy">
-              Vextor helps teams improve Salesforce architecture, automation, custom development, integrations,
-              and managed support. For BuilderTek customers, we offer dedicated workflow customization and
-              system support as a specialized capability.
+        <div className="relative z-10 mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-8 lg:py-24">
+
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={revealUp}
+            className="space-y-8"
+          >
+            {/* Eyebrow badge */}
+            <p className="badge-premium">
+              Salesforce Consulting Partner for Operations Teams
             </p>
-            <div className="flex flex-wrap gap-3">
+
+            <h1 className="hero-title text-deep-foreground">
+              Salesforce consulting built for businesses that run on process quality.
+            </h1>
+
+            <p className="hero-copy">
+              Vextor helps teams improve Salesforce architecture, automation, custom development,
+              integrations, and managed support. For BuilderTek customers, we offer dedicated
+              workflow customization and system support as a specialized capability.
+            </p>
+
+            <div className="flex flex-wrap gap-3 pt-1">
               <Link to="/contact">
                 <Button size="lg" className="btn-solid">
                   Discuss Your Salesforce Roadmap <CalendarCheck2 className="ml-2 size-4" />
                 </Button>
               </Link>
               <Link to="/services#buildertek-specialization">
-                <Button size="lg" variant="outline" className="btn-outline-dark">
+                <Button size="lg" className="btn-outline-dark">
                   Explore BuilderTek Support <ChevronRight className="ml-2 size-4" />
                 </Button>
               </Link>
             </div>
-            <ul className="grid gap-2 text-sm text-deep-muted sm:grid-cols-2">
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent-soft" /> Salesforce architecture and automation
+
+            <ul className="grid gap-2.5 pt-1 text-[0.82rem] text-deep-muted sm:grid-cols-2">
+              <li className="flex items-center gap-2">
+                <span className="size-1.5 rounded-full bg-accent flex-shrink-0" />
+                Salesforce architecture and automation
               </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent-soft" /> Apex and LWC development
+              <li className="flex items-center gap-2">
+                <span className="size-1.5 rounded-full bg-accent flex-shrink-0" />
+                Apex and LWC development
               </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent-soft" /> Integration engineering and support
+              <li className="flex items-center gap-2">
+                <span className="size-1.5 rounded-full bg-accent flex-shrink-0" />
+                Integration engineering and support
               </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent-soft" /> BuilderTek customization specialization
+              <li className="flex items-center gap-2">
+                <span className="size-1.5 rounded-full bg-accent flex-shrink-0" />
+                BuilderTek customization specialization
               </li>
             </ul>
           </motion.div>
 
-          <Visual
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1500&q=80"
-            alt="Modern architectural office district representing enterprise operations"
-            caption="Enterprise architecture, process reliability, and long-term operational planning."
-            className="min-h-[430px]"
-            objectPosition="center 48%"
-          />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <Visual
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1500&q=80"
+              alt="Modern architectural office district representing enterprise operations"
+              caption="Enterprise architecture, process reliability, and long-term operational planning."
+              className="min-h-[440px]"
+              objectPosition="center 48%"
+            />
+          </motion.div>
         </div>
       </section>
 
+      {/* ── Core Services ─────────────────────────────────── */}
       <section className="section-wrap">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
@@ -498,96 +588,127 @@ function HomePage() {
             title="Salesforce consulting as the primary service line"
             summary="From architecture to managed support, we help teams build stable Salesforce operations without unnecessary complexity."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerChildren}
+            className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4"
+          >
             {coreSalesforceCards.map(({ icon: Icon, title, text }) => (
-              <Card key={title} className="surface-card">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-base">
-                    <span className="icon-wrap">
+              <motion.div key={title} variants={revealUp}>
+                <Card className="surface-card h-full">
+                  <CardHeader>
+                    <div className="icon-wrap mb-3">
                       <Icon className="size-4" />
-                    </span>
-                    {title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-7 text-muted-foreground">{text}</p>
-                </CardContent>
-              </Card>
+                    </div>
+                    <CardTitle className="text-[0.95rem] font-semibold">{title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-[0.85rem] leading-[1.75] text-muted-foreground">{text}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/40">
+      {/* ── Partner Ecosystem ─────────────────────────────── */}
+      <section className="border-y border-border bg-card/50 py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Ecosystem"
-            title="Platform familiarity and partner-context positioning"
-            summary="Use these badges where relevant in sales conversations and partner pages."
-          />
-          <div className="mt-8 flex flex-wrap gap-4">
-            <img
-              src="/images/sf-partner-badge.svg"
-              alt="Salesforce Partner badge"
-              className="h-32 w-auto rounded-xl border border-border bg-[#0D2A55]"
-              loading="lazy"
-            />
-            <img
-              src="/images/appexchange-badge.svg"
-              alt="Available on AppExchange badge"
-              className="h-32 w-auto rounded-xl border border-border bg-[#E8E2D5]"
-              loading="lazy"
-            />
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="eyebrow">Partner Ecosystem</p>
+              <h2 className="section-title mt-2 text-[1.6rem]">
+                Platform familiarity and partner-context positioning
+              </h2>
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <img
+                src="/images/sf-partner-badge.svg"
+                alt="Salesforce Partner badge"
+                className="h-28 w-auto rounded-[8px] border border-border bg-[#0D2A55]"
+                loading="lazy"
+              />
+              <img
+                src="/images/appexchange-badge.svg"
+                alt="Available on AppExchange badge"
+                className="h-28 w-auto rounded-[8px] border border-border bg-[#E8E2D5]"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/60">
+      {/* ── Why Clients Choose Vextor ─────────────────────── */}
+      <section className="section-wrap">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="Why Clients Choose Vextor"
             title="A serious consulting partner for complex operating environments"
             summary="We focus on delivery quality, platform reliability, and practical collaboration with your internal teams."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerChildren}
+            className="mt-12 grid gap-5 md:grid-cols-3"
+          >
             {whyVextor.map((item) => (
-              <Card key={item.title} className="surface-card">
-                <CardHeader>
-                  <CardTitle className="text-lg">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-7 text-muted-foreground">{item.body}</p>
-                </CardContent>
-              </Card>
+              <motion.div key={item.title} variants={revealUp}>
+                <Card className="surface-card h-full">
+                  <CardHeader>
+                    <p className="text-[0.62rem] font-semibold tracking-[0.16em] uppercase text-muted-foreground/60 mb-2">
+                      {item.label}
+                    </p>
+                    <CardTitle className="text-[1.05rem] font-['DM_Serif_Display',Georgia,serif] font-normal tracking-[-0.01em]">
+                      {item.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-[0.85rem] leading-[1.78] text-muted-foreground">{item.body}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="section-wrap" id="buildertek-home">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
-          <div className="space-y-5">
+      {/* ── BuilderTek Specialization ─────────────────────── */}
+      <section
+        className="section-wrap border-y border-border"
+        id="buildertek-home"
+        style={{ background: 'hsl(38 22% 94%)' }}
+      >
+        <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:items-center lg:px-8">
+          <div className="space-y-7">
             <SectionIntro
               eyebrow="BuilderTek Specialization"
               title="Dedicated BuilderTek support for construction and real-estate workflows"
               summary="BuilderTek is treated as a focused specialization. Clients engage us for workflow customization, operational improvements, and support in BuilderTek-heavy environments."
             />
-            <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> RFQ, quote, PO, and approval workflow refinement
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Budget and project operations process optimization
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> BuilderTek usability and adoption improvements
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Integration and support for BuilderTek-centric teams
-              </li>
+            <ul className="space-y-3 text-[0.86rem] leading-[1.75] text-muted-foreground">
+              {[
+                'RFQ, quote, PO, and approval workflow refinement',
+                'Budget and project operations process optimization',
+                'BuilderTek usability and adoption improvements',
+                'Integration and support for BuilderTek-centric teams',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-0.5 size-4 text-accent flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
             </ul>
-            <Link to="/services#buildertek-specialization" className="inline-flex items-center gap-2 text-sm font-medium hover:text-accent">
-              View BuilderTek specialization details <ArrowRight className="size-4" />
+            <Link
+              to="/services#buildertek-specialization"
+              className="inline-flex items-center gap-2 text-[0.83rem] font-medium text-accent hover:text-accent-strong transition-colors"
+            >
+              View BuilderTek specialization details <ArrowRight className="size-3.5" />
             </Link>
           </div>
 
@@ -595,20 +716,27 @@ function HomePage() {
             src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1500&q=80"
             alt="Construction project environment showing planning and execution context"
             caption="BuilderTek support for project operations, procurement flow, and execution control."
-            className="min-h-[390px]"
+            className="min-h-[400px]"
             objectPosition="center 52%"
           />
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/60">
+      {/* ── How We Work ──────────────────────────────────── */}
+      <section className="section-wrap">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="How We Work"
+            eyebrow="Engagement Model"
             title="Structured engagement from architecture to support"
             summary="A delivery cadence designed for clarity, accountability, and sustained platform quality."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-4">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerChildren}
+            className="mt-12 grid gap-5 md:grid-cols-4"
+          >
             {[
               {
                 step: '01',
@@ -635,30 +763,40 @@ function HomePage() {
                 text: 'Continue through retainer support and advisory continuity.',
               },
             ].map(({ step, icon: Icon, title, text }) => (
-              <Card key={title} className="surface-card">
-                <CardHeader>
-                  <p className="step-chip">Step {step}</p>
-                  <CardTitle className="mt-2 flex items-center gap-2 text-base">
-                    <Icon className="size-4 text-accent" /> {title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-7 text-muted-foreground">{text}</p>
-                </CardContent>
-              </Card>
+              <motion.div key={title} variants={revealUp}>
+                <Card className="surface-card h-full">
+                  <CardHeader>
+                    <p className="step-chip">Step {step}</p>
+                    <div className="mt-4 flex items-center gap-2.5">
+                      <Icon className="size-4 text-accent" />
+                      <CardTitle className="text-[0.95rem] font-semibold">{title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-[0.85rem] leading-[1.75] text-muted-foreground">{text}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="section-wrap">
+      {/* ── Selected Capabilities ─────────────────────────── */}
+      <section className="section-wrap border-y border-border bg-card/40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="Selected Capabilities"
             title="Common delivery blocks clients engage us for"
             summary="Representative capability blocks for architecture, development, and operational support conversations."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerChildren}
+            className="mt-12 grid gap-5 md:grid-cols-3"
+          >
             {[
               {
                 title: 'Salesforce Architecture Alignment',
@@ -673,49 +811,58 @@ function HomePage() {
                 body: 'Procurement and approval process refinement for BuilderTek workflows tied to project execution.',
               },
             ].map((item) => (
-              <Card key={item.title} className="surface-card">
-                <CardHeader>
-                  <CardTitle className="text-lg">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-7 text-muted-foreground">{item.body}</p>
-                </CardContent>
-              </Card>
+              <motion.div key={item.title} variants={revealUp}>
+                <Card className="surface-card h-full">
+                  <CardHeader>
+                    <CardTitle className="text-[1rem] font-['DM_Serif_Display',Georgia,serif] font-normal tracking-[-0.01em] leading-snug">
+                      {item.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-[0.85rem] leading-[1.78] text-muted-foreground">{item.body}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-deep text-deep-foreground">
+      {/* ── CTA ──────────────────────────────────────────── */}
+      <section className="section-wrap bg-deep text-deep-foreground">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <Card className="surface-card deep-card p-8 sm:p-10">
-            <p className="eyebrow">Consultation</p>
-            <h2 className="section-title max-w-2xl text-deep-foreground">
+          <div className="rounded-[10px] border border-[hsl(0_0%_100%/0.08)] bg-[hsl(0_0%_100%/0.035)] px-8 py-12 sm:px-12">
+            <p className="eyebrow text-accent-soft">Consultation</p>
+            <h2 className="section-title mt-4 max-w-2xl text-deep-foreground">
               Need a clear plan for Salesforce delivery or BuilderTek workflow support?
             </h2>
-            <p className="section-summary max-w-2xl text-deep-muted">
-              Share your current bottlenecks. We will map a practical engagement path based on architecture,
-              delivery scope, and support needs.
+            <p className="section-summary mt-4 max-w-xl !text-deep-muted">
+              Share your current bottlenecks. We will map a practical engagement path based on
+              architecture, delivery scope, and support needs.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/contact">
                 <Button size="lg" className="btn-solid">
                   Talk to Vextor <ArrowRight className="ml-2 size-4" />
                 </Button>
               </Link>
               <Link to="/services">
-                <Button size="lg" variant="outline" className="btn-outline-dark">
+                <Button size="lg" className="btn-outline-dark">
                   Review Services
                 </Button>
               </Link>
             </div>
-          </Card>
+          </div>
         </div>
       </section>
+
     </main>
   )
 }
 
+/* ─────────────────────────────────────────────────────────────
+   SERVICES PAGE
+   ───────────────────────────────────────────────────────────── */
 function ServicesPage() {
   usePageMeta(
     'Services | Vextor Salesforce Consulting',
@@ -726,16 +873,19 @@ function ServicesPage() {
 
   return (
     <main>
-      <section className="section-wrap border-b border-border bg-card/60">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      {/* Page header */}
+      <section className="border-b border-border bg-card/50 pb-0 pt-16 sm:pt-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-14">
           <SectionIntro
             eyebrow="Services"
-            title="Salesforce services and BuilderTek specialization, clearly separated"
+            title="Salesforce services and BuilderTek specialization"
             summary="Salesforce consulting is our primary service line. BuilderTek support is offered as a dedicated specialization for relevant clients."
           />
         </div>
       </section>
 
+      {/* Salesforce services */}
       <section className="section-wrap">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
@@ -743,46 +893,67 @@ function ServicesPage() {
             title="Salesforce consulting and engineering"
             summary="Designed for operations teams that depend on Salesforce for execution quality and control."
           />
-          <div className="mt-8 space-y-6">
+          <div className="mt-10 space-y-6">
             {salesforceServices.map((service, index) => {
               const Icon = serviceIcons[index]
               return (
-                <article key={service.title} className="service-article">
+                <motion.article
+                  key={service.title}
+                  className="service-article"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.08 }}
+                  transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                >
                   <div>
                     <h3 className="service-title">
-                      <span className="icon-wrap">
+                      <span className="icon-wrap mt-0.5">
                         <Icon className="size-4" />
                       </span>
                       {service.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{service.summary}</p>
+                    <p className="mt-3 text-[0.875rem] leading-[1.8] text-muted-foreground">
+                      {service.summary}
+                    </p>
                   </div>
 
-                  <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                    <Card className="surface-card">
+                  <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                    <Card className="surface-card border-border/80">
                       <CardHeader>
-                        <CardTitle className="text-base">Common challenges addressed</CardTitle>
+                        <CardTitle className="text-[0.82rem] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                          Common challenges addressed
+                        </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+                        <ul className="space-y-2.5">
                           {service.challenges.map((item) => (
-                            <li key={item} className="flex items-start gap-2">
-                              <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
+                            <li
+                              key={item}
+                              className="flex items-start gap-2.5 text-[0.84rem] leading-[1.72] text-muted-foreground"
+                            >
+                              <CheckCircle2 className="mt-0.5 size-4 text-accent flex-shrink-0" />
+                              {item}
                             </li>
                           ))}
                         </ul>
                       </CardContent>
                     </Card>
 
-                    <Card className="surface-card">
+                    <Card className="surface-card border-border/80">
                       <CardHeader>
-                        <CardTitle className="text-base">Scope includes</CardTitle>
+                        <CardTitle className="text-[0.82rem] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                          Scope includes
+                        </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+                        <ul className="space-y-2.5">
                           {service.included.map((item) => (
-                            <li key={item} className="flex items-start gap-2">
-                              <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
+                            <li
+                              key={item}
+                              className="flex items-start gap-2.5 text-[0.84rem] leading-[1.72] text-muted-foreground"
+                            >
+                              <CheckCircle2 className="mt-0.5 size-4 text-accent flex-shrink-0" />
+                              {item}
                             </li>
                           ))}
                         </ul>
@@ -790,37 +961,42 @@ function ServicesPage() {
                     </Card>
                   </div>
 
-                  <p className="mt-5 rounded-2xl border border-border/75 bg-background px-4 py-3 text-sm text-muted-foreground">
-                    <strong className="text-foreground">Expected outcome:</strong> {service.outcomes}
-                  </p>
-                </article>
+                  <div className="mt-5 rounded-[8px] border border-border/60 bg-background px-5 py-3.5 text-[0.84rem] leading-[1.72] text-muted-foreground">
+                    <strong className="font-semibold text-foreground">Expected outcome:</strong>{' '}
+                    {service.outcomes}
+                  </div>
+                </motion.article>
               )
             })}
           </div>
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/60" id="buildertek-specialization">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+      {/* BuilderTek Specialization */}
+      <section
+        className="section-wrap border-y border-border"
+        id="buildertek-specialization"
+        style={{ background: 'hsl(38 22% 94%)' }}
+      >
+        <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:items-center lg:px-8">
           <div>
             <SectionIntro
               eyebrow="Specialization"
               title="BuilderTek support and customization"
-              summary="A separate specialization for BuilderTek customers who need process tuning, workflow customization, and ongoing support."
+              summary="A dedicated specialization for BuilderTek customers who need process tuning, workflow customization, and ongoing support."
             />
-            <ul className="mt-5 space-y-2 text-sm leading-7 text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Project operations workflow mapping
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> RFQ, quote, PO, and approval refinement
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Budget, controls, and reporting process improvements
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> BuilderTek usability and adoption optimization
-              </li>
+            <ul className="mt-7 space-y-3 text-[0.86rem] leading-[1.75] text-muted-foreground">
+              {[
+                'Project operations workflow mapping',
+                'RFQ, quote, PO, and approval refinement',
+                'Budget, controls, and reporting process improvements',
+                'BuilderTek usability and adoption optimization',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-0.5 size-4 text-accent flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -828,15 +1004,19 @@ function ServicesPage() {
             src="https://images.unsplash.com/photo-1541976590-713941681591?auto=format&fit=crop&w=1500&q=80"
             alt="Construction planning table with project drawings and laptop"
             caption="BuilderTek specialization focused on project delivery workflows."
-            className="min-h-[340px]"
+            className="min-h-[360px]"
             objectPosition="center 50%"
           />
         </div>
       </section>
+
     </main>
   )
 }
 
+/* ─────────────────────────────────────────────────────────────
+   INDUSTRIES PAGE
+   ───────────────────────────────────────────────────────────── */
 function IndustriesPage() {
   usePageMeta(
     'Industries | Vextor',
@@ -845,8 +1025,9 @@ function IndustriesPage() {
 
   return (
     <main>
-      <section className="section-wrap border-b border-border bg-card/60">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <section className="border-b border-border bg-card/50 pb-0 pt-16 sm:pt-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-14">
           <SectionIntro
             eyebrow="Industries"
             title="Built for teams where operational precision matters"
@@ -856,56 +1037,73 @@ function IndustriesPage() {
       </section>
 
       <section className="section-wrap">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
-          {[
-            {
-              icon: HardHat,
-              title: 'Construction',
-              text: 'Salesforce and BuilderTek support for procurement workflows, approvals, and project operations.',
-            },
-            {
-              icon: LandPlot,
-              title: 'Real Estate',
-              text: 'Workflow and integration support across sales, project delivery, and finance coordination.',
-            },
-            {
-              icon: Users,
-              title: 'Salesforce-Heavy Operations Teams',
-              text: 'Architecture, automation, development, and support for businesses running critical process flows in Salesforce.',
-            },
-          ].map((item) => (
-            <Card key={item.title} className="surface-card">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <item.icon className="size-4 text-accent" /> {item.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm leading-7 text-muted-foreground">{item.text}</p>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerChildren}
+            className="grid gap-6 lg:grid-cols-3"
+          >
+            {[
+              {
+                icon: HardHat,
+                title: 'Construction',
+                text: 'Salesforce and BuilderTek support for procurement workflows, approvals, and project operations.',
+              },
+              {
+                icon: LandPlot,
+                title: 'Real Estate',
+                text: 'Workflow and integration support across sales, project delivery, and finance coordination.',
+              },
+              {
+                icon: Users,
+                title: 'Operations-Intensive Teams',
+                text: 'Architecture, automation, development, and support for businesses running critical process flows in Salesforce.',
+              },
+            ].map((item) => (
+              <motion.div key={item.title} variants={revealUp}>
+                <Card className="surface-card h-full">
+                  <CardHeader>
+                    <div className="icon-wrap mb-3">
+                      <item.icon className="size-4" />
+                    </div>
+                    <CardTitle className="text-[1.05rem] font-['DM_Serif_Display',Georgia,serif] font-normal tracking-[-0.01em]">
+                      {item.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-[0.86rem] leading-[1.78] text-muted-foreground">{item.text}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/60">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+      <section
+        className="section-wrap border-y border-border"
+        style={{ background: 'hsl(38 22% 94%)' }}
+      >
+        <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:items-center lg:px-8">
           <div>
             <SectionIntro
               eyebrow="BuilderTek Context"
               title="Where BuilderTek specialization is most relevant"
               summary="BuilderTek work is focused on operational process quality inside construction and project-driven environments."
             />
-            <ul className="mt-5 space-y-2 text-sm leading-7 text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Procurement and purchasing workflow clarity
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Approval controls and escalation paths
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Budget visibility and role-based accountability
-              </li>
+            <ul className="mt-7 space-y-3 text-[0.86rem] leading-[1.75] text-muted-foreground">
+              {[
+                'Procurement and purchasing workflow clarity',
+                'Approval controls and escalation paths',
+                'Budget visibility and role-based accountability',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-0.5 size-4 text-accent flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -913,15 +1111,19 @@ function IndustriesPage() {
             src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1500&q=80"
             alt="Urban construction project with crane and building structure"
             caption="BuilderTek process support for construction and real-estate operations."
-            className="min-h-[320px]"
+            className="min-h-[340px]"
             objectPosition="center 52%"
           />
         </div>
       </section>
+
     </main>
   )
 }
 
+/* ─────────────────────────────────────────────────────────────
+   WORK PAGE
+   ───────────────────────────────────────────────────────────── */
 function WorkPage() {
   usePageMeta(
     'Work | Vextor',
@@ -930,8 +1132,9 @@ function WorkPage() {
 
   return (
     <main>
-      <section className="section-wrap border-b border-border bg-card/60">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <section className="border-b border-border bg-card/50 pb-0 pt-16 sm:pt-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-14">
           <SectionIntro
             eyebrow="Our Work"
             title="Operational Salesforce delivery across consulting, engineering, and support"
@@ -942,7 +1145,13 @@ function WorkPage() {
 
       <section className="section-wrap">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerChildren}
+            className="grid gap-5 md:grid-cols-2 lg:grid-cols-3"
+          >
             {[
               {
                 title: 'Salesforce Automation',
@@ -965,47 +1174,65 @@ function WorkPage() {
                 body: 'Providing long-term support for enhancements, troubleshooting, and continuous improvements.',
               },
             ].map((item) => (
-              <Card key={item.title} className="surface-card">
-                <CardHeader>
-                  <CardTitle className="text-lg">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-7 text-muted-foreground">{item.body}</p>
-                </CardContent>
-              </Card>
+              <motion.div key={item.title} variants={revealUp}>
+                <Card className="surface-card h-full">
+                  <CardHeader>
+                    <CardTitle className="text-[1rem] font-['DM_Serif_Display',Georgia,serif] font-normal tracking-[-0.01em] leading-snug">
+                      {item.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-[0.85rem] leading-[1.78] text-muted-foreground">{item.body}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/60">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+      <section
+        className="section-wrap border-y border-border"
+        style={{ background: 'hsl(38 22% 94%)' }}
+      >
+        <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:items-center lg:px-8">
           <div>
             <SectionIntro
               eyebrow="Delivery Focus"
               title="What we typically execute in engagements"
               summary="Architecture, automation, custom engineering, and support are delivered with clear operating outcomes."
             />
-            <div className="mt-6 space-y-3 text-sm leading-7 text-muted-foreground">
-              <p>1. Define business workflow requirements and process constraints.</p>
-              <p>2. Design architecture and automation with maintainability in mind.</p>
-              <p>3. Deliver in phases with quality controls and operational handover.</p>
-            </div>
+            <ol className="mt-7 space-y-4">
+              {[
+                'Define business workflow requirements and process constraints.',
+                'Design architecture and automation with maintainability in mind.',
+                'Deliver in phases with quality controls and operational handover.',
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-4 text-[0.86rem] leading-[1.75] text-muted-foreground">
+                  <span className="list-index mt-0.5">{i + 1}</span>
+                  {item}
+                </li>
+              ))}
+            </ol>
           </div>
 
           <Visual
             src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1500&q=80"
             alt="Operations and planning workspace for consulting execution"
             caption="Execution model built around workflow quality and delivery consistency."
-            className="min-h-[300px]"
+            className="min-h-[320px]"
             objectPosition="center 46%"
           />
         </div>
       </section>
+
     </main>
   )
 }
 
+/* ─────────────────────────────────────────────────────────────
+   ABOUT PAGE
+   ───────────────────────────────────────────────────────────── */
 function AboutPage() {
   usePageMeta(
     'About Vextor | Salesforce Consulting Team',
@@ -1014,8 +1241,9 @@ function AboutPage() {
 
   return (
     <main>
-      <section className="section-wrap border-b border-border bg-card/60">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <section className="border-b border-border bg-card/50 pb-0 pt-16 sm:pt-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-14">
           <SectionIntro
             eyebrow="About Vextor"
             title="Building Salesforce systems that actually work for real operations"
@@ -1024,13 +1252,15 @@ function AboutPage() {
         </div>
       </section>
 
+      {/* Story */}
       <section className="section-wrap">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
-          <Card className="surface-card">
-            <CardHeader>
-              <CardTitle className="text-xl">Story</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4 text-sm leading-7 text-muted-foreground">
+        <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:items-start lg:px-8">
+          <div className="space-y-5">
+            <p className="eyebrow">Our Story</p>
+            <h2 className="section-title">
+              A firm built around operational complexity
+            </h2>
+            <div className="space-y-4 text-[0.9rem] leading-[1.82] text-muted-foreground">
               <p>
                 In many companies, Salesforce starts as CRM and then becomes the backbone of sales,
                 operations, finance workflows, and project execution. As complexity grows, standard
@@ -1040,27 +1270,34 @@ function AboutPage() {
                 Vextor exists to solve that gap. We help businesses design Salesforce environments that
                 are reliable, scalable, and aligned to real day-to-day operating processes.
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           <Visual
             src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1500&q=80"
             alt="Consulting team planning session"
             caption="Hands-on consulting and architecture planning."
-            className="min-h-[360px]"
+            className="min-h-[380px]"
             objectPosition="center 44%"
           />
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/60">
+      {/* Consulting Partner */}
+      <section className="section-wrap border-y border-border bg-card/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="Consulting Partner"
             title="A consulting partner, not just a vendor"
             summary="We work with clients as a long-term partner, not only for implementation but for continuous platform improvement."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerChildren}
+            className="mt-12 grid gap-5 md:grid-cols-3"
+          >
             {[
               {
                 title: 'Architecture planning',
@@ -1075,46 +1312,46 @@ function AboutPage() {
                 text: 'Long-term support and enhancement cycles as your operating model evolves.',
               },
             ].map((item) => (
-              <Card key={item.title} className="surface-card">
-                <CardHeader>
-                  <CardTitle className="text-lg">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-7 text-muted-foreground">{item.text}</p>
-                </CardContent>
-              </Card>
+              <motion.div key={item.title} variants={revealUp}>
+                <Card className="surface-card h-full">
+                  <CardHeader>
+                    <CardTitle className="text-[1rem] font-['DM_Serif_Display',Georgia,serif] font-normal tracking-[-0.01em]">
+                      {item.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-[0.85rem] leading-[1.78] text-muted-foreground">{item.text}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
+      {/* Expertise */}
       <section className="section-wrap">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:items-start lg:px-8">
           <div>
             <SectionIntro
               eyebrow="Expertise"
               title="Deep Salesforce expertise with operational focus"
               summary="Our team works at the intersection of business operations and Salesforce technology."
             />
-            <ul className="mt-5 space-y-2 text-sm leading-7 text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Salesforce architecture and system design
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Apex and Lightning Web Component development
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Process automation and workflow optimization
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Integration design and API connectivity
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Reporting and operational visibility
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Managed support and enhancement delivery
-              </li>
+            <ul className="mt-7 space-y-3 text-[0.86rem] leading-[1.75] text-muted-foreground">
+              {[
+                'Salesforce architecture and system design',
+                'Apex and Lightning Web Component development',
+                'Process automation and workflow optimization',
+                'Integration design and API connectivity',
+                'Reporting and operational visibility',
+                'Managed support and enhancement delivery',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-0.5 size-4 text-accent flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -1122,36 +1359,37 @@ function AboutPage() {
             src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1500&q=80"
             alt="Business operations planning desk"
             caption="Operational focus across architecture, automation, and engineering."
-            className="min-h-[340px]"
+            className="min-h-[360px]"
             objectPosition="center 48%"
           />
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/60">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+      {/* BuilderTek */}
+      <section
+        className="section-wrap border-y border-border"
+        style={{ background: 'hsl(38 22% 94%)' }}
+      >
+        <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:items-center lg:px-8">
           <div>
             <SectionIntro
               eyebrow="BuilderTek Specialization"
               title="Dedicated support for BuilderTek-centric teams"
               summary="Alongside broader Salesforce consulting, we support BuilderTek customers who need deeper workflow customization."
             />
-            <ul className="mt-5 space-y-2 text-sm leading-7 text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Workflow automation and process design
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Project and purchasing workflow customization
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> RFQ, quote, and PO process improvements
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> UX improvements and operational reporting
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Integrations with other business systems
-              </li>
+            <ul className="mt-7 space-y-3 text-[0.86rem] leading-[1.75] text-muted-foreground">
+              {[
+                'Workflow automation and process design',
+                'Project and purchasing workflow customization',
+                'RFQ, quote, and PO process improvements',
+                'UX improvements and operational reporting',
+                'Integrations with other business systems',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CheckCircle2 className="mt-0.5 size-4 text-accent flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -1159,12 +1397,13 @@ function AboutPage() {
             src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1500&q=80"
             alt="Construction and project execution environment"
             caption="BuilderTek specialization for project and construction workflows."
-            className="min-h-[340px]"
+            className="min-h-[360px]"
             objectPosition="center 48%"
           />
         </div>
       </section>
 
+      {/* Philosophy */}
       <section className="section-wrap">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
@@ -1172,34 +1411,51 @@ function AboutPage() {
             title="Technology should serve the business"
             summary="Every engagement follows a practical operating philosophy."
           />
-          <div className="mt-8 grid gap-5 md:grid-cols-4">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerChildren}
+            className="mt-12 grid gap-5 md:grid-cols-4"
+          >
             {[
               { title: 'Practical', text: 'Designed around real business processes.' },
               { title: 'Reliable', text: 'Built with clean architecture and scalable design.' },
               { title: 'Adaptable', text: 'Flexible enough to evolve as operations change.' },
               { title: 'Efficient', text: 'Reduces manual work and improves visibility.' },
             ].map((item) => (
-              <Card key={item.title} className="surface-card">
-                <CardHeader>
-                  <CardTitle className="text-lg">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-7 text-muted-foreground">{item.text}</p>
-                </CardContent>
-              </Card>
+              <motion.div key={item.title} variants={revealUp}>
+                <Card className="surface-card h-full">
+                  <CardHeader>
+                    <CardTitle className="text-[1.05rem] font-['DM_Serif_Display',Georgia,serif] font-normal tracking-[-0.01em]">
+                      {item.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-[0.85rem] leading-[1.75] text-muted-foreground">{item.text}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/60">
+      {/* Why Vextor */}
+      <section className="section-wrap border-y border-border bg-card/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="Why Vextor"
             title="Why companies work with Vextor"
             summary="Companies usually engage us when they need specialist Salesforce and BuilderTek support with long-term reliability."
           />
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerChildren}
+            className="mt-12 grid gap-4 md:grid-cols-2"
+          >
             {[
               'A reliable Salesforce consulting partner',
               'Custom development beyond standard configuration',
@@ -1207,21 +1463,24 @@ function AboutPage() {
               'BuilderTek customization and support',
               'Ongoing system improvements and enhancements',
             ].map((item) => (
-              <Card key={item} className="surface-card">
-                <CardContent className="pt-5">
-                  <p className="flex items-start gap-2 text-sm leading-7 text-muted-foreground">
-                    <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
-                  </p>
-                </CardContent>
-              </Card>
+              <motion.div key={item} variants={revealUp}>
+                <div className="flex items-start gap-3 rounded-[8px] border border-border bg-card px-5 py-4 text-[0.86rem] leading-[1.72] text-muted-foreground">
+                  <CheckCircle2 className="mt-0.5 size-4 text-accent flex-shrink-0" />
+                  {item}
+                </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
+
     </main>
   )
 }
 
+/* ─────────────────────────────────────────────────────────────
+   CONTACT PAGE
+   ───────────────────────────────────────────────────────────── */
 function ContactPage() {
   usePageMeta(
     'Contact Vextor | Salesforce Consultation',
@@ -1230,8 +1489,9 @@ function ContactPage() {
 
   return (
     <main>
-      <section className="section-wrap border-b border-border bg-card/60">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <section className="border-b border-border bg-card/50 pb-0 pt-16 sm:pt-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-14">
           <SectionIntro
             eyebrow="Contact"
             title="Book a focused consultation"
@@ -1241,11 +1501,16 @@ function ContactPage() {
       </section>
 
       <section className="section-wrap">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+
+          {/* Left: Form + tips */}
           <div className="space-y-5">
             <Card className="surface-card">
-              <CardHeader>
-                <CardTitle className="text-xl">Contact form (Salesforce Web-to-Lead)</CardTitle>
+              <CardHeader className="pb-4">
+                <p className="eyebrow">Inquiry</p>
+                <h2 className="mt-2 font-['DM_Serif_Display',Georgia,serif] text-[1.55rem] font-normal tracking-[-0.015em] leading-snug">
+                  Send us a message
+                </h2>
               </CardHeader>
               <CardContent>
                 <form
@@ -1258,134 +1523,197 @@ function ContactPage() {
 
                   <div className="webtolead-grid">
                     <div className="webtolead-field">
-                      <label className="form-label" htmlFor="first_name">
-                        First Name
-                      </label>
-                      <input className="webtolead-input" id="first_name" maxLength={40} name="first_name" type="text" />
+                      <label className="form-label" htmlFor="first_name">First Name</label>
+                      <input
+                        className="webtolead-input"
+                        id="first_name"
+                        maxLength={40}
+                        name="first_name"
+                        type="text"
+                        placeholder="Jane"
+                      />
                     </div>
                     <div className="webtolead-field">
-                      <label className="form-label" htmlFor="last_name">
-                        Last Name
-                      </label>
-                      <input className="webtolead-input" id="last_name" maxLength={80} name="last_name" type="text" required />
+                      <label className="form-label" htmlFor="last_name">Last Name</label>
+                      <input
+                        className="webtolead-input"
+                        id="last_name"
+                        maxLength={80}
+                        name="last_name"
+                        type="text"
+                        required
+                        placeholder="Smith"
+                      />
                     </div>
                   </div>
 
                   <div className="webtolead-grid">
                     <div className="webtolead-field">
-                      <label className="form-label" htmlFor="mobile">
-                        Mobile
-                      </label>
-                      <input className="webtolead-input" id="mobile" maxLength={40} name="mobile" type="text" />
+                      <label className="form-label" htmlFor="email">Email Address</label>
+                      <input
+                        className="webtolead-input"
+                        id="email"
+                        maxLength={80}
+                        name="email"
+                        type="email"
+                        required
+                        placeholder="jane@company.com"
+                      />
                     </div>
                     <div className="webtolead-field">
-                      <label className="form-label" htmlFor="email">
-                        Email
-                      </label>
-                      <input className="webtolead-input" id="email" maxLength={80} name="email" type="email" required />
+                      <label className="form-label" htmlFor="mobile">Phone</label>
+                      <input
+                        className="webtolead-input"
+                        id="mobile"
+                        maxLength={40}
+                        name="mobile"
+                        type="tel"
+                        placeholder="+1 (555) 000-0000"
+                      />
                     </div>
                   </div>
 
                   <div className="webtolead-grid">
                     <div className="webtolead-field">
-                      <label className="form-label" htmlFor="company">
-                        Company
-                      </label>
-                      <input className="webtolead-input" id="company" maxLength={40} name="company" type="text" required />
+                      <label className="form-label" htmlFor="company">Company</label>
+                      <input
+                        className="webtolead-input"
+                        id="company"
+                        maxLength={40}
+                        name="company"
+                        type="text"
+                        required
+                        placeholder="Your Company"
+                      />
                     </div>
                     <div className="webtolead-field">
-                      <label className="form-label" htmlFor="city">
-                        City
-                      </label>
-                      <input className="webtolead-input" id="city" maxLength={40} name="city" type="text" />
+                      <label className="form-label" htmlFor="city">City</label>
+                      <input
+                        className="webtolead-input"
+                        id="city"
+                        maxLength={40}
+                        name="city"
+                        type="text"
+                        placeholder="New York"
+                      />
                     </div>
                   </div>
 
                   <div className="webtolead-grid">
                     <div className="webtolead-field">
-                      <label className="form-label" htmlFor="state">
-                        State/Province
-                      </label>
-                      <input className="webtolead-input" id="state" maxLength={20} name="state" type="text" />
+                      <label className="form-label" htmlFor="state">State / Province</label>
+                      <input
+                        className="webtolead-input"
+                        id="state"
+                        maxLength={20}
+                        name="state"
+                        type="text"
+                        placeholder="NY"
+                      />
                     </div>
                     <div className="webtolead-field">
-                      <label className="form-label" htmlFor="country">
-                        Country
-                      </label>
-                      <input className="webtolead-input" id="country" maxLength={40} name="country" type="text" />
+                      <label className="form-label" htmlFor="country">Country</label>
+                      <input
+                        className="webtolead-input"
+                        id="country"
+                        maxLength={40}
+                        name="country"
+                        type="text"
+                        placeholder="United States"
+                      />
                     </div>
                   </div>
 
-                  <Button type="submit" name="submit" size="lg" className="btn-solid w-full justify-center">
-                    Submit Inquiry
-                  </Button>
-                  <p className="text-xs text-muted-foreground">You will be redirected to vextor.co after successful submission.</p>
+                  <div className="pt-2">
+                    <Button
+                      type="submit"
+                      name="submit"
+                      size="lg"
+                      className="btn-solid w-full justify-center"
+                    >
+                      Submit Inquiry <ArrowRight className="ml-2 size-4" />
+                    </Button>
+                  </div>
+                  <p className="text-center text-[0.72rem] text-muted-foreground">
+                    You will be redirected to vextor.co after successful submission.
+                  </p>
                 </form>
               </CardContent>
             </Card>
 
             <Card className="surface-card">
               <CardHeader>
-                <CardTitle className="text-lg">Before you submit</CardTitle>
+                <CardTitle className="text-[0.82rem] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                  Before you submit
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-1 size-4 text-accent" /> Mention your current Salesforce setup and where you need help.
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-1 size-4 text-accent" /> Add whether this is Salesforce consulting, BuilderTek support, or both.
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-1 size-4 text-accent" /> Share timeline expectations so we can scope the right engagement model.
-                  </li>
+                <ul className="space-y-3">
+                  {[
+                    'Mention your current Salesforce setup and where you need help.',
+                    'Add whether this is Salesforce consulting, BuilderTek support, or both.',
+                    'Share timeline expectations so we can scope the right engagement model.',
+                  ].map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-3 text-[0.85rem] leading-[1.72] text-muted-foreground"
+                    >
+                      <CheckCircle2 className="mt-0.5 size-4 text-accent flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
                 </ul>
               </CardContent>
             </Card>
           </div>
 
+          {/* Right: Next steps + contact info + image */}
           <div className="space-y-5">
             <Card className="surface-card">
               <CardHeader>
-                <CardTitle className="text-lg">What happens next</CardTitle>
+                <p className="eyebrow">Process</p>
+                <CardTitle className="mt-2 text-[1rem] font-['DM_Serif_Display',Georgia,serif] font-normal tracking-[-0.01em]">
+                  What happens next
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <ol className="space-y-3 text-sm leading-7 text-muted-foreground">
-                  <li className="flex gap-3">
-                    <span className="list-index">1</span>
-                    <span>We review your operating context and primary goals.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="list-index">2</span>
-                    <span>We hold a focused consultation around scope and delivery path.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="list-index">3</span>
-                    <span>We share an engagement recommendation with priorities and cadence.</span>
-                  </li>
+                <ol className="space-y-4">
+                  {[
+                    'We review your operating context and primary goals.',
+                    'We hold a focused consultation around scope and delivery path.',
+                    'We share an engagement recommendation with priorities and cadence.',
+                  ].map((item, i) => (
+                    <li key={i} className="flex gap-3.5 text-[0.86rem] leading-[1.72] text-muted-foreground">
+                      <span className="list-index mt-0.5">{i + 1}</span>
+                      {item}
+                    </li>
+                  ))}
                 </ol>
               </CardContent>
             </Card>
 
             <Card className="surface-card">
               <CardHeader>
-                <CardTitle className="text-lg">Direct contact</CardTitle>
+                <CardTitle className="text-[0.82rem] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                  Direct Contact
+                </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-sm text-muted-foreground">
-                <p className="flex items-center gap-2">
-                  <Mail className="size-4 text-accent" />
-                  <a className="hover:text-accent" href="mailto:hello@vextor.co">
+              <CardContent className="space-y-3.5">
+                <p className="flex items-center gap-2.5 text-[0.86rem] text-muted-foreground">
+                  <Mail className="size-4 text-accent flex-shrink-0" />
+                  <a className="hover:text-accent transition-colors" href="mailto:hello@vextor.co">
                     hello@vextor.co
                   </a>
                 </p>
-                <p className="flex items-center gap-2">
-                  <Phone className="size-4 text-accent" />
-                  <a className="hover:text-accent" href="tel:+919016070659">
+                <p className="flex items-center gap-2.5 text-[0.86rem] text-muted-foreground">
+                  <Phone className="size-4 text-accent flex-shrink-0" />
+                  <a className="hover:text-accent transition-colors" href="tel:+919016070659">
                     +91 90160 70659
                   </a>
                 </p>
-                <p className="flex items-center gap-2">
-                  <MapPin className="size-4 text-accent" /> Ahmedabad, India
+                <p className="flex items-center gap-2.5 text-[0.86rem] text-muted-foreground">
+                  <MapPin className="size-4 text-accent flex-shrink-0" />
+                  Ahmedabad, India
                 </p>
               </CardContent>
             </Card>
@@ -1394,27 +1722,31 @@ function ContactPage() {
               src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1500&q=80"
               alt="Business team in a focused planning meeting"
               caption="Consultation-led approach with structured implementation planning."
-              className="min-h-[260px]"
+              className="min-h-[280px]"
               objectPosition="center 45%"
             />
           </div>
         </div>
       </section>
+
     </main>
   )
 }
 
+/* ─────────────────────────────────────────────────────────────
+   APP ROOT
+   ───────────────────────────────────────────────────────────── */
 export default function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/services" element={<ServicesPage />} />
+        <Route path="/"           element={<HomePage />} />
+        <Route path="/services"   element={<ServicesPage />} />
         <Route path="/industries" element={<IndustriesPage />} />
-        <Route path="/work" element={<WorkPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/work"       element={<WorkPage />} />
+        <Route path="/about"      element={<AboutPage />} />
+        <Route path="/contact"    element={<ContactPage />} />
+        <Route path="*"           element={<Navigate to="/" replace />} />
       </Routes>
     </Layout>
   )
