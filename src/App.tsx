@@ -6,13 +6,10 @@ import {
   CalendarCheck2,
   CheckCircle2,
   ChevronRight,
-  CircuitBoard,
   ClipboardList,
   Code2,
   Compass,
   Database,
-  Handshake,
-  Hammer,
   HardHat,
   LandPlot,
   Layers3,
@@ -20,9 +17,10 @@ import {
   MapPin,
   Menu,
   Phone,
+  Route as RouteIcon,
   Settings2,
   ShieldCheck,
-  TimerReset,
+  Sparkles,
   Users,
   Wrench,
   X,
@@ -33,12 +31,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 
-type ServiceDetail = {
+type SalesforceService = {
   title: string
   summary: string
-  problemsSolved: string[]
+  challenges: string[]
   included: string[]
-  idealClient: string
   outcomes: string
 }
 
@@ -50,162 +47,111 @@ const navItems = [
   { label: 'Contact', to: '/contact' },
 ]
 
-const serviceCards = [
+const salesforceServices: SalesforceService[] = [
   {
-    icon: Layers3,
-    title: 'Salesforce Consulting',
-    description: 'Roadmaps, architecture decisions, platform governance, and implementation planning.',
-  },
-  {
-    icon: CircuitBoard,
-    title: 'Salesforce Architecture',
-    description: 'Scalable org design for teams with complex approvals, data, and cross-team dependencies.',
-  },
-  {
-    icon: Code2,
-    title: 'Custom Development',
-    description: 'Apex, LWC, APIs, and integrations for processes that do not fit out-of-the-box logic.',
-  },
-  {
-    icon: Hammer,
-    title: 'BuilderTek Customization',
-    description: 'BuilderTek workflow refinements for RFQ, quote, PO, budgeting, and project operations.',
-  },
-  {
-    icon: Settings2,
-    title: 'Automation & Workflow',
-    description: 'Process redesign with Flow, approvals, notifications, and operational controls.',
-  },
-  {
-    icon: TimerReset,
-    title: 'Managed Support',
-    description: 'Retainer-based support for ongoing improvements, incident response, and user requests.',
-  },
-]
-
-const servicesCatalog: ServiceDetail[] = [
-  {
-    title: 'Salesforce Consulting',
+    title: 'Salesforce Consulting and Roadmapping',
     summary:
-      'Executive and operations-facing consulting to keep platform decisions aligned with business priorities.',
-    problemsSolved: [
-      'Unclear platform roadmap and competing stakeholder priorities',
-      'Repeated rework from reactive, sprint-to-sprint decisions',
-      'Slow delivery because teams are unsure what to standardize vs customize',
+      'Advisory support for platform direction, delivery planning, and operational priorities across teams.',
+    challenges: [
+      'Roadmaps that are unclear or constantly shifting',
+      'Competing stakeholder requests with no delivery framework',
+      'Implementation choices that create rework later',
     ],
     included: [
-      'Current-state audit and architecture recommendations',
-      'Roadmap by business capability and delivery phase',
-      'Governance framework for release quality and ownership',
+      'Current-state review and priority mapping',
+      'Delivery roadmap tied to business workflows',
+      'Release planning and governance model',
     ],
-    idealClient:
-      'Organizations with growing Salesforce usage that need a senior consulting partner for platform direction.',
-    outcomes:
-      'A practical delivery plan, cleaner decision-making, and fewer expensive technical detours.',
+    outcomes: 'Clear execution priorities, faster decisions, and less roadmap drift.',
   },
   {
-    title: 'Salesforce Architecture',
+    title: 'Salesforce Architecture and Platform Design',
     summary:
-      'Architecture for data, security, and process boundaries so operations scale without creating an unstable org.',
-    problemsSolved: [
-      'Data model complexity causing report inconsistency and duplicate logic',
-      'Security model gaps that block collaboration or introduce risk',
-      'Integration architecture that breaks under operational volume',
+      'Architecture for data, security, and automation boundaries so the org remains stable as complexity grows.',
+    challenges: [
+      'Inconsistent data model and reporting trust gaps',
+      'Permission and sharing friction between departments',
+      'Automation conflicts that slow release cycles',
     ],
     included: [
-      'Object model and automation boundary design',
-      'Profiles, permission sets, sharing, and record visibility strategy',
-      'Release architecture with environment and deployment standards',
+      'Data model and process boundary design',
+      'Security, access, and visibility strategy',
+      'Architecture guardrails for future development',
     ],
-    idealClient:
-      'Salesforce-heavy operations teams where multiple departments depend on clean data and reliable workflows.',
-    outcomes:
-      'A resilient technical foundation that supports delivery velocity and lower maintenance overhead.',
+    outcomes: 'A platform foundation built for long-term reliability.',
   },
   {
-    title: 'Custom Development (Apex, LWC, Integrations)',
+    title: 'Automation and Workflow Engineering',
     summary:
-      'Custom engineering for workflows where standard configuration cannot support operational requirements.',
-    problemsSolved: [
-      'Complex process rules that exceed native flow behavior',
-      'Slow user workflows due to fragmented UI and repetitive manual steps',
-      'Data latency between Salesforce and accounting, ERP, or project systems',
+      'Workflow design and implementation that remove manual bottlenecks and improve process control.',
+    challenges: [
+      'Approval chains that stall key decisions',
+      'Manual handoffs causing data quality issues',
+      'Lack of process visibility across operations',
     ],
     included: [
-      'Apex services, triggers, and orchestration patterns',
-      'LWC interfaces optimized for role-specific daily workflows',
-      'REST or event-driven integration services with robust error handling',
+      'Process mapping and automation logic design',
+      'Flow implementation with exception handling',
+      'Operational dashboards for throughput and SLA tracking',
     ],
-    idealClient:
-      'Businesses running high-volume or specialized workflows that need disciplined engineering.',
-    outcomes:
-      'Faster operations, cleaner user experience, and dependable cross-system execution.',
+    outcomes: 'Cleaner execution, stronger accountability, and fewer process delays.',
   },
   {
-    title: 'BuilderTek Customization',
+    title: 'Custom Development (Apex and LWC)',
     summary:
-      'BuilderTek-focused consulting and implementation support tailored to construction and real-estate operations.',
-    problemsSolved: [
-      'RFQ, quote, and PO workflows that are hard to track end-to-end',
-      'Budget and approval steps that rely on email and disconnected spreadsheets',
-      'Low adoption caused by high-friction screens and unclear ownership',
+      'Custom engineering for business-critical workflows that exceed native configuration limits.',
+    challenges: [
+      'Complex business rules not supported by standard setup',
+      'Slow UI patterns for high-frequency users',
+      'Feature requests that need maintainable custom logic',
     ],
     included: [
-      'BuilderTek workflow mapping for office and field operations',
-      'Process automation, custom screens, and role-based controls',
-      'Operational reporting setup for project and procurement visibility',
+      'Apex service layer design and implementation',
+      'LWC interfaces for role-specific user workflows',
+      'Code quality controls and deployment discipline',
     ],
-    idealClient:
-      'Construction and real-estate teams using BuilderTek who need tighter operational execution.',
-    outcomes:
-      'More predictable project execution, clearer procurement flow, and better platform adoption.',
+    outcomes: 'Faster user workflows with maintainable platform customizations.',
   },
   {
-    title: 'Automation & Workflow Design',
+    title: 'Integration Engineering',
     summary:
-      'End-to-end workflow redesign to remove manual handoffs and improve process reliability.',
-    problemsSolved: [
-      'Approval bottlenecks and unclear accountability',
-      'Inconsistent process execution between departments',
-      'Excessive manual updates reducing data quality',
+      'System integration design and delivery for reliable data exchange across finance, ERP, and project systems.',
+    challenges: [
+      'Disconnected data between Salesforce and downstream systems',
+      'Fragile integrations with poor error handling',
+      'Latency and sync issues impacting operations',
     ],
     included: [
-      'Process mapping and decision-point design',
-      'Flow automation with exception paths and alerts',
-      'Operational dashboards for SLA and throughput tracking',
+      'API mapping and integration architecture',
+      'Robust error handling and monitoring patterns',
+      'Data sync strategy and operational safeguards',
     ],
-    idealClient:
-      'Operations leaders who need predictable execution and better visibility into process health.',
-    outcomes:
-      'Fewer process stalls, stronger data discipline, and improved operational throughput.',
+    outcomes: 'Reliable system coordination and stronger data confidence.',
   },
   {
-    title: 'Managed Support / Retainers',
+    title: 'Managed Salesforce Support',
     summary:
-      'Long-term Salesforce and BuilderTek support for teams that need dependable delivery after go-live.',
-    problemsSolved: [
-      'Backlogs that grow faster than internal teams can handle',
+      'Retainer-based support for teams that need ongoing delivery, optimization, and platform ownership.',
+    challenges: [
+      'Backlog growth without consistent execution',
       'Production issues without clear triage ownership',
-      'No structured cadence for optimization and maintenance',
+      'No structured rhythm for continuous improvement',
     ],
     included: [
-      'Prioritized backlog management and sprint-based improvements',
-      'Support SLAs, issue triage, and release coordination',
-      'Monthly advisory reviews and architecture checkpoints',
+      'Prioritized support queue and sprint execution',
+      'Incident triage and release support',
+      'Monthly platform advisory and optimization reviews',
     ],
-    idealClient:
-      'Teams needing an embedded partner for ongoing enhancements, support, and roadmap execution.',
-    outcomes:
-      'Steady improvement velocity and reliable support without building a full in-house consulting bench.',
+    outcomes: 'Steady improvement velocity without agency overhead.',
   },
 ]
 
 const revealUp = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 22 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' },
+    transition: { duration: 0.52, ease: 'easeOut' },
   },
 }
 
@@ -231,37 +177,13 @@ function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
   return (
     <Link
       to={to}
-      className={`text-sm font-medium transition-colors ${
+      className={`text-sm font-medium tracking-[0.01em] transition-colors ${
         isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
       }`}
       aria-current={isActive ? 'page' : undefined}
     >
       {children}
     </Link>
-  )
-}
-
-function ImagePanel({
-  src,
-  alt,
-  label,
-  caption,
-  className,
-}: {
-  src: string
-  alt: string
-  label: string
-  caption: string
-  className?: string
-}) {
-  return (
-    <figure className={`image-frame ${className ?? ''}`}>
-      <img src={src} alt={alt} className="h-full w-full object-cover" loading="lazy" />
-      <figcaption className="space-y-1 border-t border-border px-4 py-3">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">{label}</p>
-        <p className="text-xs text-muted-foreground">{caption}</p>
-      </figcaption>
-    </figure>
   )
 }
 
@@ -278,16 +200,45 @@ function SectionIntro({
 }) {
   return (
     <motion.div
-      className={align === 'center' ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl'}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
       variants={revealUp}
+      className={align === 'center' ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl'}
     >
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
       <h2 className="section-title">{title}</h2>
       {summary ? <p className="section-summary">{summary}</p> : null}
     </motion.div>
+  )
+}
+
+function Visual({
+  src,
+  alt,
+  caption,
+  className,
+  objectPosition,
+}: {
+  src: string
+  alt: string
+  caption?: string
+  className?: string
+  objectPosition?: string
+}) {
+  return (
+    <figure className={`photo-frame ${className ?? ''}`}>
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="h-full w-full object-cover"
+        style={objectPosition ? { objectPosition } : undefined}
+      />
+      {caption ? (
+        <figcaption className="border-t border-border/80 px-4 py-3 text-xs text-muted-foreground">{caption}</figcaption>
+      ) : null}
+    </figure>
   )
 }
 
@@ -316,9 +267,9 @@ function Header() {
   }, [location.pathname])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/92 backdrop-blur-xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-end gap-3" aria-label="Vextor home">
+        <Link to="/" aria-label="Vextor home" className="flex items-center gap-3">
           <span className="brand-mark" aria-hidden="true" />
           <span>
             <span className="block text-lg font-semibold tracking-tight">Vextor</span>
@@ -335,7 +286,7 @@ function Header() {
             </NavLink>
           ))}
           <Link to="/contact">
-            <Button size="md" className="btn-solid">
+            <Button className="btn-solid" size="md">
               Book a Consultation <ArrowRight className="ml-2 size-4" />
             </Button>
           </Link>
@@ -344,10 +295,10 @@ function Header() {
         <button
           type="button"
           className="inline-flex items-center justify-center rounded-xl border border-border p-2 text-foreground transition hover:bg-card md:hidden"
+          onClick={() => setOpen((prev) => !prev)}
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label="Toggle menu"
-          onClick={() => setOpen((current) => !current)}
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
@@ -366,9 +317,7 @@ function Header() {
               </Link>
             ))}
             <Link to="/contact" className="mt-2">
-              <Button size="md" className="btn-solid w-full justify-center">
-                Start a Project Conversation
-              </Button>
+              <Button className="btn-solid w-full justify-center">Discuss Your Salesforce Roadmap</Button>
             </Link>
           </div>
         </div>
@@ -379,45 +328,46 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="border-t border-border bg-card/55">
+    <footer className="border-t border-border bg-footer">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.9fr]">
           <div className="space-y-4">
             <p className="eyebrow">Vextor Solution LLP</p>
             <h2 className="text-2xl font-semibold tracking-tight">
-              Salesforce and BuilderTek consulting for teams that run on operations, not theory.
+              Salesforce consulting for operationally complex teams, with dedicated BuilderTek specialization.
             </h2>
-            <p className="max-w-xl text-sm text-muted-foreground">
-              We partner with construction, real-estate, and Salesforce-heavy teams that need architecture,
-              custom development, automation, integrations, and long-term support.
+            <p className="max-w-xl text-sm leading-7 text-muted-foreground">
+              We help businesses design and scale Salesforce architecture, automation, custom development,
+              integrations, and managed support. BuilderTek customers can engage us for specialized workflow
+              customization and operational support.
             </p>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.12em] text-muted-foreground">Pages</h3>
+            <h3 className="footer-title">Pages</h3>
             <ul className="mt-4 space-y-3 text-sm">
               <li>
-                <Link to="/services" className="hover:text-accent">
+                <Link className="hover:text-accent" to="/services">
                   Services
                 </Link>
               </li>
               <li>
-                <Link to="/industries" className="hover:text-accent">
-                  Construction & BuilderTek
+                <Link className="hover:text-accent" to="/industries">
+                  Industries
                 </Link>
               </li>
               <li>
-                <Link to="/work" className="hover:text-accent">
-                  Selected Work
+                <Link className="hover:text-accent" to="/work">
+                  Work
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-accent">
+                <Link className="hover:text-accent" to="/about">
                   About
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-accent">
+                <Link className="hover:text-accent" to="/contact">
                   Contact
                 </Link>
               </li>
@@ -425,8 +375,8 @@ function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-[0.12em] text-muted-foreground">Contact</h3>
-            <ul className="mt-4 space-y-3 text-sm">
+            <h3 className="footer-title">Contact</h3>
+            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Mail className="size-4 text-accent" />
                 <a href="mailto:hello@vextor.co" className="hover:text-accent">
@@ -448,7 +398,7 @@ function Footer() {
 
         <div className="mt-12 flex flex-col gap-2 border-t border-border pt-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Vextor Solution LLP. All rights reserved.</p>
-          <p>Salesforce consulting, BuilderTek specialization, architecture-first delivery.</p>
+          <p>Salesforce consulting | BuilderTek specialization | Managed support</p>
         </div>
       </div>
     </footer>
@@ -457,73 +407,94 @@ function Footer() {
 
 function HomePage() {
   usePageMeta(
-    'Vextor | Salesforce and BuilderTek Consulting Partner',
-    'Vextor helps construction, real-estate, and operations teams design Salesforce architecture, BuilderTek workflows, custom development, integrations, and managed support.'
+    'Vextor | Salesforce Consulting and BuilderTek Specialization',
+    'Vextor provides Salesforce consulting, architecture, automation, custom development, integrations, and managed support. We also offer dedicated BuilderTek workflow support.'
   )
 
-  const homeCapabilities = [
+  const coreSalesforceCards = [
     {
-      title: 'Architecture decisions that prevent expensive rework',
-      detail: 'Data model, security, and workflow boundaries aligned to real operating conditions.',
+      icon: Layers3,
+      title: 'Salesforce Consulting',
+      text: 'Roadmaps, platform decisions, and governance that keep delivery aligned with operations.',
     },
     {
-      title: 'BuilderTek process depth where execution matters',
-      detail: 'RFQ, quote, PO, budget, approvals, and project tracking designed for speed and control.',
+      icon: ShieldCheck,
+      title: 'Architecture and Automation',
+      text: 'Data model, security, and workflow design for reliable execution at scale.',
     },
     {
-      title: 'Long-term support without enterprise-agency overhead',
-      detail: 'Senior consulting and delivery continuity through structured retainers and clear SLAs.',
+      icon: Code2,
+      title: 'Custom Development',
+      text: 'Apex, LWC, and integration engineering for workflows beyond standard configuration.',
+    },
+    {
+      icon: RouteIcon,
+      title: 'Managed Support',
+      text: 'Retainer support for enhancements, release quality, and operational continuity.',
+    },
+  ]
+
+  const whyVextor = [
+    {
+      title: 'Operationally grounded',
+      body: 'We design systems around how teams actually run work, approvals, and handoffs.',
+    },
+    {
+      title: 'Senior execution',
+      body: 'Architecture and engineering are delivered by experienced practitioners, not handoff chains.',
+    },
+    {
+      title: 'Long-term accountability',
+      body: 'Our support model keeps delivery momentum and platform quality after go-live.',
     },
   ]
 
   return (
     <main>
-      <section className="hero-surface">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
+      <section className="hero-wrap">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
           <motion.div initial="hidden" animate="show" variants={revealUp} className="space-y-7">
-            <Badge className="badge-premium">Salesforce + BuilderTek Consulting Partner</Badge>
-            <h1 className="hero-title">
-              Salesforce and BuilderTek systems built for operations teams that cannot afford friction.
-            </h1>
+            <Badge className="badge-premium">Salesforce Consulting Partner for Operations Teams</Badge>
+            <h1 className="hero-title">Salesforce consulting built for businesses that run on process quality.</h1>
             <p className="hero-copy">
-              Vextor helps construction, real-estate, and process-heavy businesses fix platform bottlenecks,
-              design stable architecture, build custom workflows, and run reliable long-term support.
+              Vextor helps teams improve Salesforce architecture, automation, custom development, integrations,
+              and managed support. For BuilderTek customers, we offer dedicated workflow customization and
+              system support as a specialized capability.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link to="/contact">
                 <Button size="lg" className="btn-solid">
-                  Book a Consultation <CalendarCheck2 className="ml-2 size-4" />
+                  Discuss Your Salesforce Roadmap <CalendarCheck2 className="ml-2 size-4" />
                 </Button>
               </Link>
-              <Link to="/industries">
-                <Button variant="outline" size="lg" className="btn-outline">
+              <Link to="/services#buildertek-specialization">
+                <Button size="lg" variant="outline" className="btn-outline-dark">
                   Explore BuilderTek Support <ChevronRight className="ml-2 size-4" />
                 </Button>
               </Link>
             </div>
             <ul className="grid gap-2 text-sm text-deep-muted sm:grid-cols-2">
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent" /> Built for Salesforce-run operations teams
+                <CheckCircle2 className="mt-0.5 size-4 text-accent-soft" /> Salesforce architecture and automation
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent" /> Architecture, automation, custom engineering
+                <CheckCircle2 className="mt-0.5 size-4 text-accent-soft" /> Apex and LWC development
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent" /> BuilderTek workflow customization depth
+                <CheckCircle2 className="mt-0.5 size-4 text-accent-soft" /> Integration engineering and support
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent" /> Retainer model for continuous support
+                <CheckCircle2 className="mt-0.5 size-4 text-accent-soft" /> BuilderTek customization specialization
               </li>
             </ul>
           </motion.div>
 
-          {/* Replace /public/images/hero-operations-grid.svg with a premium architecture + operations visual */}
-          <ImagePanel
-            src="/images/hero-operations-grid.svg"
-            alt="Editorial operations board showing architectural lines and workflow blocks"
-            label="Hero Visual"
-            caption="Recommended replacement: architectural project-floor + workflow/dashboard composite image."
-            className="min-h-[420px]"
+          <Visual
+            src="https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1500&q=80"
+            alt="Premium office collaboration workspace with planning board and laptops"
+            caption="Operational strategy, architecture planning, and execution alignment."
+            className="min-h-[430px]"
+            objectPosition="center 45%"
           />
         </div>
       </section>
@@ -531,37 +502,13 @@ function HomePage() {
       <section className="section-wrap">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Trust and Positioning"
-            title="Built for teams that rely on Salesforce to run daily operations."
-            summary="We work best where delivery, finance, procurement, and field execution depend on clear workflows and dependable systems."
+            eyebrow="Core Salesforce Services"
+            title="Salesforce consulting as the primary service line"
+            summary="From architecture to managed support, we help teams build stable Salesforce operations without unnecessary complexity."
           />
-
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {homeCapabilities.map((item) => (
-              <Card key={item.title} className="surface-card">
-                <CardHeader>
-                  <CardTitle className="text-lg">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{item.detail}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-wrap border-y border-border bg-card/55">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Services"
-            title="What Vextor delivers"
-            summary="Consulting, architecture, engineering, and support organized around business-critical operations."
-          />
-
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {serviceCards.map(({ icon: Icon, title, description }) => (
-              <Card key={title} className="surface-card group">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {coreSalesforceCards.map(({ icon: Icon, title, text }) => (
+              <Card key={title} className="surface-card">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3 text-base">
                     <span className="icon-wrap">
@@ -571,7 +518,7 @@ function HomePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">{description}</p>
+                  <p className="text-sm leading-7 text-muted-foreground">{text}</p>
                 </CardContent>
               </Card>
             ))}
@@ -579,88 +526,108 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="section-wrap">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
-          <div className="space-y-6">
+      <section className="section-wrap border-y border-border bg-card/60">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Why Clients Choose Vextor"
+            title="A serious consulting partner for complex operating environments"
+            summary="We focus on delivery quality, platform reliability, and practical collaboration with your internal teams."
+          />
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {whyVextor.map((item) => (
+              <Card key={item.title} className="surface-card">
+                <CardHeader>
+                  <CardTitle className="text-lg">{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm leading-7 text-muted-foreground">{item.body}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap" id="buildertek-home">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+          <div className="space-y-5">
             <SectionIntro
               eyebrow="BuilderTek Specialization"
-              title="We understand how BuilderTek workflows affect project execution."
-              summary="Our work focuses on operational flow, not cosmetic configuration. We optimize the steps your team actually depends on every day."
+              title="Dedicated BuilderTek support for construction and real-estate workflows"
+              summary="BuilderTek is treated as a focused specialization. Clients engage us for workflow customization, operational improvements, and support in BuilderTek-heavy environments."
             />
-            <div className="grid gap-3 sm:grid-cols-2">
-              {[
-                'Project operations planning and role-based ownership',
-                'RFQ, quote, and PO lifecycle alignment across teams',
-                'Budget checks, approval controls, and auditability',
-                'Custom interfaces for procurement and field-to-office handoffs',
-                'Integrations between Salesforce, finance, and external systems',
-                'Usability and adoption improvements for high-frequency users',
-              ].map((point) => (
-                <p key={point} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <CheckCircle2 className="mt-0.5 size-4 text-accent" /> {point}
-                </p>
-              ))}
-            </div>
-            <Link to="/industries" className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-accent">
-              See the Construction + BuilderTek page <ArrowRight className="size-4" />
+            <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> RFQ, quote, PO, and approval workflow refinement
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Budget and project operations process optimization
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> BuilderTek usability and adoption improvements
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Integration and support for BuilderTek-centric teams
+              </li>
+            </ul>
+            <Link to="/services#buildertek-specialization" className="inline-flex items-center gap-2 text-sm font-medium hover:text-accent">
+              View BuilderTek specialization details <ArrowRight className="size-4" />
             </Link>
           </div>
 
-          {/* Replace /public/images/buildertek-workflow-board.svg with BuilderTek process / dashboard imagery */}
-          <ImagePanel
-            src="/images/buildertek-workflow-board.svg"
-            alt="Workflow board representing BuilderTek operations"
-            label="BuilderTek Visual"
-            caption="Recommended replacement: BuilderTek-oriented workflow board or project procurement dashboard scene."
+          <Visual
+            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1500&q=80"
+            alt="Construction project environment showing planning and execution context"
+            caption="BuilderTek support for project operations, procurement flow, and execution control."
             className="min-h-[390px]"
+            objectPosition="center 52%"
           />
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/55">
+      <section className="section-wrap border-y border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="How We Work"
-            title="Clear engagement from discovery to ongoing support"
-            summary="Structured delivery with practical milestones, technical accountability, and transparent communication."
+            title="Structured engagement from architecture to support"
+            summary="A delivery cadence designed for clarity, accountability, and sustained platform quality."
           />
-
           <div className="mt-10 grid gap-5 md:grid-cols-4">
             {[
               {
                 step: '01',
-                title: 'Assess',
-                text: 'Map current architecture, process risks, delivery gaps, and team constraints.',
                 icon: ClipboardList,
+                title: 'Assess',
+                text: 'Review architecture, process risk, and delivery constraints.',
               },
               {
                 step: '02',
-                title: 'Design',
-                text: 'Define architecture and workflow blueprint with implementation priorities.',
                 icon: Compass,
+                title: 'Design',
+                text: 'Define platform and workflow design before build starts.',
               },
               {
                 step: '03',
-                title: 'Build',
-                text: 'Implement with iterative releases, QA controls, and stakeholder checkpoints.',
                 icon: Wrench,
+                title: 'Deliver',
+                text: 'Implement in controlled increments with review checkpoints.',
               },
               {
                 step: '04',
+                icon: Users,
                 title: 'Support',
-                text: 'Stabilize and evolve through a retainer model built for long-term value.',
-                icon: Handshake,
+                text: 'Continue through retainer support and advisory continuity.',
               },
-            ].map(({ step, title, text, icon: Icon }) => (
+            ].map(({ step, icon: Icon, title, text }) => (
               <Card key={title} className="surface-card">
                 <CardHeader>
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Step {step}</p>
+                  <p className="step-chip">Step {step}</p>
                   <CardTitle className="mt-2 flex items-center gap-2 text-base">
                     <Icon className="size-4 text-accent" /> {title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">{text}</p>
+                  <p className="text-sm leading-7 text-muted-foreground">{text}</p>
                 </CardContent>
               </Card>
             ))}
@@ -671,41 +638,31 @@ function HomePage() {
       <section className="section-wrap">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Engagement Model"
-            title="Flexible project delivery and retainer support"
-            summary="Choose a model that matches your current stage, internal capacity, and roadmap urgency."
+            eyebrow="Selected Capabilities"
+            title="Common delivery blocks clients engage us for"
+            summary="Representative capability blocks for architecture, development, and operational support conversations."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {[
               {
-                title: 'Focused Delivery Sprint',
-                text: 'For clearly scoped architecture or implementation blocks with defined milestones.',
-                chips: ['Defined scope', 'Delivery roadmap', 'Execution checkpoints'],
+                title: 'Salesforce Architecture Alignment',
+                body: 'Platform design, automation boundary cleanup, and release governance for multi-team environments.',
               },
               {
-                title: 'Implementation Partner Model',
-                text: 'For teams needing ongoing build velocity across multiple workflows and stakeholders.',
-                chips: ['Senior consulting access', 'Iterative releases', 'Cross-team coordination'],
+                title: 'Custom Workflow Engineering',
+                body: 'Apex and LWC delivery for high-frequency workflows where user speed and data quality both matter.',
               },
               {
-                title: 'Managed Salesforce Retainer',
-                text: 'For long-term optimization, support, and continuous platform improvement.',
-                chips: ['Support SLAs', 'Backlog ownership', 'Monthly advisory reviews'],
+                title: 'BuilderTek Process Optimization',
+                body: 'Procurement and approval process refinement for BuilderTek workflows tied to project execution.',
               },
             ].map((item) => (
               <Card key={item.title} className="surface-card">
                 <CardHeader>
                   <CardTitle className="text-lg">{item.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-sm text-muted-foreground">{item.text}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {item.chips.map((chip) => (
-                      <span key={chip} className="chip-small">
-                        {chip}
-                      </span>
-                    ))}
-                  </div>
+                <CardContent>
+                  <p className="text-sm leading-7 text-muted-foreground">{item.body}</p>
                 </CardContent>
               </Card>
             ))}
@@ -714,50 +671,15 @@ function HomePage() {
       </section>
 
       <section className="section-wrap border-y border-border bg-deep text-deep-foreground">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Why Vextor"
-            title="A specialist partner between freelance fragility and agency bloat"
-            summary="You get senior technical judgment, consistent execution quality, and delivery ownership from start to support."
-          />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {[
-              {
-                heading: 'Operational Context',
-                body: 'We design for real workflows involving approvals, procurement dependencies, and field coordination.',
-              },
-              {
-                heading: 'Technical Depth',
-                body: 'Architecture, Apex/LWC engineering, and integration design are delivered by the same accountable team.',
-              },
-              {
-                heading: 'Long-Term Reliability',
-                body: 'Retainer support keeps your platform stable while your business processes continue to evolve.',
-              },
-            ].map((point) => (
-              <Card key={point.heading} className="surface-card dark-surface-card">
-                <CardHeader>
-                  <CardTitle className="text-lg text-deep-foreground">{point.heading}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-deep-muted">{point.body}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-wrap">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <Card className="surface-card p-8 sm:p-10">
-            <p className="eyebrow">Start the Conversation</p>
-            <h2 className="section-title max-w-2xl">
-              Discuss your Salesforce roadmap with a team that understands operations and delivery pressure.
+          <Card className="surface-card deep-card p-8 sm:p-10">
+            <p className="eyebrow">Consultation</p>
+            <h2 className="section-title max-w-2xl text-deep-foreground">
+              Need a clear plan for Salesforce delivery or BuilderTek workflow support?
             </h2>
-            <p className="section-summary max-w-2xl">
-              We can review architecture risks, BuilderTek process bottlenecks, custom development priorities, and
-              support options in a focused consultation call.
+            <p className="section-summary max-w-2xl text-deep-muted">
+              Share your current bottlenecks. We will map a practical engagement path based on architecture,
+              delivery scope, and support needs.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link to="/contact">
@@ -766,8 +688,8 @@ function HomePage() {
                 </Button>
               </Link>
               <Link to="/services">
-                <Button variant="outline" size="lg" className="btn-outline">
-                  Review Service Scope
+                <Button size="lg" variant="outline" className="btn-outline-dark">
+                  Review Services
                 </Button>
               </Link>
             </div>
@@ -780,111 +702,118 @@ function HomePage() {
 
 function ServicesPage() {
   usePageMeta(
-    'Services | Vextor Salesforce and BuilderTek Consulting',
-    'Explore Vextor services: Salesforce consulting, architecture, custom development, BuilderTek customization, automation, and managed support retainers.'
+    'Services | Vextor Salesforce Consulting',
+    'Vextor offers Salesforce consulting, architecture, automation, custom development, integrations, and managed support, with BuilderTek specialization available separately.'
   )
 
-  const serviceIcons = [Layers3, ShieldCheck, Code2, Hammer, Settings2, TimerReset]
+  const serviceIcons = [Layers3, Compass, Settings2, Code2, Database, RouteIcon]
 
   return (
     <main>
-      <section className="section-wrap border-b border-border bg-card/55">
+      <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="Services"
-            title="Salesforce and BuilderTek services designed for long-term operational reliability"
-            summary="Each engagement is structured around practical delivery outcomes, not generic implementation scope."
+            title="Salesforce services and BuilderTek specialization, clearly separated"
+            summary="Salesforce consulting is our primary service line. BuilderTek support is offered as a dedicated specialization for relevant clients."
           />
         </div>
       </section>
 
       <section className="section-wrap">
-        <div className="mx-auto max-w-7xl space-y-6 px-4 sm:px-6 lg:px-8">
-          {servicesCatalog.map((service, index) => {
-            const Icon = serviceIcons[index]
-            return (
-              <article key={service.title} className="service-article">
-                <div>
-                  <p className="eyebrow">Service {index + 1}</p>
-                  <h2 className="section-title mt-2 flex items-center gap-3 text-2xl sm:text-3xl">
-                    <span className="icon-wrap">
-                      <Icon className="size-4" />
-                    </span>
-                    {service.title}
-                  </h2>
-                  <p className="mt-4 text-sm leading-7 text-muted-foreground">{service.summary}</p>
-                  <p className="mt-5 rounded-2xl border border-border/70 bg-background px-4 py-3 text-sm text-muted-foreground">
-                    <strong className="text-foreground">Ideal client:</strong> {service.idealClient}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Primary Service Line"
+            title="Salesforce consulting and engineering"
+            summary="Designed for operations teams that depend on Salesforce for execution quality and control."
+          />
+          <div className="mt-8 space-y-6">
+            {salesforceServices.map((service, index) => {
+              const Icon = serviceIcons[index]
+              return (
+                <article key={service.title} className="service-article">
+                  <div>
+                    <h3 className="service-title">
+                      <span className="icon-wrap">
+                        <Icon className="size-4" />
+                      </span>
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{service.summary}</p>
+                  </div>
+
+                  <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                    <Card className="surface-card">
+                      <CardHeader>
+                        <CardTitle className="text-base">Common challenges addressed</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+                          {service.challenges.map((item) => (
+                            <li key={item} className="flex items-start gap-2">
+                              <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="surface-card">
+                      <CardHeader>
+                        <CardTitle className="text-base">Scope includes</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+                          {service.included.map((item) => (
+                            <li key={item} className="flex items-start gap-2">
+                              <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  <p className="mt-5 rounded-2xl border border-border/75 bg-background px-4 py-3 text-sm text-muted-foreground">
+                    <strong className="text-foreground">Expected outcome:</strong> {service.outcomes}
                   </p>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <Card className="surface-card">
-                    <CardHeader>
-                      <CardTitle className="text-base">Common problems solved</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2 text-sm text-muted-foreground">
-                        {service.problemsSolved.map((item) => (
-                          <li key={item} className="flex items-start gap-2">
-                            <CheckCircle2 className="mt-0.5 size-4 text-accent" /> {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="surface-card">
-                    <CardHeader>
-                      <CardTitle className="text-base">What is included</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2 text-sm text-muted-foreground">
-                        {service.included.map((item) => (
-                          <li key={item} className="flex items-start gap-2">
-                            <CheckCircle2 className="mt-0.5 size-4 text-accent" /> {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                <Card className="surface-card">
-                  <CardContent className="pt-5">
-                    <p className="text-sm text-muted-foreground">
-                      <strong className="text-foreground">Expected outcomes:</strong> {service.outcomes}
-                    </p>
-                  </CardContent>
-                </Card>
-              </article>
-            )
-          })}
+                </article>
+              )
+            })}
+          </div>
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/55">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+      <section className="section-wrap border-y border-border bg-card/60" id="buildertek-specialization">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <div>
             <SectionIntro
-              eyebrow="Delivery Model"
-              title="How engagements are structured"
-              summary="We keep ownership clear, timelines realistic, and communication consistent."
+              eyebrow="Specialization"
+              title="BuilderTek support and customization"
+              summary="A separate specialization for BuilderTek customers who need process tuning, workflow customization, and ongoing support."
             />
-            <div className="mt-6 space-y-3 text-sm text-muted-foreground">
-              <p>1. Discovery and architecture alignment before implementation starts.</p>
-              <p>2. Prioritized delivery plan with release checkpoints and stakeholder reviews.</p>
-              <p>3. Post-launch support through retained delivery and advisory continuity.</p>
-            </div>
+            <ul className="mt-5 space-y-2 text-sm leading-7 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Project operations workflow mapping
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> RFQ, quote, PO, and approval refinement
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Budget, controls, and reporting process improvements
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> BuilderTek usability and adoption optimization
+              </li>
+            </ul>
           </div>
 
-          {/* Replace /public/images/services-interface-panels.svg with service workflow or UI screenshots */}
-          <ImagePanel
-            src="/images/services-interface-panels.svg"
-            alt="Interface-style visual with service delivery panels"
-            label="Services Visual"
-            caption="Recommended replacement: interface-oriented visuals showing roadmap, workflow, and release planning."
-            className="min-h-[300px]"
+          <Visual
+            src="https://images.unsplash.com/photo-1541976590-713941681591?auto=format&fit=crop&w=1500&q=80"
+            alt="Construction planning table with project drawings and laptop"
+            caption="BuilderTek specialization focused on project delivery workflows."
+            className="min-h-[340px]"
+            objectPosition="center 50%"
           />
         </div>
       </section>
@@ -894,169 +823,83 @@ function ServicesPage() {
 
 function IndustriesPage() {
   usePageMeta(
-    'Construction and BuilderTek Expertise | Vextor',
-    'Vextor supports construction and real-estate teams using Salesforce and BuilderTek with workflow design, customization, integrations, and managed support.'
+    'Industries | Vextor',
+    'Vextor supports construction, real-estate, and operations-heavy businesses with Salesforce consulting and BuilderTek specialization.'
   )
-
-  const workflowAreas = [
-    {
-      title: 'Project Operations',
-      detail: 'Role-based task flow across PMs, procurement, finance, and site coordination teams.',
-      icon: HardHat,
-    },
-    {
-      title: 'RFQ, Quote, and PO Lifecycle',
-      detail: 'Structured transitions from request to supplier response to purchasing decisions.',
-      icon: ClipboardList,
-    },
-    {
-      title: 'Budgets and Financial Controls',
-      detail: 'Approval paths, budget checkpoints, and reporting visibility for project stakeholders.',
-      icon: Database,
-    },
-    {
-      title: 'Custom UI and Usability',
-      detail: 'LWC interfaces designed for users who execute high-frequency operational tasks.',
-      icon: Code2,
-    },
-  ]
 
   return (
     <main>
-      <section className="section-wrap border-b border-border bg-card/55">
+      <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Industry Focus"
-            title="Construction and real-estate operations need more than generic Salesforce implementation"
-            summary="Vextor works with BuilderTek and Salesforce teams that need dependable execution across procurement, approvals, budgets, and project delivery workflows."
+            eyebrow="Industries"
+            title="Built for teams where operational precision matters"
+            summary="We support industries that rely on Salesforce for workflow consistency and delivery execution."
           />
         </div>
       </section>
 
       <section className="section-wrap">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
-          <div className="space-y-4">
-            <h2 className="section-title">BuilderTek workflow depth, grounded in day-to-day operations</h2>
-            <p className="text-sm leading-7 text-muted-foreground">
-              We help teams improve operational execution where it usually breaks down: disconnected approvals,
-              unclear procurement ownership, delayed project decisions, and low-confidence reporting.
-            </p>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-3 lg:px-8">
+          {[
+            {
+              icon: HardHat,
+              title: 'Construction',
+              text: 'Salesforce and BuilderTek support for procurement workflows, approvals, and project operations.',
+            },
+            {
+              icon: LandPlot,
+              title: 'Real Estate',
+              text: 'Workflow and integration support across sales, project delivery, and finance coordination.',
+            },
+            {
+              icon: Users,
+              title: 'Salesforce-Heavy Operations Teams',
+              text: 'Architecture, automation, development, and support for businesses running critical process flows in Salesforce.',
+            },
+          ].map((item) => (
+            <Card key={item.title} className="surface-card">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <item.icon className="size-4 text-accent" /> {item.title}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm leading-7 text-muted-foreground">{item.text}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-wrap border-y border-border bg-card/60">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+          <div>
+            <SectionIntro
+              eyebrow="BuilderTek Context"
+              title="Where BuilderTek specialization is most relevant"
+              summary="BuilderTek work is focused on operational process quality inside construction and project-driven environments."
+            />
+            <ul className="mt-5 space-y-2 text-sm leading-7 text-muted-foreground">
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent" /> Procurement process alignment across request,
-                review, and purchase stages.
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Procurement and purchasing workflow clarity
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent" /> Budget and approval workflows with clearer
-                accountability and reduced lag.
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Approval controls and escalation paths
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent" /> Practical automation that supports field and
-                office collaboration without adding friction.
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Budget visibility and role-based accountability
               </li>
             </ul>
           </div>
 
-          {/* Replace /public/images/industry-construction-operations.svg with real construction/operations photo */}
-          <ImagePanel
-            src="/images/industry-construction-operations.svg"
-            alt="Construction operations visual with structured workflow elements"
-            label="Industry Visual"
-            caption="Recommended replacement: editorial construction operations image with subtle workflow overlay."
-            className="min-h-[340px]"
+          <Visual
+            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1500&q=80"
+            alt="Urban construction project with crane and building structure"
+            caption="BuilderTek process support for construction and real-estate operations."
+            className="min-h-[320px]"
+            objectPosition="center 52%"
           />
-        </div>
-      </section>
-
-      <section className="section-wrap border-y border-border bg-card/55">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="BuilderTek Capability"
-            title="Areas where clients typically engage Vextor"
-            summary="A focused approach to operational flow, system behavior, and adoption quality."
-          />
-
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {workflowAreas.map(({ title, detail, icon: Icon }) => (
-              <Card key={title} className="surface-card">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-lg">
-                    <span className="icon-wrap">
-                      <Icon className="size-4" />
-                    </span>
-                    {title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{detail}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-wrap">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Who We Work Best With"
-            title="Client profiles where we add the most value"
-            summary="If your business depends on Salesforce for operational throughput, we can usually help quickly."
-          />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {[
-              {
-                icon: HardHat,
-                title: 'Construction Teams on BuilderTek',
-                text: 'Project operations, procurement flow, and budget controls that need stronger system execution.',
-              },
-              {
-                icon: LandPlot,
-                title: 'Real-Estate Organizations',
-                text: 'Sales, project, and finance workflows requiring tighter integration and process consistency.',
-              },
-              {
-                icon: Users,
-                title: 'Salesforce-Heavy Operations Teams',
-                text: 'Businesses that need architecture, custom automation, and long-term support continuity.',
-              },
-            ].map(({ icon: Icon, title, text }) => (
-              <Card key={title} className="surface-card">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-base">
-                    <Icon className="size-4 text-accent" /> {title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{text}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-wrap border-t border-border bg-card/55">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <Card className="surface-card p-8 sm:p-10">
-            <h2 className="section-title max-w-2xl">Need BuilderTek process support that is practical and reliable?</h2>
-            <p className="section-summary max-w-2xl">
-              We can review your current flow and propose targeted improvements for approvals, procurement, automation,
-              and day-to-day usability.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link to="/contact">
-                <Button size="lg" className="btn-solid">
-                  Explore BuilderTek Support
-                </Button>
-              </Link>
-              <Link to="/services">
-                <Button variant="outline" size="lg" className="btn-outline">
-                  Review Services
-                </Button>
-              </Link>
-            </div>
-          </Card>
         </div>
       </section>
     </main>
@@ -1065,73 +908,68 @@ function IndustriesPage() {
 
 function WorkPage() {
   usePageMeta(
-    'Selected Work | Vextor',
-    'Review Vextor project examples and delivery structures for Salesforce and BuilderTek consulting engagements.'
+    'Work | Vextor',
+    'Review representative Vextor engagement patterns for Salesforce consulting and BuilderTek specialization.'
   )
-
-  const caseStudies = [
-    {
-      title: 'BuilderTek Procurement Flow Stabilization',
-      sector: 'Construction Operations',
-      situation:
-        'Procurement teams were managing RFQ and PO status through fragmented updates, creating delays and unclear ownership.',
-      vextorScope:
-        'Mapped process states, reworked approval logic, and implemented role-specific workflow visibility with automation triggers.',
-      outputs:
-        'Workflow blueprint, automation implementation, approval matrix, and support transition documentation.',
-    },
-    {
-      title: 'Salesforce Architecture Reset for Multi-Team Delivery',
-      sector: 'Real-Estate and Projects',
-      situation:
-        'The org had overlapping automation and inconsistent data ownership across project, sales, and finance teams.',
-      vextorScope:
-        'Introduced architecture boundaries, cleaned object relationships, and planned phased refactoring aligned with business priority.',
-      outputs:
-        'Architecture roadmap, release sequence, and governance model for future enhancements.',
-    },
-    {
-      title: 'Custom Workflow UI for Operations Throughput',
-      sector: 'Salesforce-Heavy Business Operations',
-      situation:
-        'High-frequency users faced slow, multi-screen updates for daily transaction workflows.',
-      vextorScope:
-        'Built focused LWC interfaces and orchestration logic to reduce step count and improve execution consistency.',
-      outputs:
-        'Custom UI components, service-layer code, deployment assets, and operational adoption guidance.',
-    },
-  ]
 
   return (
     <main>
-      <section className="section-wrap border-b border-border bg-card/55">
+      <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="Selected Work"
-            title="Project structures that show how Vextor engages"
-            summary="No inflated claims. This page demonstrates the type of delivery scope, process depth, and outputs clients can expect."
+            title="Representative engagement patterns"
+            summary="These summaries show how we typically structure delivery, without publishing client-sensitive detail."
           />
         </div>
       </section>
 
       <section className="section-wrap">
         <div className="mx-auto max-w-7xl space-y-5 px-4 sm:px-6 lg:px-8">
-          {caseStudies.map((study) => (
-            <Card key={study.title} className="surface-card p-6 sm:p-7">
-              <p className="eyebrow">{study.sector}</p>
-              <h2 className="mt-2 text-2xl font-semibold tracking-tight">{study.title}</h2>
-              <div className="mt-5 grid gap-4 sm:grid-cols-3">
+          {[
+            {
+              sector: 'Salesforce Operations',
+              title: 'Architecture and workflow stabilization',
+              situation:
+                'Multi-team org with overlapping automation, inconsistent data ownership, and slow release quality.',
+              scope:
+                'Architecture reset, automation boundaries, release governance, and phased remediation planning.',
+              output: 'Cleaner platform foundation and more predictable delivery cadence.',
+            },
+            {
+              sector: 'Custom Development',
+              title: 'Apex and LWC workflow acceleration',
+              situation:
+                'High-frequency users faced slow, multi-screen process execution and inconsistent data entry.',
+              scope:
+                'Custom UI delivery, service-layer logic, workflow orchestration, and controlled deployment.',
+              output: 'Faster user execution and stronger process data quality.',
+            },
+            {
+              sector: 'BuilderTek Specialization',
+              title: 'Procurement and approvals flow optimization',
+              situation:
+                'BuilderTek-heavy team managing RFQ-to-PO processes with fragmented tracking and approval delays.',
+              scope:
+                'Workflow mapping, approval redesign, role-based controls, and support handover.',
+              output: 'Improved process visibility and better execution reliability.',
+            },
+          ].map((item) => (
+            <Card key={item.title} className="surface-card p-6 sm:p-7">
+              <p className="eyebrow">{item.sector}</p>
+              <h3 className="mt-2 text-2xl font-semibold tracking-tight">{item.title}</h3>
+              <div className="mt-5 grid gap-4 md:grid-cols-3">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Situation</p>
-                  <p className="mt-2 text-sm text-muted-foreground">{study.situation}</p>
+                  <p className="proof-label">Situation</p>
+                  <p className="proof-copy">{item.situation}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Vextor Scope</p>
-                  <p className="mt-2 text-sm text-muted-foreground">{study.vextorScope}</p>
+                  <p className="proof-label">Scope</p>
+                  <p className="proof-copy">{item.scope}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">Outputs</p>
-                  <p className="mt-2 text-sm text-muted-foreground">{study.outputs}</p>
+                  <p className="proof-label">Output</p>
+                  <p className="proof-copy">{item.output}</p>
                 </div>
               </div>
             </Card>
@@ -1139,27 +977,22 @@ function WorkPage() {
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/55">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+      <section className="section-wrap border-y border-border bg-card/60">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <div>
             <SectionIntro
-              eyebrow="Case Study Assets"
-              title="Production-ready layout for future proof points"
-              summary="Add real client-approved metrics, logos, and testimonial content later without redesigning page structure."
+              eyebrow="Delivery Clarity"
+              title="How proof content is structured"
+              summary="Challenge, scope, and outputs are intentionally separated so future case studies remain credible and easy to evaluate."
             />
-            <p className="mt-5 text-sm text-muted-foreground">
-              The structure is intentionally built for trust-safe publishing: challenge, scope, delivery outputs, and
-              measurable outcomes once approved.
-            </p>
           </div>
 
-          {/* Replace /public/images/work-case-study-blueprint.svg with real case-study collage */}
-          <ImagePanel
-            src="/images/work-case-study-blueprint.svg"
-            alt="Case study blueprint layout placeholder"
-            label="Work Visual"
-            caption="Recommended replacement: curated project photography + dashboard snippets + annotated outcomes."
+          <Visual
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1500&q=80"
+            alt="Consulting planning session with notebooks and laptop"
+            caption="Structured delivery documentation and implementation planning."
             className="min-h-[300px]"
+            objectPosition="center 48%"
           />
         </div>
       </section>
@@ -1169,18 +1002,18 @@ function WorkPage() {
 
 function AboutPage() {
   usePageMeta(
-    'About Vextor | Salesforce and BuilderTek Consulting Team',
-    'Learn how Vextor works, who we partner with, and why operations teams choose us for Salesforce and BuilderTek consulting.'
+    'About Vextor | Salesforce Consulting Team',
+    'Vextor is a Salesforce consulting team with dedicated BuilderTek specialization for operations-focused businesses.'
   )
 
   return (
     <main>
-      <section className="section-wrap border-b border-border bg-card/55">
+      <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="About"
-            title="Vextor is a specialist consulting team for Salesforce and BuilderTek operations"
-            summary="We are built for businesses that need credible technical depth and a partner who understands how operations actually run."
+            title="A specialist team focused on Salesforce delivery quality"
+            summary="Vextor works with businesses that need stable architecture, disciplined engineering, and dependable support."
           />
         </div>
       </section>
@@ -1189,54 +1022,53 @@ function AboutPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <Card className="surface-card">
             <CardHeader>
-              <CardTitle className="text-xl">Company story</CardTitle>
+              <CardTitle className="text-xl">Company perspective</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm leading-7 text-muted-foreground">
               <p>
-                Vextor Solution LLP was formed to support teams that had outgrown generic Salesforce delivery. Many
-                organizations had strong internal talent but still needed senior architecture and workflow expertise to
-                keep operations stable while scaling.
+                Vextor Solution LLP was built for teams that need more than generic implementation support.
+                Our work focuses on platform decisions that stand up under operational pressure.
               </p>
               <p>
-                Our model stays intentionally focused: practical consulting, technical quality, and long-term support.
-                We do not position ourselves as a mass-scale agency. We operate as an accountable partner for teams
-                that value reliability.
+                Salesforce consulting remains our core service line. BuilderTek support is offered separately as a
+                specialization for clients running project-centric workflows.
+              </p>
+              <p>
+                We keep engagements senior-led, technically disciplined, and aligned with client operating priorities.
               </p>
             </CardContent>
           </Card>
 
-          {/* Replace /public/images/about-studio-collaboration.svg with team/workspace photograph */}
-          <ImagePanel
-            src="/images/about-studio-collaboration.svg"
-            alt="Studio collaboration and planning boards"
-            label="About Visual"
-            caption="Recommended replacement: candid workspace/team planning visual with architectural references."
-            className="min-h-[350px]"
+          <Visual
+            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1500&q=80"
+            alt="Professional team collaborating in modern office meeting area"
+            caption="Senior-led collaboration and pragmatic delivery planning."
+            className="min-h-[360px]"
+            objectPosition="center 42%"
           />
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/55">
+      <section className="section-wrap border-y border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Approach"
-            title="How we operate with client teams"
-            summary="Calm execution, transparent communication, and architecture-first decisions."
+            eyebrow="How We Engage"
+            title="Clear communication, controlled delivery, sustained support"
+            summary="Clients choose us for technical credibility and consistent execution quality over time."
           />
-
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {[
               {
-                title: 'Technical clarity before build velocity',
-                text: 'We identify process and architecture constraints early so delivery momentum does not collapse later.',
+                title: 'Architecture-first decisions',
+                text: 'We validate process and data implications before implementation to avoid avoidable rework.',
               },
               {
-                title: 'Operational realism over abstract frameworks',
-                text: 'Every solution is shaped around who uses it, how often, and what failure points matter most.',
+                title: 'Senior delivery ownership',
+                text: 'The people designing your solution stay accountable through implementation and support.',
               },
               {
-                title: 'Partnership continuity',
-                text: 'Clients work with a team that stays involved from design to support, not handoffs between disconnected groups.',
+                title: 'Long-term partnership model',
+                text: 'Retainer support provides continuity for enhancements, maintenance, and roadmap evolution.',
               },
             ].map((item) => (
               <Card key={item.title} className="surface-card">
@@ -1244,59 +1076,10 @@ function AboutPage() {
                   <CardTitle className="text-lg">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">{item.text}</p>
+                  <p className="text-sm leading-7 text-muted-foreground">{item.text}</p>
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-wrap">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Client Fit"
-            title="Teams we typically partner with"
-            summary="We engage with organizations where Salesforce is central to operating performance."
-          />
-
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            <Card className="surface-card">
-              <CardHeader>
-                <CardTitle className="text-lg">Best fit client profile</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-0.5 size-4 text-accent" /> Construction and real-estate teams running
-                    core process workflows on Salesforce + BuilderTek.
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-0.5 size-4 text-accent" /> Operations leaders needing architecture and
-                    custom process support beyond standard admin capacity.
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="mt-0.5 size-4 text-accent" /> Organizations that prefer long-term partner
-                    accountability instead of one-off delivery.
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="surface-card">
-              <CardHeader>
-                <CardTitle className="text-lg">Leadership profile section</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm text-muted-foreground">
-                <p>
-                  This layout is intentionally ready for founder or leadership details. Add final profile copy, photo,
-                  certifications, and domain expertise once approved.
-                </p>
-                <p>
-                  Keeping this section structured now allows fast publishing later without redesigning the page.
-                </p>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
@@ -1306,15 +1089,15 @@ function AboutPage() {
 
 function ContactPage() {
   usePageMeta(
-    'Contact Vextor | Discuss Your Salesforce Roadmap',
-    'Book a Salesforce and BuilderTek consultation with Vextor. Share your goals and we will outline a practical engagement path.'
+    'Contact Vextor | Salesforce Consultation',
+    'Contact Vextor to discuss Salesforce consulting, architecture, custom development, and BuilderTek specialization support.'
   )
 
   const [form, setForm] = useState({
     name: '',
     workEmail: '',
     company: '',
-    challenge: '',
+    focusArea: '',
     details: '',
   })
 
@@ -1326,19 +1109,19 @@ function ContactPage() {
   const onSubmit = (event: React.FormEvent) => {
     event.preventDefault()
     alert(
-      `Thanks, ${form.name || 'there'}! This demo form stores no data yet.\n\nRecommended next step: connect this form to your email or CRM.`
+      `Thanks, ${form.name || 'there'}! This is a design-stage form.\n\nNext step: connect this form to your inbox or CRM endpoint.`
     )
-    setForm({ name: '', workEmail: '', company: '', challenge: '', details: '' })
+    setForm({ name: '', workEmail: '', company: '', focusArea: '', details: '' })
   }
 
   return (
     <main>
-      <section className="section-wrap border-b border-border bg-card/55">
+      <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="Contact"
-            title="Let’s discuss your Salesforce and BuilderTek roadmap"
-            summary="Share your current challenge and we will suggest a practical next-step path for architecture, delivery, and support."
+            title="Book a focused consultation"
+            summary="Share your current Salesforce or BuilderTek challenge and we will propose the most practical next step."
           />
         </div>
       </section>
@@ -1347,7 +1130,7 @@ function ContactPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
           <Card className="surface-card">
             <CardHeader>
-              <CardTitle className="text-xl">Project inquiry</CardTitle>
+              <CardTitle className="text-xl">Inquiry form</CardTitle>
             </CardHeader>
             <CardContent>
               <form className="space-y-4" onSubmit={onSubmit}>
@@ -1356,14 +1139,7 @@ function ContactPage() {
                     <label htmlFor="name" className="form-label">
                       Name
                     </label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={form.name}
-                      onChange={onChange}
-                      placeholder="Your full name"
-                      required
-                    />
+                    <Input id="name" name="name" value={form.name} onChange={onChange} required placeholder="Your full name" />
                   </div>
                   <div>
                     <label htmlFor="workEmail" className="form-label">
@@ -1375,8 +1151,8 @@ function ContactPage() {
                       type="email"
                       value={form.workEmail}
                       onChange={onChange}
-                      placeholder="name@company.com"
                       required
+                      placeholder="name@company.com"
                     />
                   </div>
                 </div>
@@ -1386,24 +1162,18 @@ function ContactPage() {
                     <label htmlFor="company" className="form-label">
                       Company
                     </label>
-                    <Input
-                      id="company"
-                      name="company"
-                      value={form.company}
-                      onChange={onChange}
-                      placeholder="Company name"
-                    />
+                    <Input id="company" name="company" value={form.company} onChange={onChange} placeholder="Company name" />
                   </div>
                   <div>
-                    <label htmlFor="challenge" className="form-label">
-                      Primary focus
+                    <label htmlFor="focusArea" className="form-label">
+                      Focus area
                     </label>
                     <Input
-                      id="challenge"
-                      name="challenge"
-                      value={form.challenge}
+                      id="focusArea"
+                      name="focusArea"
+                      value={form.focusArea}
                       onChange={onChange}
-                      placeholder="Architecture, BuilderTek, automation, support"
+                      placeholder="Salesforce consulting or BuilderTek support"
                     />
                   </div>
                 </div>
@@ -1415,9 +1185,9 @@ function ContactPage() {
                   <Textarea
                     id="details"
                     name="details"
-                    rows={5}
                     value={form.details}
                     onChange={onChange}
+                    rows={5}
                     placeholder="Tell us what is currently slowing your team down and what outcome you need."
                   />
                 </div>
@@ -1425,7 +1195,7 @@ function ContactPage() {
                 <Button type="submit" size="lg" className="btn-solid w-full justify-center">
                   Start a Project Conversation
                 </Button>
-                <p className="text-xs text-muted-foreground">Demo form for UI review. No submission endpoint is connected yet.</p>
+                <p className="text-xs text-muted-foreground">Form endpoint is not connected yet. This is a production-ready UI scaffold.</p>
               </form>
             </CardContent>
           </Card>
@@ -1436,18 +1206,18 @@ function ContactPage() {
                 <CardTitle className="text-lg">What happens next</CardTitle>
               </CardHeader>
               <CardContent>
-                <ol className="space-y-3 text-sm text-muted-foreground">
+                <ol className="space-y-3 text-sm leading-7 text-muted-foreground">
                   <li className="flex gap-3">
                     <span className="list-index">1</span>
-                    <span>We review your inquiry and shortlist the most relevant consulting path.</span>
+                    <span>We review your operating context and primary goals.</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="list-index">2</span>
-                    <span>We schedule a focused consultation call around architecture and delivery priorities.</span>
+                    <span>We hold a focused consultation around scope and delivery path.</span>
                   </li>
                   <li className="flex gap-3">
                     <span className="list-index">3</span>
-                    <span>We share a recommended engagement model with scope, cadence, and support options.</span>
+                    <span>We share an engagement recommendation with priorities and cadence.</span>
                   </li>
                 </ol>
               </CardContent>
@@ -1460,13 +1230,13 @@ function ContactPage() {
               <CardContent className="space-y-3 text-sm text-muted-foreground">
                 <p className="flex items-center gap-2">
                   <Mail className="size-4 text-accent" />
-                  <a href="mailto:hello@vextor.co" className="hover:text-accent">
+                  <a className="hover:text-accent" href="mailto:hello@vextor.co">
                     hello@vextor.co
                   </a>
                 </p>
                 <p className="flex items-center gap-2">
                   <Phone className="size-4 text-accent" />
-                  <a href="tel:+919016070659" className="hover:text-accent">
+                  <a className="hover:text-accent" href="tel:+919016070659">
                     +91 90160 70659
                   </a>
                 </p>
@@ -1476,13 +1246,12 @@ function ContactPage() {
               </CardContent>
             </Card>
 
-            {/* Replace /public/images/contact-consultation-desk.svg with a consultation/workspace image */}
-            <ImagePanel
-              src="/images/contact-consultation-desk.svg"
-              alt="Consultation workspace placeholder visual"
-              label="Contact Visual"
-              caption="Recommended replacement: clean consultation desk or whiteboard planning image."
+            <Visual
+              src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1500&q=80"
+              alt="Business team in a focused planning meeting"
+              caption="Consultation-led approach with structured implementation planning."
               className="min-h-[260px]"
+              objectPosition="center 45%"
             />
           </div>
         </div>
