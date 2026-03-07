@@ -1,0 +1,12 @@
+<svg width="212" height="44" viewBox="0 0 212 44" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vextor logo">
+  <rect x="1" y="1" width="42" height="42" rx="12" fill="url(#g)"/>
+  <path d="M13 30L20.5 14H24.2L31.7 30H27.9L22.3 17.5L16.8 30H13Z" fill="#EAF7F2"/>
+  <path d="M22.2 24.5H26.1V27.5H18.5V24.5H22.2Z" fill="#EAF7F2"/>
+  <text x="57" y="29" fill="#0F172A" font-family="Manrope, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="-0.4">Vextor</text>
+  <defs>
+    <linearGradient id="g" x1="5" y1="6" x2="39" y2="41" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2F8F76"/>
+      <stop offset="1" stop-color="#1D5E51"/>
+    </linearGradient>
+  </defs>
+</svg>

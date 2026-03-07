@@ -20,7 +20,6 @@ import {
   Route as RouteIcon,
   Settings2,
   ShieldCheck,
-  Sparkles,
   Users,
   Wrench,
   X,
@@ -28,8 +27,6 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 
 type SalesforceService = {
   title: string
@@ -267,16 +264,15 @@ function Header() {
   }, [location.pathname])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/92 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-border bg-background shadow-[0_8px_20px_-18px_rgba(15,23,42,0.45)]">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" aria-label="Vextor home" className="flex items-center gap-3">
-          <span className="brand-mark" aria-hidden="true" />
-          <span>
-            <span className="block text-lg font-semibold tracking-tight">Vextor</span>
-            <span className="block text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-              Vextor Solution LLP
-            </span>
-          </span>
+        <Link to="/" aria-label="Vextor home" className="flex items-center">
+          <img
+            src="/images/vextor-logo.svg"
+            alt="Vextor Solution LLP"
+            className="brand-logo h-11 w-auto"
+            loading="eager"
+          />
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
@@ -490,11 +486,11 @@ function HomePage() {
           </motion.div>
 
           <Visual
-            src="https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1500&q=80"
-            alt="Premium office collaboration workspace with planning board and laptops"
-            caption="Operational strategy, architecture planning, and execution alignment."
+            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1500&q=80"
+            alt="Consulting team workshop reviewing operations plans"
+            caption="Salesforce strategy, delivery planning, and operational alignment."
             className="min-h-[430px]"
-            objectPosition="center 45%"
+            objectPosition="center 38%"
           />
         </div>
       </section>
@@ -1093,27 +1089,6 @@ function ContactPage() {
     'Contact Vextor to discuss Salesforce consulting, architecture, custom development, and BuilderTek specialization support.'
   )
 
-  const [form, setForm] = useState({
-    name: '',
-    workEmail: '',
-    company: '',
-    focusArea: '',
-    details: '',
-  })
-
-  const onChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = event.target
-    setForm((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const onSubmit = (event: React.FormEvent) => {
-    event.preventDefault()
-    alert(
-      `Thanks, ${form.name || 'there'}! This is a design-stage form.\n\nNext step: connect this form to your inbox or CRM endpoint.`
-    )
-    setForm({ name: '', workEmail: '', company: '', focusArea: '', details: '' })
-  }
-
   return (
     <main>
       <section className="section-wrap border-b border-border bg-card/60">
@@ -1130,72 +1105,81 @@ function ContactPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
           <Card className="surface-card">
             <CardHeader>
-              <CardTitle className="text-xl">Inquiry form</CardTitle>
+              <CardTitle className="text-xl">Contact form (Salesforce Web-to-Lead)</CardTitle>
             </CardHeader>
             <CardContent>
-              <form className="space-y-4" onSubmit={onSubmit}>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label htmlFor="name" className="form-label">
-                      Name
+              <form
+                action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdN00000t9uBN"
+                method="POST"
+                className="space-y-4"
+              >
+                <input type="hidden" name="oid" value="00DdN00000t9uBN" />
+                <input type="hidden" name="retURL" value="http://www.vextor.co" />
+
+                <div className="webtolead-grid">
+                  <div className="webtolead-field">
+                    <label className="form-label" htmlFor="first_name">
+                      First Name
                     </label>
-                    <Input id="name" name="name" value={form.name} onChange={onChange} required placeholder="Your full name" />
+                    <input className="webtolead-input" id="first_name" maxLength={40} name="first_name" type="text" />
                   </div>
-                  <div>
-                    <label htmlFor="workEmail" className="form-label">
-                      Work email
+                  <div className="webtolead-field">
+                    <label className="form-label" htmlFor="last_name">
+                      Last Name
                     </label>
-                    <Input
-                      id="workEmail"
-                      name="workEmail"
-                      type="email"
-                      value={form.workEmail}
-                      onChange={onChange}
-                      required
-                      placeholder="name@company.com"
-                    />
+                    <input className="webtolead-input" id="last_name" maxLength={80} name="last_name" type="text" required />
                   </div>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label htmlFor="company" className="form-label">
+                <div className="webtolead-grid">
+                  <div className="webtolead-field">
+                    <label className="form-label" htmlFor="mobile">
+                      Mobile
+                    </label>
+                    <input className="webtolead-input" id="mobile" maxLength={40} name="mobile" type="text" />
+                  </div>
+                  <div className="webtolead-field">
+                    <label className="form-label" htmlFor="email">
+                      Email
+                    </label>
+                    <input className="webtolead-input" id="email" maxLength={80} name="email" type="email" required />
+                  </div>
+                </div>
+
+                <div className="webtolead-grid">
+                  <div className="webtolead-field">
+                    <label className="form-label" htmlFor="company">
                       Company
                     </label>
-                    <Input id="company" name="company" value={form.company} onChange={onChange} placeholder="Company name" />
+                    <input className="webtolead-input" id="company" maxLength={40} name="company" type="text" required />
                   </div>
-                  <div>
-                    <label htmlFor="focusArea" className="form-label">
-                      Focus area
+                  <div className="webtolead-field">
+                    <label className="form-label" htmlFor="city">
+                      City
                     </label>
-                    <Input
-                      id="focusArea"
-                      name="focusArea"
-                      value={form.focusArea}
-                      onChange={onChange}
-                      placeholder="Salesforce consulting or BuilderTek support"
-                    />
+                    <input className="webtolead-input" id="city" maxLength={40} name="city" type="text" />
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="details" className="form-label">
-                    Brief context
-                  </label>
-                  <Textarea
-                    id="details"
-                    name="details"
-                    value={form.details}
-                    onChange={onChange}
-                    rows={5}
-                    placeholder="Tell us what is currently slowing your team down and what outcome you need."
-                  />
+                <div className="webtolead-grid">
+                  <div className="webtolead-field">
+                    <label className="form-label" htmlFor="state">
+                      State/Province
+                    </label>
+                    <input className="webtolead-input" id="state" maxLength={20} name="state" type="text" />
+                  </div>
+                  <div className="webtolead-field">
+                    <label className="form-label" htmlFor="country">
+                      Country
+                    </label>
+                    <input className="webtolead-input" id="country" maxLength={40} name="country" type="text" />
+                  </div>
                 </div>
 
-                <Button type="submit" size="lg" className="btn-solid w-full justify-center">
-                  Start a Project Conversation
+                <Button type="submit" name="submit" size="lg" className="btn-solid w-full justify-center">
+                  Submit Inquiry
                 </Button>
-                <p className="text-xs text-muted-foreground">Form endpoint is not connected yet. This is a production-ready UI scaffold.</p>
+                <p className="text-xs text-muted-foreground">You will be redirected to vextor.co after successful submission.</p>
               </form>
             </CardContent>
           </Card>
