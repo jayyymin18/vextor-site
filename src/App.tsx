@@ -266,13 +266,9 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background shadow-[0_8px_20px_-18px_rgba(15,23,42,0.45)]">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" aria-label="Vextor home" className="flex items-center">
-          <img
-            src="/images/vextor-logo.svg"
-            alt="Vextor Solution LLP"
-            className="brand-logo h-11 w-auto"
-            loading="eager"
-          />
+        <Link to="/" aria-label="Vextor home" className="inline-flex flex-col leading-none">
+          <span className="brand-word">Vextor</span>
+          <span className="brand-sub">VEXTOR SOLUTION LLP</span>
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
@@ -486,11 +482,11 @@ function HomePage() {
           </motion.div>
 
           <Visual
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1500&q=80"
-            alt="Consulting team workshop reviewing operations plans"
-            caption="Salesforce strategy, delivery planning, and operational alignment."
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1500&q=80"
+            alt="Modern architectural office district representing enterprise operations"
+            caption="Enterprise architecture, process reliability, and long-term operational planning."
             className="min-h-[430px]"
-            objectPosition="center 38%"
+            objectPosition="center 48%"
           />
         </div>
       </section>
@@ -518,6 +514,30 @@ function HomePage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap border-y border-border bg-card/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Ecosystem"
+            title="Platform familiarity and partner-context positioning"
+            summary="Use these badges where relevant in sales conversations and partner pages."
+          />
+          <div className="mt-8 flex flex-wrap gap-4">
+            <img
+              src="/images/sf-partner-badge.svg"
+              alt="Salesforce Partner badge"
+              className="h-32 w-auto rounded-xl border border-border bg-[#0D2A55]"
+              loading="lazy"
+            />
+            <img
+              src="/images/appexchange-badge.svg"
+              alt="Available on AppExchange badge"
+              className="h-32 w-auto rounded-xl border border-border bg-[#E8E2D5]"
+              loading="lazy"
+            />
           </div>
         </div>
       </section>
@@ -913,63 +933,48 @@ function WorkPage() {
       <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Selected Work"
-            title="Representative engagement patterns"
-            summary="These summaries show how we typically structure delivery, without publishing client-sensitive detail."
+            eyebrow="Our Work"
+            title="Operational Salesforce delivery across consulting, engineering, and support"
+            summary="At Vextor, our work focuses on helping businesses extend and optimize Salesforce around real operating needs."
           />
         </div>
       </section>
 
       <section className="section-wrap">
-        <div className="mx-auto max-w-7xl space-y-5 px-4 sm:px-6 lg:px-8">
-          {[
-            {
-              sector: 'Salesforce Operations',
-              title: 'Architecture and workflow stabilization',
-              situation:
-                'Multi-team org with overlapping automation, inconsistent data ownership, and slow release quality.',
-              scope:
-                'Architecture reset, automation boundaries, release governance, and phased remediation planning.',
-              output: 'Cleaner platform foundation and more predictable delivery cadence.',
-            },
-            {
-              sector: 'Custom Development',
-              title: 'Apex and LWC workflow acceleration',
-              situation:
-                'High-frequency users faced slow, multi-screen process execution and inconsistent data entry.',
-              scope:
-                'Custom UI delivery, service-layer logic, workflow orchestration, and controlled deployment.',
-              output: 'Faster user execution and stronger process data quality.',
-            },
-            {
-              sector: 'BuilderTek Specialization',
-              title: 'Procurement and approvals flow optimization',
-              situation:
-                'BuilderTek-heavy team managing RFQ-to-PO processes with fragmented tracking and approval delays.',
-              scope:
-                'Workflow mapping, approval redesign, role-based controls, and support handover.',
-              output: 'Improved process visibility and better execution reliability.',
-            },
-          ].map((item) => (
-            <Card key={item.title} className="surface-card p-6 sm:p-7">
-              <p className="eyebrow">{item.sector}</p>
-              <h3 className="mt-2 text-2xl font-semibold tracking-tight">{item.title}</h3>
-              <div className="mt-5 grid gap-4 md:grid-cols-3">
-                <div>
-                  <p className="proof-label">Situation</p>
-                  <p className="proof-copy">{item.situation}</p>
-                </div>
-                <div>
-                  <p className="proof-label">Scope</p>
-                  <p className="proof-copy">{item.scope}</p>
-                </div>
-                <div>
-                  <p className="proof-label">Output</p>
-                  <p className="proof-copy">{item.output}</p>
-                </div>
-              </div>
-            </Card>
-          ))}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                title: 'Salesforce Automation',
+                body: 'Designing workflows and automations that reduce manual work and streamline internal processes.',
+              },
+              {
+                title: 'Custom Salesforce Development',
+                body: 'Building Apex logic, Lightning Web Components, and extensions for unique business workflows.',
+              },
+              {
+                title: 'System Integrations',
+                body: 'Connecting Salesforce with external systems, APIs, and operational tools across the organization.',
+              },
+              {
+                title: 'BuilderTek Optimization',
+                body: 'Improving BuilderTek workflows, automation, and usability for construction operations.',
+              },
+              {
+                title: 'Ongoing Salesforce Support',
+                body: 'Providing long-term support for enhancements, troubleshooting, and continuous improvements.',
+              },
+            ].map((item) => (
+              <Card key={item.title} className="surface-card">
+                <CardHeader>
+                  <CardTitle className="text-lg">{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm leading-7 text-muted-foreground">{item.body}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -977,18 +982,23 @@ function WorkPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <div>
             <SectionIntro
-              eyebrow="Delivery Clarity"
-              title="How proof content is structured"
-              summary="Challenge, scope, and outputs are intentionally separated so future case studies remain credible and easy to evaluate."
+              eyebrow="Delivery Focus"
+              title="What we typically execute in engagements"
+              summary="Architecture, automation, custom engineering, and support are delivered with clear operating outcomes."
             />
+            <div className="mt-6 space-y-3 text-sm leading-7 text-muted-foreground">
+              <p>1. Define business workflow requirements and process constraints.</p>
+              <p>2. Design architecture and automation with maintainability in mind.</p>
+              <p>3. Deliver in phases with quality controls and operational handover.</p>
+            </div>
           </div>
 
           <Visual
-            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1500&q=80"
-            alt="Consulting planning session with notebooks and laptop"
-            caption="Structured delivery documentation and implementation planning."
+            src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1500&q=80"
+            alt="Operations and planning workspace for consulting execution"
+            caption="Execution model built around workflow quality and delivery consistency."
             className="min-h-[300px]"
-            objectPosition="center 48%"
+            objectPosition="center 46%"
           />
         </div>
       </section>
@@ -1007,9 +1017,9 @@ function AboutPage() {
       <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="About"
-            title="A specialist team focused on Salesforce delivery quality"
-            summary="Vextor works with businesses that need stable architecture, disciplined engineering, and dependable support."
+            eyebrow="About Vextor"
+            title="Building Salesforce systems that actually work for real operations"
+            summary="Vextor was founded with a simple belief: Salesforce should not only store data, it should power how a business operates."
           />
         </div>
       </section>
@@ -1018,29 +1028,27 @@ function AboutPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <Card className="surface-card">
             <CardHeader>
-              <CardTitle className="text-xl">Company perspective</CardTitle>
+              <CardTitle className="text-xl">Story</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 text-sm leading-7 text-muted-foreground">
               <p>
-                Vextor Solution LLP was built for teams that need more than generic implementation support.
-                Our work focuses on platform decisions that stand up under operational pressure.
+                In many companies, Salesforce starts as CRM and then becomes the backbone of sales,
+                operations, finance workflows, and project execution. As complexity grows, standard
+                configuration is often not enough.
               </p>
               <p>
-                Salesforce consulting remains our core service line. BuilderTek support is offered separately as a
-                specialization for clients running project-centric workflows.
-              </p>
-              <p>
-                We keep engagements senior-led, technically disciplined, and aligned with client operating priorities.
+                Vextor exists to solve that gap. We help businesses design Salesforce environments that
+                are reliable, scalable, and aligned to real day-to-day operating processes.
               </p>
             </CardContent>
           </Card>
 
           <Visual
-            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1500&q=80"
-            alt="Professional team collaborating in modern office meeting area"
-            caption="Senior-led collaboration and pragmatic delivery planning."
+            src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1500&q=80"
+            alt="Consulting team planning session"
+            caption="Hands-on consulting and architecture planning."
             className="min-h-[360px]"
-            objectPosition="center 42%"
+            objectPosition="center 44%"
           />
         </div>
       </section>
@@ -1048,23 +1056,23 @@ function AboutPage() {
       <section className="section-wrap border-y border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="How We Engage"
-            title="Clear communication, controlled delivery, sustained support"
-            summary="Clients choose us for technical credibility and consistent execution quality over time."
+            eyebrow="Consulting Partner"
+            title="A consulting partner, not just a vendor"
+            summary="We work with clients as a long-term partner, not only for implementation but for continuous platform improvement."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {[
               {
-                title: 'Architecture-first decisions',
-                text: 'We validate process and data implications before implementation to avoid avoidable rework.',
+                title: 'Architecture planning',
+                text: 'Platform design that supports growth without introducing avoidable technical debt.',
               },
               {
-                title: 'Senior delivery ownership',
-                text: 'The people designing your solution stay accountable through implementation and support.',
+                title: 'Custom development',
+                text: 'Apex and LWC delivery where standard configuration cannot support operational needs.',
               },
               {
-                title: 'Long-term partnership model',
-                text: 'Retainer support provides continuity for enhancements, maintenance, and roadmap evolution.',
+                title: 'Ongoing support',
+                text: 'Long-term support and enhancement cycles as your operating model evolves.',
               },
             ].map((item) => (
               <Card key={item.title} className="surface-card">
@@ -1073,6 +1081,137 @@ function AboutPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm leading-7 text-muted-foreground">{item.text}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+          <div>
+            <SectionIntro
+              eyebrow="Expertise"
+              title="Deep Salesforce expertise with operational focus"
+              summary="Our team works at the intersection of business operations and Salesforce technology."
+            />
+            <ul className="mt-5 space-y-2 text-sm leading-7 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Salesforce architecture and system design
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Apex and Lightning Web Component development
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Process automation and workflow optimization
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Integration design and API connectivity
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Reporting and operational visibility
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Managed support and enhancement delivery
+              </li>
+            </ul>
+          </div>
+
+          <Visual
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1500&q=80"
+            alt="Business operations planning desk"
+            caption="Operational focus across architecture, automation, and engineering."
+            className="min-h-[340px]"
+            objectPosition="center 48%"
+          />
+        </div>
+      </section>
+
+      <section className="section-wrap border-y border-border bg-card/60">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+          <div>
+            <SectionIntro
+              eyebrow="BuilderTek Specialization"
+              title="Dedicated support for BuilderTek-centric teams"
+              summary="Alongside broader Salesforce consulting, we support BuilderTek customers who need deeper workflow customization."
+            />
+            <ul className="mt-5 space-y-2 text-sm leading-7 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Workflow automation and process design
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Project and purchasing workflow customization
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> RFQ, quote, and PO process improvements
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> UX improvements and operational reporting
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Integrations with other business systems
+              </li>
+            </ul>
+          </div>
+
+          <Visual
+            src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1500&q=80"
+            alt="Construction and project execution environment"
+            caption="BuilderTek specialization for project and construction workflows."
+            className="min-h-[340px]"
+            objectPosition="center 48%"
+          />
+        </div>
+      </section>
+
+      <section className="section-wrap">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Philosophy"
+            title="Technology should serve the business"
+            summary="Every engagement follows a practical operating philosophy."
+          />
+          <div className="mt-8 grid gap-5 md:grid-cols-4">
+            {[
+              { title: 'Practical', text: 'Designed around real business processes.' },
+              { title: 'Reliable', text: 'Built with clean architecture and scalable design.' },
+              { title: 'Adaptable', text: 'Flexible enough to evolve as operations change.' },
+              { title: 'Efficient', text: 'Reduces manual work and improves visibility.' },
+            ].map((item) => (
+              <Card key={item.title} className="surface-card">
+                <CardHeader>
+                  <CardTitle className="text-lg">{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm leading-7 text-muted-foreground">{item.text}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap border-y border-border bg-card/60">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Why Vextor"
+            title="Why companies work with Vextor"
+            summary="Companies usually engage us when they need specialist Salesforce and BuilderTek support with long-term reliability."
+          />
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            {[
+              'A reliable Salesforce consulting partner',
+              'Custom development beyond standard configuration',
+              'Workflow automation aligned to real operations',
+              'BuilderTek customization and support',
+              'Ongoing system improvements and enhancements',
+            ].map((item) => (
+              <Card key={item} className="surface-card">
+                <CardContent className="pt-5">
+                  <p className="flex items-start gap-2 text-sm leading-7 text-muted-foreground">
+                    <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -1103,86 +1242,107 @@ function ContactPage() {
 
       <section className="section-wrap">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-          <Card className="surface-card">
-            <CardHeader>
-              <CardTitle className="text-xl">Contact form (Salesforce Web-to-Lead)</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form
-                action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdN00000t9uBN"
-                method="POST"
-                className="space-y-4"
-              >
-                <input type="hidden" name="oid" value="00DdN00000t9uBN" />
-                <input type="hidden" name="retURL" value="http://www.vextor.co" />
+          <div className="space-y-5">
+            <Card className="surface-card">
+              <CardHeader>
+                <CardTitle className="text-xl">Contact form (Salesforce Web-to-Lead)</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form
+                  action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdN00000t9uBN"
+                  method="POST"
+                  className="space-y-4"
+                >
+                  <input type="hidden" name="oid" value="00DdN00000t9uBN" />
+                  <input type="hidden" name="retURL" value="http://www.vextor.co" />
 
-                <div className="webtolead-grid">
-                  <div className="webtolead-field">
-                    <label className="form-label" htmlFor="first_name">
-                      First Name
-                    </label>
-                    <input className="webtolead-input" id="first_name" maxLength={40} name="first_name" type="text" />
+                  <div className="webtolead-grid">
+                    <div className="webtolead-field">
+                      <label className="form-label" htmlFor="first_name">
+                        First Name
+                      </label>
+                      <input className="webtolead-input" id="first_name" maxLength={40} name="first_name" type="text" />
+                    </div>
+                    <div className="webtolead-field">
+                      <label className="form-label" htmlFor="last_name">
+                        Last Name
+                      </label>
+                      <input className="webtolead-input" id="last_name" maxLength={80} name="last_name" type="text" required />
+                    </div>
                   </div>
-                  <div className="webtolead-field">
-                    <label className="form-label" htmlFor="last_name">
-                      Last Name
-                    </label>
-                    <input className="webtolead-input" id="last_name" maxLength={80} name="last_name" type="text" required />
-                  </div>
-                </div>
 
-                <div className="webtolead-grid">
-                  <div className="webtolead-field">
-                    <label className="form-label" htmlFor="mobile">
-                      Mobile
-                    </label>
-                    <input className="webtolead-input" id="mobile" maxLength={40} name="mobile" type="text" />
+                  <div className="webtolead-grid">
+                    <div className="webtolead-field">
+                      <label className="form-label" htmlFor="mobile">
+                        Mobile
+                      </label>
+                      <input className="webtolead-input" id="mobile" maxLength={40} name="mobile" type="text" />
+                    </div>
+                    <div className="webtolead-field">
+                      <label className="form-label" htmlFor="email">
+                        Email
+                      </label>
+                      <input className="webtolead-input" id="email" maxLength={80} name="email" type="email" required />
+                    </div>
                   </div>
-                  <div className="webtolead-field">
-                    <label className="form-label" htmlFor="email">
-                      Email
-                    </label>
-                    <input className="webtolead-input" id="email" maxLength={80} name="email" type="email" required />
-                  </div>
-                </div>
 
-                <div className="webtolead-grid">
-                  <div className="webtolead-field">
-                    <label className="form-label" htmlFor="company">
-                      Company
-                    </label>
-                    <input className="webtolead-input" id="company" maxLength={40} name="company" type="text" required />
+                  <div className="webtolead-grid">
+                    <div className="webtolead-field">
+                      <label className="form-label" htmlFor="company">
+                        Company
+                      </label>
+                      <input className="webtolead-input" id="company" maxLength={40} name="company" type="text" required />
+                    </div>
+                    <div className="webtolead-field">
+                      <label className="form-label" htmlFor="city">
+                        City
+                      </label>
+                      <input className="webtolead-input" id="city" maxLength={40} name="city" type="text" />
+                    </div>
                   </div>
-                  <div className="webtolead-field">
-                    <label className="form-label" htmlFor="city">
-                      City
-                    </label>
-                    <input className="webtolead-input" id="city" maxLength={40} name="city" type="text" />
-                  </div>
-                </div>
 
-                <div className="webtolead-grid">
-                  <div className="webtolead-field">
-                    <label className="form-label" htmlFor="state">
-                      State/Province
-                    </label>
-                    <input className="webtolead-input" id="state" maxLength={20} name="state" type="text" />
+                  <div className="webtolead-grid">
+                    <div className="webtolead-field">
+                      <label className="form-label" htmlFor="state">
+                        State/Province
+                      </label>
+                      <input className="webtolead-input" id="state" maxLength={20} name="state" type="text" />
+                    </div>
+                    <div className="webtolead-field">
+                      <label className="form-label" htmlFor="country">
+                        Country
+                      </label>
+                      <input className="webtolead-input" id="country" maxLength={40} name="country" type="text" />
+                    </div>
                   </div>
-                  <div className="webtolead-field">
-                    <label className="form-label" htmlFor="country">
-                      Country
-                    </label>
-                    <input className="webtolead-input" id="country" maxLength={40} name="country" type="text" />
-                  </div>
-                </div>
 
-                <Button type="submit" name="submit" size="lg" className="btn-solid w-full justify-center">
-                  Submit Inquiry
-                </Button>
-                <p className="text-xs text-muted-foreground">You will be redirected to vextor.co after successful submission.</p>
-              </form>
-            </CardContent>
-          </Card>
+                  <Button type="submit" name="submit" size="lg" className="btn-solid w-full justify-center">
+                    Submit Inquiry
+                  </Button>
+                  <p className="text-xs text-muted-foreground">You will be redirected to vextor.co after successful submission.</p>
+                </form>
+              </CardContent>
+            </Card>
+
+            <Card className="surface-card">
+              <CardHeader>
+                <CardTitle className="text-lg">Before you submit</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-1 size-4 text-accent" /> Mention your current Salesforce setup and where you need help.
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-1 size-4 text-accent" /> Add whether this is Salesforce consulting, BuilderTek support, or both.
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-1 size-4 text-accent" /> Share timeline expectations so we can scope the right engagement model.
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
 
           <div className="space-y-5">
             <Card className="surface-card">
