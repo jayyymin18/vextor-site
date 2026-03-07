@@ -1,0 +1,12 @@
+<svg width="1080" height="760" viewBox="0 0 1080 760" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="About placeholder">
+  <rect width="1080" height="760" fill="#F5EEE5"/>
+  <rect x="70" y="78" width="940" height="604" rx="24" fill="#FCF9F4" stroke="#D9CCBF"/>
+  <rect x="118" y="130" width="438" height="500" rx="16" fill="#EEE2D5"/>
+  <rect x="580" y="130" width="382" height="238" rx="16" fill="#2E2722"/>
+  <rect x="580" y="392" width="382" height="238" rx="16" fill="#EFE1D1"/>
+  <circle cx="218" cy="250" r="54" fill="#B86D42" fill-opacity="0.3"/>
+  <circle cx="354" cy="250" r="54" fill="#B86D42" fill-opacity="0.3"/>
+  <circle cx="286" cy="356" r="54" fill="#B86D42" fill-opacity="0.3"/>
+  <text x="146" y="168" fill="#4F4339" font-family="Manrope, sans-serif" font-size="20" font-weight="700">About Placeholder</text>
+  <text x="146" y="198" fill="#7A6B5D" font-family="Manrope, sans-serif" font-size="14">Replace with team or workspace photography that reflects your brand.</text>
+</svg>

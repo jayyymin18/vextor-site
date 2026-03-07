@@ -1,0 +1,17 @@
+<svg width="1080" height="820" viewBox="0 0 1080 820" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BuilderTek workflow placeholder">
+  <rect width="1080" height="820" fill="#1A1714"/>
+  <rect x="68" y="72" width="944" height="676" rx="24" fill="#26211D" stroke="#907159"/>
+  <rect x="114" y="124" width="256" height="560" rx="16" fill="#322A24"/>
+  <rect x="400" y="124" width="256" height="560" rx="16" fill="#322A24"/>
+  <rect x="686" y="124" width="280" height="560" rx="16" fill="#322A24"/>
+  <rect x="144" y="170" width="196" height="88" rx="12" fill="#B86D42"/>
+  <rect x="144" y="284" width="196" height="88" rx="12" fill="#E5D4C2"/>
+  <rect x="144" y="398" width="196" height="88" rx="12" fill="#E5D4C2"/>
+  <rect x="430" y="198" width="196" height="88" rx="12" fill="#E5D4C2"/>
+  <rect x="430" y="324" width="196" height="88" rx="12" fill="#B86D42"/>
+  <rect x="430" y="450" width="196" height="88" rx="12" fill="#E5D4C2"/>
+  <rect x="716" y="236" width="220" height="104" rx="12" fill="#E5D4C2"/>
+  <rect x="716" y="378" width="220" height="104" rx="12" fill="#B86D42"/>
+  <path d="M340 214H400M340 328H400M340 442H400M626 242H686M626 368H686M626 494H686" stroke="#B8977E" stroke-width="3"/>
+  <text x="114" y="98" fill="#E1D3C4" font-family="Manrope, sans-serif" font-size="20" font-weight="700">BuilderTek Workflow Placeholder</text>
+</svg>

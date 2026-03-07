@@ -5,9 +5,13 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, React.TextareaHTML
   ({ className, ...props }, ref) => (
     <textarea
       ref={ref}
-      className={cn('w-full rounded-xl border card-border bg-transparent px-3 py-2 outline-none', className)}
+      className={cn(
+        'w-full rounded-xl border border-border bg-background px-3 py-2.5 text-sm outline-none transition placeholder:text-muted-foreground focus:border-[hsl(var(--accent))/0.55] focus:ring-2 focus:ring-[hsl(var(--accent))/0.25]',
+        className
+      )}
       {...props}
     />
   )
 )
+
 Textarea.displayName = 'Textarea'
