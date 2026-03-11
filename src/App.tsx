@@ -385,6 +385,23 @@ function Footer() {
                 <MapPin className="size-4 text-accent" /> Ahmedabad, India
               </li>
             </ul>
+            <div className="mt-6">
+              <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">Partner Badges</p>
+              <div className="mt-3 flex items-center gap-3">
+                <img
+                  src="/images/consulting-partner.webp"
+                  alt="Salesforce Consulting Partner badge"
+                  className="h-14 w-auto rounded-md border border-border/70 bg-[#062D86]"
+                  loading="lazy"
+                />
+                <img
+                  src="/images/Salesforce-Partner-Logo.webp"
+                  alt="Salesforce Partner badge"
+                  className="h-14 w-14 rounded-md border border-border/70 bg-black object-contain"
+                  loading="lazy"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -530,12 +547,6 @@ function HomePage() {
               src="/images/consulting-partner.webp"
               alt="Salesforce Consulting Partner badge"
               className="h-32 w-auto rounded-xl border border-border bg-[#062D86]"
-              loading="lazy"
-            />
-            <img
-              src="/images/Salesforce-Partner-Logo.webp"
-              alt="Salesforce Partner round badge"
-              className="h-32 w-32 rounded-xl border border-border bg-black object-contain"
               loading="lazy"
             />
           </div>
