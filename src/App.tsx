@@ -268,7 +268,7 @@ function Header() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" aria-label="Vextor home" className="inline-flex flex-col leading-none">
           <span className="brand-word">Vextor</span>
-          <span className="brand-sub">VEXTOR SOLUTION LLP</span>
+          <span className="brand-sub">Solution</span>
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
@@ -531,24 +531,6 @@ function HomePage() {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-wrap border-y border-border bg-card/40">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Ecosystem"
-            title="Platform familiarity and partner-context positioning"
-            summary="Use these badges where relevant in sales conversations and partner pages."
-          />
-          <div className="mt-8 flex flex-wrap gap-4">
-            <img
-              src="/images/consulting-partner.webp"
-              alt="Salesforce Consulting Partner badge"
-              className="h-32 w-auto rounded-xl border border-border bg-[#062D86]"
-              loading="lazy"
-            />
           </div>
         </div>
       </section>
