@@ -252,6 +252,7 @@ a {
   width: 11rem;
   height: auto;
   max-height: 2.6rem;
+  margin-left: -0.45rem;
 }
 
 .btn-solid {
@@ -413,6 +414,7 @@ textarea::placeholder {
   .footer-brand-logo {
     width: 9.2rem;
     max-height: 2.2rem;
+    margin-left: -0.3rem;
   }
 
   .brand-word {
