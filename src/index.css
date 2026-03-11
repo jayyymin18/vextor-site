@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Sora:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -223,19 +223,29 @@ a {
 }
 
 .brand-word {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-family: 'Outfit', 'Sora', 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 2.45rem;
+  font-weight: 800;
+  letter-spacing: -0.055em;
   color: hsl(var(--foreground));
-  line-height: 1;
+  line-height: 0.88;
 }
 
 .brand-sub {
-  margin-top: 0.08rem;
-  font-size: 0.67rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  margin-top: 0.12rem;
+  font-family: 'Outfit', 'Sora', 'Avenir Next', 'Segoe UI', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
   color: hsl(var(--muted-foreground));
+}
+
+.brand-logo {
+  display: block;
+  width: 10.8rem;
+  height: 3.8rem;
+  object-fit: cover;
+  object-position: center 43%;
 }
 
 .btn-solid {
@@ -389,6 +399,21 @@ textarea::placeholder {
 }
 
 @media (max-width: 767px) {
+  .brand-logo {
+    width: 8.9rem;
+    height: 3.15rem;
+    object-position: center 42%;
+  }
+
+  .brand-word {
+    font-size: 2rem;
+  }
+
+  .brand-sub {
+    font-size: 0.65rem;
+    letter-spacing: 0.24em;
+  }
+
   .hero-title {
     max-width: 16ch;
   }

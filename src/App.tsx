@@ -266,9 +266,14 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background shadow-[0_8px_20px_-18px_rgba(15,23,42,0.45)]">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" aria-label="Vextor home" className="inline-flex flex-col leading-none">
-          <span className="brand-word">Vextor</span>
-          <span className="brand-sub">Solution</span>
+        <Link to="/" aria-label="Vextor home" className="inline-flex items-center">
+          <img
+            src="/images/vextor%20logo.svg"
+            alt="Vextor Solution"
+            className="brand-logo"
+            loading="eager"
+            fetchPriority="high"
+          />
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
