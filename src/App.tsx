@@ -527,15 +527,15 @@ function HomePage() {
           />
           <div className="mt-8 flex flex-wrap gap-4">
             <img
-              src="/images/salesforce-consulting-partner.svg"
+              src="/images/consulting-partner.webp"
               alt="Salesforce Consulting Partner badge"
               className="h-32 w-auto rounded-xl border border-border bg-[#062D86]"
               loading="lazy"
             />
             <img
-              src="/images/salesforce-partner-round.svg"
+              src="/images/partner-salesforce_0%20(1).png"
               alt="Salesforce Partner round badge"
-              className="h-32 w-32 rounded-xl border border-border bg-black object-cover"
+              className="h-32 w-32 rounded-xl border border-border bg-black object-contain"
               loading="lazy"
             />
           </div>
