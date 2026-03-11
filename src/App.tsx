@@ -389,7 +389,7 @@ function Header() {
 
 function Footer() {
   const socialLinks = [
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/vextor', icon: Linkedin },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/vextorsolution', icon: Linkedin },
     { label: 'Facebook', href: 'https://www.facebook.com/vextor', icon: Facebook },
     { label: 'Instagram', href: 'https://www.instagram.com/vextor', icon: Instagram },
     { label: 'Twitter', href: 'https://x.com/vextor', icon: Twitter },
