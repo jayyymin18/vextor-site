@@ -443,6 +443,6 @@ textarea::placeholder {
 @media (min-width: 1024px) {
   .brand-logo,
   .footer-brand-logo {
-    margin-left: -2rem;
+    margin-left: -2.5rem;
   }
 }
