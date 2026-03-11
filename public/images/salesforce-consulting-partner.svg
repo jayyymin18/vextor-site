@@ -1,0 +1,13 @@
+<svg width="944" height="336" viewBox="0 0 944 336" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Salesforce Consulting Partner badge">
+  <rect width="944" height="336" fill="#062D86"/>
+  <g transform="translate(62 44)">
+    <ellipse cx="118" cy="90" rx="108" ry="62" fill="#13A9E9"/>
+    <ellipse cx="71" cy="124" rx="62" ry="42" fill="#13A9E9"/>
+    <ellipse cx="171" cy="123" rx="65" ry="42" fill="#13A9E9"/>
+    <ellipse cx="112" cy="66" rx="64" ry="46" fill="#13A9E9"/>
+    <ellipse cx="166" cy="67" rx="56" ry="42" fill="#13A9E9"/>
+    <text x="40" y="104" fill="white" font-family="Arial, sans-serif" font-size="54" font-weight="600">salesforce</text>
+  </g>
+  <text x="432" y="142" fill="white" font-family="Arial, sans-serif" font-size="84" font-weight="700" letter-spacing="0.8">CONSULTING</text>
+  <text x="432" y="246" fill="white" font-family="Arial, sans-serif" font-size="84" font-weight="700" letter-spacing="0.8">PARTNER</text>
+</svg>

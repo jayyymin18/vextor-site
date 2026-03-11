@@ -1,0 +1,14 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Salesforce Partner round badge">
+  <rect width="1024" height="1024" fill="black"/>
+  <circle cx="512" cy="512" r="390" stroke="#F3F3F3" stroke-width="24"/>
+  <rect x="282" y="294" width="460" height="460" rx="30" fill="#082F6F"/>
+  <g transform="translate(342 350)">
+    <ellipse cx="166" cy="132" rx="130" ry="74" fill="#16A7E8"/>
+    <ellipse cx="109" cy="170" rx="70" ry="48" fill="#16A7E8"/>
+    <ellipse cx="222" cy="170" rx="72" ry="48" fill="#16A7E8"/>
+    <ellipse cx="160" cy="97" rx="74" ry="52" fill="#16A7E8"/>
+    <ellipse cx="231" cy="99" rx="62" ry="46" fill="#16A7E8"/>
+    <text x="56" y="151" fill="white" font-family="Arial, sans-serif" font-size="76" font-weight="600">salesforce</text>
+  </g>
+  <text x="360" y="646" fill="#F2F6FB" font-family="Arial, sans-serif" font-size="94" font-weight="700">PARTNER</text>
+</svg>
