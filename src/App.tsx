@@ -533,7 +533,7 @@ function HomePage() {
               loading="lazy"
             />
             <img
-              src="/images/partner-salesforce_0%20(1).png"
+              src="/images/Salesforce-Partner-Logo.webp"
               alt="Salesforce Partner round badge"
               className="h-32 w-32 rounded-xl border border-border bg-black object-contain"
               loading="lazy"
