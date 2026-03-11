@@ -245,7 +245,7 @@ a {
   width: 11.2rem;
   height: auto;
   max-height: 2.9rem;
-  margin-left: -0.18rem;
+  margin-left: -1rem;
 }
 
 .footer-brand-logo {
@@ -253,7 +253,7 @@ a {
   width: 11rem;
   height: auto;
   max-height: 2.6rem;
-  margin-left: -0.18rem;
+  margin-left: -1rem;
 }
 
 .btn-solid {
@@ -410,13 +410,13 @@ textarea::placeholder {
   .brand-logo {
     width: 8.9rem;
     max-height: 2.2rem;
-    margin-left: -0.12rem;
+    margin-left: -1rem;
   }
 
   .footer-brand-logo {
     width: 9.2rem;
     max-height: 2.2rem;
-    margin-left: -0.12rem;
+    margin-left: -1rem;
   }
 
   .brand-word {
@@ -430,5 +430,19 @@ textarea::placeholder {
 
   .hero-title {
     max-width: 16ch;
+  }
+}
+
+@media (min-width: 640px) {
+  .brand-logo,
+  .footer-brand-logo {
+    margin-left: -1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .brand-logo,
+  .footer-brand-logo {
+    margin-left: -2rem;
   }
 }
