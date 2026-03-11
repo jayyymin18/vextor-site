@@ -11,15 +11,19 @@ import {
   Compass,
   Database,
   HardHat,
+  Instagram,
   LandPlot,
   Layers3,
+  Linkedin,
   Mail,
   MapPin,
   Menu,
   Phone,
+  Facebook,
   Route as RouteIcon,
   Settings2,
   ShieldCheck,
+  Twitter,
   Users,
   Wrench,
   X,
@@ -384,6 +388,13 @@ function Header() {
 }
 
 function Footer() {
+  const socialLinks = [
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/vextor', icon: Linkedin },
+    { label: 'Facebook', href: 'https://www.facebook.com/vextor', icon: Facebook },
+    { label: 'Instagram', href: 'https://www.instagram.com/vextor', icon: Instagram },
+    { label: 'Twitter', href: 'https://x.com/vextor', icon: Twitter },
+  ]
+
   return (
     <footer className="border-t border-border bg-footer">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
@@ -465,6 +476,23 @@ function Footer() {
                   className="h-14 w-14 rounded-md border border-border/70 bg-black object-contain"
                   loading="lazy"
                 />
+              </div>
+            </div>
+            <div className="mt-6">
+              <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">Follow Us</p>
+              <div className="mt-3 flex items-center gap-2">
+                {socialLinks.map(({ label, href, icon: Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="inline-flex size-9 items-center justify-center rounded-full border border-border bg-background text-muted-foreground transition hover:border-accent/40 hover:text-accent"
+                  >
+                    <Icon className="size-4" />
+                  </a>
+                ))}
               </div>
             </div>
           </div>
