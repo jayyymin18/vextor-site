@@ -152,19 +152,75 @@ const revealUp = {
   },
 }
 
-function usePageMeta(title: string, description: string) {
-  useEffect(() => {
-    document.title = title
-    let meta = document.querySelector('meta[name="description"]') as HTMLMetaElement | null
+type PageMetaOptions = {
+  path?: string
+  ogTitle?: string
+  ogDescription?: string
+  ogImage?: string
+  noindex?: boolean
+}
 
-    if (!meta) {
-      meta = document.createElement('meta')
-      meta.setAttribute('name', 'description')
-      document.head.appendChild(meta)
+function usePageMeta(title: string, description: string, options: PageMetaOptions = {}) {
+  const {
+    path = '/',
+    ogTitle = title,
+    ogDescription = description,
+    ogImage = '/images/about-platform-expertise.jpg',
+    noindex = false,
+  } = options
+
+  useEffect(() => {
+    const siteUrl = 'https://vextor.co'
+    const normalizedPath = path.startsWith('/') ? path : `/${path}`
+    const canonicalUrl = new URL(normalizedPath, `${siteUrl}/`).toString()
+    const ogImageUrl = new URL(ogImage, `${siteUrl}/`).toString()
+
+    const upsertMetaByName = (name: string, content: string) => {
+      let meta = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null
+      if (!meta) {
+        meta = document.createElement('meta')
+        meta.setAttribute('name', name)
+        document.head.appendChild(meta)
+      }
+      meta.content = content
     }
 
-    meta.content = description
-  }, [title, description])
+    const upsertMetaByProperty = (property: string, content: string) => {
+      let meta = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null
+      if (!meta) {
+        meta = document.createElement('meta')
+        meta.setAttribute('property', property)
+        document.head.appendChild(meta)
+      }
+      meta.content = content
+    }
+
+    const upsertCanonical = (href: string) => {
+      let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
+      if (!canonical) {
+        canonical = document.createElement('link')
+        canonical.setAttribute('rel', 'canonical')
+        document.head.appendChild(canonical)
+      }
+      canonical.href = href
+    }
+
+    document.title = title
+    upsertMetaByName('description', description)
+    upsertMetaByName('robots', noindex ? 'noindex,nofollow' : 'index,follow')
+    upsertMetaByProperty('og:title', ogTitle)
+    upsertMetaByProperty('og:description', ogDescription)
+    upsertMetaByProperty('og:type', 'website')
+    upsertMetaByProperty('og:url', canonicalUrl)
+    upsertMetaByProperty('og:image', ogImageUrl)
+    upsertMetaByProperty('og:image:alt', 'Vextor Salesforce consulting')
+    upsertMetaByProperty('og:site_name', 'Vextor')
+    upsertMetaByName('twitter:card', 'summary_large_image')
+    upsertMetaByName('twitter:title', ogTitle)
+    upsertMetaByName('twitter:description', ogDescription)
+    upsertMetaByName('twitter:image', ogImageUrl)
+    upsertCanonical(canonicalUrl)
+  }, [description, noindex, ogDescription, ogImage, ogTitle, path, title])
 }
 
 function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
@@ -189,12 +245,16 @@ function SectionIntro({
   title,
   summary,
   align = 'left',
+  titleTag = 'h2',
 }: {
   eyebrow?: string
   title: string
   summary?: string
   align?: 'left' | 'center'
+  titleTag?: 'h1' | 'h2'
 }) {
+  const TitleTag = titleTag
+
   return (
     <motion.div
       initial="hidden"
@@ -204,7 +264,7 @@ function SectionIntro({
       className={align === 'center' ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl'}
     >
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-      <h2 className="section-title">{title}</h2>
+      <TitleTag className="section-title">{title}</TitleTag>
       {summary ? <p className="section-summary">{summary}</p> : null}
     </motion.div>
   )
@@ -422,7 +482,8 @@ function Footer() {
 function HomePage() {
   usePageMeta(
     'Vextor | Salesforce Consulting and BuilderTek Specialization',
-    'Vextor provides Salesforce consulting, architecture, automation, custom development, integrations, and managed support. We also offer dedicated BuilderTek workflow support.'
+    'Vextor provides Salesforce consulting, architecture, automation, custom development, integrations, and managed support. We also offer dedicated BuilderTek workflow support.',
+    { path: '/' }
   )
 
   const coreSalesforceCards = [
@@ -717,7 +778,8 @@ function HomePage() {
 function ServicesPage() {
   usePageMeta(
     'Services | Vextor Salesforce Consulting',
-    'Vextor offers Salesforce consulting, architecture, automation, custom development, integrations, and managed support, with BuilderTek specialization available separately.'
+    'Vextor offers Salesforce consulting, architecture, automation, custom development, integrations, and managed support, with BuilderTek specialization available separately.',
+    { path: '/services' }
   )
 
   const serviceIcons = [Layers3, Compass, Settings2, Code2, Database, RouteIcon]
@@ -730,6 +792,7 @@ function ServicesPage() {
             eyebrow="Services"
             title="Salesforce services and BuilderTek specialization, clearly separated"
             summary="Salesforce consulting is our primary service line. BuilderTek support is offered as a dedicated specialization for relevant clients."
+            titleTag="h1"
           />
         </div>
       </section>
@@ -838,7 +901,8 @@ function ServicesPage() {
 function IndustriesPage() {
   usePageMeta(
     'Industries | Vextor',
-    'Vextor supports construction, real-estate, and operations-heavy businesses with Salesforce consulting and BuilderTek specialization.'
+    'Vextor supports construction, real-estate, and operations-heavy businesses with Salesforce consulting and BuilderTek specialization.',
+    { path: '/industries' }
   )
 
   return (
@@ -849,6 +913,7 @@ function IndustriesPage() {
             eyebrow="Industries"
             title="Built for teams where operational precision matters"
             summary="We support industries that rely on Salesforce for workflow consistency and delivery execution."
+            titleTag="h1"
           />
         </div>
       </section>
@@ -923,7 +988,8 @@ function IndustriesPage() {
 function WorkPage() {
   usePageMeta(
     'Work | Vextor',
-    'Review representative Vextor engagement patterns for Salesforce consulting and BuilderTek specialization.'
+    'Review representative Vextor engagement patterns for Salesforce consulting and BuilderTek specialization.',
+    { path: '/work' }
   )
 
   return (
@@ -934,6 +1000,7 @@ function WorkPage() {
             eyebrow="Our Work"
             title="Operational Salesforce delivery across consulting, engineering, and support"
             summary="At Vextor, our work focuses on helping businesses extend and optimize Salesforce around real operating needs."
+            titleTag="h1"
           />
         </div>
       </section>
@@ -1007,7 +1074,8 @@ function WorkPage() {
 function AboutPage() {
   usePageMeta(
     'About Vextor | Salesforce Consulting and BuilderTek Expertise',
-    'Vextor designs scalable Salesforce systems with strong architecture, automation, custom development, integrations, and BuilderTek specialization.'
+    'Vextor designs scalable Salesforce systems with strong architecture, automation, custom development, integrations, and BuilderTek specialization.',
+    { path: '/about' }
   )
 
   const outcomes = [
@@ -1025,6 +1093,7 @@ function AboutPage() {
             eyebrow="About Vextor"
             title="Salesforce systems built for real operational complexity"
             summary="Vextor helps teams build scalable Salesforce environments that support daily execution, not just CRM workflows."
+            titleTag="h1"
           />
         </div>
       </section>
@@ -1192,7 +1261,8 @@ function AboutPage() {
 function ContactPage() {
   usePageMeta(
     'Contact Vextor | Salesforce Consultation',
-    'Contact Vextor to discuss Salesforce consulting, architecture, custom development, and BuilderTek specialization support.'
+    'Contact Vextor to discuss Salesforce consulting, architecture, custom development, and BuilderTek specialization support.',
+    { path: '/contact' }
   )
 
   return (
@@ -1203,6 +1273,7 @@ function ContactPage() {
             eyebrow="Contact"
             title="Book a focused consultation"
             summary="Share your current Salesforce or BuilderTek challenge and we will propose the most practical next step."
+            titleTag="h1"
           />
         </div>
       </section>
