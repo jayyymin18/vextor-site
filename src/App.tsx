@@ -1053,33 +1053,25 @@ function AboutPage() {
             </ul>
           </div>
 
-          <figure className="photo-frame min-h-[300px] p-6">
-            <img
-              src="/images/about-studio-collaboration.svg"
-              alt="Collaborative architecture planning"
-              loading="lazy"
-              className="h-full w-full object-contain"
-            />
-            <figcaption className="border-t border-border/80 px-4 py-3 text-xs text-muted-foreground">
-              Collaborative planning and operational discovery before implementation.
-            </figcaption>
-          </figure>
+          <Visual
+            src="/images/about-team-collaboration.jpg"
+            alt="Collaborative architecture planning"
+            caption="Collaborative planning and operational discovery before implementation."
+            className="min-h-[300px]"
+            objectPosition="center 38%"
+          />
         </div>
       </section>
 
       <section className="section-wrap border-y border-border bg-card/60">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-          <figure className="photo-frame min-h-[300px] p-6">
-            <img
-              src="/images/services-interface-panels.svg"
-              alt="Structured Salesforce service model"
-              loading="lazy"
-              className="h-full w-full object-contain"
-            />
-            <figcaption className="border-t border-border/80 px-4 py-3 text-xs text-muted-foreground">
-              Balanced delivery across architecture, automation, development, and support.
-            </figcaption>
-          </figure>
+          <Visual
+            src="/images/about-architecture-planning.jpg"
+            alt="Structured Salesforce service model"
+            caption="Balanced delivery across architecture, automation, development, and support."
+            className="min-h-[300px]"
+            objectPosition="center 52%"
+          />
 
           <div className="space-y-5">
             <SectionIntro
@@ -1129,33 +1121,25 @@ function AboutPage() {
             </ul>
           </div>
 
-          <figure className="photo-frame min-h-[300px] p-6">
-            <img
-              src="/images/work-case-study-blueprint.svg"
-              alt="Salesforce architecture blueprint"
-              loading="lazy"
-              className="h-full w-full object-contain"
-            />
-            <figcaption className="border-t border-border/80 px-4 py-3 text-xs text-muted-foreground">
-              Clear architecture patterns that stay reliable as the platform evolves.
-            </figcaption>
-          </figure>
+          <Visual
+            src="/images/about-platform-expertise.jpg"
+            alt="Salesforce architecture blueprint"
+            caption="Clear architecture patterns that stay reliable as the platform evolves."
+            className="min-h-[300px]"
+            objectPosition="center 44%"
+          />
         </div>
       </section>
 
       <section className="section-wrap border-y border-border bg-card/60">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-          <figure className="photo-frame min-h-[300px] p-6">
-            <img
-              src="/images/buildertek-workflow-board.svg"
-              alt="BuilderTek workflow mapping"
-              loading="lazy"
-              className="h-full w-full object-contain"
-            />
-            <figcaption className="border-t border-border/80 px-4 py-3 text-xs text-muted-foreground">
-              BuilderTek workflow refinement for project-driven teams.
-            </figcaption>
-          </figure>
+          <Visual
+            src="/images/about-buildertek-construction.jpg"
+            alt="BuilderTek workflow mapping"
+            caption="BuilderTek workflow refinement for project-driven teams."
+            className="min-h-[300px]"
+            objectPosition="center 58%"
+          />
 
           <div className="space-y-5">
             <SectionIntro
