@@ -1242,9 +1242,6 @@ function ContactPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
           <div className="space-y-5">
             <Card className="surface-card">
-              <CardHeader>
-                <CardTitle className="text-xl">Contact form (Salesforce Web-to-Lead)</CardTitle>
-              </CardHeader>
               <CardContent>
                 <form
                   action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DdN00000t9uBN"
