@@ -268,7 +268,7 @@ function Header() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" aria-label="Vextor home" className="inline-flex items-center">
           <img
-            src="/images/vextor%20logo.svg"
+            src="/images/vextor-final-logo.svg"
             alt="Vextor Solution"
             className="brand-logo"
             loading="eager"

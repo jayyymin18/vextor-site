@@ -242,10 +242,9 @@ a {
 
 .brand-logo {
   display: block;
-  width: 10.8rem;
-  height: 3.8rem;
-  object-fit: cover;
-  object-position: center 43%;
+  width: 11.2rem;
+  height: auto;
+  max-height: 2.9rem;
 }
 
 .btn-solid {
@@ -401,8 +400,7 @@ textarea::placeholder {
 @media (max-width: 767px) {
   .brand-logo {
     width: 8.9rem;
-    height: 3.15rem;
-    object-position: center 42%;
+    max-height: 2.2rem;
   }
 
   .brand-word {
