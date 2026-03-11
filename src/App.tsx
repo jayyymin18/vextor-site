@@ -268,7 +268,7 @@ function Header() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" aria-label="Vextor home" className="inline-flex items-center">
           <img
-            src="/images/vextor-final-logo.svg"
+            src="/images/just%20final%20logo.svg"
             alt="Vextor Solution"
             className="brand-logo"
             loading="eager"
@@ -329,7 +329,7 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.9fr]">
           <div className="space-y-4">
-            <img src="/images/vextor-final-logo.svg" alt="Vextor Solution" className="footer-brand-logo" loading="lazy" />
+            <img src="/images/just%20final%20logo.svg" alt="Vextor Solution" className="footer-brand-logo" loading="lazy" />
             <h2 className="text-2xl font-semibold tracking-tight">
               Salesforce consulting for operationally complex teams, with dedicated BuilderTek specialization.
             </h2>
