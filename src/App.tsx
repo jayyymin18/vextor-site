@@ -329,7 +329,7 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.9fr]">
           <div className="space-y-4">
-            <p className="eyebrow">Vextor Solution LLP</p>
+            <img src="/images/vextor-final-logo.svg" alt="Vextor Solution" className="footer-brand-logo" loading="lazy" />
             <h2 className="text-2xl font-semibold tracking-tight">
               Salesforce consulting for operationally complex teams, with dedicated BuilderTek specialization.
             </h2>

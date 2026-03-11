@@ -247,6 +247,13 @@ a {
   max-height: 2.9rem;
 }
 
+.footer-brand-logo {
+  display: block;
+  width: 11rem;
+  height: auto;
+  max-height: 2.6rem;
+}
+
 .btn-solid {
   border-radius: 0.85rem;
   border: 1px solid transparent;
@@ -400,6 +407,11 @@ textarea::placeholder {
 @media (max-width: 767px) {
   .brand-logo {
     width: 8.9rem;
+    max-height: 2.2rem;
+  }
+
+  .footer-brand-logo {
+    width: 9.2rem;
     max-height: 2.2rem;
   }
 
