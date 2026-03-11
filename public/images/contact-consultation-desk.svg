@@ -1,9 +1,0 @@
-<svg width="1080" height="640" viewBox="0 0 1080 640" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Contact placeholder">
-  <rect width="1080" height="640" fill="#F6EFE6"/>
-  <rect x="72" y="66" width="936" height="508" rx="24" fill="#FCF8F3" stroke="#D9CCBE"/>
-  <rect x="124" y="118" width="832" height="130" rx="14" fill="#2F2823"/>
-  <rect x="124" y="272" width="268" height="250" rx="14" fill="#EFE2D4"/>
-  <rect x="414" y="272" width="268" height="250" rx="14" fill="#EFE2D4"/>
-  <rect x="704" y="272" width="252" height="250" rx="14" fill="#B86D42" fill-opacity="0.25"/>
-  <text x="152" y="194" fill="#E5D8CA" font-family="Manrope, sans-serif" font-size="20" font-weight="700">Contact Placeholder</text>
-</svg>

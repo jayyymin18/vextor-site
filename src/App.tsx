@@ -1006,97 +1006,201 @@ function WorkPage() {
 
 function AboutPage() {
   usePageMeta(
-    'About Vextor | Salesforce Consulting Team',
-    'Vextor is a Salesforce consulting firm focused on scalable, maintainable systems aligned with real operational workflows.'
+    'About Vextor | Salesforce Consulting and BuilderTek Expertise',
+    'Vextor designs scalable Salesforce systems with strong architecture, automation, custom development, integrations, and BuilderTek specialization.'
   )
 
-  const aboutSections = [
-    {
-      eyebrow: 'About Vextor',
-      title: 'About Vextor',
-      paragraphs: [
-        'Modern organizations rely heavily on Salesforce not only as a customer relationship management platform but as a central system that connects operations, teams, and business processes. As companies grow and their operations become more complex, Salesforce environments often evolve far beyond traditional CRM use cases. They begin to manage project workflows, vendor coordination, financial tracking, automation processes, and integrations with multiple systems across the organization.',
-        'While Salesforce provides a powerful and flexible platform, building and maintaining a well-structured Salesforce system requires thoughtful architecture and deep technical expertise. Without proper planning and system design, implementations can become difficult to maintain, costly to scale, and increasingly complex for teams to use effectively.',
-        'Vextor was established to address these challenges.',
-        'Vextor is a Salesforce consulting firm focused on designing and implementing Salesforce systems that are scalable, maintainable, and aligned with real operational workflows. The goal is not simply to deliver short-term solutions but to build Salesforce environments that continue to perform reliably as organizations grow and their operational requirements evolve.',
-        'Our approach focuses on understanding how businesses operate in practice. Every organization has unique workflows, internal coordination processes, and operational dependencies that must be reflected in the systems they use. By carefully analyzing these processes and aligning Salesforce architecture with business operations, Vextor helps organizations build systems that support efficiency rather than introduce additional complexity.',
-      ],
-    },
-    {
-      eyebrow: 'Our Approach',
-      title: 'Our Approach',
-      paragraphs: [
-        'Many Salesforce implementations focus primarily on rapid delivery of features or short-term project goals. While this approach may solve immediate problems, it often leads to long-term challenges as automation layers expand, integrations are introduced, and teams begin relying heavily on the system for day-to-day operations.',
-        'Vextor takes a different approach.',
-        'Our consulting philosophy prioritizes strong architectural foundations and long-term system stability. By designing Salesforce environments with scalability and maintainability in mind, we help organizations avoid the technical debt that often accumulates in rapidly built systems.',
-        'This means carefully structuring data models, designing automation that aligns with operational workflows, and ensuring that integrations with external systems are reliable and sustainable.',
-        'Every implementation is approached with the understanding that Salesforce is not just a tool but a critical operational platform that supports how businesses function on a daily basis.',
-      ],
-    },
-    {
-      eyebrow: 'Salesforce Expertise',
-      title: 'Salesforce Expertise',
-      paragraphs: [
-        'Salesforce provides one of the most powerful enterprise platforms available for building operational systems. However, unlocking its full potential requires both deep platform knowledge and practical experience implementing solutions for real business scenarios.',
-        'Vextor works across a wide range of Salesforce capabilities including system architecture, automation, custom development, and integrations with external platforms.',
-        'Our work often involves designing complex automation workflows, developing custom Salesforce applications using Apex and Lightning Web Components, and integrating Salesforce with financial systems, operational tools, and external APIs.',
-        'These capabilities allow organizations to extend Salesforce beyond traditional CRM functionality and build systems that support broader business operations such as project management, vendor coordination, and operational reporting.',
-        'By combining configuration, development, and architecture expertise, Vextor helps organizations build Salesforce environments that are both powerful and reliable.',
-      ],
-    },
-    {
-      eyebrow: 'BuilderTek Specialization',
-      title: 'BuilderTek Specialization',
-      paragraphs: [
-        'Many of the organizations we work with operate in project-driven industries such as construction and development, where operational workflows involve coordinating vendors, managing budgets, tracking project progress, and maintaining financial visibility across multiple stakeholders.',
-        'BuilderTek is widely used within these environments to manage project operations directly within Salesforce.',
-        'Implementing BuilderTek effectively requires more than basic platform configuration. Organizations often need customized workflows, automation layers, and integrations to fully align the platform with their operational processes.',
-        'Vextor works extensively with BuilderTek environments to help organizations design systems that support real project workflows while maintaining system stability and performance.',
-        'This work may involve improving vendor bidding processes, automating purchase order workflows, enhancing budget tracking, or integrating BuilderTek with accounting and financial systems.',
-        'By combining Salesforce expertise with a strong understanding of BuilderTek workflows, Vextor helps organizations create systems that support project operations efficiently while maintaining clean and scalable architecture.',
-      ],
-    },
-    {
-      eyebrow: 'Long-Term System Thinking',
-      title: 'Long-Term System Thinking',
-      paragraphs: [
-        'One of the most important aspects of Salesforce consulting is ensuring that systems remain usable and maintainable over time.',
-        'Organizations frequently encounter situations where their Salesforce environments become difficult to manage due to accumulated automation, fragmented data models, or poorly structured integrations.',
-        'Vextor focuses on building systems that avoid these challenges by emphasizing clarity, structure, and long-term planning during implementation.',
-        'This means designing solutions that remain understandable for internal teams, maintainable for future development, and adaptable as business needs evolve.',
-        'By taking a thoughtful approach to architecture and development, we help organizations create Salesforce systems that continue to deliver value long after the initial implementation.',
-      ],
-    },
-    {
-      eyebrow: 'Supporting Operational Efficiency',
-      title: 'Supporting Operational Efficiency',
-      paragraphs: [
-        'Ultimately, the purpose of any Salesforce system is to help organizations operate more efficiently.',
-        'When systems are well designed, teams spend less time managing manual processes and more time focusing on their core responsibilities.',
-        'Automation reduces repetitive work, integrations ensure consistent data across platforms, and clear system structure allows teams to rely on Salesforce as a central operational platform.',
-        'Vextor works closely with organizations to design systems that support these outcomes.',
-        'By aligning technology with operational workflows, we help organizations build Salesforce environments that improve visibility, streamline coordination, and support long-term growth.',
-      ],
-    },
+  const outcomes = [
+    'Clear architecture that scales with your operations',
+    'Less manual work through practical automation',
+    'Reliable integrations across finance and ops systems',
+    'A maintainable Salesforce environment for long-term growth',
   ]
 
   return (
     <main>
-      {aboutSections.map((section, index) => (
-        <section
-          key={section.title}
-          className={`section-wrap ${index % 2 === 0 ? '' : 'border-y border-border bg-card/60'}`}
-        >
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <SectionIntro eyebrow={section.eyebrow} title={section.title} />
-            <div className="mt-6 max-w-5xl space-y-4 text-sm leading-7 text-muted-foreground">
-              {section.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
+      <section className="section-wrap border-b border-border bg-card/60">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="About Vextor"
+            title="Salesforce systems built for real operational complexity"
+            summary="Vextor helps teams build scalable Salesforce environments that support daily execution, not just CRM workflows."
+          />
+        </div>
+      </section>
+
+      <section className="section-wrap">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
+          <div className="space-y-5">
+            <SectionIntro
+              eyebrow="Who We Are"
+              title="A consulting firm focused on long-term platform quality"
+              summary="As organizations grow, Salesforce often becomes the core system for operations, coordination, and execution."
+            />
+            <p className="text-sm leading-7 text-muted-foreground">
+              We design Salesforce systems that stay stable as workflows, teams, and integrations become more complex.
+            </p>
+            <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Architecture designed for scale and maintainability
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Delivery aligned to real operational dependencies
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Systems that reduce complexity instead of adding it
+              </li>
+            </ul>
           </div>
-        </section>
-      ))}
+
+          <figure className="photo-frame min-h-[300px] p-6">
+            <img
+              src="/images/about-studio-collaboration.svg"
+              alt="Collaborative architecture planning"
+              loading="lazy"
+              className="h-full w-full object-contain"
+            />
+            <figcaption className="border-t border-border/80 px-4 py-3 text-xs text-muted-foreground">
+              Collaborative planning and operational discovery before implementation.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section className="section-wrap border-y border-border bg-card/60">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+          <figure className="photo-frame min-h-[300px] p-6">
+            <img
+              src="/images/services-interface-panels.svg"
+              alt="Structured Salesforce service model"
+              loading="lazy"
+              className="h-full w-full object-contain"
+            />
+            <figcaption className="border-t border-border/80 px-4 py-3 text-xs text-muted-foreground">
+              Balanced delivery across architecture, automation, development, and support.
+            </figcaption>
+          </figure>
+
+          <div className="space-y-5">
+            <SectionIntro
+              eyebrow="Our Approach"
+              title="Strong foundations before rapid feature delivery"
+              summary="We prioritize system structure, data clarity, and sustainable automation."
+            />
+            <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Data models designed for reporting trust and clean growth
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Automation that matches operational workflows
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Integrations built for reliability, not short-term patches
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Delivery decisions made with long-term maintainability in mind
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+          <div className="space-y-5">
+            <SectionIntro
+              eyebrow="Salesforce Expertise"
+              title="Configuration, development, and integration depth"
+              summary="We help organizations extend Salesforce into a dependable operational platform."
+            />
+            <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Salesforce architecture and governance design
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Apex and Lightning Web Components for custom workflows
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Automation frameworks for process control and consistency
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Integrations with external APIs, finance, and operations systems
+              </li>
+            </ul>
+          </div>
+
+          <figure className="photo-frame min-h-[300px] p-6">
+            <img
+              src="/images/work-case-study-blueprint.svg"
+              alt="Salesforce architecture blueprint"
+              loading="lazy"
+              className="h-full w-full object-contain"
+            />
+            <figcaption className="border-t border-border/80 px-4 py-3 text-xs text-muted-foreground">
+              Clear architecture patterns that stay reliable as the platform evolves.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section className="section-wrap border-y border-border bg-card/60">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+          <figure className="photo-frame min-h-[300px] p-6">
+            <img
+              src="/images/buildertek-workflow-board.svg"
+              alt="BuilderTek workflow mapping"
+              loading="lazy"
+              className="h-full w-full object-contain"
+            />
+            <figcaption className="border-t border-border/80 px-4 py-3 text-xs text-muted-foreground">
+              BuilderTek workflow refinement for project-driven teams.
+            </figcaption>
+          </figure>
+
+          <div className="space-y-5">
+            <SectionIntro
+              eyebrow="BuilderTek Specialization"
+              title="Focused support for project and construction operations"
+              summary="We help BuilderTek-heavy organizations align Salesforce with real project execution needs."
+            />
+            <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Vendor and bidding workflow improvements
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Purchase order and approval automation
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Budget tracking and project visibility enhancements
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Integration support for accounting and financial systems
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Outcomes"
+            title="What this delivers for your team"
+            summary="The goal is a Salesforce environment that stays clear, reliable, and efficient over time."
+          />
+          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {outcomes.map((item) => (
+              <Card key={item} className="surface-card">
+                <CardContent className="pt-5">
+                  <p className="flex items-start gap-2 text-sm leading-7 text-muted-foreground">
+                    <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
