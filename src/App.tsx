@@ -18,7 +18,6 @@ import {
   Mail,
   MapPin,
   Menu,
-  Phone,
   Facebook,
   Route as RouteIcon,
   Settings2,
@@ -520,12 +519,6 @@ function Footer() {
                 <Mail className="size-4 text-accent" />
                 <a href="mailto:hello@vextor.co" className="hover:text-accent">
                   hello@vextor.co
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="size-4 text-accent" />
-                <a href="tel:+919016070659" className="hover:text-accent">
-                  +91 90160 70659
                 </a>
               </li>
               <li className="flex items-start gap-2">
@@ -1641,16 +1634,10 @@ function ContactPage() {
                     hello@vextor.co
                   </a>
                 </p>
-                <p className="flex items-center gap-2">
-                  <Phone className="size-4 text-accent" />
-                  <a className="hover:text-accent" href="tel:+919016070659">
-                    +91 90160 70659
-                  </a>
+                <p className="flex items-start gap-2">
+                  <MapPin className="mt-1 size-4 text-accent" />
+                  <span>7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</span>
                 </p>
-                  <p className="flex items-start gap-2">
-                    <MapPin className="mt-1 size-4 text-accent" />
-                    <span>7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</span>
-                  </p>
               </CardContent>
             </Card>
 
