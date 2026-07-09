@@ -598,7 +598,7 @@ function HomePage() {
   return (
     <main>
       <section className="hero-wrap">
-        <div className="home-shell px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+        <div className="home-shell px-4 pb-10 pt-12 sm:px-6 sm:pb-12 sm:pt-14 lg:px-8 lg:pb-14 lg:pt-16">
           <div className="hero-layout">
             <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-clean mx-auto text-center">
               <h1 className="hero-title">
@@ -625,7 +625,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="section-wrap">
+      <section className="section-wrap section-after-hero">
         <div className="home-shell px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="Services Overview"

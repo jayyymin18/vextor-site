@@ -198,6 +198,10 @@ a {
   padding-bottom: clamp(3.8rem, 8vw, 6.4rem);
 }
 
+.section-after-hero {
+  padding-top: clamp(2.6rem, 5vw, 4rem);
+}
+
 .section-title {
   margin-top: 0.45rem;
   font-size: clamp(1.8rem, 3.4vw, 3rem);
