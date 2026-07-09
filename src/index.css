@@ -164,16 +164,6 @@ a {
   color: hsl(var(--accent));
 }
 
-.trust-pills {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.55rem;
-}
-
-.trust-pill {
-  text-align: center;
-}
-
 .hero-metrics {
   display: grid;
   gap: 0.95rem;
@@ -352,6 +342,18 @@ a {
 .btn-outline-dark:hover {
   border-color: hsl(var(--accent) / 0.28);
   background: hsl(var(--accent) / 0.06);
+}
+
+.btn-outline-invert {
+  border-radius: 0.85rem;
+  border: 1px solid hsl(var(--deep-muted) / 0.28);
+  background: hsl(0 0% 100% / 0.08);
+  color: hsl(var(--deep-foreground));
+}
+
+.btn-outline-invert:hover {
+  border-color: hsl(var(--deep-foreground) / 0.24);
+  background: hsl(0 0% 100% / 0.16);
 }
 
 .step-chip {
@@ -547,13 +549,6 @@ textarea::placeholder {
 }
 
 @media (min-width: 640px) {
-  .trust-pills {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.65rem;
-  }
-
   .hero-metrics {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.15rem;

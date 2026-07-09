@@ -518,8 +518,6 @@ function HomePage() {
     { path: '/' }
   )
 
-  const trustSignals = ['Construction operations', 'Specialty trades', 'Field teams', 'Project delivery']
-
   const serviceOverview = [
     {
       icon: Layers3,
@@ -603,9 +601,8 @@ function HomePage() {
         <div className="home-shell px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
           <div className="hero-layout">
             <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-clean mx-auto text-center">
-              <p className="eyebrow text-accent">Project-Based Salesforce Consulting</p>
               <h1 className="hero-title">
-                Salesforce built for the way you work, <span className="hero-highlight">project by project.</span>
+                Salesforce built for the way <span className="hero-highlight">your projects run.</span>
               </h1>
               <p className="hero-copy">
                 Vextor helps project-based businesses configure, automate, and scale Salesforce, with a dedicated
@@ -622,21 +619,6 @@ function HomePage() {
                     See What We Do <ChevronRight className="ml-2 size-4" />
                   </Button>
                 </Link>
-              </div>
-              <div className="mx-auto mt-10 max-w-5xl rounded-[1.35rem] border border-border/80 bg-white/70 px-5 py-5 shadow-[0_18px_45px_-38px_rgba(15,23,42,0.22)]">
-                <p className="text-sm font-medium text-muted-foreground">
-                  Trusted by operations leaders and project teams across industries
-                </p>
-                <div className="trust-pills mt-4">
-                  {trustSignals.map((item) => (
-                    <span
-                      key={item}
-                      className="trust-pill rounded-full border border-border bg-background/85 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.11em] text-foreground/80"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
               </div>
             </motion.div>
           </div>
@@ -799,7 +781,7 @@ function HomePage() {
                 </Button>
               </Link>
               <Link to="/services">
-                <Button size="lg" variant="outline" className="btn-outline-dark">
+                <Button size="lg" variant="outline" className="btn-outline-invert">
                   Explore All Services
                 </Button>
               </Link>
