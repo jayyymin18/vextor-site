@@ -518,47 +518,82 @@ function HomePage() {
     { path: '/' }
   )
 
-  const heroMetrics = [
-    { step: '01', title: 'Architecture-first delivery' },
-    { step: '02', title: 'Automation aligned to operations' },
-    { step: '03', title: 'BuilderTek workflow support' },
-  ]
+  const trustSignals = ['Construction operations', 'Specialty trades', 'Field teams', 'Project delivery']
 
-  const coreSalesforceCards = [
+  const serviceOverview = [
     {
       icon: Layers3,
-      title: 'Salesforce Consulting',
-      text: 'Roadmaps, platform decisions, and governance that keep delivery aligned with operations.',
+      title: 'Salesforce Architecture & Implementation',
+      text: 'End-to-end Salesforce design built around how project-based businesses actually operate.',
     },
     {
-      icon: ShieldCheck,
-      title: 'Architecture and Automation',
-      text: 'Data model, security, and workflow design for reliable execution at scale.',
-    },
-    {
-      icon: Code2,
-      title: 'Custom Development',
-      text: 'Apex, LWC, and integration engineering for workflows beyond standard configuration.',
+      icon: HardHat,
+      title: 'BuilderTek Specialization',
+      text: 'Dedicated BuilderTek implementation, cleanup, migration, and support for teams running on jobs, not just pipelines.',
     },
     {
       icon: RouteIcon,
+      title: 'Integrations & Automation',
+      text: 'Connect Salesforce to estimating tools, ERP, accounting platforms, and field systems without manual re-entry.',
+    },
+    {
+      icon: ShieldCheck,
       title: 'Managed Support',
-      text: 'Retainer support for enhancements, release quality, and operational continuity.',
+      text: 'Ongoing Salesforce administration, optimization, and expert support without the overhead of a full-time hire.',
     },
   ]
 
-  const whyVextor = [
+  const valueProps = [
     {
-      title: 'Operationally grounded',
-      body: 'We design systems around how teams actually run work, approvals, and handoffs.',
+      icon: Layers3,
+      title: 'Salesforce that fits your operations',
+      text: 'We architect Salesforce around projects, bids, clients, and billing handoffs instead of forcing your team into a generic CRM pattern.',
     },
     {
-      title: 'Senior execution',
-      body: 'Architecture and engineering are delivered by experienced practitioners, not handoff chains.',
+      icon: HardHat,
+      title: 'BuilderTek, done right',
+      text: 'From new implementations to untangling inherited complexity, Vextor delivers BuilderTek environments your office and field teams will actually use.',
     },
     {
-      title: 'Long-term accountability',
-      body: 'Our support model keeps delivery momentum and platform quality after go-live.',
+      icon: RouteIcon,
+      title: 'Support that stays engaged',
+      text: 'We do not disappear after go-live. Our managed support model keeps your Salesforce org healthy as process, teams, and reporting needs evolve.',
+    },
+  ]
+
+  const deliverySteps = [
+    {
+      step: '01',
+      icon: ClipboardList,
+      title: 'Discover',
+      text: 'We start with your projects, your people, and your operational pain points. Discovery is tailored to project-based delivery, not a generic CRM checklist.',
+    },
+    {
+      step: '02',
+      icon: Wrench,
+      title: 'Build',
+      text: 'Our Salesforce architects implement the workflows, BuilderTek configuration, custom development, and integrations your team actually needs.',
+    },
+    {
+      step: '03',
+      icon: Users,
+      title: 'Grow',
+      text: 'With managed support, training, and optimization, your platform keeps improving as your operations scale and change.',
+    },
+  ]
+
+  const commonEngagements = [
+    {
+      title: 'Lead-to-Invoice Workflow Design',
+      body: 'Map the full cycle from first inquiry through estimating, contract execution, project delivery, and billing handoff.',
+    },
+    {
+      title: 'BuilderTek Cleanup and Migration',
+      body: 'Stand up BuilderTek correctly, migrate from legacy setups, or rework messy configurations without losing operating trust.',
+    },
+    {
+      title: 'Support Retainers for Evolving Teams',
+      body: 'Stay ahead of admin backlog, release changes, reporting needs, and process refinements without scrambling for outside help.',
     },
   ]
 
@@ -568,32 +603,40 @@ function HomePage() {
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
           <div className="hero-layout">
             <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-clean mx-auto text-center">
+              <p className="eyebrow text-accent">Project-Based Salesforce Consulting</p>
               <h1 className="hero-title">
-                Salesforce systems built for <span className="hero-highlight">operational scale.</span>
+                Salesforce built for the way you work, <span className="hero-highlight">project by project.</span>
               </h1>
               <p className="hero-copy">
-                Vextor helps businesses design Salesforce architecture, automation, custom engineering, and
-                BuilderTek workflows that remain clear as operating complexity increases.
+                Vextor helps project-based businesses configure, automate, and scale Salesforce, with a dedicated
+                BuilderTek specialization for teams that run on jobs, not just pipelines.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <Link to="/contact">
                   <Button size="lg" className="btn-solid">
-                    Book a Consultation <CalendarCheck2 className="ml-2 size-4" />
+                    Book a Discovery Call <CalendarCheck2 className="ml-2 size-4" />
                   </Button>
                 </Link>
                 <Link to="/services">
                   <Button size="lg" variant="outline" className="btn-outline-dark">
-                    Review Services <ChevronRight className="ml-2 size-4" />
+                    See What We Do <ChevronRight className="ml-2 size-4" />
                   </Button>
                 </Link>
               </div>
-              <div className="hero-metrics">
-                {heroMetrics.map(({ step, title }) => (
-                  <div key={step} className="hero-metric">
-                    <span className="hero-metric-step">{step}</span>
-                    <span className="hero-metric-title">{title}</span>
-                  </div>
-                ))}
+              <div className="mx-auto mt-10 max-w-5xl rounded-[1.35rem] border border-border/80 bg-white/70 px-5 py-5 shadow-[0_18px_45px_-38px_rgba(15,23,42,0.22)]">
+                <p className="text-sm font-medium text-muted-foreground">
+                  Trusted by operations leaders and project teams across industries
+                </p>
+                <div className="mt-4 flex flex-wrap justify-center gap-2.5">
+                  {trustSignals.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-border bg-background/85 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.11em] text-foreground/80"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
@@ -603,12 +646,12 @@ function HomePage() {
       <section className="section-wrap">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Core Salesforce Services"
-            title="Salesforce consulting as the primary service line"
-            summary="From architecture to managed support, we help teams build stable Salesforce operations without unnecessary complexity."
+            eyebrow="Services Overview"
+            title="Salesforce and BuilderTek support built around project-based operations"
+            summary="From first implementation through long-term support, our work is structured around how project businesses estimate, execute, invoice, and scale."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {coreSalesforceCards.map(({ icon: Icon, title, text }) => (
+            {serviceOverview.map(({ icon: Icon, title, text }) => (
               <Card key={title} className="surface-card">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3 text-base">
@@ -630,18 +673,23 @@ function HomePage() {
       <section className="section-wrap border-y border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Why Clients Choose Vextor"
-            title="A serious consulting partner for complex operating environments"
-            summary="We focus on delivery quality, platform reliability, and practical collaboration with your internal teams."
+            eyebrow="Why Vextor"
+            title="A consulting model designed for the realities of project-based work"
+            summary="We combine platform architecture, BuilderTek expertise, and long-term support so the system keeps working after launch."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {whyVextor.map((item) => (
-              <Card key={item.title} className="surface-card">
+            {valueProps.map(({ icon: Icon, title, text }) => (
+              <Card key={title} className="surface-card">
                 <CardHeader>
-                  <CardTitle className="text-lg">{item.title}</CardTitle>
+                  <CardTitle className="flex items-center gap-3 text-lg">
+                    <span className="icon-wrap">
+                      <Icon className="size-4" />
+                    </span>
+                    {title}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm leading-7 text-muted-foreground">{item.body}</p>
+                  <p className="text-sm leading-7 text-muted-foreground">{text}</p>
                 </CardContent>
               </Card>
             ))}
@@ -654,25 +702,25 @@ function HomePage() {
           <div className="space-y-5">
             <SectionIntro
               eyebrow="BuilderTek Specialization"
-              title="Dedicated BuilderTek support for construction and real-estate workflows"
-              summary="BuilderTek is treated as a focused specialization. Clients engage us for workflow customization, operational improvements, and support in BuilderTek-heavy environments."
+              title="A dedicated BuilderTek practice for teams that run on jobs, not just pipelines"
+              summary="BuilderTek is a serious operational platform. We treat it as a dedicated practice with implementation depth, custom configuration capability, and managed support."
             />
             <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> RFQ, quote, PO, and approval workflow refinement
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> New BuilderTek implementations designed around estimating, project management, and financial workflows
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Budget and project operations process optimization
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Cleanup, migration, and reconfiguration for inherited or underperforming BuilderTek environments
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> BuilderTek usability and adoption improvements
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Custom objects, automation, and extensions for workflows that are not covered out of the box
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Integration and support for BuilderTek-centric teams
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Ongoing BuilderTek support, release management, and optimization for project-driven teams
               </li>
             </ul>
             <Link to="/services#buildertek-specialization" className="inline-flex items-center gap-2 text-sm font-medium hover:text-accent">
-              View BuilderTek specialization details <ArrowRight className="size-4" />
+              Explore BuilderTek support <ArrowRight className="size-4" />
             </Link>
           </div>
 
@@ -690,36 +738,11 @@ function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="How We Work"
-            title="Structured engagement from architecture to support"
-            summary="A delivery cadence designed for clarity, accountability, and sustained platform quality."
+            title="A consulting process built for discovery, delivery, and long-term scale"
+            summary="We work in a way that matches project-based operations: understand the workflow, build the right system, then stay engaged as the business grows."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-4">
-            {[
-              {
-                step: '01',
-                icon: ClipboardList,
-                title: 'Assess',
-                text: 'Review architecture, process risk, and delivery constraints.',
-              },
-              {
-                step: '02',
-                icon: Compass,
-                title: 'Design',
-                text: 'Define platform and workflow design before build starts.',
-              },
-              {
-                step: '03',
-                icon: Wrench,
-                title: 'Deliver',
-                text: 'Implement in controlled increments with review checkpoints.',
-              },
-              {
-                step: '04',
-                icon: Users,
-                title: 'Support',
-                text: 'Continue through retainer support and advisory continuity.',
-              },
-            ].map(({ step, icon: Icon, title, text }) => (
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {deliverySteps.map(({ step, icon: Icon, title, text }) => (
               <Card key={title} className="surface-card">
                 <CardHeader>
                   <p className="step-chip">Step {step}</p>
@@ -739,25 +762,12 @@ function HomePage() {
       <section className="section-wrap">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Selected Capabilities"
-            title="Common delivery blocks clients engage us for"
-            summary="Representative capability blocks for architecture, development, and operational support conversations."
+            eyebrow="Common Engagements"
+            title="Where Vextor is typically brought in"
+            summary="Representative examples of the operating problems, platform issues, and growth stages where teams usually engage us."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {[
-              {
-                title: 'Salesforce Architecture Alignment',
-                body: 'Platform design, automation boundary cleanup, and release governance for multi-team environments.',
-              },
-              {
-                title: 'Custom Workflow Engineering',
-                body: 'Apex and LWC delivery for high-frequency workflows where user speed and data quality both matter.',
-              },
-              {
-                title: 'BuilderTek Process Optimization',
-                body: 'Procurement and approval process refinement for BuilderTek workflows tied to project execution.',
-              },
-            ].map((item) => (
+            {commonEngagements.map((item) => (
               <Card key={item.title} className="surface-card">
                 <CardHeader>
                   <CardTitle className="text-lg">{item.title}</CardTitle>
@@ -776,21 +786,21 @@ function HomePage() {
           <Card className="surface-card deep-card p-8 sm:p-10">
             <p className="eyebrow">Consultation</p>
             <h2 className="section-title max-w-2xl text-deep-foreground">
-              Need a clear plan for Salesforce delivery or BuilderTek workflow support?
+              Ready to get Salesforce working for your projects?
             </h2>
             <p className="section-summary max-w-2xl text-deep-muted">
-              Share your current bottlenecks. We will map a practical engagement path based on architecture,
-              delivery scope, and support needs.
+              Whether you are starting from scratch, switching from another CRM, or fixing a Salesforce org that
+              never quite fit, Vextor is built for what project-based teams actually need.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link to="/contact">
                 <Button size="lg" className="btn-solid">
-                  Talk to Vextor <ArrowRight className="ml-2 size-4" />
+                  Schedule a Free 30-Minute Consultation <ArrowRight className="ml-2 size-4" />
                 </Button>
               </Link>
               <Link to="/services">
                 <Button size="lg" variant="outline" className="btn-outline-dark">
-                  Review Services
+                  Explore All Services
                 </Button>
               </Link>
             </div>
