@@ -518,6 +518,17 @@ function HomePage() {
     { path: '/' }
   )
 
+  const trustLogos = [
+    { src: '/images/trust/quickbooks.png', alt: 'QuickBooks' },
+    { src: '/images/trust/buildertek.png', alt: 'BuilderTek' },
+    { src: '/images/trust/oracle.png', alt: 'Oracle' },
+    { src: '/images/trust/microsoft.png', alt: 'Microsoft' },
+    { src: '/images/trust/dropbox.png', alt: 'Dropbox' },
+    { src: '/images/trust/sage.png', alt: 'Sage' },
+    { src: '/images/trust/aws.png', alt: 'AWS' },
+    { src: '/images/trust/salesforce.png', alt: 'Salesforce' },
+  ]
+
   const serviceOverview = [
     {
       icon: Layers3,
@@ -621,6 +632,24 @@ function HomePage() {
                 </Link>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="trust-strip-wrap border-b border-border">
+        <div className="home-shell px-4 py-4 sm:px-6 lg:px-8">
+          <div className="trust-strip-head">
+            <p className="eyebrow">Trusted Ecosystem</p>
+            <p className="trust-strip-copy">Platforms frequently connected, customized, and supported in project-based environments.</p>
+          </div>
+          <div className="trust-strip-marquee" aria-label="Platform trust strip">
+            <div className="trust-strip-track">
+              {[...trustLogos, ...trustLogos].map(({ src, alt }, index) => (
+                <div key={`${alt}-${index}`} className="trust-logo-card">
+                  <img src={src} alt={alt} className="trust-logo-image" loading="lazy" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
