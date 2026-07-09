@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vextor.co/sitemap.xml
-Host: vextor.co
+Sitemap: https://www.vextor.co/sitemap.xml
+Host: www.vextor.co

@@ -488,6 +488,24 @@ a {
   border-top: 1px solid hsl(var(--border));
 }
 
+.faq-item {
+  padding-top: 1.25rem;
+  border-top: 1px solid hsl(var(--border));
+}
+
+.faq-item h3 {
+  font-size: 1.08rem;
+  line-height: 1.32;
+}
+
+.faq-item p {
+  margin: 0.9rem 0 0;
+  max-width: 72ch;
+  font-size: 0.97rem;
+  line-height: 1.85;
+  color: hsl(var(--muted-foreground));
+}
+
 .cta-band {
   padding: clamp(2rem, 4vw, 3rem) 0;
 }

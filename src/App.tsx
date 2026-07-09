@@ -170,13 +170,13 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
     path = '/',
     ogTitle = title,
     ogDescription = description,
-    ogImage = '/images/about-platform-expertise.jpg',
+    ogImage = '/og-image.png',
     keywords = 'Vextor, Salesforce consulting, BuilderTek support, Salesforce automation, Salesforce integrations, Apex development, Lightning Web Components',
     noindex = false,
   } = options
 
   useEffect(() => {
-    const siteUrl = 'https://vextor.co'
+    const siteUrl = 'https://www.vextor.co'
     const normalizedPath = path.startsWith('/') ? path : `/${path}`
     const canonicalUrl = new URL(normalizedPath, `${siteUrl}/`).toString()
     const ogImageUrl = new URL(ogImage, `${siteUrl}/`).toString()
@@ -228,14 +228,37 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
     upsertMetaByProperty('og:locale', 'en_IN')
     upsertMetaByProperty('og:url', canonicalUrl)
     upsertMetaByProperty('og:image', ogImageUrl)
-    upsertMetaByProperty('og:image:alt', 'Vextor Salesforce consulting')
+    upsertMetaByProperty('og:image:alt', 'Vextor branded Salesforce consulting preview')
     upsertMetaByProperty('og:site_name', 'Vextor')
     upsertMetaByName('twitter:card', 'summary_large_image')
     upsertMetaByName('twitter:title', ogTitle)
     upsertMetaByName('twitter:description', ogDescription)
     upsertMetaByName('twitter:image', ogImageUrl)
+    upsertMetaByName('twitter:image:alt', 'Vextor branded Salesforce consulting preview')
     upsertCanonical(canonicalUrl)
   }, [description, noindex, ogDescription, ogImage, ogTitle, path, title])
+}
+
+function useStructuredData(id: string, payload: Record<string, unknown> | undefined) {
+  const json = payload ? JSON.stringify(payload) : ''
+
+  useEffect(() => {
+    if (!json) return
+
+    let script = document.querySelector(`script[data-structured-data="${id}"]`) as HTMLScriptElement | null
+    if (!script) {
+      script = document.createElement('script')
+      script.type = 'application/ld+json'
+      script.setAttribute('data-structured-data', id)
+      document.head.appendChild(script)
+    }
+
+    script.textContent = json
+
+    return () => {
+      script?.remove()
+    }
+  }, [id, json])
 }
 
 function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
@@ -311,6 +334,39 @@ function Visual({
         <figcaption className="border-t border-border/80 px-4 py-3 text-xs text-muted-foreground">{caption}</figcaption>
       ) : null}
     </figure>
+  )
+}
+
+type FaqEntry = {
+  question: string
+  answer: string
+}
+
+function FaqSection({
+  eyebrow,
+  title,
+  summary,
+  items,
+}: {
+  eyebrow: string
+  title: string
+  summary: string
+  items: FaqEntry[]
+}) {
+  return (
+    <section className="section-wrap border-t border-border bg-card/30">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionIntro eyebrow={eyebrow} title={title} summary={summary} />
+        <div className="mt-10 grid gap-5">
+          {items.map((item) => (
+            <article key={item.question} className="faq-item">
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -525,8 +581,8 @@ function Footer() {
 
 function HomePage() {
   usePageMeta(
-    'Vextor | Salesforce Consulting, BuilderTek Support and Automation',
-    'Vextor helps project-based teams design, automate, and scale Salesforce with BuilderTek specialization, integrations, custom development, and managed support.',
+    'Salesforce Consulting for Project-Based Teams | Vextor',
+    'Salesforce consulting, BuilderTek support, automation, and integrations for project-based teams that need cleaner delivery and stronger operational control.',
     { path: '/' }
   )
 
@@ -827,11 +883,41 @@ function HomePage() {
 }
 
 function ServicesPage() {
+  const serviceFaqs: FaqEntry[] = [
+    {
+      question: 'What Salesforce services does Vextor provide?',
+      answer:
+        'Vextor provides Salesforce architecture, implementation planning, automation, Apex and Lightning development, integrations, managed support, and BuilderTek specialization for project-based teams.',
+    },
+    {
+      question: 'Do you support BuilderTek implementations and cleanup?',
+      answer:
+        'Yes. We handle new BuilderTek implementations, inherited org cleanup, workflow redesign, usability improvements, and ongoing support for operational teams already running BuilderTek.',
+    },
+    {
+      question: 'Can Vextor support both engineering and long-term admin work?',
+      answer:
+        'Yes. Engagements can include architecture, custom development, integration work, release management, reporting improvements, and ongoing operational support after launch.',
+    },
+  ]
+
   usePageMeta(
-    'Services | Vextor Salesforce Consulting and BuilderTek Support',
-    'Salesforce architecture, automation, Apex and LWC development, integrations, managed support, and BuilderTek specialization from Vextor.',
+    'Salesforce Consulting Services, BuilderTek Support & Automation | Vextor',
+    'Salesforce architecture, BuilderTek support, automation, Apex and Lightning development, integrations, and managed support for project-based operations teams.',
     { path: '/services' }
   )
+  useStructuredData('services-faq', {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: serviceFaqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  })
 
   const serviceIcons = [Layers3, Compass, Settings2, Code2, Database, RouteIcon]
 
@@ -912,6 +998,37 @@ function ServicesPage() {
         </div>
       </section>
 
+      <section className="section-wrap border-y border-border bg-card/40">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
+          <Visual
+            src="/images/services-delivery-workshop.jpg"
+            alt="Consulting workshop focused on planning Salesforce delivery"
+            caption="Delivery workshops shaped around process clarity, architecture, and adoption."
+            className="min-h-[340px]"
+            objectPosition="center 44%"
+          />
+
+          <div className="space-y-5">
+            <SectionIntro
+              eyebrow="Delivery Model"
+              title="Architecture, implementation, and support that land cleanly with operations teams"
+              summary="We structure delivery so business stakeholders, admins, and execution teams stay aligned from planning through rollout."
+            />
+            <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Discovery centered on process bottlenecks, not generic feature checklists
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Implementation sequencing that protects reporting trust and user adoption
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Support models that keep architecture stable as operational complexity grows
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       <section className="section-wrap border-y border-border bg-card/60" id="buildertek-specialization">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <div>
@@ -937,7 +1054,7 @@ function ServicesPage() {
           </div>
 
           <Visual
-            src="https://images.unsplash.com/photo-1541976590-713941681591?auto=format&fit=crop&w=1500&q=80"
+            src="/images/services-buildertek-planning.jpg"
             alt="Construction planning table with project drawings and laptop"
             caption="BuilderTek specialization focused on project delivery workflows."
             className="min-h-[340px]"
@@ -945,13 +1062,20 @@ function ServicesPage() {
           />
         </div>
       </section>
+
+      <FaqSection
+        eyebrow="Services FAQ"
+        title="Questions teams usually ask before engaging Vextor"
+        summary="A short set of practical answers for Salesforce consulting, BuilderTek support, and long-term delivery ownership."
+        items={serviceFaqs}
+      />
     </main>
   )
 }
 
 function IndustriesPage() {
   usePageMeta(
-    'Industries | Vextor for Construction, Real Estate and Operations Teams',
+    'Salesforce for Construction, Real Estate & Project Operations | Vextor',
     'Vextor supports construction, real estate, and operations-heavy teams with Salesforce consulting and BuilderTek workflow specialization.',
     { path: '/industries' }
   )
@@ -1024,7 +1148,7 @@ function IndustriesPage() {
           </div>
 
           <Visual
-            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1500&q=80"
+            src="/images/industries-construction-operations.jpg"
             alt="Urban construction project with crane and building structure"
             caption="BuilderTek process support for construction and real-estate operations."
             className="min-h-[320px]"
@@ -1038,7 +1162,7 @@ function IndustriesPage() {
 
 function WorkPage() {
   usePageMeta(
-    'Work | Vextor Salesforce Engagement Patterns',
+    'Salesforce Delivery for Project-Based Operations | Vextor',
     'See how Vextor approaches Salesforce automation, BuilderTek delivery, integrations, and long-term support for project-based businesses.',
     { path: '/work' }
   )
@@ -1094,6 +1218,29 @@ function WorkPage() {
         </div>
       </section>
 
+      <section className="section-wrap border-t border-border">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+          <div className="space-y-5">
+            <SectionIntro
+              eyebrow="Program Delivery"
+              title="Operating models that connect architecture decisions to daily execution"
+              summary="The work is not limited to delivery artifacts. We help teams shape how Salesforce supports approvals, handoffs, visibility, and change management after launch."
+            />
+            <p className="text-sm leading-7 text-muted-foreground">
+              Engagements typically bridge leadership priorities with admin execution, custom engineering, field workflows, and reporting reliability.
+            </p>
+          </div>
+
+          <Visual
+            src="/images/work-operations-review.jpg"
+            alt="Operations leaders reviewing delivery and reporting workflows"
+            caption="Salesforce delivery work connected to operational reviews and team handoffs."
+            className="min-h-[320px]"
+            objectPosition="center 42%"
+          />
+        </div>
+      </section>
+
       <section className="section-wrap border-y border-border bg-card/60">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <div>
@@ -1110,7 +1257,7 @@ function WorkPage() {
           </div>
 
           <Visual
-            src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1500&q=80"
+            src="/images/work-consulting-execution.jpg"
             alt="Operations and planning workspace for consulting execution"
             caption="Execution model built around workflow quality and delivery consistency."
             className="min-h-[300px]"
@@ -1124,7 +1271,7 @@ function WorkPage() {
 
 function AboutPage() {
   usePageMeta(
-    'About Vextor | Salesforce Consulting and BuilderTek Expertise',
+    'About Vextor | Salesforce & BuilderTek Consulting Experts',
     'Learn how Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and BuilderTek expertise.',
     { path: '/about' }
   )
@@ -1310,11 +1457,41 @@ function AboutPage() {
 }
 
 function ContactPage() {
+  const contactFaqs: FaqEntry[] = [
+    {
+      question: 'What should I include before booking a Salesforce consultation?',
+      answer:
+        'The most useful starting point is your current Salesforce setup, the operational problem you want to solve, whether BuilderTek is involved, and any timeline or delivery pressure you are working against.',
+    },
+    {
+      question: 'Do you work with teams outside Ahmedabad?',
+      answer:
+        'Yes. Vextor supports teams remotely and can work with businesses across India and international teams that need Salesforce consulting, BuilderTek support, and long-term operational guidance.',
+    },
+    {
+      question: 'How quickly does Vextor respond to new inquiries?',
+      answer:
+        'New inquiries are reviewed directly so the next conversation can focus on scope, operational context, and the most practical engagement path rather than a generic intake process.',
+    },
+  ]
+
   usePageMeta(
-    'Contact Vextor | Salesforce Consultation',
-    'Contact Vextor for Salesforce consulting, BuilderTek support, integrations, automation planning, and managed platform delivery.',
+    'Book a Salesforce Consultation | Vextor',
+    'Book a Salesforce consultation with Vextor for architecture, BuilderTek support, integrations, automation planning, and managed platform delivery.',
     { path: '/contact' }
   )
+  useStructuredData('contact-faq', {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: contactFaqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  })
 
   return (
     <main>
@@ -1340,7 +1517,7 @@ function ContactPage() {
                   className="space-y-4"
                 >
                   <input type="hidden" name="oid" value="00DdN00000t9uBN" />
-                  <input type="hidden" name="retURL" value="http://www.vextor.co" />
+                  <input type="hidden" name="retURL" value="https://www.vextor.co" />
 
                   <div className="webtolead-grid">
                     <div className="webtolead-field">
@@ -1405,7 +1582,7 @@ function ContactPage() {
                   <Button type="submit" name="submit" size="lg" className="btn-solid w-full justify-center">
                     Submit Inquiry
                   </Button>
-                  <p className="text-xs text-muted-foreground">You will be redirected to vextor.co after successful submission.</p>
+                  <p className="text-xs text-muted-foreground">You will be redirected to the Vextor website after successful submission.</p>
                 </form>
               </CardContent>
             </Card>
@@ -1478,7 +1655,7 @@ function ContactPage() {
             </Card>
 
             <Visual
-              src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1500&q=80"
+              src="/images/contact-planning-session.jpg"
               alt="Business team in a focused planning meeting"
               caption="Consultation-led approach with structured implementation planning."
               className="min-h-[260px]"
@@ -1487,6 +1664,13 @@ function ContactPage() {
           </div>
         </div>
       </section>
+
+      <FaqSection
+        eyebrow="Consultation FAQ"
+        title="What to expect when you reach out"
+        summary="Short answers to common questions before a first Salesforce or BuilderTek consultation."
+        items={contactFaqs}
+      />
     </main>
   )
 }
