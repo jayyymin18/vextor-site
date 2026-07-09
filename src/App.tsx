@@ -234,7 +234,7 @@ function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
   return (
     <Link
       to={to}
-      className={`text-[0.95rem] font-medium tracking-[0.01em] transition-colors ${
+      className={`text-[0.92rem] font-medium tracking-[0.01em] transition-colors ${
         isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
       }`}
       aria-current={isActive ? 'page' : undefined}
@@ -328,8 +328,8 @@ function Header() {
   }, [location.pathname])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/95 shadow-[0_8px_20px_-18px_rgba(15,23,42,0.18)] backdrop-blur">
-      <div className="mx-auto flex h-[5.5rem] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-border bg-white shadow-[0_10px_24px_-22px_rgba(15,23,42,0.26)]">
+      <div className="mx-auto flex h-[4.75rem] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" aria-label="Vextor home" className="inline-flex items-center">
           <img
             src="/images/just%20final%20logo.svg"
@@ -340,7 +340,7 @@ function Header() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {navItems.map((item) => (
             <NavLink key={item.to} to={item.to}>
               {item.label}

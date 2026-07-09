@@ -369,9 +369,9 @@ a {
 
 .brand-logo {
   display: block;
-  width: 12rem;
+  width: 11rem;
   height: auto;
-  max-height: 3.1rem;
+  max-height: 2.7rem;
   margin-left: -1rem;
 }
 
@@ -535,8 +535,8 @@ textarea::placeholder {
 
 @media (max-width: 767px) {
   .brand-logo {
-    width: 8.9rem;
-    max-height: 2.2rem;
+    width: 8.4rem;
+    max-height: 2rem;
     margin-left: -1rem;
   }
 
