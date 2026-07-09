@@ -459,10 +459,10 @@ function Header() {
 
 function Footer() {
   const socialLinks = [
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/vextorsolution', icon: Linkedin },
-    { label: 'Facebook', href: 'https://www.facebook.com/vextor', icon: Facebook },
-    { label: 'Instagram', href: 'https://www.instagram.com/vextor', icon: Instagram },
-    { label: 'Twitter', href: 'https://x.com/vextor', icon: Twitter },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/teamvextor', icon: Linkedin },
+    { label: 'Facebook', href: 'https://www.facebook.com/teamvextor', icon: Facebook },
+    { label: 'Instagram', href: 'https://www.instagram.com/teamvextor', icon: Instagram },
+    { label: 'Twitter', href: 'https://x.com/TeamVextorr', icon: Twitter },
   ]
 
   return (
@@ -573,11 +573,41 @@ function Footer() {
 }
 
 function HomePage() {
+  const homeFaqs: FaqEntry[] = [
+    {
+      question: 'What does Vextor specialize in?',
+      answer:
+        'Vextor specializes in Salesforce consulting for project-based businesses, with dedicated BuilderTek support, workflow automation, integrations, and long-term platform ownership.',
+    },
+    {
+      question: 'Is Vextor a fit for BuilderTek teams?',
+      answer:
+        'Yes. Vextor works with BuilderTek-heavy teams that need implementation cleanup, procurement and approval workflow support, reporting clarity, and better day-to-day usability.',
+    },
+    {
+      question: 'Where is Vextor based?',
+      answer:
+        'Vextor is based in Ahmedabad, Gujarat, and supports teams remotely across India and international project-based operations environments.',
+    },
+  ]
+
   usePageMeta(
-    'Salesforce Consulting for Project-Based Teams | Vextor',
-    'Salesforce consulting, BuilderTek support, automation, and integrations for project-based teams that need cleaner delivery and stronger operational control.',
+    'Vextor | Salesforce Consulting & BuilderTek Specialists',
+    'Ahmedabad-based Salesforce consulting for project-driven teams, with BuilderTek specialization, automation, integrations, and managed support for operational scale.',
     { path: '/' }
   )
+  useStructuredData('home-faq', {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: homeFaqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  })
 
   const trustLogos = [
     { src: '/images/trust/quickbooks.png', alt: 'QuickBooks', className: 'trust-logo-image trust-logo-image--quickbooks' },
@@ -664,6 +694,27 @@ function HomePage() {
     {
       title: 'Support Retainers for Evolving Teams',
       body: 'Stay ahead of admin backlog, release changes, reporting needs, and process refinements without scrambling for outside help.',
+    },
+  ]
+
+  const proofPoints = [
+    'Ahmedabad-based consulting team focused on Salesforce delivery for operationally complex businesses',
+    'Salesforce consulting paired with dedicated BuilderTek specialization for project-driven teams',
+    'Support model built for architecture, implementation, optimization, and ongoing operational ownership',
+  ]
+
+  const caseSnapshots = [
+    {
+      title: 'Inherited Salesforce cleanup',
+      body: 'We step in when automation is brittle, reporting trust is low, and teams need a clearer operating model before scaling further.',
+    },
+    {
+      title: 'BuilderTek delivery recovery',
+      body: 'For BuilderTek teams, we tighten procurement, approvals, job controls, and usability so the platform supports real execution instead of creating friction.',
+    },
+    {
+      title: 'Integration and support ownership',
+      body: 'When accounting, ERP, and Salesforce workflows are disconnected, we redesign the handoffs and stay engaged after launch through managed support.',
     },
   ]
 
@@ -845,6 +896,51 @@ function HomePage() {
         </div>
       </section>
 
+      <section className="section-wrap border-y border-border bg-card/40">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
+          <div className="editorial-split">
+            <div className="space-y-5">
+              <SectionIntro
+                eyebrow="Proof Of Fit"
+                title="Why project-based teams bring Vextor in"
+                summary="The work is not generic CRM administration. Teams engage Vextor when Salesforce becomes a delivery system that needs stronger architecture, cleaner workflows, and operational accountability."
+              />
+              <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+                {proofPoints.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm leading-7 text-muted-foreground">
+                We support organizations from Ahmedabad and beyond that need Salesforce to stay reliable as project delivery, approvals, reporting, and cross-system coordination grow more complex.
+              </p>
+            </div>
+
+            <div className="editorial-reasons">
+              {caseSnapshots.map((item) => (
+                <article key={item.title} className="editorial-reason">
+                  <div className="editorial-reason-title">
+                    <span className="icon-wrap">
+                      <ShieldCheck className="size-4" />
+                    </span>
+                    <h3>{item.title}</h3>
+                  </div>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <FaqSection
+        eyebrow="Homepage FAQ"
+        title="Common questions before teams engage Vextor"
+        summary="Short answers for organizations evaluating Salesforce consulting, BuilderTek support, and long-term platform ownership."
+        items={homeFaqs}
+      />
+
       <section className="section-wrap border-y border-border cta-premium text-deep-foreground">
         <div className="home-shell-narrow px-4 sm:px-6 lg:px-8">
           <div className="cta-band">
@@ -895,7 +991,7 @@ function ServicesPage() {
   ]
 
   usePageMeta(
-    'Salesforce Consulting Services, BuilderTek Support & Automation | Vextor',
+    'Vextor Services | Salesforce Consulting, BuilderTek & Automation',
     'Salesforce architecture, BuilderTek support, automation, Apex and Lightning development, integrations, and managed support for project-based operations teams.',
     { path: '/services' }
   )
@@ -1068,7 +1164,7 @@ function ServicesPage() {
 
 function IndustriesPage() {
   usePageMeta(
-    'Salesforce for Construction, Real Estate & Project Operations | Vextor',
+    'Vextor Industries | Salesforce for Construction & Real Estate',
     'Vextor supports construction, real estate, and operations-heavy teams with Salesforce consulting and BuilderTek workflow specialization.',
     { path: '/industries' }
   )
@@ -1155,7 +1251,7 @@ function IndustriesPage() {
 
 function WorkPage() {
   usePageMeta(
-    'Salesforce Delivery for Project-Based Operations | Vextor',
+    'Vextor Work | Salesforce Delivery for Project-Based Operations',
     'See how Vextor approaches Salesforce automation, BuilderTek delivery, integrations, and long-term support for project-based businesses.',
     { path: '/work' }
   )
@@ -1265,7 +1361,7 @@ function WorkPage() {
 function AboutPage() {
   usePageMeta(
     'About Vextor | Salesforce & BuilderTek Consulting Experts',
-    'Learn how Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and BuilderTek expertise.',
+    'Learn how Ahmedabad-based Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and BuilderTek expertise.',
     { path: '/about' }
   )
 
@@ -1469,8 +1565,8 @@ function ContactPage() {
   ]
 
   usePageMeta(
-    'Book a Salesforce Consultation | Vextor',
-    'Book a Salesforce consultation with Vextor for architecture, BuilderTek support, integrations, automation planning, and managed platform delivery.',
+    'Contact Vextor | Book a Salesforce Consultation',
+    'Book a Salesforce consultation with Vextor in Ahmedabad for architecture, BuilderTek support, integrations, automation planning, and managed platform delivery.',
     { path: '/contact' }
   )
   useStructuredData('contact-faq', {

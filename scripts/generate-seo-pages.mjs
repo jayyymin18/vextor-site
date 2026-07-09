@@ -10,13 +10,30 @@ const siteUrl = 'https://www.vextor.co'
 const routes = [
   {
     path: '/',
-    title: 'Salesforce Consulting for Project-Based Teams | Vextor',
+    title: 'Vextor | Salesforce Consulting & BuilderTek Specialists',
     description:
-      'Salesforce consulting, BuilderTek support, automation, and integrations for project-based teams that need cleaner delivery and stronger operational control.',
+      'Ahmedabad-based Salesforce consulting for project-driven teams, with BuilderTek specialization, automation, integrations, and managed support for operational scale.',
+    faq: [
+      {
+        question: 'What does Vextor specialize in?',
+        answer:
+          'Vextor specializes in Salesforce consulting for project-based businesses, with dedicated BuilderTek support, workflow automation, integrations, and long-term platform ownership.',
+      },
+      {
+        question: 'Is Vextor a fit for BuilderTek teams?',
+        answer:
+          'Yes. Vextor works with BuilderTek-heavy teams that need implementation cleanup, procurement and approval workflow support, reporting clarity, and better day-to-day usability.',
+      },
+      {
+        question: 'Where is Vextor based?',
+        answer:
+          'Vextor is based in Ahmedabad, Gujarat, and supports teams remotely across India and international project-based operations environments.',
+      },
+    ],
   },
   {
     path: '/services',
-    title: 'Salesforce Consulting Services, BuilderTek Support & Automation | Vextor',
+    title: 'Vextor Services | Salesforce Consulting, BuilderTek & Automation',
     description:
       'Salesforce architecture, BuilderTek support, automation, Apex and Lightning development, integrations, and managed support for project-based operations teams.',
     faq: [
@@ -39,13 +56,13 @@ const routes = [
   },
   {
     path: '/industries',
-    title: 'Salesforce for Construction, Real Estate & Project Operations | Vextor',
+    title: 'Vextor Industries | Salesforce for Construction & Real Estate',
     description:
       'Vextor supports construction, real estate, and operations-heavy teams with Salesforce consulting and BuilderTek workflow specialization.',
   },
   {
     path: '/work',
-    title: 'Salesforce Delivery for Project-Based Operations | Vextor',
+    title: 'Vextor Work | Salesforce Delivery for Project-Based Operations',
     description:
       'See how Vextor approaches Salesforce automation, BuilderTek delivery, integrations, and long-term support for project-based businesses.',
   },
@@ -53,13 +70,13 @@ const routes = [
     path: '/about',
     title: 'About Vextor | Salesforce & BuilderTek Consulting Experts',
     description:
-      'Learn how Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and BuilderTek expertise.',
+      'Learn how Ahmedabad-based Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and BuilderTek expertise.',
   },
   {
     path: '/contact',
-    title: 'Book a Salesforce Consultation | Vextor',
+    title: 'Contact Vextor | Book a Salesforce Consultation',
     description:
-      'Book a Salesforce consultation with Vextor for architecture, BuilderTek support, integrations, automation planning, and managed platform delivery.',
+      'Book a Salesforce consultation with Vextor in Ahmedabad for architecture, BuilderTek support, integrations, automation planning, and managed platform delivery.',
     faq: [
       {
         question: 'What should I include before booking a Salesforce consultation?',
