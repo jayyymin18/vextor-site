@@ -355,7 +355,11 @@ function Header() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-xl border border-border p-2 text-foreground transition hover:bg-card md:hidden"
+          className={`inline-flex items-center justify-center rounded-2xl border p-2.5 shadow-[0_16px_30px_-22px_rgba(37,99,235,0.42)] transition md:hidden ${
+            open
+              ? 'border-[hsl(var(--accent))/0.26] bg-[hsl(var(--accent))] text-white'
+              : 'border-[hsl(var(--accent))/0.14] bg-[hsl(var(--accent))/0.07] text-[hsl(var(--accent-strong))] hover:bg-[hsl(var(--accent))/0.12]'
+          }`}
           onClick={() => setOpen((prev) => !prev)}
           aria-expanded={open}
           aria-controls="mobile-nav"
@@ -366,19 +370,19 @@ function Header() {
       </div>
 
       {open ? (
-        <div id="mobile-nav" className="border-t border-border bg-background md:hidden">
-          <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
+        <div id="mobile-nav" className="border-t border-border bg-white/95 shadow-[0_18px_40px_-34px_rgba(15,23,42,0.34)] backdrop-blur md:hidden">
+          <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 sm:px-6">
             {navItems.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
-                className="rounded-xl px-3 py-2 text-sm font-medium text-foreground transition hover:bg-card"
+                className="rounded-2xl border border-transparent bg-white px-4 py-3 text-[0.95rem] font-medium text-foreground transition hover:border-border hover:bg-[hsl(var(--accent))/0.04]"
               >
                 {item.label}
               </Link>
             ))}
             <Link to="/contact" className="mt-2">
-              <Button className="btn-solid w-full justify-center">Discuss Your Salesforce Roadmap</Button>
+              <Button className="btn-solid w-full justify-center">Book a Consultation</Button>
             </Link>
           </div>
         </div>
