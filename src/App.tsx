@@ -161,6 +161,7 @@ type PageMetaOptions = {
   ogTitle?: string
   ogDescription?: string
   ogImage?: string
+  keywords?: string
   noindex?: boolean
 }
 
@@ -170,6 +171,7 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
     ogTitle = title,
     ogDescription = description,
     ogImage = '/images/about-platform-expertise.jpg',
+    keywords = 'Vextor, Salesforce consulting, BuilderTek support, Salesforce automation, Salesforce integrations, Apex development, Lightning Web Components',
     noindex = false,
   } = options
 
@@ -211,10 +213,19 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
 
     document.title = title
     upsertMetaByName('description', description)
-    upsertMetaByName('robots', noindex ? 'noindex,nofollow' : 'index,follow')
+    upsertMetaByName(
+      'robots',
+      noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
+    )
+    upsertMetaByName(
+      'googlebot',
+      noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
+    )
+    upsertMetaByName('keywords', keywords)
     upsertMetaByProperty('og:title', ogTitle)
     upsertMetaByProperty('og:description', ogDescription)
     upsertMetaByProperty('og:type', 'website')
+    upsertMetaByProperty('og:locale', 'en_IN')
     upsertMetaByProperty('og:url', canonicalUrl)
     upsertMetaByProperty('og:image', ogImageUrl)
     upsertMetaByProperty('og:image:alt', 'Vextor Salesforce consulting')
@@ -513,20 +524,20 @@ function Footer() {
 
 function HomePage() {
   usePageMeta(
-    'Vextor | Salesforce Consulting and BuilderTek Specialization',
-    'Vextor provides Salesforce consulting, architecture, automation, custom development, integrations, and managed support. We also offer dedicated BuilderTek workflow support.',
+    'Vextor | Salesforce Consulting, BuilderTek Support and Automation',
+    'Vextor helps project-based teams design, automate, and scale Salesforce with BuilderTek specialization, integrations, custom development, and managed support.',
     { path: '/' }
   )
 
   const trustLogos = [
     { src: '/images/trust/quickbooks.png', alt: 'QuickBooks' },
     { src: '/images/trust/buildertek.png', alt: 'BuilderTek' },
-    { src: '/images/trust/oracle.png', alt: 'Oracle' },
-    { src: '/images/trust/microsoft.png', alt: 'Microsoft' },
-    { src: '/images/trust/dropbox.png', alt: 'Dropbox' },
+    { src: '/images/trust/oracle.svg', alt: 'Oracle' },
+    { src: '/images/trust/microsoft.svg', alt: 'Microsoft' },
+    { src: '/images/trust/dropbox.svg', alt: 'Dropbox' },
     { src: '/images/trust/sage.png', alt: 'Sage' },
-    { src: '/images/trust/aws.png', alt: 'AWS' },
-    { src: '/images/trust/salesforce.png', alt: 'Salesforce' },
+    { src: '/images/trust/aws.svg', alt: 'AWS' },
+    { src: '/images/trust/salesforce.svg', alt: 'Salesforce' },
   ]
 
   const serviceOverview = [
@@ -816,8 +827,8 @@ function HomePage() {
 
 function ServicesPage() {
   usePageMeta(
-    'Services | Vextor Salesforce Consulting',
-    'Vextor offers Salesforce consulting, architecture, automation, custom development, integrations, and managed support, with BuilderTek specialization available separately.',
+    'Services | Vextor Salesforce Consulting and BuilderTek Support',
+    'Salesforce architecture, automation, Apex and LWC development, integrations, managed support, and BuilderTek specialization from Vextor.',
     { path: '/services' }
   )
 
@@ -939,8 +950,8 @@ function ServicesPage() {
 
 function IndustriesPage() {
   usePageMeta(
-    'Industries | Vextor',
-    'Vextor supports construction, real-estate, and operations-heavy businesses with Salesforce consulting and BuilderTek specialization.',
+    'Industries | Vextor for Construction, Real Estate and Operations Teams',
+    'Vextor supports construction, real estate, and operations-heavy teams with Salesforce consulting and BuilderTek workflow specialization.',
     { path: '/industries' }
   )
 
@@ -1026,8 +1037,8 @@ function IndustriesPage() {
 
 function WorkPage() {
   usePageMeta(
-    'Work | Vextor',
-    'Review representative Vextor engagement patterns for Salesforce consulting and BuilderTek specialization.',
+    'Work | Vextor Salesforce Engagement Patterns',
+    'See how Vextor approaches Salesforce automation, BuilderTek delivery, integrations, and long-term support for project-based businesses.',
     { path: '/work' }
   )
 
@@ -1113,7 +1124,7 @@ function WorkPage() {
 function AboutPage() {
   usePageMeta(
     'About Vextor | Salesforce Consulting and BuilderTek Expertise',
-    'Vextor designs scalable Salesforce systems with strong architecture, automation, custom development, integrations, and BuilderTek specialization.',
+    'Learn how Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and BuilderTek expertise.',
     { path: '/about' }
   )
 
@@ -1300,7 +1311,7 @@ function AboutPage() {
 function ContactPage() {
   usePageMeta(
     'Contact Vextor | Salesforce Consultation',
-    'Contact Vextor to discuss Salesforce consulting, architecture, custom development, and BuilderTek specialization support.',
+    'Contact Vextor for Salesforce consulting, BuilderTek support, integrations, automation planning, and managed platform delivery.',
     { path: '/contact' }
   )
 

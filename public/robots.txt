@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://vextor.co/sitemap.xml
+Host: vextor.co
