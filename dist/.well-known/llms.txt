@@ -1,0 +1,6 @@
+# Vextor
+
+> Ahmedabad-based Salesforce consulting and BuilderTek specialization for project-based businesses.
+
+Primary profile: https://www.vextor.co/llms.txt
+Full profile: https://www.vextor.co/llms-full.txt

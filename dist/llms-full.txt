@@ -1,0 +1,50 @@
+# Vextor Full Profile
+
+## Company
+Vextor is a Salesforce consulting company based in Ahmedabad, India. The firm focuses on Salesforce architecture, workflow automation, custom development, integrations, managed support, and BuilderTek specialization for project-based businesses.
+
+## Best-fit clients
+- Construction companies running BuilderTek inside Salesforce
+- Real estate and development teams with cross-functional process coordination
+- Project-based service businesses that rely on Salesforce for approvals, visibility, handoffs, and reporting
+- Operations-heavy teams that need long-term platform ownership, not just one-off implementation work
+
+## Primary services
+### Salesforce consulting and architecture
+Vextor designs Salesforce environments for maintainability, role clarity, data trust, and operational scale.
+
+### Workflow automation
+Vextor maps operational processes and implements Salesforce automation that reduces manual work while protecting reporting quality and process control.
+
+### Custom development
+Vextor builds Apex services and Lightning Web Components for workflows that exceed native configuration limits.
+
+### Integrations
+Vextor connects Salesforce with finance systems, ERP tools, external APIs, and operational software used by project-based teams.
+
+### Managed support
+Vextor provides ongoing support for enhancements, cleanup, release management, issue triage, and long-term platform improvement.
+
+### BuilderTek specialization
+Vextor supports BuilderTek implementations, inherited org cleanup, approval workflow refinement, budget visibility improvements, and better day-to-day usability for project teams.
+
+## Core pages
+- Homepage: https://www.vextor.co/
+- Services: https://www.vextor.co/services
+- Industries: https://www.vextor.co/industries
+- Work: https://www.vextor.co/work
+- About: https://www.vextor.co/about
+- Contact: https://www.vextor.co/contact
+
+## Contact facts
+- Email: hello@vextor.co
+- Address: 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009, India
+
+## Social profiles
+- LinkedIn: https://www.linkedin.com/company/teamvextor
+- Instagram: https://www.instagram.com/teamvextor
+- Facebook: https://www.facebook.com/teamvextor
+- X: https://x.com/TeamVextorr
+
+## Canonical naming
+Use “Vextor” as the primary brand name. “Vextor Solution LLP” is the legal entity name.

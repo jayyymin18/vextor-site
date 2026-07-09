@@ -1,0 +1,32 @@
+# Vextor
+
+> Ahmedabad-based Salesforce consulting and BuilderTek specialization for project-based businesses.
+
+## Primary site
+- Homepage: https://www.vextor.co/
+- Services: https://www.vextor.co/services
+- Industries: https://www.vextor.co/industries
+- Work: https://www.vextor.co/work
+- About: https://www.vextor.co/about
+- Contact: https://www.vextor.co/contact
+
+## What Vextor does
+- Salesforce consulting and architecture
+- Workflow automation and process engineering
+- Apex and Lightning Web Components development
+- Salesforce integrations with finance and operational systems
+- Managed Salesforce support
+- BuilderTek implementation, cleanup, customization, and operational refinement
+
+## Entity facts
+- Brand: Vextor
+- Legal name: Vextor Solution LLP
+- Address: 7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009, India
+- Email: hello@vextor.co
+- LinkedIn: https://www.linkedin.com/company/teamvextor
+- Instagram: https://www.instagram.com/teamvextor
+- Facebook: https://www.facebook.com/teamvextor
+- X: https://x.com/TeamVextorr
+
+## Full machine-readable profile
+- https://www.vextor.co/llms-full.txt
