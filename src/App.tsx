@@ -520,24 +520,6 @@ function HomePage() {
     { step: '03', title: 'BuilderTek workflow support' },
   ]
 
-  const heroTracks = [
-    {
-      icon: Database,
-      label: 'Architecture',
-      copy: 'Data model, reporting trust, permission design, and release structure.',
-    },
-    {
-      icon: RouteIcon,
-      label: 'Delivery',
-      copy: 'Apex, LWC, integrations, and workflow engineering for process-heavy teams.',
-    },
-    {
-      icon: HardHat,
-      label: 'BuilderTek',
-      copy: 'Procurement, approvals, budget control, and project operations support.',
-    },
-  ]
-
   const coreSalesforceCards = [
     {
       icon: Layers3,
@@ -581,8 +563,7 @@ function HomePage() {
       <section className="hero-wrap">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
           <div className="hero-layout">
-            <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-clean">
-              <Badge className="hero-badge">Salesforce systems for operations-heavy teams</Badge>
+            <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-clean mx-auto text-center">
               <h1 className="hero-title">
                 Salesforce systems built for <span className="hero-highlight">operational scale.</span>
               </h1>
@@ -590,7 +571,7 @@ function HomePage() {
                 Vextor helps businesses design Salesforce architecture, automation, custom engineering, and
                 BuilderTek workflows that remain clear as operating complexity increases.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <Link to="/contact">
                   <Button size="lg" className="btn-solid">
                     Book a Consultation <CalendarCheck2 className="ml-2 size-4" />
@@ -609,32 +590,6 @@ function HomePage() {
                     <span className="hero-metric-title">{title}</span>
                   </div>
                 ))}
-              </div>
-            </motion.div>
-
-            <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-brief">
-              <p className="hero-brief-eyebrow">Operating Blueprint</p>
-              <h2 className="hero-brief-title">A cleaner delivery model for Salesforce execution.</h2>
-              <p className="hero-brief-summary">
-                One consulting partner for architecture, engineering, workflow customization, and long-term support.
-              </p>
-
-              <div className="hero-brief-list">
-                {heroTracks.map(({ icon: Icon, label, copy }) => (
-                  <div key={label} className="hero-brief-row">
-                    <span className="icon-wrap">
-                      <Icon className="size-4" />
-                    </span>
-                    <div>
-                      <p className="hero-brief-label">{label}</p>
-                      <p className="hero-brief-copy">{copy}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="hero-brief-footer">
-                Designed for teams that need stronger process control, cleaner handoffs, and long-term maintainability.
               </div>
             </motion.div>
           </div>
