@@ -587,14 +587,14 @@ function HomePage() {
   )
 
   const trustLogos = [
-    { src: '/images/trust/quickbooks.png', alt: 'QuickBooks' },
-    { src: '/images/trust/buildertek.png', alt: 'BuilderTek' },
-    { src: '/images/trust/oracle.svg', alt: 'Oracle' },
-    { src: '/images/trust/microsoft.svg', alt: 'Microsoft' },
-    { src: '/images/trust/dropbox.svg', alt: 'Dropbox' },
-    { src: '/images/trust/sage.png', alt: 'Sage' },
-    { src: '/images/trust/aws.svg', alt: 'AWS' },
-    { src: '/images/trust/salesforce.svg', alt: 'Salesforce' },
+    { src: '/images/trust/quickbooks.png', alt: 'QuickBooks', className: 'trust-logo-image trust-logo-image--quickbooks' },
+    { src: '/images/trust/buildertek.png', alt: 'BuilderTek', className: 'trust-logo-image trust-logo-image--buildertek' },
+    { src: '/images/trust/oracle.svg', alt: 'Oracle', className: 'trust-logo-image trust-logo-image--oracle' },
+    { src: '/images/trust/microsoft.svg', alt: 'Microsoft', className: 'trust-logo-image trust-logo-image--microsoft' },
+    { src: '/images/trust/dropbox.svg', alt: 'Dropbox', className: 'trust-logo-image trust-logo-image--dropbox' },
+    { src: '/images/trust/sage.png', alt: 'Sage', className: 'trust-logo-image trust-logo-image--sage' },
+    { src: '/images/trust/aws.svg', alt: 'AWS', className: 'trust-logo-image trust-logo-image--aws' },
+    { src: '/images/trust/salesforce.svg', alt: 'Salesforce', className: 'trust-logo-image trust-logo-image--salesforce' },
   ]
 
   const serviceOverview = [
@@ -717,9 +717,9 @@ function HomePage() {
           </div>
           <div className="trust-strip-marquee" aria-label="Platform trust strip">
             <div className="trust-strip-track">
-              {[...trustLogos, ...trustLogos].map(({ src, alt }, index) => (
+              {[...trustLogos, ...trustLogos].map(({ src, alt, className }, index) => (
                 <div key={`${alt}-${index}`} className="trust-logo-card">
-                  <img src={src} alt={alt} className="trust-logo-image" loading="lazy" />
+                  <img src={src} alt={alt} className={className} loading="lazy" />
                 </div>
               ))}
             </div>
