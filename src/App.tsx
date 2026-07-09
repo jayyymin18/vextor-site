@@ -234,7 +234,7 @@ function NavLink({ to, children }: { to: string; children: React.ReactNode }) {
   return (
     <Link
       to={to}
-      className={`text-sm font-medium tracking-[0.01em] transition-colors ${
+      className={`text-[0.95rem] font-medium tracking-[0.01em] transition-colors ${
         isActive ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
       }`}
       aria-current={isActive ? 'page' : undefined}
@@ -328,8 +328,8 @@ function Header() {
   }, [location.pathname])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background shadow-[0_8px_20px_-18px_rgba(15,23,42,0.45)]">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/95 shadow-[0_8px_20px_-18px_rgba(15,23,42,0.18)] backdrop-blur">
+      <div className="mx-auto flex h-[5.5rem] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" aria-label="Vextor home" className="inline-flex items-center">
           <img
             src="/images/just%20final%20logo.svg"
@@ -340,7 +340,7 @@ function Header() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
             <NavLink key={item.to} to={item.to}>
               {item.label}
@@ -514,6 +514,30 @@ function HomePage() {
     { path: '/' }
   )
 
+  const heroMetrics = [
+    { step: '01', title: 'Architecture-first delivery' },
+    { step: '02', title: 'Automation aligned to operations' },
+    { step: '03', title: 'BuilderTek workflow support' },
+  ]
+
+  const heroTracks = [
+    {
+      icon: Database,
+      label: 'Architecture',
+      copy: 'Data model, reporting trust, permission design, and release structure.',
+    },
+    {
+      icon: RouteIcon,
+      label: 'Delivery',
+      copy: 'Apex, LWC, integrations, and workflow engineering for process-heavy teams.',
+    },
+    {
+      icon: HardHat,
+      label: 'BuilderTek',
+      copy: 'Procurement, approvals, budget control, and project operations support.',
+    },
+  ]
+
   const coreSalesforceCards = [
     {
       icon: Layers3,
@@ -555,50 +579,65 @@ function HomePage() {
   return (
     <main>
       <section className="hero-wrap">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
-          <motion.div initial="hidden" animate="show" variants={revealUp} className="space-y-7">
-            <Badge className="badge-premium">Salesforce Consulting Partner for Operations Teams</Badge>
-            <h1 className="hero-title">Salesforce consulting built for businesses that run on process quality.</h1>
-            <p className="hero-copy">
-              Vextor helps teams improve Salesforce architecture, automation, custom development, integrations,
-              and managed support. For BuilderTek customers, we offer dedicated workflow customization and
-              system support as a specialized capability.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link to="/contact">
-                <Button size="lg" className="btn-solid">
-                  Discuss Your Salesforce Roadmap <CalendarCheck2 className="ml-2 size-4" />
-                </Button>
-              </Link>
-              <Link to="/services#buildertek-specialization">
-                <Button size="lg" variant="outline" className="btn-outline-dark">
-                  Explore BuilderTek Support <ChevronRight className="ml-2 size-4" />
-                </Button>
-              </Link>
-            </div>
-            <ul className="grid gap-2 text-sm text-deep-muted sm:grid-cols-2">
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent-soft" /> Salesforce architecture and automation
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent-soft" /> Apex and LWC development
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent-soft" /> Integration engineering and support
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 text-accent-soft" /> BuilderTek customization specialization
-              </li>
-            </ul>
-          </motion.div>
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+          <div className="hero-layout">
+            <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-clean">
+              <Badge className="hero-badge">Salesforce systems for operations-heavy teams</Badge>
+              <h1 className="hero-title">
+                Salesforce systems built for <span className="hero-highlight">operational scale.</span>
+              </h1>
+              <p className="hero-copy">
+                Vextor helps businesses design Salesforce architecture, automation, custom engineering, and
+                BuilderTek workflows that remain clear as operating complexity increases.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link to="/contact">
+                  <Button size="lg" className="btn-solid">
+                    Book a Consultation <CalendarCheck2 className="ml-2 size-4" />
+                  </Button>
+                </Link>
+                <Link to="/services">
+                  <Button size="lg" variant="outline" className="btn-outline-dark">
+                    Review Services <ChevronRight className="ml-2 size-4" />
+                  </Button>
+                </Link>
+              </div>
+              <div className="hero-metrics">
+                {heroMetrics.map(({ step, title }) => (
+                  <div key={step} className="hero-metric">
+                    <span className="hero-metric-step">{step}</span>
+                    <span className="hero-metric-title">{title}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
 
-          <Visual
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1500&q=80"
-            alt="Modern architectural office district representing enterprise operations"
-            caption="Enterprise architecture, process reliability, and long-term operational planning."
-            className="min-h-[430px]"
-            objectPosition="center 48%"
-          />
+            <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-brief">
+              <p className="hero-brief-eyebrow">Operating Blueprint</p>
+              <h2 className="hero-brief-title">A cleaner delivery model for Salesforce execution.</h2>
+              <p className="hero-brief-summary">
+                One consulting partner for architecture, engineering, workflow customization, and long-term support.
+              </p>
+
+              <div className="hero-brief-list">
+                {heroTracks.map(({ icon: Icon, label, copy }) => (
+                  <div key={label} className="hero-brief-row">
+                    <span className="icon-wrap">
+                      <Icon className="size-4" />
+                    </span>
+                    <div>
+                      <p className="hero-brief-label">{label}</p>
+                      <p className="hero-brief-copy">{copy}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="hero-brief-footer">
+                Designed for teams that need stronger process control, cleaner handoffs, and long-term maintainability.
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
