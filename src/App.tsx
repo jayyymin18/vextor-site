@@ -852,7 +852,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-deep text-deep-foreground">
+      <section className="section-wrap border-y border-border cta-premium text-deep-foreground">
         <div className="home-shell-narrow px-4 sm:px-6 lg:px-8">
           <div className="cta-band">
             <p className="eyebrow">Consultation</p>
