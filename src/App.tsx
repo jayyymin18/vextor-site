@@ -472,8 +472,9 @@ function Footer() {
                   +91 90160 70659
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <MapPin className="size-4 text-accent" /> Ahmedabad, India
+              <li className="flex items-start gap-2">
+                <MapPin className="mt-1 size-4 text-accent" />
+                <span>7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</span>
               </li>
             </ul>
             <div className="mt-6">
@@ -1469,9 +1470,10 @@ function ContactPage() {
                     +91 90160 70659
                   </a>
                 </p>
-                <p className="flex items-center gap-2">
-                  <MapPin className="size-4 text-accent" /> Ahmedabad, India
-                </p>
+                  <p className="flex items-start gap-2">
+                    <MapPin className="mt-1 size-4 text-accent" />
+                    <span>7th floor, The Link, Vijay Cross Rd, Navrangpura, Ahmedabad, Gujarat 380009</span>
+                  </p>
               </CardContent>
             </Card>
 
