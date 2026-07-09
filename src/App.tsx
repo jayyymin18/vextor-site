@@ -524,22 +524,22 @@ function HomePage() {
     {
       icon: Layers3,
       title: 'Salesforce Architecture & Implementation',
-      text: 'End-to-end Salesforce design built around how project-based businesses actually operate.',
+      text: 'End-to-end Salesforce design built around how project-based businesses actually run work.',
     },
     {
       icon: HardHat,
       title: 'BuilderTek Specialization',
-      text: 'Dedicated BuilderTek implementation, cleanup, migration, and support for teams running on jobs, not just pipelines.',
+      text: 'Dedicated BuilderTek implementation, cleanup, migration, and support for project-driven teams.',
     },
     {
       icon: RouteIcon,
       title: 'Integrations & Automation',
-      text: 'Connect Salesforce to estimating tools, ERP, accounting platforms, and field systems without manual re-entry.',
+      text: 'Connect Salesforce to estimating, ERP, accounting, and field systems without manual re-entry.',
     },
     {
       icon: ShieldCheck,
       title: 'Managed Support',
-      text: 'Ongoing Salesforce administration, optimization, and expert support without the overhead of a full-time hire.',
+      text: 'Ongoing Salesforce administration and optimization without the overhead of a full-time hire.',
     },
   ]
 
@@ -547,17 +547,17 @@ function HomePage() {
     {
       icon: Layers3,
       title: 'Salesforce that fits your operations',
-      text: 'We architect Salesforce around projects, bids, clients, and billing handoffs instead of forcing your team into a generic CRM pattern.',
+      text: 'We design Salesforce around projects, bids, clients, and billing handoffs instead of generic CRM patterns.',
     },
     {
       icon: HardHat,
       title: 'BuilderTek, done right',
-      text: 'From new implementations to untangling inherited complexity, Vextor delivers BuilderTek environments your office and field teams will actually use.',
+      text: 'From new implementations to inherited complexity, Vextor delivers BuilderTek environments teams will actually use.',
     },
     {
       icon: RouteIcon,
       title: 'Support that stays engaged',
-      text: 'We do not disappear after go-live. Our managed support model keeps your Salesforce org healthy as process, teams, and reporting needs evolve.',
+      text: 'Our managed support model keeps your Salesforce org healthy as process, teams, and reporting needs evolve.',
     },
   ]
 
@@ -600,7 +600,7 @@ function HomePage() {
   return (
     <main>
       <section className="hero-wrap">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+        <div className="home-shell px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
           <div className="hero-layout">
             <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-clean mx-auto text-center">
               <p className="eyebrow text-accent">Project-Based Salesforce Consulting</p>
@@ -627,11 +627,11 @@ function HomePage() {
                 <p className="text-sm font-medium text-muted-foreground">
                   Trusted by operations leaders and project teams across industries
                 </p>
-                <div className="mt-4 flex flex-wrap justify-center gap-2.5">
+                <div className="trust-pills mt-4">
                   {trustSignals.map((item) => (
                     <span
                       key={item}
-                      className="rounded-full border border-border bg-background/85 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.11em] text-foreground/80"
+                      className="trust-pill rounded-full border border-border bg-background/85 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.11em] text-foreground/80"
                     >
                       {item}
                     </span>
@@ -644,13 +644,13 @@ function HomePage() {
       </section>
 
       <section className="section-wrap">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="Services Overview"
             title="Salesforce and BuilderTek support built around project-based operations"
             summary="From first implementation through long-term support, our work is structured around how project businesses estimate, execute, invoice, and scale."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="home-grid-4 mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {serviceOverview.map(({ icon: Icon, title, text }) => (
               <Card key={title} className="surface-card">
                 <CardHeader>
@@ -671,13 +671,13 @@ function HomePage() {
       </section>
 
       <section className="section-wrap border-y border-border bg-card/60">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="Why Vextor"
             title="A consulting model designed for the realities of project-based work"
             summary="We combine platform architecture, BuilderTek expertise, and long-term support so the system keeps working after launch."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="home-grid-3 mt-10 grid gap-5 md:grid-cols-3">
             {valueProps.map(({ icon: Icon, title, text }) => (
               <Card key={title} className="surface-card">
                 <CardHeader>
@@ -698,7 +698,7 @@ function HomePage() {
       </section>
 
       <section className="section-wrap" id="buildertek-home">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+        <div className="home-shell home-split grid gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <div className="space-y-5">
             <SectionIntro
               eyebrow="BuilderTek Specialization"
@@ -707,13 +707,13 @@ function HomePage() {
             />
             <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> New BuilderTek implementations designed around estimating, project management, and financial workflows
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> New BuilderTek implementations around estimating, project management, and financial workflows
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Cleanup, migration, and reconfiguration for inherited or underperforming BuilderTek environments
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Cleanup, migration, and reconfiguration for inherited BuilderTek environments
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Custom objects, automation, and extensions for workflows that are not covered out of the box
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Custom objects, automation, and extensions for workflows not covered out of the box
               </li>
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="mt-1 size-4 text-accent" /> Ongoing BuilderTek support, release management, and optimization for project-driven teams
@@ -735,13 +735,13 @@ function HomePage() {
       </section>
 
       <section className="section-wrap border-y border-border bg-card/60">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="How We Work"
             title="A consulting process built for discovery, delivery, and long-term scale"
             summary="We work in a way that matches project-based operations: understand the workflow, build the right system, then stay engaged as the business grows."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="home-grid-3 mt-10 grid gap-5 md:grid-cols-3">
             {deliverySteps.map(({ step, icon: Icon, title, text }) => (
               <Card key={title} className="surface-card">
                 <CardHeader>
@@ -760,13 +760,13 @@ function HomePage() {
       </section>
 
       <section className="section-wrap">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="Common Engagements"
             title="Where Vextor is typically brought in"
             summary="Representative examples of the operating problems, platform issues, and growth stages where teams usually engage us."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="home-grid-3 mt-10 grid gap-5 md:grid-cols-3">
             {commonEngagements.map((item) => (
               <Card key={item.title} className="surface-card">
                 <CardHeader>
@@ -782,7 +782,7 @@ function HomePage() {
       </section>
 
       <section className="section-wrap border-y border-border bg-deep text-deep-foreground">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div className="home-shell-narrow px-4 sm:px-6 lg:px-8">
           <Card className="surface-card deep-card p-8 sm:p-10">
             <p className="eyebrow">Consultation</p>
             <h2 className="section-title max-w-2xl text-deep-foreground">

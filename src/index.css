@@ -150,8 +150,28 @@ a {
   margin: 0 auto;
 }
 
+.home-shell {
+  width: min(100%, 86rem);
+  margin: 0 auto;
+}
+
+.home-shell-narrow {
+  width: min(100%, 72rem);
+  margin: 0 auto;
+}
+
 .hero-highlight {
   color: hsl(var(--accent));
+}
+
+.trust-pills {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.trust-pill {
+  text-align: center;
 }
 
 .hero-metrics {
@@ -459,6 +479,11 @@ textarea::placeholder {
 }
 
 @media (max-width: 767px) {
+  .section-wrap {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
   .brand-logo {
     width: 8.4rem;
     max-height: 2rem;
@@ -482,10 +507,53 @@ textarea::placeholder {
 
   .hero-title {
     max-width: 12ch;
+    font-size: clamp(2.7rem, 14vw, 4.25rem);
+    line-height: 0.98;
+  }
+
+  .hero-copy {
+    max-width: 30ch;
+    font-size: 0.98rem;
+    line-height: 1.72;
+  }
+
+  .hero-metrics {
+    gap: 0.7rem;
+  }
+
+  .hero-metric {
+    justify-content: flex-start;
+    text-align: left;
+    gap: 0.7rem;
+    padding-top: 0.7rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.7rem, 8vw, 2.35rem);
+  }
+
+  .section-summary {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .surface-card {
+    border-radius: 0.95rem;
+  }
+
+  .photo-frame {
+    border-radius: 1rem;
   }
 }
 
 @media (min-width: 640px) {
+  .trust-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+  }
+
   .hero-metrics {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.15rem;
@@ -505,5 +573,35 @@ textarea::placeholder {
   .brand-logo,
   .footer-brand-logo {
     margin-left: -2.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .home-shell {
+    width: min(100%, 92rem);
+  }
+
+  .home-shell-narrow {
+    width: min(100%, 76rem);
+  }
+
+  .hero-clean {
+    max-width: 68rem;
+  }
+
+  .hero-title {
+    max-width: 10ch;
+    font-size: clamp(4.2rem, 5.2vw, 6.5rem);
+  }
+
+  .hero-copy {
+    max-width: 58ch;
+    font-size: 1.08rem;
+  }
+
+  .home-split {
+    grid-template-columns: minmax(0, 1fr) minmax(34rem, 0.92fr);
+    gap: 4rem;
+    align-items: center;
   }
 }
