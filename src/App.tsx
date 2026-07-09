@@ -533,22 +533,22 @@ function HomePage() {
     {
       icon: Layers3,
       title: 'Salesforce Architecture & Implementation',
-      text: 'End-to-end Salesforce design built around how project-based businesses actually run work.',
+      text: 'Architecture, data design, and implementation planning built around project delivery workflows.',
     },
     {
       icon: HardHat,
       title: 'BuilderTek Specialization',
-      text: 'Dedicated BuilderTek implementation, cleanup, migration, and support for project-driven teams.',
+      text: 'Implementation, cleanup, migration, and optimization for BuilderTek teams running active jobs.',
     },
     {
       icon: RouteIcon,
       title: 'Integrations & Automation',
-      text: 'Connect Salesforce to estimating, ERP, accounting, and field systems without manual re-entry.',
+      text: 'Integration and workflow engineering across estimating, accounting, ERP, and field systems.',
     },
     {
       icon: ShieldCheck,
       title: 'Managed Support',
-      text: 'Ongoing Salesforce administration and optimization without the overhead of a full-time hire.',
+      text: 'Long-term admin, release, optimization, and operational support without adding full-time overhead.',
     },
   ]
 
@@ -608,10 +608,11 @@ function HomePage() {
 
   return (
     <main>
-      <section className="hero-wrap">
-        <div className="home-shell px-4 pb-10 pt-12 sm:px-6 sm:pb-12 sm:pt-14 lg:px-8 lg:pb-14 lg:pt-16">
+      <section className="hero-wrap hero-premium">
+        <div className="home-shell px-4 pb-14 pt-14 sm:px-6 sm:pb-16 sm:pt-16 lg:px-8 lg:pb-20 lg:pt-20">
           <div className="hero-layout">
-            <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-clean mx-auto text-center">
+            <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-clean hero-editorial mx-auto text-center">
+              <p className="hero-kicker">Project-based Salesforce consulting</p>
               <h1 className="hero-title">
                 Salesforce built for the way <span className="hero-highlight">your projects run.</span>
               </h1>
@@ -631,16 +632,20 @@ function HomePage() {
                   </Button>
                 </Link>
               </div>
+              <div className="hero-rail" aria-label="Core delivery themes">
+                <span>Architecture-first delivery</span>
+                <span>BuilderTek implementation depth</span>
+                <span>Automation aligned to operations</span>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
       <section className="trust-strip-wrap border-b border-border">
-        <div className="home-shell px-4 py-4 sm:px-6 lg:px-8">
+        <div className="home-shell px-4 py-5 sm:px-6 lg:px-8">
           <div className="trust-strip-head">
-            <p className="eyebrow">Trusted Ecosystem</p>
-            <p className="trust-strip-copy">Platforms frequently connected, customized, and supported in project-based environments.</p>
+            <p className="trust-strip-copy">Connected across the systems project-based teams already rely on.</p>
           </div>
           <div className="trust-strip-marquee" aria-label="Platform trust strip">
             <div className="trust-strip-track">
@@ -661,49 +666,43 @@ function HomePage() {
             title="Salesforce and BuilderTek support built around project-based operations"
             summary="From first implementation through long-term support, our work is structured around how project businesses estimate, execute, invoice, and scale."
           />
-          <div className="home-grid-4 mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="editorial-pillars mt-12">
             {serviceOverview.map(({ icon: Icon, title, text }) => (
-              <Card key={title} className="surface-card">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-base">
-                    <span className="icon-wrap">
-                      <Icon className="size-4" />
-                    </span>
-                    {title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-7 text-muted-foreground">{text}</p>
-                </CardContent>
-              </Card>
+              <article key={title} className="editorial-pillar">
+                <div className="editorial-pillar-head">
+                  <span className="icon-wrap">
+                    <Icon className="size-4" />
+                  </span>
+                  <h3>{title}</h3>
+                </div>
+                <p>{text}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/60">
+      <section className="section-wrap border-y border-border bg-card/40">
         <div className="home-shell px-4 sm:px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Why Vextor"
-            title="A consulting model designed for the realities of project-based work"
-            summary="We combine platform architecture, BuilderTek expertise, and long-term support so the system keeps working after launch."
-          />
-          <div className="home-grid-3 mt-10 grid gap-5 md:grid-cols-3">
-            {valueProps.map(({ icon: Icon, title, text }) => (
-              <Card key={title} className="surface-card">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-3 text-lg">
+          <div className="editorial-split">
+            <SectionIntro
+              eyebrow="Why Vextor"
+              title="A consulting model designed for the realities of project-based work"
+              summary="We combine platform architecture, BuilderTek expertise, and long-term support so the system keeps working after launch."
+            />
+            <div className="editorial-reasons">
+              {valueProps.map(({ icon: Icon, title, text }) => (
+                <article key={title} className="editorial-reason">
+                  <div className="editorial-reason-title">
                     <span className="icon-wrap">
                       <Icon className="size-4" />
                     </span>
-                    {title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-7 text-muted-foreground">{text}</p>
-                </CardContent>
-              </Card>
-            ))}
+                    <h3>{title}</h3>
+                  </div>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -736,35 +735,32 @@ function HomePage() {
           </div>
 
           <Visual
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1500&q=80"
+            src="/images/about-buildertek-construction.jpg"
             alt="Construction project environment showing planning and execution context"
             caption="BuilderTek support for project operations, procurement flow, and execution control."
-            className="min-h-[390px]"
+            className="editorial-visual min-h-[390px]"
             objectPosition="center 52%"
           />
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/60">
+      <section className="section-wrap border-y border-border bg-card/40">
         <div className="home-shell px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="How We Work"
             title="A consulting process built for discovery, delivery, and long-term scale"
             summary="We work in a way that matches project-based operations: understand the workflow, build the right system, then stay engaged as the business grows."
           />
-          <div className="home-grid-3 mt-10 grid gap-5 md:grid-cols-3">
+          <div className="process-strip mt-12">
             {deliverySteps.map(({ step, icon: Icon, title, text }) => (
-              <Card key={title} className="surface-card">
-                <CardHeader>
-                  <p className="step-chip">Step {step}</p>
-                  <CardTitle className="mt-2 flex items-center gap-2 text-base">
-                    <Icon className="size-4 text-accent" /> {title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-7 text-muted-foreground">{text}</p>
-                </CardContent>
-              </Card>
+              <article key={title} className="process-step">
+                <p className="step-chip">Step {step}</p>
+                <div className="process-step-title">
+                  <Icon className="size-4 text-accent" />
+                  <h3>{title}</h3>
+                </div>
+                <p>{text}</p>
+              </article>
             ))}
           </div>
         </div>
@@ -777,16 +773,12 @@ function HomePage() {
             title="Where Vextor is typically brought in"
             summary="Representative examples of the operating problems, platform issues, and growth stages where teams usually engage us."
           />
-          <div className="home-grid-3 mt-10 grid gap-5 md:grid-cols-3">
+          <div className="engagement-list mt-12">
             {commonEngagements.map((item) => (
-              <Card key={item.title} className="surface-card">
-                <CardHeader>
-                  <CardTitle className="text-lg">{item.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-7 text-muted-foreground">{item.body}</p>
-                </CardContent>
-              </Card>
+              <article key={item.title} className="engagement-item">
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
             ))}
           </div>
         </div>
@@ -794,7 +786,7 @@ function HomePage() {
 
       <section className="section-wrap border-y border-border bg-deep text-deep-foreground">
         <div className="home-shell-narrow px-4 sm:px-6 lg:px-8">
-          <Card className="surface-card deep-card p-8 sm:p-10">
+          <div className="cta-band">
             <p className="eyebrow">Consultation</p>
             <h2 className="section-title max-w-2xl text-deep-foreground">
               Ready to get Salesforce working for your projects?
@@ -815,7 +807,7 @@ function HomePage() {
                 </Button>
               </Link>
             </div>
-          </Card>
+          </div>
         </div>
       </section>
     </main>
