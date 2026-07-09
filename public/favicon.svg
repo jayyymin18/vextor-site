@@ -1,10 +1,9 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="24" y="24" width="464" height="464" rx="124" fill="#0F172A"/>
-  <rect x="88" y="88" width="336" height="336" rx="96" fill="url(#g)"/>
+  <rect x="24" y="24" width="464" height="464" rx="124" fill="url(#g)"/>
   <path d="M144 160H196.8L256 346L315.2 160H368L281.6 372H228.8L144 160Z" fill="white"/>
   <defs>
     <linearGradient id="g" x1="104" y1="104" x2="408" y2="408" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#0860C3"/>
+      <stop stop-color="#0A6BE8"/>
       <stop offset="1" stop-color="#2E76E4"/>
     </linearGradient>
   </defs>
