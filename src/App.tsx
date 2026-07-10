@@ -5,6 +5,7 @@ import {
   ArrowRight,
   CalendarCheck2,
   CheckCircle2,
+  ChevronLeft,
   ChevronRight,
   ClipboardList,
   Code2,
@@ -578,6 +579,7 @@ function Footer() {
 }
 
 function HomePage() {
+  const [activeTestimonial, setActiveTestimonial] = useState(0)
   const homeFaqs: FaqEntry[] = [
     {
       question: 'What does Vextor specialize in?',
@@ -786,6 +788,16 @@ function HomePage() {
     },
   ]
 
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveTestimonial((current) => (current + 1) % leadershipTrust.length)
+    }, 6500)
+
+    return () => window.clearInterval(interval)
+  }, [leadershipTrust.length])
+
+  const activeTrustQuote = leadershipTrust[activeTestimonial]
+
   return (
     <main>
       <section className="hero-wrap hero-premium">
@@ -833,32 +845,6 @@ function HomePage() {
                 <div key={`${alt}-${index}`} className="trust-logo-card">
                   <img src={src} alt={alt} className={className} loading="lazy" />
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-card/40 py-8">
-        <div className="home-shell px-4 sm:px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Trusted By Leadership Teams"
-            title="What client leaders say after working with Vextor"
-            summary="Direct feedback from executives and operating leaders who rely on Vextor for Salesforce delivery, BuilderTek support, and long-term platform execution."
-            align="center"
-          />
-          <div className="testimonial-marquee mt-10" aria-label="Leadership trust row">
-            <div className="testimonial-marquee-track">
-              {[...leadershipTrust, ...leadershipTrust].map((item, index) => (
-                <article key={`${item.name}-${index}`} className="testimonial-card">
-                  <p className="testimonial-copy">{item.text}</p>
-                  <div className="testimonial-meta">
-                    <p className="testimonial-name">{item.name}</p>
-                    <p className="testimonial-role">
-                      {item.role}, {item.company}
-                    </p>
-                  </div>
-                </article>
               ))}
             </div>
           </div>
@@ -1050,6 +1036,73 @@ function HomePage() {
                 Review Success Stories <ChevronRight className="ml-2 size-4" />
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap border-y border-border bg-card/40">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Trusted By Leadership Teams"
+            title="What client leaders say after working with Vextor"
+            summary="Direct feedback from executives and operators who rely on Vextor for Salesforce execution, BuilderTek support, and long-term platform ownership."
+            align="center"
+          />
+
+          <div className="testimonial-feature mt-12">
+            <div className="testimonial-feature-stage">
+              <motion.article
+                key={activeTrustQuote.name}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.32, ease: 'easeOut' }}
+                className="testimonial-feature-card"
+              >
+                <p className="testimonial-feature-copy">{activeTrustQuote.text}</p>
+                <div className="testimonial-feature-meta">
+                  <p className="testimonial-feature-name">{activeTrustQuote.name}</p>
+                  <p className="testimonial-feature-role">
+                    {activeTrustQuote.role}, {activeTrustQuote.company}
+                  </p>
+                </div>
+              </motion.article>
+            </div>
+
+            <div className="testimonial-feature-controls">
+              <div className="testimonial-feature-buttons">
+                <button
+                  type="button"
+                  className="testimonial-nav-button"
+                  aria-label="Previous testimonial"
+                  onClick={() =>
+                    setActiveTestimonial((current) => (current - 1 + leadershipTrust.length) % leadershipTrust.length)
+                  }
+                >
+                  <ChevronLeft className="size-4" />
+                </button>
+                <button
+                  type="button"
+                  className="testimonial-nav-button"
+                  aria-label="Next testimonial"
+                  onClick={() => setActiveTestimonial((current) => (current + 1) % leadershipTrust.length)}
+                >
+                  <ChevronRight className="size-4" />
+                </button>
+              </div>
+
+              <div className="testimonial-feature-dots" aria-label="Testimonial selection">
+                {leadershipTrust.map((item, index) => (
+                  <button
+                    key={item.name}
+                    type="button"
+                    aria-label={`Show testimonial from ${item.name}`}
+                    aria-pressed={index === activeTestimonial}
+                    className={`testimonial-dot ${index === activeTestimonial ? 'is-active' : ''}`}
+                    onClick={() => setActiveTestimonial(index)}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1957,14 +2010,12 @@ function ContactPage() {
             <SectionIntro
               eyebrow="Contact"
               title="Start a focused Salesforce conversation with Vextor"
-              summary="Use the form to share the operational issue, BuilderTek context, or platform challenge your team is dealing with. Keep it direct. We will review it and respond with the right next step."
+              summary="Share the problem clearly. We will review the Salesforce or BuilderTek context and come back with the most practical next step."
               titleTag="h1"
             />
             <div className="contact-hero-points">
               <span>Architecture review</span>
               <span>BuilderTek support</span>
-              <span>Inherited org cleanup</span>
-              <span>Workflow redesign</span>
               <span>Integration support</span>
             </div>
           </div>
@@ -2080,7 +2131,7 @@ function ContactPage() {
             </div>
           </div>
 
-          <div className="contact-clean-aside">
+          <div className="contact-clean-aside lg:sticky lg:top-28">
             <div className="contact-clean-card">
               <h2 className="text-2xl font-semibold tracking-tight">Direct contact</h2>
               <p className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -2096,7 +2147,7 @@ function ContactPage() {
             </div>
 
             <div className="contact-clean-card">
-              <h3 className="text-lg font-semibold tracking-tight">Best for</h3>
+              <h3 className="text-lg font-semibold tracking-tight">Best fit conversations</h3>
               <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <CheckCircle2 className="mt-1 size-4 text-accent" /> Salesforce architecture and inherited org cleanup
@@ -2112,9 +2163,11 @@ function ContactPage() {
 
             <div className="contact-clean-card contact-clean-card--accent">
               <p className="eyebrow">What happens next</p>
-              <p className="text-sm leading-7 text-deep-muted">
-                We review the inquiry, identify the operating context, and respond with the right conversation path instead of sending a generic sales response.
-              </p>
+              <ol className="contact-next-steps">
+                <li>We review the operational context and urgency.</li>
+                <li>We identify the right conversation path for the request.</li>
+                <li>We reply directly with clear next steps.</li>
+              </ol>
             </div>
           </div>
         </div>
