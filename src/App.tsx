@@ -337,55 +337,6 @@ function Visual({
   )
 }
 
-function ShapeVisual({
-  caption,
-  className,
-  variant = 'blob',
-}: {
-  caption?: string
-  className?: string
-  variant?: 'blob' | 'diagonal' | 'arch'
-}) {
-  const clip =
-    variant === 'diagonal'
-      ? 'polygon(0 0, 100% 0, 100% 82%, 0 100%)'
-      : variant === 'arch'
-      ? 'ellipse(75% 100% at 50% 100%)'
-      : 'circle(70% at 50% 45%)'
-
-  return (
-    <figure className={`photo-frame ${className ?? ''}`}>
-      <div
-        aria-hidden="true"
-        className="h-full w-full"
-        style={{
-          clipPath: clip,
-          background:
-            'radial-gradient(120% 120% at 20% 20%, #2E6FBE 0%, #1B5297 45%, #123a6e 100%)',
-        }}
-      >
-        <svg
-          className="h-full w-full opacity-[0.12]"
-          preserveAspectRatio="none"
-          viewBox="0 0 100 100"
-        >
-          <defs>
-            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-              <path d="M10 0H0V10" fill="none" stroke="#fff" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100" height="100" fill="url(#grid)" />
-        </svg>
-      </div>
-      {caption ? (
-        <figcaption className="border-t border-border/80 px-4 py-3 text-xs text-muted-foreground">
-          {caption}
-        </figcaption>
-      ) : null}
-    </figure>
-  )
-}
-
 type FaqEntry = {
   question: string
   answer: string
@@ -975,8 +926,9 @@ function HomePage() {
             </Link>
           </div>
 
-          <ShapeVisual
-            variant="blob"
+          <Visual
+            src="/images/home-buildertek-blueprint.svg"
+            alt="Branded visual showing BuilderTek delivery support for project operations"
             caption="BuilderTek delivery support presented as an operational system, not a generic add-on."
             className="editorial-visual min-h-[390px]"
           />
