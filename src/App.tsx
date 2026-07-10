@@ -500,6 +500,11 @@ function Footer() {
                 </Link>
               </li>
               <li>
+                <Link className="hover:text-accent" to="/success-stories">
+                  Success Stories
+                </Link>
+              </li>
+              <li>
                 <Link className="hover:text-accent" to="/about">
                   About
                 </Link>
@@ -697,6 +702,16 @@ function HomePage() {
     },
   ]
 
+  const leadershipTrust = [
+    { name: 'Kristi McLaughlin', role: 'CEO', company: 'ForeFront' },
+    { name: 'Vicki Lipinski', role: 'CEO', company: 'Acts' },
+    { name: 'Brian Kwong', role: 'CEO', company: 'Better Partners' },
+    { name: 'Brian Cronin', role: 'CEO', company: 'BuilderTek' },
+    { name: 'Brent Stodolak', role: 'Manager', company: 'RHP' },
+    { name: 'Rebecca Wygal', role: 'Manager', company: 'RHP' },
+    { name: 'Sara Unser', role: 'CEO', company: 'Flight Builders' },
+  ]
+
   const proofPoints = [
     'Ahmedabad-based consulting team focused on Salesforce delivery for operationally complex businesses',
     'Salesforce consulting paired with dedicated BuilderTek specialization for project-driven teams',
@@ -715,6 +730,24 @@ function HomePage() {
     {
       title: 'Integration and support ownership',
       body: 'When accounting, ERP, and Salesforce workflows are disconnected, we redesign the handoffs and stay engaged after launch through managed support.',
+    },
+  ]
+
+  const featuredStories = [
+    {
+      title: 'BuilderTek workflow stabilization',
+      body: 'Representative delivery support for teams that need procurement, approvals, and project controls working cleanly inside Salesforce.',
+      outcome: 'Cleaner execution paths and fewer operational workarounds.',
+    },
+    {
+      title: 'Inherited Salesforce architecture reset',
+      body: 'For teams where reporting trust is weak, automation layers are brittle, and delivery quality depends on clarifying platform structure first.',
+      outcome: 'A more maintainable operating model before new changes are layered in.',
+    },
+    {
+      title: 'Cross-system integration recovery',
+      body: 'Support for Salesforce environments where finance, ERP, estimating, and delivery systems are creating friction instead of shared visibility.',
+      outcome: 'Better coordination across teams and stronger confidence in the system.',
     },
   ]
 
@@ -765,6 +798,26 @@ function HomePage() {
                 <div key={`${alt}-${index}`} className="trust-logo-card">
                   <img src={src} alt={alt} className={className} loading="lazy" />
                 </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border bg-card/40 py-5">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
+          <div className="trust-strip-head">
+            <p className="trust-strip-copy">Leadership teams that know Vextor</p>
+          </div>
+          <div className="quote-marquee" aria-label="Leadership trust row">
+            <div className="quote-marquee-track">
+              {[...leadershipTrust, ...leadershipTrust].map((item, index) => (
+                <article key={`${item.name}-${index}`} className="quote-card">
+                  <p className="quote-name">{item.name}</p>
+                  <p className="quote-role">
+                    {item.role}, {item.company}
+                  </p>
+                </article>
               ))}
             </div>
           </div>
@@ -847,11 +900,10 @@ function HomePage() {
           </div>
 
           <Visual
-            src="/images/about-buildertek-construction.jpg"
-            alt="Construction project environment showing planning and execution context"
-            caption="BuilderTek support for project operations, procurement flow, and execution control."
+            src="/images/home-buildertek-blueprint.svg"
+            alt="Branded visual showing BuilderTek delivery support for project operations"
+            caption="BuilderTek delivery support presented as an operational system, not a generic add-on."
             className="editorial-visual min-h-[390px]"
-            objectPosition="center 52%"
           />
         </div>
       </section>
@@ -930,6 +982,33 @@ function HomePage() {
                 </article>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Success Stories"
+            title="Representative engagement stories that show where Vextor adds value"
+            summary="These are the kinds of operating situations where project-based teams bring Vextor in to restore clarity, structure, and long-term platform confidence."
+          />
+          <div className="success-story-grid mt-12">
+            {featuredStories.map((item) => (
+              <article key={item.title} className="success-story-card">
+                <p className="eyebrow">Representative Story</p>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <p className="success-story-outcome">{item.outcome}</p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-8 flex justify-start">
+            <Link to="/success-stories">
+              <Button size="lg" variant="outline">
+                Review Success Stories <ChevronRight className="ml-2 size-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -1286,11 +1365,10 @@ function IndustriesPage() {
           </div>
 
           <Visual
-            src="/images/about-team-collaboration.jpg"
-            alt="Team discussion focused on planning and operational collaboration"
-            caption="Industry support starts with how the business actually coordinates work across people, systems, and approvals."
+            src="/images/industries-operations-panel.svg"
+            alt="Branded operations visual for cross-team workflow coordination"
+            caption="Industry support starts with how the business actually coordinates work across people, systems, approvals, and financial controls."
             className="min-h-[340px] lg:min-h-[420px]"
-            objectPosition="center 45%"
           />
         </div>
       </section>
@@ -1361,11 +1439,10 @@ function IndustriesPage() {
       <section className="section-wrap border-b border-border/80">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
           <Visual
-            src="/images/about-buildertek-construction.jpg"
-            alt="Construction professionals reviewing project plans on site"
+            src="/images/industries-contractor-panel.svg"
+            alt="Construction operations visual showing jobsite coordination and system visibility"
             caption="Operational consulting is strongest when architecture and delivery decisions stay close to jobsite reality."
             className="min-h-[320px] lg:min-h-[390px]"
-            objectPosition="center 42%"
           />
 
           <div className="space-y-5">
@@ -1406,6 +1483,21 @@ function WorkPage() {
     { path: '/work' }
   )
 
+  const workFocus = [
+    {
+      title: 'Operational architecture',
+      body: 'We define the system structure that keeps reporting, process ownership, and future delivery stable.',
+    },
+    {
+      title: 'Execution workflow engineering',
+      body: 'We align automation, BuilderTek behavior, approvals, and handoffs with how teams actually operate.',
+    },
+    {
+      title: 'Support after launch',
+      body: 'We stay engaged where platform quality depends on release discipline, backlog ownership, and ongoing optimization.',
+    },
+  ]
+
   return (
     <main>
       <section className="section-wrap border-b border-border bg-card/60">
@@ -1415,6 +1507,34 @@ function WorkPage() {
             title="Operational Salesforce delivery across consulting, engineering, and support"
             summary="At Vextor, our work focuses on helping businesses extend and optimize Salesforce around real operating needs."
             titleTag="h1"
+          />
+        </div>
+      </section>
+
+      <section className="section-wrap border-b border-border/80">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+          <div className="space-y-6">
+            <SectionIntro
+              eyebrow="Execution Lens"
+              title="Work that stays close to approvals, handoffs, reporting, and day-to-day delivery"
+              summary="The practical value of Salesforce consulting shows up in execution quality. Vextor’s work is shaped around the operating layer where process issues actually create friction."
+            />
+            <div className="editorial-reasons">
+              {workFocus.map((item) => (
+                <article key={item.title} className="editorial-reason">
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <Visual
+            src="/images/work-operations-review.jpg"
+            alt="Operations leaders reviewing delivery and reporting workflows"
+            caption="Delivery work connected to real operating reviews, not isolated technical execution."
+            className="min-h-[340px] lg:min-h-[430px]"
+            objectPosition="center 42%"
           />
         </div>
       </section>
@@ -1457,7 +1577,7 @@ function WorkPage() {
         </div>
       </section>
 
-      <section className="section-wrap border-t border-border">
+      <section className="section-wrap border-y border-border bg-card/50">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <div className="space-y-5">
             <SectionIntro
@@ -1471,16 +1591,15 @@ function WorkPage() {
           </div>
 
           <Visual
-            src="/images/work-operations-review.jpg"
-            alt="Operations leaders reviewing delivery and reporting workflows"
-            caption="Salesforce delivery work connected to operational reviews and team handoffs."
-            className="min-h-[320px]"
-            objectPosition="center 42%"
+            src="/images/work-execution-visual.svg"
+            alt="Branded visual showing delivery reviews, process checkpoints, and implementation flow"
+            caption="A delivery model that keeps architecture, implementation, and operational handoff aligned."
+            className="min-h-[320px] lg:min-h-[390px]"
           />
         </div>
       </section>
 
-      <section className="section-wrap border-y border-border bg-card/60">
+      <section className="section-wrap border-b border-border">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <div>
             <SectionIntro
@@ -1504,6 +1623,23 @@ function WorkPage() {
           />
         </div>
       </section>
+
+      <section className="section-wrap bg-card/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Proof Path"
+            title="See representative success stories"
+            summary="Representative stories show how Vextor approaches inherited complexity, BuilderTek execution issues, and cross-system delivery problems without relying on generic CRM patterns."
+          />
+          <div className="mt-8">
+            <Link to="/success-stories">
+              <Button size="lg" variant="outline">
+                Explore Success Stories <ChevronRight className="ml-2 size-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
@@ -1522,6 +1658,21 @@ function AboutPage() {
     'A maintainable Salesforce environment for long-term growth',
   ]
 
+  const aboutPrinciples = [
+    {
+      title: 'Platform clarity first',
+      body: 'We focus on the data, process, and ownership decisions that make future Salesforce delivery easier instead of harder.',
+    },
+    {
+      title: 'Operational alignment',
+      body: 'The system has to match how teams estimate, approve, deliver, report, and coordinate across functions.',
+    },
+    {
+      title: 'Long-term maintainability',
+      body: 'Architecture, custom logic, and support decisions are made with future change in mind, not just immediate launch pressure.',
+    },
+  ]
+
   return (
     <main>
       <section className="section-wrap border-b border-border bg-card/60">
@@ -1535,7 +1686,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="section-wrap">
+      <section className="section-wrap border-b border-border/80">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <div className="space-y-5">
             <SectionIntro
@@ -1546,24 +1697,21 @@ function AboutPage() {
             <p className="text-sm leading-7 text-muted-foreground">
               We design Salesforce systems that stay stable as workflows, teams, and integrations become more complex.
             </p>
-            <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Architecture designed for scale and maintainability
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Delivery aligned to real operational dependencies
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Systems that reduce complexity instead of adding it
-              </li>
-            </ul>
+            <div className="editorial-reasons">
+              {aboutPrinciples.map((item) => (
+                <article key={item.title} className="editorial-reason">
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
           </div>
 
           <Visual
             src="/images/about-team-collaboration.jpg"
             alt="Collaborative architecture planning"
             caption="Collaborative planning and operational discovery before implementation."
-            className="min-h-[300px]"
+            className="min-h-[340px] lg:min-h-[430px]"
             objectPosition="center 38%"
           />
         </div>
@@ -1691,6 +1839,23 @@ function AboutPage() {
           </div>
         </div>
       </section>
+
+      <section className="section-wrap border-t border-border bg-card/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Proof"
+            title="Review the kinds of operating situations where Vextor is brought in"
+            summary="If you want to understand how Vextor fits in real Salesforce environments, the representative success stories page shows the common delivery contexts more directly."
+          />
+          <div className="mt-8">
+            <Link to="/success-stories">
+              <Button size="lg" variant="outline">
+                Explore Success Stories <ChevronRight className="ml-2 size-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
@@ -1750,33 +1915,24 @@ function ContactPage() {
           <div className="space-y-6">
             <SectionIntro
               eyebrow="Contact"
-              title="Start a focused Salesforce conversation without the clutter"
-              summary="Share your Salesforce or BuilderTek challenge, and Vextor will review the context, priorities, and the most practical next step for your team."
+              title="Start a focused Salesforce conversation"
+              summary="Share the business context, the operational friction, and what your team needs to fix or improve next. We will review it directly and come back with the right next step."
               titleTag="h1"
             />
-            <div className="editorial-reasons">
-              {[
-                {
-                  title: 'Useful for new projects and inherited orgs',
-                  body: 'Reach out whether you are planning a fresh build, cleaning up a difficult implementation, or trying to stabilize ongoing support.',
-                },
-                {
-                  title: 'Best when the problem is operational',
-                  body: 'The strongest starting point is a real workflow issue: approvals, reporting trust, BuilderTek friction, integrations, or delivery bottlenecks.',
-                },
-              ].map((item) => (
-                <article key={item.title} className="editorial-reason">
-                  <h3>{item.title}</h3>
-                  <p>{item.body}</p>
-                </article>
-              ))}
-            </div>
+            <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Useful for architecture reviews, BuilderTek issues, support transitions, inherited org cleanup, and workflow redesign.
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Best when the problem is tied to approvals, reporting trust, handoffs, automation, integrations, or execution quality.
+              </li>
+            </ul>
           </div>
 
           <Visual
-            src="/images/contact-consultation-illustration.svg"
-            alt="Illustration representing a structured Salesforce consultation and delivery planning session"
-            caption="A cleaner intake path for architecture reviews, BuilderTek support, and workflow planning."
+            src="/images/contact-conversation-panel.svg"
+            alt="Branded visual showing a structured consultation intake and planning conversation"
+            caption="A cleaner consultation path for Salesforce planning, BuilderTek support, and workflow improvement."
             className="min-h-[320px] lg:min-h-[420px]"
           />
         </div>
@@ -1791,7 +1947,7 @@ function ContactPage() {
                   <p className="eyebrow">Inquiry Form</p>
                   <h2 className="section-title text-[clamp(1.9rem,3.4vw,2.8rem)]">Tell us what you need help solving</h2>
                   <p className="section-summary max-w-none">
-                    This form goes directly into Salesforce so we can review your context, understand the operating problem, and respond with the right next step.
+                    Keep it simple. Tell us what is not working, what system context matters, and what kind of support your team is looking for.
                   </p>
                 </div>
 
@@ -1883,7 +2039,7 @@ function ContactPage() {
                       Send Inquiry
                     </Button>
                     <p className="text-sm leading-7 text-muted-foreground">
-                      After submission, you will land on a dedicated thank-you page while the lead is captured in Salesforce.
+                      We review each inquiry directly and reply with the most practical next step.
                     </p>
                   </div>
                 </form>
@@ -1898,9 +2054,9 @@ function ContactPage() {
                   <span className="icon-wrap">
                     <ClipboardList className="size-4" />
                   </span>
-                  <h3>What to include</h3>
+                  <h3>What helps most</h3>
                 </div>
-                <p>Mention the current Salesforce setup, whether BuilderTek is involved, the process bottleneck, and the timeline pressure behind the request.</p>
+                <p>Mention the current Salesforce setup, whether BuilderTek is involved, the process bottleneck, and any delivery pressure behind the request.</p>
               </div>
 
               <div className="process-step">
@@ -1910,7 +2066,7 @@ function ContactPage() {
                   </span>
                   <h3>What happens next</h3>
                 </div>
-                <p>We review the inquiry, identify the operating context, and respond with the most practical next conversation instead of a generic sales sequence.</p>
+                <p>We review the inquiry, identify the operating context, and respond with the right next conversation instead of a generic sales sequence.</p>
               </div>
 
               <div className="process-step">
@@ -1918,9 +2074,9 @@ function ContactPage() {
                   <span className="icon-wrap">
                     <ShieldCheck className="size-4" />
                   </span>
-                  <h3>How Vextor engages</h3>
+                  <h3>Typical starting points</h3>
                 </div>
-                <p>Engagements can begin as architecture review, BuilderTek workflow refinement, integration support, or a broader delivery and managed support discussion.</p>
+                <p>Architecture review, BuilderTek refinement, inherited-org cleanup, integration support, and ongoing managed support are all common starting paths.</p>
               </div>
             </div>
 
@@ -1939,11 +2095,10 @@ function ContactPage() {
             </div>
 
             <Visual
-              src="/images/contact-planning-session.jpg"
-              alt="Business team in a focused planning meeting"
-              caption="Consultation-led approach with structured planning, practical scoping, and long-term platform ownership."
+              src="/images/contact-process-summary.svg"
+              alt="Branded visual summarizing consultation review, planning, and response flow"
+              caption="Structured review, practical scoping, and direct follow-up from the Vextor team."
               className="min-h-[280px] lg:min-h-[340px]"
-              objectPosition="center 45%"
             />
           </div>
         </div>
@@ -1985,9 +2140,9 @@ function ThankYouPage() {
             </p>
             <div className="editorial-reasons">
               {[
-                'Your submission has been captured in our Salesforce intake flow.',
-                'We review for operational context, urgency, and the right engagement path.',
-                'If the request is BuilderTek-specific, we will factor that into the first response.',
+                'A Vextor consultant will review the operational context and the type of support your team needs.',
+                'If the request is BuilderTek-specific or time-sensitive, we will factor that into the first response.',
+                'If you need to add detail, you can follow up directly at hello@vextor.co.',
               ].map((item) => (
                 <article key={item} className="editorial-reason">
                   <h3>{item}</h3>
@@ -2009,13 +2164,202 @@ function ThankYouPage() {
           </div>
 
           <Visual
-            src="/images/thank-you-illustration.svg"
-            alt="Illustration showing a successful consultation inquiry and follow-up flow"
-            caption="A clean intake path, structured review, and direct follow-up from the Vextor team."
+            src="/images/thank-you-response-panel.svg"
+            alt="Branded visual showing review and follow-up after a consultation inquiry"
+            caption="Review, prioritization, and a clear response path from the Vextor team."
             className="min-h-[320px] lg:min-h-[460px]"
           />
         </div>
       </section>
+    </main>
+  )
+}
+
+function SuccessStoriesPage() {
+  const storyFaqs: FaqEntry[] = [
+    {
+      question: 'Are these public client case studies?',
+      answer:
+        'These stories are representative examples of the operating situations Vextor is typically engaged to solve. They are structured to show delivery context, priorities, and outcomes without exposing private client details.',
+    },
+    {
+      question: 'What kinds of problems usually lead teams to Vextor?',
+      answer:
+        'Common triggers include inherited Salesforce complexity, weak reporting trust, BuilderTek process friction, disconnected integrations, and the need for long-term platform ownership after implementation.',
+    },
+    {
+      question: 'Does Vextor only work on one-time projects?',
+      answer:
+        'No. Many engagements begin with a focused architecture or recovery need and then continue into managed support, optimization, and release ownership as the business evolves.',
+    },
+  ]
+
+  const stories = [
+    {
+      eyebrow: 'Representative Story 01',
+      title: 'Inherited org recovery before more complexity is layered in',
+      summary:
+        'Teams bring Vextor in when Salesforce has become difficult to trust. Reporting is weak, automation is brittle, and every requested change carries more risk than it should.',
+      detail:
+        'The first step is usually not another feature. It is clarifying process ownership, cleaning up architecture decisions, and stabilizing the data and automation layers that the business is already relying on.',
+      outcomes: [
+        'Clearer operating model for admins, leadership, and delivery teams',
+        'More reliable reporting and cleaner release decisions',
+        'A maintainable system foundation before new automation is added',
+      ],
+      visual: '/images/success-story-foundation.svg',
+      alt: 'Branded visual showing architecture recovery and system cleanup',
+    },
+    {
+      eyebrow: 'Representative Story 02',
+      title: 'BuilderTek execution support for real project operations',
+      summary:
+        'For BuilderTek-heavy teams, the problem is often not feature availability. The problem is that workflows, approvals, and job controls are not aligned to how the team actually executes work.',
+      detail:
+        'Vextor helps reshape the operational layer around procurement, approvals, visibility, and process usability so BuilderTek supports execution instead of creating friction around it.',
+      outcomes: [
+        'Better day-to-day usability for project and operations teams',
+        'Cleaner approval and procurement paths inside the system',
+        'Stronger alignment between BuilderTek behavior and real delivery needs',
+      ],
+      visual: '/images/success-story-buildertek.svg',
+      alt: 'Branded visual showing BuilderTek workflow refinement and delivery visibility',
+    },
+    {
+      eyebrow: 'Representative Story 03',
+      title: 'Cross-system integration support for finance and operations',
+      summary:
+        'When Salesforce, ERP, estimating, accounting, or field systems are out of sync, teams lose confidence in the platform and start relying on manual side processes.',
+      detail:
+        'These engagements focus on integration structure, data handoffs, and the operational controls needed so different systems support one workflow instead of fragmenting it.',
+      outcomes: [
+        'More reliable handoffs between Salesforce and surrounding systems',
+        'Lower dependence on manual reconciliation and side spreadsheets',
+        'Stronger confidence in platform-wide visibility and coordination',
+      ],
+      visual: '/images/success-story-integrations.svg',
+      alt: 'Branded visual showing cross-system integration and operational handoffs',
+    },
+  ]
+
+  usePageMeta(
+    'Vextor Success Stories | Salesforce Proof For Project-Based Teams',
+    'Representative Salesforce and BuilderTek success stories showing how Vextor supports inherited org recovery, BuilderTek execution, and cross-system operational clarity.',
+    { path: '/success-stories' }
+  )
+  useStructuredData('success-stories-page', {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Vextor Success Stories',
+    url: 'https://www.vextor.co/success-stories',
+    description:
+      'Representative Salesforce and BuilderTek success stories showing how Vextor supports inherited org recovery, BuilderTek execution, and cross-system operational clarity.',
+  })
+  useStructuredData('success-stories-list', {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Representative Vextor Success Stories',
+    itemListElement: stories.map((story, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: story.title,
+      description: story.summary,
+    })),
+  })
+  useStructuredData('success-stories-faq', {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: storyFaqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  })
+
+  return (
+    <main>
+      <section className="section-wrap border-b border-border bg-card/60">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Success Stories"
+            title="Representative proof of how Vextor is brought into operational Salesforce environments"
+            summary="These examples show the kinds of inherited complexity, BuilderTek delivery issues, and cross-system process problems that project-based teams typically engage Vextor to solve."
+            titleTag="h1"
+          />
+        </div>
+      </section>
+
+      <section className="section-wrap border-b border-border/80">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8">
+          <div className="space-y-5">
+            <SectionIntro
+              eyebrow="Proof Layer"
+              title="Not generic CRM work. Operational Salesforce work."
+              summary="The value of Vextor shows up where approvals, reporting, BuilderTek execution, integrations, and release quality all intersect with how the business actually runs."
+            />
+            <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Representative examples centered on delivery context, not vague marketing claims.
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Built to help buyers, search engines, and LLMs understand exactly where Vextor fits.
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Focused on project-based operations, BuilderTek specialization, and long-term platform ownership.
+              </li>
+            </ul>
+          </div>
+
+          <Visual
+            src="/images/success-story-proof-panel.svg"
+            alt="Branded visual showing proof themes across architecture, BuilderTek, and integrations"
+            caption="Architecture recovery, BuilderTek execution, and cross-system coordination as repeatable proof themes."
+            className="min-h-[320px] lg:min-h-[430px]"
+          />
+        </div>
+      </section>
+
+      <section className="section-wrap">
+        <div className="mx-auto max-w-7xl space-y-10 px-4 sm:px-6 lg:px-8">
+          {stories.map((story, index) => (
+            <div
+              key={story.title}
+              className={`story-showcase ${index % 2 === 1 ? 'story-showcase--reverse' : ''}`}
+            >
+              <div className="space-y-5">
+                <p className="eyebrow">{story.eyebrow}</p>
+                <h2 className="section-title">{story.title}</h2>
+                <p className="section-summary max-w-none">{story.summary}</p>
+                <p className="text-sm leading-7 text-muted-foreground">{story.detail}</p>
+                <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+                  {story.outcomes.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <Visual
+                src={story.visual}
+                alt={story.alt}
+                caption="Representative visual for a common Vextor engagement pattern."
+                className="min-h-[300px] lg:min-h-[380px]"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <FaqSection
+        eyebrow="Proof FAQ"
+        title="Questions about Vextor’s success-story approach"
+        summary="Short answers that explain how these proof pages are structured and what they are designed to show."
+        items={storyFaqs}
+      />
     </main>
   )
 }
@@ -2028,6 +2372,7 @@ export default function App() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/industries" element={<IndustriesPage />} />
         <Route path="/work" element={<WorkPage />} />
+        <Route path="/success-stories" element={<SuccessStoriesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />

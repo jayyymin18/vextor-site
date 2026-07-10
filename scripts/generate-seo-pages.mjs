@@ -120,6 +120,30 @@ const routes = [
       'See how Vextor approaches Salesforce automation, BuilderTek delivery, integrations, and long-term support for project-based businesses.',
   },
   {
+    path: '/success-stories',
+    pageType: 'CollectionPage',
+    title: 'Vextor Success Stories | Salesforce Proof For Project-Based Teams',
+    description:
+      'Representative Salesforce and BuilderTek success stories showing how Vextor supports inherited org recovery, BuilderTek execution, and cross-system operational clarity.',
+    faq: [
+      {
+        question: 'Are these public client case studies?',
+        answer:
+          'These stories are representative examples of the operating situations Vextor is typically engaged to solve. They are structured to show delivery context, priorities, and outcomes without exposing private client details.',
+      },
+      {
+        question: 'What kinds of problems usually lead teams to Vextor?',
+        answer:
+          'Common triggers include inherited Salesforce complexity, weak reporting trust, BuilderTek process friction, disconnected integrations, and the need for long-term platform ownership after implementation.',
+      },
+      {
+        question: 'Does Vextor only work on one-time projects?',
+        answer:
+          'No. Many engagements begin with a focused architecture or recovery need and then continue into managed support, optimization, and release ownership as the business evolves.',
+      },
+    ],
+  },
+  {
     path: '/about',
     pageType: 'AboutPage',
     title: 'About Vextor | Salesforce & BuilderTek Consulting Experts',

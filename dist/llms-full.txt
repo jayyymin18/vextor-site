@@ -33,6 +33,7 @@ Vextor supports BuilderTek implementations, inherited org cleanup, approval work
 - Services: https://www.vextor.co/services
 - Industries: https://www.vextor.co/industries
 - Work: https://www.vextor.co/work
+- Success Stories: https://www.vextor.co/success-stories
 - About: https://www.vextor.co/about
 - Contact: https://www.vextor.co/contact
 
