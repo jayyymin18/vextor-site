@@ -584,12 +584,12 @@ function HomePage() {
     {
       question: 'What does Vextor specialize in?',
       answer:
-        'Vextor specializes in Salesforce consulting for project-based businesses, with dedicated BuilderTek support, workflow automation, integrations, and long-term platform ownership.',
+        'Vextor specializes in Salesforce consulting for project-based businesses — architecture, implementation, custom development, integrations, and long-term platform ownership, with dedicated BuilderTek support as one area of deep expertise.',
     },
     {
-      question: 'Is Vextor a fit for BuilderTek teams?',
+      question: 'Do you only work with construction or BuilderTek teams?',
       answer:
-        'Yes. Vextor works with BuilderTek-heavy teams that need implementation cleanup, procurement and approval workflow support, reporting clarity, and better day-to-day usability.',
+        'No. We work across project-based businesses that need Salesforce to run estimating, delivery, and billing well. BuilderTek is one specialization, not a requirement to work with us.',
     },
     {
       question: 'Where is Vextor based?',
@@ -635,8 +635,8 @@ function HomePage() {
     },
     {
       icon: HardHat,
-      title: 'BuilderTek Specialization',
-      text: 'Implementation, cleanup, migration, and optimization for BuilderTek teams running active jobs.',
+      title: 'Custom Development & Configuration',
+      text: 'Apex, Lightning Web Components, custom objects, and automation that extend Salesforce beyond out-of-the-box limits.',
     },
     {
       icon: RouteIcon,
@@ -658,8 +658,8 @@ function HomePage() {
     },
     {
       icon: HardHat,
-      title: 'BuilderTek, done right',
-      text: 'From new implementations to inherited complexity, Vextor delivers BuilderTek environments teams will actually use.',
+      title: 'Depth where it counts',
+      text: 'From clean new builds to inherited complexity, we deliver Salesforce environments teams will actually use — including deep specialization in platforms like BuilderTek.',
     },
     {
       icon: RouteIcon,
@@ -679,7 +679,7 @@ function HomePage() {
       step: '02',
       icon: Wrench,
       title: 'Build',
-      text: 'Our Salesforce architects implement the workflows, BuilderTek configuration, custom development, and integrations your team actually needs.',
+      text: 'Our Salesforce architects implement the workflows, custom configuration, custom development, and integrations your team actually needs.',
     },
     {
       step: '03',
@@ -695,8 +695,8 @@ function HomePage() {
       body: 'Map the full cycle from first inquiry through estimating, contract execution, project delivery, and billing handoff.',
     },
     {
-      title: 'BuilderTek Cleanup and Migration',
-      body: 'Stand up BuilderTek correctly, migrate from legacy setups, or rework messy configurations without losing operating trust.',
+      title: 'Implementation Cleanup & Migration',
+      body: 'Stand up Salesforce correctly, migrate from legacy setups, or rework messy configurations — including specialized platforms like BuilderTek — without losing operating trust.',
     },
     {
       title: 'Support Retainers for Evolving Teams',
@@ -751,7 +751,7 @@ function HomePage() {
 
   const proofPoints = [
     'Ahmedabad-based consulting team focused on Salesforce delivery for operationally complex businesses',
-    'Salesforce consulting paired with dedicated BuilderTek specialization for project-driven teams',
+    'Salesforce consulting with deep specialization capability for project-driven teams',
     'Support model built for architecture, implementation, optimization, and ongoing operational ownership',
   ]
 
@@ -804,13 +804,13 @@ function HomePage() {
         <div className="home-shell px-4 pb-14 pt-14 sm:px-6 sm:pb-16 sm:pt-16 lg:px-8 lg:pb-20 lg:pt-20">
           <div className="hero-layout">
             <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-clean hero-editorial mx-auto text-center">
-              <p className="hero-kicker">Project-based Salesforce consulting</p>
+              <p className="hero-kicker">Salesforce Consulting Partner</p>
               <h1 className="hero-title">
                 Salesforce built for the way <span className="hero-highlight">your projects run.</span>
               </h1>
               <p className="hero-copy">
-                Vextor helps project-based businesses configure, automate, and scale Salesforce, with a dedicated
-                BuilderTek specialization for teams that run on jobs, not just pipelines.
+                Vextor helps project-based businesses configure, automate, and scale Salesforce — from
+                architecture and implementation to custom development, integrations, and long-term support.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <Link to="/contact">
@@ -826,7 +826,7 @@ function HomePage() {
               </div>
               <div className="hero-rail" aria-label="Core delivery themes">
                 <span>Architecture-first delivery</span>
-                <span>BuilderTek implementation depth</span>
+                <span>Custom development & integrations</span>
                 <span>Automation aligned to operations</span>
               </div>
             </motion.div>
@@ -855,7 +855,7 @@ function HomePage() {
         <div className="home-shell px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="Services Overview"
-            title="Salesforce and BuilderTek support built around project-based operations"
+            title="Salesforce consulting built around project-based operations"
             summary="From first implementation through long-term support, our work is structured around how project businesses estimate, execute, invoice, and scale."
           />
           <div className="editorial-pillars mt-12">
@@ -880,7 +880,7 @@ function HomePage() {
             <SectionIntro
               eyebrow="Why Vextor"
               title="A consulting model designed for the realities of project-based work"
-              summary="We combine platform architecture, BuilderTek expertise, and long-term support so the system keeps working after launch."
+              summary="We combine platform architecture, hands-on development, and long-term support so the system keeps working after launch."
             />
             <div className="editorial-reasons">
               {valueProps.map(({ icon: Icon, title, text }) => (
@@ -1045,7 +1045,7 @@ function HomePage() {
           <SectionIntro
             eyebrow="Trusted By Leadership Teams"
             title="What client leaders say after working with Vextor"
-            summary="Direct feedback from executives and operators who rely on Vextor for Salesforce execution, BuilderTek support, and long-term platform ownership."
+            summary="Direct feedback from executives and operators who rely on Vextor for Salesforce execution, specialized delivery, and long-term platform ownership."
             align="center"
           />
 
