@@ -171,7 +171,7 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
     ogTitle = title,
     ogDescription = description,
     ogImage = '/og-image.png',
-    keywords = 'Vextor, Salesforce consulting, BuilderTek support, Salesforce automation, Salesforce integrations, Apex development, Lightning Web Components',
+    keywords = 'Vextor, Salesforce consulting, Salesforce automation, Salesforce custom development, Salesforce integrations, managed Salesforce support, BuilderTek support',
     noindex = false,
   } = options
 
@@ -473,12 +473,12 @@ function Footer() {
           <div className="space-y-4">
             <img src="/images/just%20final%20logo.svg" alt="Vextor Solution" className="footer-brand-logo" loading="lazy" />
             <h2 className="text-2xl font-semibold tracking-tight">
-              Salesforce consulting for operationally complex teams, with dedicated BuilderTek specialization.
+              Salesforce consulting for operationally complex, project-based teams.
             </h2>
             <p className="max-w-xl text-sm leading-7 text-muted-foreground">
               We help businesses design and scale Salesforce architecture, automation, custom development,
-              integrations, and managed support. BuilderTek customers can engage us for specialized workflow
-              customization and operational support.
+              integrations, and managed support. We also offer dedicated specialization for teams running
+              BuilderTek.
             </p>
           </div>
 
@@ -571,7 +571,7 @@ function Footer() {
 
         <div className="mt-12 flex flex-col gap-2 border-t border-border pt-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Vextor Solution LLP. All rights reserved.</p>
-          <p>Salesforce consulting | BuilderTek specialization | Managed support</p>
+          <p>Salesforce consulting | Custom development | Managed support</p>
         </div>
       </div>
     </footer>
@@ -599,8 +599,8 @@ function HomePage() {
   ]
 
   usePageMeta(
-    'Vextor | Salesforce Consulting & BuilderTek Specialists',
-    'Ahmedabad-based Salesforce consulting for project-driven teams, with BuilderTek specialization, automation, integrations, and managed support for operational scale.',
+    'Vextor | Salesforce Consulting Partner',
+    'Salesforce consulting, architecture, custom development, automation, integrations, and managed support for project-based teams, with dedicated BuilderTek specialization.',
     { path: '/' }
   )
   useStructuredData('home-faq', {
@@ -1179,8 +1179,8 @@ function ServicesPage() {
   ]
 
   usePageMeta(
-    'Salesforce Consulting Services | Architecture, Automation & BuilderTek | Vextor',
-    'Ahmedabad-based Salesforce consulting services for architecture, workflow automation, BuilderTek support, integrations, Apex development, and managed delivery for project-based teams.',
+    'Salesforce Consulting Services | Vextor',
+    'Salesforce architecture, implementation, automation, custom development, integrations, and managed support — plus dedicated BuilderTek specialization for project-based teams.',
     { path: '/services' }
   )
   useStructuredData('services-faq', {
@@ -1398,7 +1398,7 @@ function IndustriesPage() {
 
   usePageMeta(
     'Salesforce for Construction, Real Estate & Project Teams | Vextor',
-    'Industry-focused Salesforce consulting for construction, real estate, BuilderTek, and project-based operations teams that need stronger workflow control and system reliability.',
+    'Industry-focused Salesforce consulting for construction, real estate, and other project-based operations.',
     { path: '/industries' }
   )
   useStructuredData('industries-faq', {
@@ -1438,7 +1438,7 @@ function IndustriesPage() {
             <div className="editorial-reasons">
               {[
                 {
-                  title: 'Construction and BuilderTek teams',
+                  title: 'Construction and project-based teams',
                   body: 'Project execution, procurement, change tracking, approvals, and reporting all depend on system clarity.',
                 },
                 {
@@ -1473,7 +1473,7 @@ function IndustriesPage() {
             {
               icon: HardHat,
               title: 'Construction',
-              text: 'Salesforce and BuilderTek support for procurement workflows, field-to-office coordination, approvals, and project execution visibility.',
+              text: 'Salesforce consulting and support for procurement workflows, field-to-office coordination, approvals, and project execution visibility.',
             },
             {
               icon: LandPlot,
@@ -1504,7 +1504,7 @@ function IndustriesPage() {
           <div>
             <SectionIntro
               eyebrow="BuilderTek Context"
-              title="Where BuilderTek specialization is most relevant"
+              title="Where our BuilderTek specialization fits in"
               summary="BuilderTek work is most valuable where project delivery workflows, financial controls, approvals, and cross-team execution need tighter system alignment."
             />
             <ul className="mt-5 space-y-2 text-sm leading-7 text-muted-foreground">
@@ -1563,7 +1563,7 @@ function IndustriesPage() {
       <FaqSection
         eyebrow="Industries FAQ"
         title="Questions project-based teams ask before engaging Vextor"
-        summary="A quick overview of industry fit, BuilderTek context, and the kinds of Salesforce environments Vextor supports."
+        summary="A quick overview of industry fit, specialization context, and the kinds of Salesforce environments Vextor supports."
         items={industryFaqs}
       />
     </main>
@@ -1573,7 +1573,7 @@ function IndustriesPage() {
 function WorkPage() {
   usePageMeta(
     'Vextor Work | Salesforce Delivery for Project-Based Operations',
-    'See how Vextor approaches Salesforce automation, BuilderTek delivery, integrations, and long-term support for project-based businesses.',
+    'See how Vextor approaches Salesforce automation, custom development, integrations, and long-term support for project-based businesses.',
     { path: '/work' }
   )
 
@@ -1584,7 +1584,7 @@ function WorkPage() {
     },
     {
       title: 'Execution workflow engineering',
-      body: 'We align automation, BuilderTek behavior, approvals, and handoffs with how teams actually operate.',
+      body: 'We align automation, platform behavior, approvals, and handoffs with how teams actually operate.',
     },
     {
       title: 'Support after launch',
@@ -1723,7 +1723,7 @@ function WorkPage() {
           <SectionIntro
             eyebrow="Proof Path"
             title="See representative success stories"
-            summary="Representative stories show how Vextor approaches inherited complexity, BuilderTek execution issues, and cross-system delivery problems without relying on generic CRM patterns."
+            summary="Representative stories show how Vextor approaches inherited complexity, specialized platform execution issues, and cross-system delivery problems without relying on generic CRM patterns."
           />
           <div className="mt-8">
             <Link to="/success-stories">
@@ -1740,8 +1740,8 @@ function WorkPage() {
 
 function AboutPage() {
   usePageMeta(
-    'About Vextor | Salesforce & BuilderTek Consulting Experts',
-    'Learn how Ahmedabad-based Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and BuilderTek expertise.',
+    'About Vextor | Salesforce Consulting Partner',
+    'Learn how Ahmedabad-based Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and dedicated BuilderTek specialization.',
     { path: '/about' }
   )
 
@@ -1974,8 +1974,8 @@ function ContactPage() {
   ]
 
   usePageMeta(
-    'Contact Vextor | Salesforce & BuilderTek Consultation in Ahmedabad',
-    'Contact Vextor for Salesforce consulting, BuilderTek support, automation planning, integrations, and long-term platform guidance for project-based teams.',
+    'Contact Vextor | Salesforce Consulting in Ahmedabad',
+    'Contact Vextor for Salesforce consulting, custom development, automation planning, and managed support — including dedicated BuilderTek specialization.',
     { path: '/contact' }
   )
   useStructuredData('contact-page', {
@@ -1984,7 +1984,7 @@ function ContactPage() {
     name: 'Contact Vextor',
     url: 'https://www.vextor.co/contact',
     description:
-      'Contact Vextor for Salesforce consulting, BuilderTek support, automation planning, integrations, and long-term platform guidance.',
+      'Contact Vextor for Salesforce consulting, custom development, automation planning, and managed support — including dedicated BuilderTek specialization.',
     about: {
       '@id': 'https://www.vextor.co/#service',
     },
@@ -2267,7 +2267,7 @@ function SuccessStoriesPage() {
     {
       question: 'What kinds of problems usually lead teams to Vextor?',
       answer:
-        'Common triggers include inherited Salesforce complexity, weak reporting trust, BuilderTek process friction, disconnected integrations, and the need for long-term platform ownership after implementation.',
+        'Common triggers include inherited Salesforce complexity, weak reporting trust, specialized platform friction, disconnected integrations, and the need for long-term platform ownership after implementation.',
     },
     {
       question: 'Does Vextor only work on one-time projects?',
@@ -2326,7 +2326,7 @@ function SuccessStoriesPage() {
 
   usePageMeta(
     'Vextor Success Stories | Salesforce Proof For Project-Based Teams',
-    'Representative Salesforce and BuilderTek success stories showing how Vextor supports inherited org recovery, BuilderTek execution, and cross-system operational clarity.',
+    'Representative Salesforce success stories across architecture, automation, integrations, and specialized delivery.',
     { path: '/success-stories' }
   )
   useStructuredData('success-stories-page', {
@@ -2335,7 +2335,7 @@ function SuccessStoriesPage() {
     name: 'Vextor Success Stories',
     url: 'https://www.vextor.co/success-stories',
     description:
-      'Representative Salesforce and BuilderTek success stories showing how Vextor supports inherited org recovery, BuilderTek execution, and cross-system operational clarity.',
+      'Representative Salesforce success stories across architecture, automation, integrations, and specialized delivery.',
   })
   useStructuredData('success-stories-list', {
     '@context': 'https://schema.org',
@@ -2368,7 +2368,7 @@ function SuccessStoriesPage() {
           <SectionIntro
             eyebrow="Success Stories"
             title="Representative proof of how Vextor is brought into operational Salesforce environments"
-            summary="These examples show the kinds of inherited complexity, BuilderTek delivery issues, and cross-system process problems that project-based teams typically engage Vextor to solve."
+            summary="These examples show the kinds of inherited complexity, specialized platform delivery issues, and cross-system process problems that project-based teams typically engage Vextor to solve."
             titleTag="h1"
           />
         </div>
@@ -2380,7 +2380,7 @@ function SuccessStoriesPage() {
             <SectionIntro
               eyebrow="Proof Layer"
               title="Not generic CRM work. Operational Salesforce work."
-              summary="The value of Vextor shows up where approvals, reporting, BuilderTek execution, integrations, and release quality all intersect with how the business actually runs."
+              summary="The value of Vextor shows up where approvals, reporting, specialized platform execution, integrations, and release quality all intersect with how the business actually runs."
             />
             <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
               <li className="flex items-start gap-2">
@@ -2397,8 +2397,8 @@ function SuccessStoriesPage() {
 
           <Visual
             src="/images/success-story-proof-panel.svg"
-            alt="Branded visual showing proof themes across architecture, BuilderTek, and integrations"
-            caption="Architecture recovery, BuilderTek execution, and cross-system coordination as repeatable proof themes."
+            alt="Branded visual showing proof themes across architecture, specialization, and integrations"
+            caption="Architecture recovery, specialized delivery, and cross-system coordination as repeatable proof themes."
             className="min-h-[320px] lg:min-h-[430px]"
           />
         </div>
