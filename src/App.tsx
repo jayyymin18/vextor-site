@@ -1152,9 +1152,9 @@ function ServicesPage() {
         'Vextor provides Salesforce architecture, implementation planning, automation, Apex and Lightning development, integrations, managed support, and BuilderTek specialization for project-based teams.',
     },
     {
-      question: 'Do you support BuilderTek implementations and cleanup?',
+      question: 'Do I need to be a construction or BuilderTek team to work with Vextor?',
       answer:
-        'Yes. We handle new BuilderTek implementations, inherited org cleanup, workflow redesign, usability improvements, and ongoing support for operational teams already running BuilderTek.',
+        'No. We work across project-based and operations-heavy businesses on Salesforce generally. BuilderTek support is one specialization we offer, not a requirement.',
     },
     {
       question: 'Can Vextor support both engineering and long-term admin work?',
@@ -1173,8 +1173,8 @@ function ServicesPage() {
       body: 'For businesses dealing with reporting distrust, automation sprawl, and unclear ownership across teams.',
     },
     {
-      title: 'BuilderTek workflow refinement',
-      body: 'For project-based organizations that need procurement, approvals, and project controls to work more cleanly.',
+      title: 'Project-workflow refinement',
+      body: 'For project-based organizations that need procurement, approvals, and project controls to work more cleanly — including specialized platforms like BuilderTek.',
     },
   ]
 
@@ -1205,7 +1205,7 @@ function ServicesPage() {
           <SectionIntro
             eyebrow="Services"
             title="Salesforce consulting services built for execution-heavy teams"
-            summary="Vextor supports architecture, automation, custom development, integrations, and BuilderTek operations workflows for businesses that rely on Salesforce beyond pipeline management."
+            summary="Vextor supports architecture, automation, custom development, integrations, and managed support for businesses that rely on Salesforce well beyond pipeline management."
             titleTag="h1"
           />
         </div>
@@ -1339,7 +1339,7 @@ function ServicesPage() {
             <SectionIntro
               eyebrow="Specialization"
               title="BuilderTek support and customization"
-              summary="A separate specialization for BuilderTek customers who need process tuning, workflow customization, and ongoing support."
+              summary="A dedicated specialization for BuilderTek customers who need process tuning, workflow customization, and ongoing support — one focused area within our broader Salesforce practice."
             />
             <ul className="mt-5 space-y-2 text-sm leading-7 text-muted-foreground">
               <li className="flex items-start gap-2">
