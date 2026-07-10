@@ -703,13 +703,48 @@ function HomePage() {
   ]
 
   const leadershipTrust = [
-    { name: 'Kristi McLaughlin', role: 'CEO', company: 'ForeFront' },
-    { name: 'Vicki Lipinski', role: 'CEO', company: 'Acts' },
-    { name: 'Brian Kwong', role: 'CEO', company: 'Better Partners' },
-    { name: 'Brian Cronin', role: 'CEO', company: 'BuilderTek' },
-    { name: 'Brent Stodolak', role: 'Manager', company: 'RHP' },
-    { name: 'Rebecca Wygal', role: 'Manager', company: 'RHP' },
-    { name: 'Sara Unser', role: 'CEO', company: 'Flight Builders' },
+    {
+      name: 'Kristi McLaughlin',
+      role: 'CEO',
+      company: 'ForeFront',
+      text: 'Vextor has been a reliable extension of our team. They understand Salesforce deeply, communicate clearly, and consistently deliver solutions that help us move faster.',
+    },
+    {
+      name: 'Vicki Lipinski',
+      role: 'CEO',
+      company: 'ACTS',
+      text: 'Working with Vextor has been effortless. Their team is responsive, knowledgeable, and always focused on finding practical solutions that fit our business.',
+    },
+    {
+      name: 'Brian Kwong',
+      role: 'CEO',
+      company: 'Better Partners',
+      text: 'Vextor combines strong technical expertise with a genuine understanding of business needs. They deliver quality work and are a team we trust.',
+    },
+    {
+      name: 'Brian Cronin',
+      role: 'CEO',
+      company: 'BuilderTek',
+      text: 'Vextor has become an invaluable part of our Salesforce ecosystem. Their technical knowledge, ownership, and attention to detail have made a meaningful impact on our product and our customers.',
+    },
+    {
+      name: 'Brent Stodolak',
+      role: 'Manager',
+      company: 'RHP',
+      text: 'The Vextor team is dependable, proactive, and easy to work with. They consistently deliver high-quality Salesforce solutions on time.',
+    },
+    {
+      name: 'Rebecca Wygal',
+      role: 'Manager',
+      company: 'RHP',
+      text: "What stands out about Vextor is their responsiveness and commitment to getting things right. They're a trusted partner we can always count on.",
+    },
+    {
+      name: 'Sara Unser',
+      role: 'CEO',
+      company: 'Flight Builders',
+      text: 'Vextor quickly understood our business and translated our requirements into solutions that made a real difference. Their team is knowledgeable, collaborative, and dependable.',
+    },
   ]
 
   const proofPoints = [
@@ -804,19 +839,25 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="border-b border-border bg-card/40 py-5">
+      <section className="border-b border-border bg-card/40 py-8">
         <div className="home-shell px-4 sm:px-6 lg:px-8">
-          <div className="trust-strip-head">
-            <p className="trust-strip-copy">Leadership teams that know Vextor</p>
-          </div>
-          <div className="quote-marquee" aria-label="Leadership trust row">
-            <div className="quote-marquee-track">
+          <SectionIntro
+            eyebrow="Trusted By Leadership Teams"
+            title="What client leaders say after working with Vextor"
+            summary="Direct feedback from executives and operating leaders who rely on Vextor for Salesforce delivery, BuilderTek support, and long-term platform execution."
+            align="center"
+          />
+          <div className="testimonial-marquee mt-10" aria-label="Leadership trust row">
+            <div className="testimonial-marquee-track">
               {[...leadershipTrust, ...leadershipTrust].map((item, index) => (
-                <article key={`${item.name}-${index}`} className="quote-card">
-                  <p className="quote-name">{item.name}</p>
-                  <p className="quote-role">
-                    {item.role}, {item.company}
-                  </p>
+                <article key={`${item.name}-${index}`} className="testimonial-card">
+                  <p className="testimonial-copy">{item.text}</p>
+                  <div className="testimonial-meta">
+                    <p className="testimonial-name">{item.name}</p>
+                    <p className="testimonial-role">
+                      {item.role}, {item.company}
+                    </p>
+                  </div>
                 </article>
               ))}
             </div>
@@ -1911,43 +1952,35 @@ function ContactPage() {
   return (
     <main>
       <section className="section-wrap border-b border-border bg-card/60">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.98fr_1.02fr] lg:px-8">
-          <div className="space-y-6">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="contact-hero">
             <SectionIntro
               eyebrow="Contact"
-              title="Start a focused Salesforce conversation"
-              summary="Share the business context, the operational friction, and what your team needs to fix or improve next. We will review it directly and come back with the right next step."
+              title="Start a focused Salesforce conversation with Vextor"
+              summary="Use the form to share the operational issue, BuilderTek context, or platform challenge your team is dealing with. Keep it direct. We will review it and respond with the right next step."
               titleTag="h1"
             />
-            <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Useful for architecture reviews, BuilderTek issues, support transitions, inherited org cleanup, and workflow redesign.
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Best when the problem is tied to approvals, reporting trust, handoffs, automation, integrations, or execution quality.
-              </li>
-            </ul>
+            <div className="contact-hero-points">
+              <span>Architecture review</span>
+              <span>BuilderTek support</span>
+              <span>Inherited org cleanup</span>
+              <span>Workflow redesign</span>
+              <span>Integration support</span>
+            </div>
           </div>
-
-          <Visual
-            src="/images/contact-conversation-panel.svg"
-            alt="Branded visual showing a structured consultation intake and planning conversation"
-            caption="A cleaner consultation path for Salesforce planning, BuilderTek support, and workflow improvement."
-            className="min-h-[320px] lg:min-h-[420px]"
-          />
         </div>
       </section>
 
       <section className="section-wrap">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
-          <div className="contact-surface">
-            <div className="contact-surface-panel">
-              <div className="max-w-2xl space-y-6">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
+          <div className="contact-clean-shell">
+            <div className="contact-clean-panel">
+              <div className="space-y-5">
                 <div>
                   <p className="eyebrow">Inquiry Form</p>
-                  <h2 className="section-title text-[clamp(1.9rem,3.4vw,2.8rem)]">Tell us what you need help solving</h2>
+                  <h2 className="section-title text-[clamp(1.8rem,3.1vw,2.5rem)]">Tell us what you need help solving</h2>
                   <p className="section-summary max-w-none">
-                    Keep it simple. Tell us what is not working, what system context matters, and what kind of support your team is looking for.
+                    Share the issue, the current system context, and what a better outcome should look like.
                   </p>
                 </div>
 
@@ -1965,13 +1998,13 @@ function ContactPage() {
                       <label className="form-label" htmlFor="first_name">
                         First Name
                       </label>
-                      <input className="webtolead-input" id="first_name" maxLength={40} name="first_name" type="text" placeholder="Your first name" />
+                      <input className="webtolead-input" id="first_name" maxLength={40} name="first_name" type="text" placeholder="First name" />
                     </div>
                     <div className="webtolead-field">
                       <label className="form-label" htmlFor="last_name">
                         Last Name
                       </label>
-                      <input className="webtolead-input" id="last_name" maxLength={80} name="last_name" type="text" placeholder="Your last name" required />
+                      <input className="webtolead-input" id="last_name" maxLength={80} name="last_name" type="text" placeholder="Last name" required />
                     </div>
                   </div>
 
@@ -1983,19 +2016,19 @@ function ContactPage() {
                       <input className="webtolead-input" id="email" maxLength={80} name="email" type="email" placeholder="you@company.com" required />
                     </div>
                     <div className="webtolead-field">
-                      <label className="form-label" htmlFor="mobile">
-                        Mobile
+                      <label className="form-label" htmlFor="company">
+                        Company
                       </label>
-                      <input className="webtolead-input" id="mobile" maxLength={40} name="mobile" type="text" placeholder="Optional phone or WhatsApp number" />
+                      <input className="webtolead-input" id="company" maxLength={40} name="company" type="text" placeholder="Company" required />
                     </div>
                   </div>
 
                   <div className="webtolead-grid">
                     <div className="webtolead-field">
-                      <label className="form-label" htmlFor="company">
-                        Company
+                      <label className="form-label" htmlFor="mobile">
+                        Mobile
                       </label>
-                      <input className="webtolead-input" id="company" maxLength={40} name="company" type="text" placeholder="Your company name" required />
+                      <input className="webtolead-input" id="mobile" maxLength={40} name="mobile" type="text" placeholder="Optional phone number" />
                     </div>
                     <div className="webtolead-field">
                       <label className="form-label" htmlFor="city">
@@ -2029,12 +2062,12 @@ function ContactPage() {
                       id="description"
                       name="description"
                       rows={6}
-                      placeholder="Describe your Salesforce setup, BuilderTek context, the workflow issue, timeline, and what a successful outcome looks like."
+                      placeholder="Describe the Salesforce or BuilderTek issue, the workflow friction, and what outcome your team needs."
                       required
                     />
                   </div>
 
-                  <div className="contact-actions">
+                  <div className="contact-clean-actions">
                     <Button type="submit" name="submit" size="lg" className="btn-solid justify-center sm:min-w-[15rem]">
                       Send Inquiry
                     </Button>
@@ -2047,40 +2080,8 @@ function ContactPage() {
             </div>
           </div>
 
-          <div className="space-y-8">
-            <div className="space-y-6 rounded-[1.6rem] border border-border bg-white/75 p-6 shadow-[0_22px_48px_-34px_rgba(15,23,42,0.18)] sm:p-7">
-              <div className="process-step !border-t-0 !pt-0">
-                <div className="process-step-title">
-                  <span className="icon-wrap">
-                    <ClipboardList className="size-4" />
-                  </span>
-                  <h3>What helps most</h3>
-                </div>
-                <p>Mention the current Salesforce setup, whether BuilderTek is involved, the process bottleneck, and any delivery pressure behind the request.</p>
-              </div>
-
-              <div className="process-step">
-                <div className="process-step-title">
-                  <span className="icon-wrap">
-                    <CalendarCheck2 className="size-4" />
-                  </span>
-                  <h3>What happens next</h3>
-                </div>
-                <p>We review the inquiry, identify the operating context, and respond with the right next conversation instead of a generic sales sequence.</p>
-              </div>
-
-              <div className="process-step">
-                <div className="process-step-title">
-                  <span className="icon-wrap">
-                    <ShieldCheck className="size-4" />
-                  </span>
-                  <h3>Typical starting points</h3>
-                </div>
-                <p>Architecture review, BuilderTek refinement, inherited-org cleanup, integration support, and ongoing managed support are all common starting paths.</p>
-              </div>
-            </div>
-
-            <div className="space-y-4 rounded-[1.45rem] border border-border/80 bg-card/55 p-6">
+          <div className="contact-clean-aside">
+            <div className="contact-clean-card">
               <h2 className="text-2xl font-semibold tracking-tight">Direct contact</h2>
               <p className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail className="size-4 text-accent" />
@@ -2094,12 +2095,27 @@ function ContactPage() {
               </p>
             </div>
 
-            <Visual
-              src="/images/contact-process-summary.svg"
-              alt="Branded visual summarizing consultation review, planning, and response flow"
-              caption="Structured review, practical scoping, and direct follow-up from the Vextor team."
-              className="min-h-[280px] lg:min-h-[340px]"
-            />
+            <div className="contact-clean-card">
+              <h3 className="text-lg font-semibold tracking-tight">Best for</h3>
+              <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-1 size-4 text-accent" /> Salesforce architecture and inherited org cleanup
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-1 size-4 text-accent" /> BuilderTek delivery support and workflow refinement
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-1 size-4 text-accent" /> Integrations, approvals, reporting trust, and operational redesign
+                </li>
+              </ul>
+            </div>
+
+            <div className="contact-clean-card contact-clean-card--accent">
+              <p className="eyebrow">What happens next</p>
+              <p className="text-sm leading-7 text-deep-muted">
+                We review the inquiry, identify the operating context, and respond with the right conversation path instead of sending a generic sales response.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -2163,12 +2179,25 @@ function ThankYouPage() {
             </div>
           </div>
 
-          <Visual
-            src="/images/thank-you-response-panel.svg"
-            alt="Branded visual showing review and follow-up after a consultation inquiry"
-            caption="Review, prioritization, and a clear response path from the Vextor team."
-            className="min-h-[320px] lg:min-h-[460px]"
-          />
+          <div className="thank-you-panel">
+            <div className="thank-you-stack">
+              <article className="thank-you-step-card">
+                <p className="eyebrow">Step 01</p>
+                <h2>We review the request</h2>
+                <p>We look at the Salesforce context, BuilderTek relevance, and the delivery issue your team described.</p>
+              </article>
+              <article className="thank-you-step-card">
+                <p className="eyebrow">Step 02</p>
+                <h2>We respond with the right next step</h2>
+                <p>You will hear back with a focused follow-up, not a generic sales reply or a cluttered handoff.</p>
+              </article>
+              <article className="thank-you-step-card thank-you-step-card--accent">
+                <p className="eyebrow">Step 03</p>
+                <h2>We move the conversation forward</h2>
+                <p>If the request is time-sensitive, inherited-org related, or BuilderTek-specific, we prioritize accordingly.</p>
+              </article>
+            </div>
+          </div>
         </div>
       </section>
     </main>
