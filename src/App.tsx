@@ -1249,9 +1249,9 @@ function ServicesPage() {
             {salesforceServices.map((service, index) => {
               const Icon = serviceIcons[index]
               return (
-                <article key={service.title} className="service-article">
+                <article key={service.title} className="service-card">
                   <div>
-                    <h3 className="service-title">
+                    <h3 className="service-card-title">
                       <span className="icon-wrap">
                         <Icon className="size-4" />
                       </span>
@@ -1260,40 +1260,28 @@ function ServicesPage() {
                     <p className="mt-3 text-sm leading-7 text-muted-foreground">{service.summary}</p>
                   </div>
 
-                  <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                    <Card className="surface-card">
-                      <CardHeader>
-                        <CardTitle className="text-base">Common challenges addressed</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
-                          {service.challenges.map((item) => (
-                            <li key={item} className="flex items-start gap-2">
-                              <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
+                  <div className="service-card-columns">
+                    <div className="service-card-column">
+                      <p className="service-card-label">Common challenges addressed</p>
+                      <ul className="service-card-list">
+                        {service.challenges.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
 
-                    <Card className="surface-card">
-                      <CardHeader>
-                        <CardTitle className="text-base">Scope includes</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
-                          {service.included.map((item) => (
-                            <li key={item} className="flex items-start gap-2">
-                              <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
+                    <div className="service-card-column">
+                      <p className="service-card-label">Scope includes</p>
+                      <ul className="service-card-list">
+                        {service.included.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
-                  <p className="mt-5 rounded-2xl border border-border/75 bg-background px-4 py-3 text-sm text-muted-foreground">
-                    <strong className="text-foreground">Expected outcome:</strong> {service.outcomes}
+                  <p className="service-card-outcome">
+                    <strong>Expected outcome:</strong> {service.outcomes}
                   </p>
                 </article>
               )
