@@ -45,6 +45,7 @@ const navItems = [
   { label: 'Industries', to: '/industries' },
   { label: 'Work', to: '/work' },
   { label: 'About', to: '/about' },
+  { label: 'Careers', to: '/careers' },
   { label: 'Contact', to: '/contact' },
 ]
 
@@ -511,6 +512,11 @@ function Footer() {
                 </Link>
               </li>
               <li>
+                <Link className="hover:text-accent" to="/careers">
+                  Careers
+                </Link>
+              </li>
+              <li>
                 <Link className="hover:text-accent" to="/contact">
                   Contact
                 </Link>
@@ -900,7 +906,7 @@ function HomePage() {
       </section>
 
       <section className="section-wrap" id="buildertek-home">
-        <div className="home-shell home-split grid gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
           <div className="space-y-5">
             <SectionIntro
               eyebrow="BuilderTek Specialization"
@@ -925,13 +931,6 @@ function HomePage() {
               Explore BuilderTek support <ArrowRight className="size-4" />
             </Link>
           </div>
-
-          <Visual
-            src="/images/home-buildertek-blueprint.svg"
-            alt="Branded visual showing BuilderTek delivery support for project operations"
-            caption="BuilderTek delivery support presented as an operational system, not a generic add-on."
-            className="editorial-visual min-h-[390px]"
-          />
         </div>
       </section>
 
@@ -1212,7 +1211,7 @@ function ServicesPage() {
       </section>
 
       <section className="section-wrap border-b border-border/80">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-6">
             <SectionIntro
               eyebrow="How Teams Engage"
@@ -1228,13 +1227,6 @@ function ServicesPage() {
               ))}
             </div>
           </div>
-
-          <Visual
-            src="/images/services-operations-diagram.svg"
-            alt="Illustrated diagram showing architecture, automation, integration, and support working together"
-            caption="A service model designed around architecture quality, process flow, and reliable delivery ownership."
-            className="min-h-[360px] lg:min-h-[420px]"
-          />
         </div>
       </section>
 
@@ -1294,7 +1286,7 @@ function ServicesPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
           <Visual
             src="/images/services-delivery-workshop.jpg"
-            alt="Consulting workshop focused on planning Salesforce delivery"
+            alt="Team workshop with a facilitator mapping process at a whiteboard"
             caption="Delivery workshops shaped around process clarity, architecture, and adoption."
             className="min-h-[340px] lg:min-h-[400px]"
             objectPosition="center 44%"
@@ -1322,7 +1314,7 @@ function ServicesPage() {
       </section>
 
       <section className="section-wrap border-y border-border bg-card/60" id="buildertek-specialization">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div>
             <SectionIntro
               eyebrow="Specialization"
@@ -1344,14 +1336,6 @@ function ServicesPage() {
               </li>
             </ul>
           </div>
-
-          <Visual
-            src="/images/services-buildertek-planning.jpg"
-            alt="Construction planning table with project drawings and laptop"
-            caption="BuilderTek specialization focused on project delivery workflows."
-            className="min-h-[340px] lg:min-h-[400px]"
-            objectPosition="center 50%"
-          />
         </div>
       </section>
 
@@ -1416,7 +1400,7 @@ function IndustriesPage() {
       </section>
 
       <section className="section-wrap border-b border-border/80">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-6">
             <SectionIntro
               eyebrow="Operational Fit"
@@ -1445,13 +1429,6 @@ function IndustriesPage() {
               ))}
             </div>
           </div>
-
-          <Visual
-            src="/images/industries-operations-panel.svg"
-            alt="Branded operations visual for cross-team workflow coordination"
-            caption="Industry support starts with how the business actually coordinates work across people, systems, approvals, and financial controls."
-            className="min-h-[340px] lg:min-h-[420px]"
-          />
         </div>
       </section>
 
@@ -1510,7 +1487,7 @@ function IndustriesPage() {
 
           <Visual
             src="/images/industries-construction-operations.jpg"
-            alt="Urban construction project with crane and building structure"
+            alt="Architectural detail being drawn by hand with a rolled blueprint on the table"
             caption="BuilderTek process support for construction and real-estate operations."
             className="min-h-[320px] lg:min-h-[390px]"
             objectPosition="center 52%"
@@ -1519,14 +1496,7 @@ function IndustriesPage() {
       </section>
 
       <section className="section-wrap border-b border-border/80">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
-          <Visual
-            src="/images/industries-contractor-panel.svg"
-            alt="Construction operations visual showing jobsite coordination and system visibility"
-            caption="Operational consulting is strongest when architecture and delivery decisions stay close to jobsite reality."
-            className="min-h-[320px] lg:min-h-[390px]"
-          />
-
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-5">
             <SectionIntro
               eyebrow="Where Vextor Adds Value"
@@ -1660,7 +1630,7 @@ function WorkPage() {
       </section>
 
       <section className="section-wrap border-y border-border bg-card/50">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-5">
             <SectionIntro
               eyebrow="Program Delivery"
@@ -1671,18 +1641,11 @@ function WorkPage() {
               Engagements typically bridge leadership priorities with admin execution, custom engineering, field workflows, and reporting reliability.
             </p>
           </div>
-
-          <Visual
-            src="/images/work-execution-visual.svg"
-            alt="Branded visual showing delivery reviews, process checkpoints, and implementation flow"
-            caption="A delivery model that keeps architecture, implementation, and operational handoff aligned."
-            className="min-h-[320px] lg:min-h-[390px]"
-          />
         </div>
       </section>
 
       <section className="section-wrap border-b border-border">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div>
             <SectionIntro
               eyebrow="Delivery Focus"
@@ -1695,14 +1658,6 @@ function WorkPage() {
               <p>3. Deliver in phases with quality controls and operational handover.</p>
             </div>
           </div>
-
-          <Visual
-            src="/images/work-consulting-execution.jpg"
-            alt="Operations and planning workspace for consulting execution"
-            caption="Execution model built around workflow quality and delivery consistency."
-            className="min-h-[300px]"
-            objectPosition="center 46%"
-          />
         </div>
       </section>
 
@@ -1742,16 +1697,16 @@ function AboutPage() {
 
   const aboutPrinciples = [
     {
-      title: 'Platform clarity first',
-      body: 'We focus on the data, process, and ownership decisions that make future Salesforce delivery easier instead of harder.',
+      title: 'The person doing the work knows more than the org chart does',
+      body: "The best design decisions we've made came from someone deep in the process, not from a stakeholder deck.",
     },
     {
-      title: 'Operational alignment',
-      body: 'The system has to match how teams estimate, approve, deliver, report, and coordinate across functions.',
+      title: 'You should never feel managed',
+      body: "No account layers, no handoffs to people you've never met. You talk to the people who are building your system.",
     },
     {
-      title: 'Long-term maintainability',
-      body: 'Architecture, custom logic, and support decisions are made with future change in mind, not just immediate launch pressure.',
+      title: 'Build what someone will still trust in three years',
+      body: "Not what demos well. The difference shows up long after we've left the room.",
     },
   ]
 
@@ -1761,8 +1716,8 @@ function AboutPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="About Vextor"
-            title="Salesforce systems built for real operational complexity"
-            summary="Vextor helps teams build scalable Salesforce environments that support daily execution, not just CRM workflows."
+            title="Software doesn't fail projects. Mismatched thinking does."
+            summary="Most Salesforce work goes wrong long before anyone writes a line of code — in the room where nobody asked the person doing the actual job how the work actually moves. Vextor exists because we'd rather start there."
             titleTag="h1"
           />
         </div>
@@ -1773,11 +1728,11 @@ function AboutPage() {
           <div className="space-y-5">
             <SectionIntro
               eyebrow="Who We Are"
-              title="A consulting firm focused on long-term platform quality"
-              summary="As organizations grow, Salesforce often becomes the core system for operations, coordination, and execution."
+              title="We kept meeting the same people"
+              summary="A project manager keeping the real schedule in a spreadsheet because the system couldn't hold it. A finance lead re-keying purchase orders by hand. An operations head who'd stopped trusting the reports and just called people instead."
             />
             <p className="text-sm leading-7 text-muted-foreground">
-              We design Salesforce systems that stay stable as workflows, teams, and integrations become more complex.
+              None of them were fighting a technology problem. They were working around a system designed for someone else's job. That's what happens when a platform built for sales pipelines gets handed to a business that runs on projects.
             </p>
             <div className="editorial-reasons">
               {aboutPrinciples.map((item) => (
@@ -1791,7 +1746,7 @@ function AboutPage() {
 
           <Visual
             src="/images/about-team-collaboration.jpg"
-            alt="Collaborative architecture planning"
+            alt="Hands at a table during a working session, one person taking notes"
             caption="Collaborative planning and operational discovery before implementation."
             className="min-h-[340px] lg:min-h-[430px]"
             objectPosition="center 38%"
@@ -1812,21 +1767,21 @@ function AboutPage() {
           <div className="space-y-5">
             <SectionIntro
               eyebrow="Our Approach"
-              title="Strong foundations before rapid feature delivery"
-              summary="We prioritize system structure, data clarity, and sustainable automation."
+              title="We start with a conversation, not a proposal"
+              summary="We open with a conversation where nobody's trying to close anything and you're allowed to think out loud. We want to understand your business, your constraints, and the parts you're quietly frustrated by, before we suggest a single thing."
             />
             <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Data models designed for reporting trust and clean growth
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> We listen to the people who use the system every day, not just the people who buy it
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Automation that matches operational workflows
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> We map how the work actually flows, including the workarounds nobody puts in the requirements doc
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Integrations built for reliability, not short-term patches
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> If we're not the right fit for what you need, we'll say so
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Delivery decisions made with long-term maintainability in mind
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> We stay engaged long after launch, when the process shifts and the team changes
               </li>
             </ul>
           </div>
@@ -1838,8 +1793,8 @@ function AboutPage() {
           <div className="space-y-5">
             <SectionIntro
               eyebrow="Salesforce Expertise"
-              title="Configuration, development, and integration depth"
-              summary="We help organizations extend Salesforce into a dependable operational platform."
+              title="Depth that shows up in the details"
+              summary="The listening comes first. But when it's time to build, this is what we bring."
             />
             <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
               <li className="flex items-start gap-2">
@@ -1881,7 +1836,7 @@ function AboutPage() {
             <SectionIntro
               eyebrow="BuilderTek Specialization"
               title="Focused support for project and construction operations"
-              summary="We help BuilderTek-heavy organizations align Salesforce with real project execution needs."
+              summary="That same focus on how project-driven teams actually work is why we've developed deep expertise in BuilderTek — one specialization within our broader Salesforce practice."
             />
             <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
               <li className="flex items-start gap-2">
@@ -1925,6 +1880,23 @@ function AboutPage() {
       <section className="section-wrap border-t border-border bg-card/40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
+            eyebrow="Join Us"
+            title="We hire people, not roles"
+            summary="We're deliberately selective — about the clients we take on, and about who we bring in to serve them. We care less about your résumé than about how you think: whether you ask the second question, whether you own a problem without being asked twice, whether badly-built software quietly bothers you. If that sounds like you, we'd rather hear who you are than what your last job title was."
+          />
+          <div className="mt-8">
+            <a href="mailto:career@vextor.co">
+              <Button size="lg" variant="outline">
+                Write to us at career@vextor.co <ChevronRight className="ml-2 size-4" />
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap border-t border-border bg-card/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
             eyebrow="Proof"
             title="Review the kinds of operating situations where Vextor is brought in"
             summary="If you want to understand how Vextor fits in real Salesforce environments, the representative success stories page shows the common delivery contexts more directly."
@@ -1935,6 +1907,110 @@ function AboutPage() {
                 Explore Success Stories <ChevronRight className="ml-2 size-4" />
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}
+
+function CareersPage() {
+  usePageMeta(
+    'Careers | Vextor',
+    'We hire people, not roles. Vextor is a Salesforce consulting firm in Ahmedabad looking for people who think carefully and own their work.',
+    { path: '/careers' }
+  )
+
+  const careerPrinciples = [
+    {
+      title: 'You ask the second question',
+      body: "The first answer is rarely the real one. We look for people who keep going until they understand what's actually happening.",
+    },
+    {
+      title: 'You own it without being asked twice',
+      body: "Nobody here needs to be chased. If it's yours, you carry it — and you say something early when it's going sideways.",
+    },
+    {
+      title: 'Badly built software quietly bothers you',
+      body: "If you've ever inherited someone else's mess and felt the urge to fix it properly rather than patch it, you'll fit in.",
+    },
+  ]
+
+  return (
+    <main>
+      <section className="section-wrap border-b border-border bg-card/60">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Careers"
+            title="We hire people, not roles"
+            summary="We're deliberately selective — about the clients we take on, and about who we bring in to serve them."
+            titleTag="h1"
+          />
+        </div>
+      </section>
+
+      <section className="section-wrap border-b border-border/80">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="space-y-5">
+            <SectionIntro
+              eyebrow="Who We're Looking For"
+              title="How you think matters more than what you've done"
+              summary="We care less about your résumé than about how you approach a problem."
+            />
+            <p className="text-sm leading-7 text-muted-foreground">
+              There's no fixed role waiting for you here. If you're good, we'll figure out where you fit.
+            </p>
+            <div className="editorial-reasons">
+              {careerPrinciples.map((item) => (
+                <article key={item.title} className="editorial-reason">
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap border-y border-border bg-card/60">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="space-y-5">
+            <SectionIntro
+              eyebrow="What It's Like"
+              title="Small team, real ownership, no theatre"
+              summary="We're not built like a typical consultancy, and we don't work like one."
+            />
+            <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> You talk directly to clients, not through layers
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> You own problems end to end, not tickets in a queue
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> We'd rather do fewer things properly than more things badly
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Remote-friendly, based in Ahmedabad
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap border-t border-border bg-card/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Get In Touch"
+            title="Tell us who you are"
+            summary="Not a cover letter. Tell us what you've built, what you'd do differently, and what you're curious about. We read everything."
+          />
+          <div className="mt-8">
+            <a href="mailto:career@vextor.co">
+              <Button size="lg" variant="outline">
+                Write to us at career@vextor.co <ChevronRight className="ml-2 size-4" />
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -2277,8 +2353,6 @@ function SuccessStoriesPage() {
         'More reliable reporting and cleaner release decisions',
         'A maintainable system foundation before new automation is added',
       ],
-      visual: '/images/success-story-foundation.svg',
-      alt: 'Branded visual showing architecture recovery and system cleanup',
     },
     {
       eyebrow: 'Representative Story 02',
@@ -2292,8 +2366,6 @@ function SuccessStoriesPage() {
         'Cleaner approval and procurement paths inside the system',
         'Stronger alignment between BuilderTek behavior and real delivery needs',
       ],
-      visual: '/images/success-story-buildertek.svg',
-      alt: 'Branded visual showing BuilderTek workflow refinement and delivery visibility',
     },
     {
       eyebrow: 'Representative Story 03',
@@ -2307,8 +2379,6 @@ function SuccessStoriesPage() {
         'Lower dependence on manual reconciliation and side spreadsheets',
         'Stronger confidence in platform-wide visibility and coordination',
       ],
-      visual: '/images/success-story-integrations.svg',
-      alt: 'Branded visual showing cross-system integration and operational handoffs',
     },
   ]
 
@@ -2363,7 +2433,7 @@ function SuccessStoriesPage() {
       </section>
 
       <section className="section-wrap border-b border-border/80">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-5">
             <SectionIntro
               eyebrow="Proof Layer"
@@ -2382,23 +2452,13 @@ function SuccessStoriesPage() {
               </li>
             </ul>
           </div>
-
-          <Visual
-            src="/images/success-story-proof-panel.svg"
-            alt="Branded visual showing proof themes across architecture, specialization, and integrations"
-            caption="Architecture recovery, specialized delivery, and cross-system coordination as repeatable proof themes."
-            className="min-h-[320px] lg:min-h-[430px]"
-          />
         </div>
       </section>
 
       <section className="section-wrap">
         <div className="mx-auto max-w-7xl space-y-10 px-4 sm:px-6 lg:px-8">
-          {stories.map((story, index) => (
-            <div
-              key={story.title}
-              className={`story-showcase ${index % 2 === 1 ? 'story-showcase--reverse' : ''}`}
-            >
+          {stories.map((story) => (
+            <div key={story.title} className="story-showcase">
               <div className="space-y-5">
                 <p className="eyebrow">{story.eyebrow}</p>
                 <h2 className="section-title">{story.title}</h2>
@@ -2412,13 +2472,6 @@ function SuccessStoriesPage() {
                   ))}
                 </ul>
               </div>
-
-              <Visual
-                src={story.visual}
-                alt={story.alt}
-                caption="Representative visual for a common Vextor engagement pattern."
-                className="min-h-[300px] lg:min-h-[380px]"
-              />
             </div>
           ))}
         </div>
@@ -2444,6 +2497,7 @@ export default function App() {
         <Route path="/work" element={<WorkPage />} />
         <Route path="/success-stories" element={<SuccessStoriesPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/careers" element={<CareersPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />

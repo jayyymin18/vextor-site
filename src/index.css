@@ -720,10 +720,6 @@ a {
   border-top: 1px solid hsl(var(--border));
 }
 
-.story-showcase--reverse .photo-frame {
-  order: -1;
-}
-
 .faq-item {
   padding-top: 1.25rem;
   border-top: 1px solid hsl(var(--border));
@@ -1387,17 +1383,6 @@ textarea::placeholder {
     margin-left: -1.5rem;
   }
 
-  .story-showcase {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  }
-
-  .story-showcase--reverse > :first-child {
-    order: 2;
-  }
-
-  .story-showcase--reverse > :last-child {
-    order: 1;
-  }
 }
 
 @media (min-width: 768px) and (max-width: 1279px) {
