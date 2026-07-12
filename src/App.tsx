@@ -907,13 +907,13 @@ function HomePage() {
 
       <section className="section-wrap" id="buildertek-home">
         <div className="home-shell px-4 sm:px-6 lg:px-8">
-          <div className="space-y-5">
+          <div className="max-w-3xl space-y-5">
             <SectionIntro
               eyebrow="BuilderTek Specialization"
               title="A dedicated BuilderTek practice for teams that run on jobs, not just pipelines"
               summary="BuilderTek is a serious operational platform. We treat it as a dedicated practice with implementation depth, custom configuration capability, and managed support."
             />
-            <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+            <ul className="grid gap-5 text-sm leading-7 text-muted-foreground md:grid-cols-2">
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="mt-1 size-4 text-accent" /> New BuilderTek implementations around estimating, project management, and financial workflows
               </li>
@@ -1212,7 +1212,7 @@ function ServicesPage() {
 
       <section className="section-wrap border-b border-border/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-6">
+          <div className="max-w-3xl space-y-6">
             <SectionIntro
               eyebrow="How Teams Engage"
               title="Architecture decisions, workflow engineering, and long-term platform ownership"
@@ -1315,13 +1315,13 @@ function ServicesPage() {
 
       <section className="section-wrap border-y border-border bg-card/60" id="buildertek-specialization">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div>
+          <div className="max-w-3xl">
             <SectionIntro
               eyebrow="Specialization"
               title="BuilderTek support and customization"
               summary="A dedicated specialization for BuilderTek customers who need process tuning, workflow customization, and ongoing support — one focused area within our broader Salesforce practice."
             />
-            <ul className="mt-5 space-y-2 text-sm leading-7 text-muted-foreground">
+            <ul className="mt-5 grid gap-5 text-sm leading-7 text-muted-foreground md:grid-cols-2">
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="mt-1 size-4 text-accent" /> Project operations workflow mapping
               </li>
@@ -1401,7 +1401,7 @@ function IndustriesPage() {
 
       <section className="section-wrap border-b border-border/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-6">
+          <div className="max-w-3xl space-y-6">
             <SectionIntro
               eyebrow="Operational Fit"
               title="The common factor is workflow complexity, not just industry labels"
@@ -1497,7 +1497,7 @@ function IndustriesPage() {
 
       <section className="section-wrap border-b border-border/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-5">
+          <div className="max-w-3xl space-y-5">
             <SectionIntro
               eyebrow="Where Vextor Adds Value"
               title="The goal is a system that operators trust, not just a platform that technically works"
@@ -1631,7 +1631,7 @@ function WorkPage() {
 
       <section className="section-wrap border-y border-border bg-card/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-5">
+          <div className="max-w-3xl space-y-5">
             <SectionIntro
               eyebrow="Program Delivery"
               title="Operating models that connect architecture decisions to daily execution"
@@ -1646,7 +1646,7 @@ function WorkPage() {
 
       <section className="section-wrap border-b border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div>
+          <div className="max-w-3xl">
             <SectionIntro
               eyebrow="Delivery Focus"
               title="What we typically execute in engagements"
@@ -2434,7 +2434,7 @@ function SuccessStoriesPage() {
 
       <section className="section-wrap border-b border-border/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-5">
+          <div className="max-w-3xl space-y-5">
             <SectionIntro
               eyebrow="Proof Layer"
               title="Not generic CRM work. Operational Salesforce work."
@@ -2459,7 +2459,7 @@ function SuccessStoriesPage() {
         <div className="mx-auto max-w-7xl space-y-10 px-4 sm:px-6 lg:px-8">
           {stories.map((story) => (
             <div key={story.title} className="story-showcase">
-              <div className="space-y-5">
+              <div className="max-w-3xl space-y-5">
                 <p className="eyebrow">{story.eyebrow}</p>
                 <h2 className="section-title">{story.title}</h2>
                 <p className="section-summary max-w-none">{story.summary}</p>
