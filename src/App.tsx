@@ -1742,16 +1742,16 @@ function AboutPage() {
 
   const aboutPrinciples = [
     {
-      title: 'Platform clarity first',
-      body: 'We focus on the data, process, and ownership decisions that make future Salesforce delivery easier instead of harder.',
+      title: 'The person doing the work knows more than the org chart does',
+      body: "The best design decisions we've made came from someone deep in the process, not from a stakeholder deck.",
     },
     {
-      title: 'Operational alignment',
-      body: 'The system has to match how teams estimate, approve, deliver, report, and coordinate across functions.',
+      title: 'You should never feel managed',
+      body: "No account layers, no handoffs to people you've never met. You talk to the people who are building your system.",
     },
     {
-      title: 'Long-term maintainability',
-      body: 'Architecture, custom logic, and support decisions are made with future change in mind, not just immediate launch pressure.',
+      title: 'Build what someone will still trust in three years',
+      body: "Not what demos well. The difference shows up long after we've left the room.",
     },
   ]
 
@@ -1761,8 +1761,8 @@ function AboutPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="About Vextor"
-            title="Salesforce systems built for real operational complexity"
-            summary="Vextor helps teams build scalable Salesforce environments that support daily execution, not just CRM workflows."
+            title="Software doesn't fail projects. Mismatched thinking does."
+            summary="Most Salesforce work goes wrong long before anyone writes a line of code — in the room where nobody asked the person doing the actual job how the work actually moves. Vextor exists because we'd rather start there."
             titleTag="h1"
           />
         </div>
@@ -1773,11 +1773,11 @@ function AboutPage() {
           <div className="space-y-5">
             <SectionIntro
               eyebrow="Who We Are"
-              title="A consulting firm focused on long-term platform quality"
-              summary="As organizations grow, Salesforce often becomes the core system for operations, coordination, and execution."
+              title="We kept meeting the same people"
+              summary="A project manager keeping the real schedule in a spreadsheet because the system couldn't hold it. A finance lead re-keying purchase orders by hand. An operations head who'd stopped trusting the reports and just called people instead."
             />
             <p className="text-sm leading-7 text-muted-foreground">
-              We design Salesforce systems that stay stable as workflows, teams, and integrations become more complex.
+              None of them were fighting a technology problem. They were working around a system designed for someone else's job. That's what happens when a platform built for sales pipelines gets handed to a business that runs on projects.
             </p>
             <div className="editorial-reasons">
               {aboutPrinciples.map((item) => (
@@ -1812,21 +1812,21 @@ function AboutPage() {
           <div className="space-y-5">
             <SectionIntro
               eyebrow="Our Approach"
-              title="Strong foundations before rapid feature delivery"
-              summary="We prioritize system structure, data clarity, and sustainable automation."
+              title="We start with a conversation, not a proposal"
+              summary="We open with a conversation where nobody's trying to close anything and you're allowed to think out loud. We want to understand your business, your constraints, and the parts you're quietly frustrated by, before we suggest a single thing."
             />
             <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Data models designed for reporting trust and clean growth
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> We listen to the people who use the system every day, not just the people who buy it
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Automation that matches operational workflows
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> We map how the work actually flows, including the workarounds nobody puts in the requirements doc
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Integrations built for reliability, not short-term patches
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> If we're not the right fit for what you need, we'll say so
               </li>
               <li className="flex items-start gap-2">
-                <CheckCircle2 className="mt-1 size-4 text-accent" /> Delivery decisions made with long-term maintainability in mind
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> We stay engaged long after launch, when the process shifts and the team changes
               </li>
             </ul>
           </div>
@@ -1838,8 +1838,8 @@ function AboutPage() {
           <div className="space-y-5">
             <SectionIntro
               eyebrow="Salesforce Expertise"
-              title="Configuration, development, and integration depth"
-              summary="We help organizations extend Salesforce into a dependable operational platform."
+              title="Depth that shows up in the details"
+              summary="The listening comes first. But when it's time to build, this is what we bring."
             />
             <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
               <li className="flex items-start gap-2">
@@ -1881,7 +1881,7 @@ function AboutPage() {
             <SectionIntro
               eyebrow="BuilderTek Specialization"
               title="Focused support for project and construction operations"
-              summary="We help BuilderTek-heavy organizations align Salesforce with real project execution needs."
+              summary="That same focus on how project-driven teams actually work is why we've developed deep expertise in BuilderTek — one specialization within our broader Salesforce practice."
             />
             <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
               <li className="flex items-start gap-2">
@@ -1918,6 +1918,23 @@ function AboutPage() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap border-t border-border bg-card/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Join Us"
+            title="We hire people, not roles"
+            summary="We're deliberately selective — about the clients we take on, and about who we bring in to serve them. We care less about your résumé than about how you think: whether you ask the second question, whether you own a problem without being asked twice, whether badly-built software quietly bothers you. If that sounds like you, we'd rather hear who you are than what your last job title was."
+          />
+          <div className="mt-8">
+            <a href="mailto:career@vextor.co">
+              <Button size="lg" variant="outline">
+                Write to us at career@vextor.co <ChevronRight className="ml-2 size-4" />
+              </Button>
+            </a>
           </div>
         </div>
       </section>
