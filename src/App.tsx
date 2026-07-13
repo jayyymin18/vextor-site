@@ -540,7 +540,13 @@ function Footer() {
             </ul>
             <div className="mt-6">
               <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">Partner Badges</p>
-              <div className="mt-3 flex items-center gap-3">
+              <a
+                href="https://appexchange.salesforce.com/appxConsultingListingDetail?listingId=a0NHu00000srO8XMAU"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Vextor on the Salesforce AppExchange"
+                className="mt-3 flex items-center gap-3"
+              >
                 <img
                   src="/images/consulting-partner.webp"
                   alt="Salesforce Consulting Partner badge"
@@ -553,7 +559,7 @@ function Footer() {
                   className="h-14 w-14 rounded-md border border-border/70 bg-black object-contain"
                   loading="lazy"
                 />
-              </div>
+              </a>
             </div>
             <div className="mt-6">
               <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">Follow Us</p>
