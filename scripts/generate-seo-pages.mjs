@@ -151,6 +151,13 @@ const routes = [
       'Learn how Ahmedabad-based Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and BuilderTek expertise.',
   },
   {
+    path: '/careers',
+    pageType: 'WebPage',
+    title: 'Careers | Vextor',
+    description:
+      'We hire people, not roles. Vextor is a Salesforce consulting firm in Ahmedabad looking for people who think carefully and own their work.',
+  },
+  {
     path: '/contact',
     pageType: 'ContactPage',
     title: 'Contact Vextor | Salesforce & BuilderTek Consultation in Ahmedabad',
