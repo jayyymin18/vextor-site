@@ -40,6 +40,8 @@ type SalesforceService = {
   outcomes: string
 }
 
+const CALENDLY_URL = 'https://calendly.com/jaimin-vextor/30min'
+
 const navItems = [
   { label: 'Services', to: '/services' },
   { label: 'Industries', to: '/industries' },
@@ -414,11 +416,11 @@ function Header() {
               {item.label}
             </NavLink>
           ))}
-          <Link to="/contact">
+          <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
             <Button className="btn-solid" size="md">
               Book a Consultation <ArrowRight className="ml-2 size-4" />
             </Button>
-          </Link>
+          </a>
         </nav>
 
         <button
@@ -449,9 +451,9 @@ function Header() {
                 {item.label}
               </Link>
             ))}
-            <Link to="/contact" className="mt-2">
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="mt-2">
               <Button className="btn-solid w-full justify-center">Book a Consultation</Button>
-            </Link>
+            </a>
           </div>
         </div>
       ) : null}
@@ -825,11 +827,11 @@ function HomePage() {
                 the actual work starts. We rebuild Salesforce around how your projects really run.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <Link to="/contact">
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="btn-solid">
                     Let's talk <CalendarCheck2 className="ml-2 size-4" />
                   </Button>
-                </Link>
+                </a>
                 <Link to="/services">
                   <Button size="lg" variant="outline" className="btn-outline-dark">
                     See What We Do <ChevronRight className="ml-2 size-4" />
@@ -1131,11 +1133,11 @@ function HomePage() {
               straining. If we're not the right people to help, we'll tell you that too.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link to="/contact">
+              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="btn-solid">
                   Start a conversation <ArrowRight className="ml-2 size-4" />
                 </Button>
-              </Link>
+              </a>
               <Link to="/services">
                 <Button size="lg" variant="outline" className="btn-outline-invert">
                   Explore All Services
@@ -2087,6 +2089,16 @@ function ContactPage() {
               <span>Architecture review</span>
               <span>BuilderTek support</span>
               <span>Integration support</span>
+            </div>
+            <div className="flex flex-col items-center gap-3">
+              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" className="btn-solid">
+                  Book a 30-minute call <CalendarCheck2 className="ml-2 size-4" />
+                </Button>
+              </a>
+              <p className="text-sm leading-7 text-muted-foreground">
+                Or send us a note below and we'll get back to you.
+              </p>
             </div>
           </div>
         </div>
