@@ -637,40 +637,40 @@ function HomePage() {
     {
       icon: Layers3,
       title: 'Salesforce Architecture & Implementation',
-      text: 'Architecture, data design, and implementation planning built around project delivery workflows.',
+      text: 'Getting the foundation right, so the system stays clear as the business gets more complicated.',
     },
     {
       icon: HardHat,
       title: 'Custom Development & Configuration',
-      text: 'Apex, Lightning Web Components, custom objects, and automation that extend Salesforce beyond out-of-the-box limits.',
+      text: "When the standard setup can't hold your business, we build what it needs.",
     },
     {
       icon: RouteIcon,
       title: 'Integrations & Automation',
-      text: 'Integration and workflow engineering across estimating, accounting, ERP, and field systems.',
+      text: 'Connecting the systems your team already relies on, so nobody re-keys anything by hand.',
     },
     {
       icon: ShieldCheck,
       title: 'Managed Support',
-      text: 'Long-term admin, release, optimization, and operational support without adding full-time overhead.',
+      text: "We stay after launch. That's when the real requirements show up.",
     },
   ]
 
   const valueProps = [
     {
       icon: Layers3,
-      title: 'Salesforce that fits your operations',
-      text: 'We design Salesforce around projects, bids, clients, and billing handoffs instead of generic CRM patterns.',
+      title: 'We listen before we build',
+      text: "We sit with the people who use the system every day — including the ones quietly keeping a spreadsheet because the software couldn't hold it.",
     },
     {
       icon: HardHat,
-      title: 'Depth where it counts',
-      text: 'From clean new builds to inherited complexity, we deliver Salesforce environments teams will actually use — including deep specialization in platforms like BuilderTek.',
+      title: "We'll tell you if we're not the fit",
+      text: "We'd rather say so early than sell you an engagement that shouldn't happen.",
     },
     {
       icon: RouteIcon,
-      title: 'Support that stays engaged',
-      text: 'Our managed support model keeps your Salesforce org healthy as process, teams, and reporting needs evolve.',
+      title: 'We build for three years from now',
+      text: "Not for the demo. The difference shows up long after we've left the room.",
     },
   ]
 
@@ -678,20 +678,20 @@ function HomePage() {
     {
       step: '01',
       icon: ClipboardList,
-      title: 'Discover',
-      text: 'We start with your projects, your people, and your operational pain points. Discovery is tailored to project-based delivery, not a generic CRM checklist.',
+      title: 'Understand',
+      text: 'We learn how your work actually moves, including the workarounds nobody puts in the requirements doc.',
     },
     {
       step: '02',
       icon: Wrench,
       title: 'Build',
-      text: 'Our Salesforce architects implement the workflows, custom configuration, custom development, and integrations your team actually needs.',
+      text: 'Architecture, development, integrations. Built to be understood by whoever comes after us.',
     },
     {
       step: '03',
       icon: Users,
-      title: 'Grow',
-      text: 'With managed support, training, and optimization, your platform keeps improving as your operations scale and change.',
+      title: 'Stay',
+      text: "The process shifts, the team changes, the requirements you were sure about turn out to be wrong. We're still there.",
     },
   ]
 
@@ -812,16 +812,16 @@ function HomePage() {
             <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-clean hero-editorial mx-auto text-center">
               <p className="hero-kicker">Salesforce Consulting Partner</p>
               <h1 className="hero-title">
-                Salesforce built for the way <span className="hero-highlight">your projects run.</span>
+                Your Salesforce was built for <span className="hero-highlight">someone else's job.</span>
               </h1>
               <p className="hero-copy">
-                Vextor helps project-based businesses configure, automate, and scale Salesforce — from
-                architecture and implementation to custom development, integrations, and long-term support.
+                It was designed to close deals. But your business doesn't end when the deal closes — that's when
+                the actual work starts. We rebuild Salesforce around how your projects really run.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <Link to="/contact">
                   <Button size="lg" className="btn-solid">
-                    Book a Discovery Call <CalendarCheck2 className="ml-2 size-4" />
+                    Let's talk <CalendarCheck2 className="ml-2 size-4" />
                   </Button>
                 </Link>
                 <Link to="/services">
@@ -831,9 +831,9 @@ function HomePage() {
                 </Link>
               </div>
               <div className="hero-rail" aria-label="Core delivery themes">
-                <span>Architecture-first delivery</span>
-                <span>Custom development & integrations</span>
-                <span>Automation aligned to operations</span>
+                <span>Salesforce consulting</span>
+                <span>Custom development</span>
+                <span>Long-term support</span>
               </div>
             </motion.div>
           </div>
@@ -860,9 +860,9 @@ function HomePage() {
       <section className="section-wrap section-after-hero">
         <div className="home-shell px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Services Overview"
-            title="Salesforce consulting built around project-based operations"
-            summary="From first implementation through long-term support, our work is structured around how project businesses estimate, execute, invoice, and scale."
+            eyebrow="What We Do"
+            title="Salesforce, rebuilt around how you actually work"
+            summary="Some teams come to us at the start. Most come to us after — when the system that was supposed to help has quietly become the thing everyone works around."
           />
           <div className="editorial-pillars mt-12">
             {serviceOverview.map(({ icon: Icon, title, text }) => (
@@ -885,8 +885,8 @@ function HomePage() {
           <div className="editorial-split">
             <SectionIntro
               eyebrow="Why Vextor"
-              title="A consulting model designed for the realities of project-based work"
-              summary="We combine platform architecture, hands-on development, and long-term support so the system keeps working after launch."
+              title="You'll talk to the people building your system"
+              summary="No account layers. No handoffs to someone you've never met."
             />
             <div className="editorial-reasons">
               {valueProps.map(({ icon: Icon, title, text }) => (
@@ -911,7 +911,7 @@ function HomePage() {
             <SectionIntro
               eyebrow="BuilderTek Specialization"
               title="A dedicated BuilderTek practice for teams that run on jobs, not just pipelines"
-              summary="BuilderTek is a serious operational platform. We treat it as a dedicated practice with implementation depth, custom configuration capability, and managed support."
+              summary="BuilderTek is a serious platform for teams whose work centers on projects and construction. We've built deep expertise in it — one specialization within our broader Salesforce practice."
             />
             <ul className="grid gap-5 text-sm leading-7 text-muted-foreground md:grid-cols-2">
               <li className="flex items-start gap-2">
@@ -938,8 +938,8 @@ function HomePage() {
         <div className="home-shell px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="How We Work"
-            title="A consulting process built for discovery, delivery, and long-term scale"
-            summary="We work in a way that matches project-based operations: understand the workflow, build the right system, then stay engaged as the business grows."
+            title="We start with a conversation, not a proposal"
+            summary="Nobody's trying to close anything. You're allowed to think out loud."
           />
           <div className="process-strip mt-12">
             {deliverySteps.map(({ step, icon: Icon, title, text }) => (
@@ -960,8 +960,8 @@ function HomePage() {
         <div className="home-shell px-4 sm:px-6 lg:px-8">
           <SectionIntro
             eyebrow="Common Engagements"
-            title="Where Vextor is typically brought in"
-            summary="Representative examples of the operating problems, platform issues, and growth stages where teams usually engage us."
+            title="Where teams usually find us"
+            summary="Rarely at the beginning. Usually at the point where something has stopped working and nobody can quite say why."
           />
           <div className="engagement-list mt-12">
             {commonEngagements.map((item) => (
@@ -1116,18 +1116,18 @@ function HomePage() {
       <section className="section-wrap border-y border-border cta-premium text-deep-foreground">
         <div className="home-shell-narrow px-4 sm:px-6 lg:px-8">
           <div className="cta-band">
-            <p className="eyebrow">Consultation</p>
+            <p className="eyebrow">Let's talk</p>
             <h2 className="section-title max-w-2xl text-deep-foreground">
-              Ready to get Salesforce working for your projects?
+              Tell us what's not working
             </h2>
             <p className="section-summary max-w-2xl text-deep-muted">
-              Whether you are starting from scratch, switching from another CRM, or fixing a Salesforce org that
-              never quite fit, Vextor is built for what project-based teams actually need.
+              Not a pitch, not a demo. Just a conversation about what your business runs on and where it's
+              straining. If we're not the right people to help, we'll tell you that too.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link to="/contact">
                 <Button size="lg" className="btn-solid">
-                  Schedule a Free 30-Minute Consultation <ArrowRight className="ml-2 size-4" />
+                  Start a conversation <ArrowRight className="ml-2 size-4" />
                 </Button>
               </Link>
               <Link to="/services">
