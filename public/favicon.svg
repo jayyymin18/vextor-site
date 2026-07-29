@@ -1,6 +1,8 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect x="24" y="24" width="464" height="464" rx="124" fill="url(#g)"/>
-  <path d="M144 160H196.8L256 346L315.2 160H368L281.6 372H228.8L144 160Z" fill="white"/>
+  <g transform="translate(91.48, 390.00) scale(4.2185)">
+    <path d="M 23.53125 -63.53125 L 39 -28.96875 L 54.484375 -63.53125 L 80.484375 -63.53125 L 46.4375 0 L 31.578125 0 L -2.484375 -63.53125 Z" fill="white"/>
+  </g>
   <defs>
     <linearGradient id="g" x1="104" y1="104" x2="408" y2="408" gradientUnits="userSpaceOnUse">
       <stop stop-color="#0A6BE8"/>
