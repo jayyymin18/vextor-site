@@ -13,7 +13,7 @@ const routes = [
     pageType: 'WebPage',
     title: 'Vextor | Salesforce Consulting & BuilderTek Specialists',
     description:
-      'Ahmedabad-based Salesforce consulting for project-driven teams, with BuilderTek specialization, automation, integrations, and managed support for operational scale.',
+      'Ahmedabad-based Salesforce consulting for project-driven teams — BuilderTek specialization, automation, integrations, and managed support.',
     faq: [
       {
         question: 'What does Vextor specialize in?',
@@ -35,9 +35,9 @@ const routes = [
   {
     path: '/services',
     pageType: 'CollectionPage',
-    title: 'Salesforce Consulting Services | Architecture, Automation & BuilderTek | Vextor',
+    title: 'Salesforce Consulting Services | Vextor',
     description:
-      'Ahmedabad-based Salesforce consulting services for architecture, workflow automation, BuilderTek support, integrations, Apex development, and managed delivery for project-based teams.',
+      'Salesforce architecture, automation, custom development, integrations, and managed support — plus BuilderTek specialization for project teams.',
     faq: [
       {
         question: 'What Salesforce services does Vextor provide?',
@@ -146,23 +146,48 @@ const routes = [
   {
     path: '/about',
     pageType: 'AboutPage',
-    title: 'About Vextor | Salesforce & BuilderTek Consulting Experts',
+    title: 'About Vextor | Salesforce Consulting Partner',
     description:
       'Learn how Ahmedabad-based Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and BuilderTek expertise.',
   },
   {
     path: '/careers',
     pageType: 'WebPage',
-    title: 'Careers | Vextor',
+    title: 'Careers at Vextor | Salesforce Jobs in Ahmedabad',
     description:
       'We hire people, not roles. Vextor is a Salesforce consulting firm in Ahmedabad looking for people who think carefully and own their work.',
   },
   {
     path: '/contact',
     pageType: 'ContactPage',
-    title: 'Contact Vextor | Salesforce & BuilderTek Consultation in Ahmedabad',
+    title: 'Contact Vextor | Salesforce Consulting in Ahmedabad',
     description:
-      'Contact Vextor for Salesforce consulting, BuilderTek support, automation planning, integrations, and long-term platform guidance for project-based teams.',
+      'Contact Vextor for Salesforce consulting, custom development, automation planning, and managed support — including dedicated BuilderTek specialization.',
+    extraSchemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        '@id': `${siteUrl}/#localbusiness`,
+        name: 'Vextor',
+        image: `${siteUrl}/og-image.png`,
+        url: `${siteUrl}/`,
+        email: 'hello@vextor.co',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '7th floor, The Link, Vijay Cross Rd, Navrangpura',
+          addressLocality: 'Ahmedabad',
+          addressRegion: 'Gujarat',
+          postalCode: '380009',
+          addressCountry: 'IN',
+        },
+        sameAs: [
+          'https://www.linkedin.com/company/teamvextor',
+          'https://www.instagram.com/teamvextor',
+          'https://www.facebook.com/teamvextor',
+          'https://x.com/TeamVextorr',
+        ],
+      },
+    ],
     faq: [
       {
         question: 'What should I include before booking a Salesforce consultation?',
@@ -220,6 +245,28 @@ function buildPage(route) {
         })),
       }
     : null
+  const breadcrumbSchema =
+    route.path === '/' || route.noindex
+      ? null
+      : {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name:
+                route.breadcrumbLabel ??
+                route.path
+                  .replace(/^\/|\/$/g, '')
+                  .split('-')
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(' '),
+              item: url,
+            },
+          ],
+        }
   const extraSchemas = route.extraSchemas ?? []
 
   let out = html
@@ -248,7 +295,7 @@ function buildPage(route) {
     '</head>',
     `    <script type="application/ld+json">${escapeJson(pageSchema)}</script>\n${
       faqSchema ? `    <script type="application/ld+json">${escapeJson(faqSchema)}</script>\n` : ''
-    }${extraSchemas.map((schema) => `    <script type="application/ld+json">${escapeJson(schema)}</script>\n`).join('')}  </head>`
+    }${breadcrumbSchema ? `    <script type="application/ld+json">${escapeJson(breadcrumbSchema)}</script>\n` : ''}${extraSchemas.map((schema) => `    <script type="application/ld+json">${escapeJson(schema)}</script>\n`).join('')}  </head>`
   )
 
   const targetDir = route.path === '/' ? distDir : path.join(distDir, route.path.slice(1))

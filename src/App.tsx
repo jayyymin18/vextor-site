@@ -164,8 +164,8 @@ type PageMetaOptions = {
   ogTitle?: string
   ogDescription?: string
   ogImage?: string
-  keywords?: string
   noindex?: boolean
+  breadcrumbLabel?: string
 }
 
 function usePageMeta(title: string, description: string, options: PageMetaOptions = {}) {
@@ -174,8 +174,8 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
     ogTitle = title,
     ogDescription = description,
     ogImage = '/og-image.png',
-    keywords = 'Vextor, Salesforce consulting, Salesforce automation, Salesforce custom development, Salesforce integrations, managed Salesforce support, BuilderTek support',
     noindex = false,
+    breadcrumbLabel,
   } = options
 
   useEffect(() => {
@@ -214,6 +214,21 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
       canonical.href = href
     }
 
+    const upsertJsonLd = (id: string, payload: Record<string, unknown> | null) => {
+      let script = document.querySelector(`script[data-structured-data="${id}"]`) as HTMLScriptElement | null
+      if (!payload) {
+        script?.remove()
+        return
+      }
+      if (!script) {
+        script = document.createElement('script')
+        script.type = 'application/ld+json'
+        script.setAttribute('data-structured-data', id)
+        document.head.appendChild(script)
+      }
+      script.textContent = JSON.stringify(payload)
+    }
+
     document.title = title
     upsertMetaByName('description', description)
     upsertMetaByName(
@@ -224,7 +239,6 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
       'googlebot',
       noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
     )
-    upsertMetaByName('keywords', keywords)
     upsertMetaByProperty('og:title', ogTitle)
     upsertMetaByProperty('og:description', ogDescription)
     upsertMetaByProperty('og:type', 'website')
@@ -239,7 +253,27 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
     upsertMetaByName('twitter:image', ogImageUrl)
     upsertMetaByName('twitter:image:alt', 'Vextor branded Salesforce consulting preview')
     upsertCanonical(canonicalUrl)
-  }, [description, noindex, ogDescription, ogImage, ogTitle, path, title])
+
+    if (normalizedPath === '/' || noindex) {
+      upsertJsonLd('breadcrumb', null)
+    } else {
+      const label =
+        breadcrumbLabel ??
+        normalizedPath
+          .replace(/^\/|\/$/g, '')
+          .split('-')
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ')
+      upsertJsonLd('breadcrumb', {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+          { '@type': 'ListItem', position: 2, name: label, item: canonicalUrl },
+        ],
+      })
+    }
+  }, [breadcrumbLabel, description, noindex, ogDescription, ogImage, ogTitle, path, title])
 }
 
 function useStructuredData(id: string, payload: Record<string, unknown> | undefined) {
@@ -1692,7 +1726,7 @@ function WorkPage() {
 function AboutPage() {
   usePageMeta(
     'About Vextor | Salesforce Consulting Partner',
-    'Learn how Ahmedabad-based Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and dedicated BuilderTek specialization.',
+    'Learn how Ahmedabad-based Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and BuilderTek expertise.',
     { path: '/about' }
   )
 
@@ -1924,7 +1958,7 @@ function AboutPage() {
 
 function CareersPage() {
   usePageMeta(
-    'Careers | Vextor',
+    'Careers at Vextor | Salesforce Jobs in Ahmedabad',
     'We hire people, not roles. Vextor is a Salesforce consulting firm in Ahmedabad looking for people who think carefully and own their work.',
     { path: '/careers' }
   )
@@ -2072,6 +2106,29 @@ function ContactPage() {
         text: item.answer,
       },
     })),
+  })
+  useStructuredData('contact-localbusiness', {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': 'https://www.vextor.co/#localbusiness',
+    name: 'Vextor',
+    image: 'https://www.vextor.co/og-image.png',
+    url: 'https://www.vextor.co/',
+    email: 'hello@vextor.co',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '7th floor, The Link, Vijay Cross Rd, Navrangpura',
+      addressLocality: 'Ahmedabad',
+      addressRegion: 'Gujarat',
+      postalCode: '380009',
+      addressCountry: 'IN',
+    },
+    sameAs: [
+      'https://www.linkedin.com/company/teamvextor',
+      'https://www.instagram.com/teamvextor',
+      'https://www.facebook.com/teamvextor',
+      'https://x.com/TeamVextorr',
+    ],
   })
 
   return (
