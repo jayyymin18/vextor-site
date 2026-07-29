@@ -1,10 +1,11 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 const distDir = path.resolve('dist')
 const indexPath = path.join(distDir, 'index.html')
 const html = fs.readFileSync(indexPath, 'utf8')
-const lastmod = '2026-07-10'
+const lastmod = new Date().toISOString().slice(0, 10)
 const siteUrl = 'https://www.vextor.co'
 
 const routes = [
@@ -31,6 +32,11 @@ const routes = [
           'Vextor is based in Ahmedabad, Gujarat, and supports teams remotely across India and international project-based operations environments.',
       },
     ],
+    sitemap: {
+      priority: '1.0',
+      changefreq: 'weekly',
+      images: [{ loc: `${siteUrl}/og-image.png`, title: 'Vextor | Salesforce Consulting & BuilderTek Specialists' }],
+    },
   },
   {
     path: '/services',
@@ -75,6 +81,11 @@ const routes = [
         areaServed: 'Worldwide',
       },
     ],
+    sitemap: {
+      priority: '0.9',
+      changefreq: 'weekly',
+      images: [{ loc: `${siteUrl}/images/services-delivery-workshop.jpg`, title: 'Salesforce delivery workshop' }],
+    },
   },
   {
     path: '/industries',
@@ -111,6 +122,11 @@ const routes = [
         ],
       },
     ],
+    sitemap: {
+      priority: '0.8',
+      changefreq: 'monthly',
+      images: [{ loc: `${siteUrl}/images/industries-construction-operations.jpg`, title: 'Construction and real estate Salesforce operations' }],
+    },
   },
   {
     path: '/work',
@@ -118,6 +134,11 @@ const routes = [
     title: 'Vextor Work | Salesforce Delivery for Project-Based Operations',
     description:
       'See how Vextor approaches Salesforce automation, BuilderTek delivery, integrations, and long-term support for project-based businesses.',
+    sitemap: {
+      priority: '0.7',
+      changefreq: 'monthly',
+      images: [{ loc: `${siteUrl}/images/work-operations-review.jpg`, title: 'Vextor Salesforce delivery and operations review' }],
+    },
   },
   {
     path: '/success-stories',
@@ -142,6 +163,7 @@ const routes = [
           'No. Many engagements begin with a focused architecture or recovery need and then continue into managed support, optimization, and release ownership as the business evolves.',
       },
     ],
+    sitemap: { priority: '0.8', changefreq: 'monthly' },
   },
   {
     path: '/about',
@@ -149,6 +171,11 @@ const routes = [
     title: 'About Vextor | Salesforce Consulting Partner',
     description:
       'Learn how Ahmedabad-based Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and BuilderTek expertise.',
+    sitemap: {
+      priority: '0.7',
+      changefreq: 'monthly',
+      images: [{ loc: `${siteUrl}/images/about-team-collaboration.jpg`, title: 'Vextor team collaboration and discovery session' }],
+    },
   },
   {
     path: '/careers',
@@ -156,6 +183,7 @@ const routes = [
     title: 'Careers at Vextor | Salesforce Jobs in Ahmedabad',
     description:
       'We hire people, not roles. Vextor is a Salesforce consulting firm in Ahmedabad looking for people who think carefully and own their work.',
+    sitemap: { priority: '0.5', changefreq: 'weekly' },
   },
   {
     path: '/contact',
@@ -205,6 +233,7 @@ const routes = [
           'New inquiries are reviewed directly so the next conversation can focus on scope, operational context, and the most practical engagement path rather than a generic intake process.',
       },
     ],
+    sitemap: { priority: '0.8', changefreq: 'monthly' },
   },
   {
     path: '/thank-you',
@@ -303,10 +332,30 @@ function buildPage(route) {
   fs.writeFileSync(path.join(targetDir, 'index.html'), out)
 }
 
-for (const route of routes) buildPage(route)
+function escapeXml(value) {
+  return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+}
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes
-  .filter((route) => route.includeInSitemap !== false)
-  .map((route, index) => `  <url>\n    <loc>${siteUrl}${route.path === '/' ? '/' : route.path}</loc>\n    <changefreq>${index === 0 ? 'weekly' : 'monthly'}</changefreq>\n    <priority>${index === 0 ? '1.0' : index < 3 ? '0.9' : '0.8'}</priority>\n    <lastmod>${lastmod}</lastmod>\n  </url>`)
-  .join('\n')}\n</urlset>\n`
-fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap)
+function buildUrlEntry(route) {
+  const loc = `${siteUrl}${route.path === '/' ? '/' : route.path}`
+  const { priority = '0.7', changefreq = 'monthly', images = [] } = route.sitemap ?? {}
+  const imageTags = images
+    .map((image) => `\n    <image:image>\n      <image:loc>${escapeXml(image.loc)}</image:loc>\n      <image:title>${escapeXml(image.title)}</image:title>\n    </image:image>`)
+    .join('')
+  return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>${imageTags}\n  </url>`
+}
+
+function generate() {
+  for (const route of routes) buildPage(route)
+
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${routes
+    .filter((route) => route.includeInSitemap !== false)
+    .map(buildUrlEntry)
+    .join('\n')}\n</urlset>\n`
+  fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap)
+}
+
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url))
+if (isMain) generate()
+
+export { routes }
