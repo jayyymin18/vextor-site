@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
@@ -157,6 +157,46 @@ const revealUp = {
     y: 0,
     transition: { duration: 0.52, ease: 'easeOut' },
   },
+}
+
+type BreadcrumbItem = {
+  label: string
+  href: string
+}
+
+function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
+  const all = [{ label: 'Home', href: '/' }, ...items]
+
+  useStructuredData(`breadcrumb-${items.map((i) => i.href).join('-')}`, {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: all.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.label,
+      item: `https://www.vextor.co${item.href}`,
+    })),
+  })
+
+  return (
+    <nav aria-label="Breadcrumb" className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
+      <ol className="flex flex-wrap items-center gap-1 text-xs text-muted-foreground" itemScope itemType="https://schema.org/BreadcrumbList">
+        {all.map((item, index) => (
+          <li key={item.href} className="flex items-center gap-1" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            {index > 0 && <ChevronRight className="size-3 flex-shrink-0 opacity-40" aria-hidden="true" />}
+            {index === all.length - 1 ? (
+              <span className="font-medium text-foreground" itemProp="name" aria-current="page">{item.label}</span>
+            ) : (
+              <Link to={item.href} className="hover:text-accent transition-colors" itemProp="item">
+                <span itemProp="name">{item.label}</span>
+              </Link>
+            )}
+            <meta itemProp="position" content={String(index + 1)} />
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
 }
 
 type PageMetaOptions = {
@@ -1207,6 +1247,7 @@ function ServicesPage() {
 
   return (
     <main>
+      <Breadcrumbs items={[{ label: 'Services', href: '/services' }]} />
       <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
@@ -1396,6 +1437,7 @@ function IndustriesPage() {
 
   return (
     <main>
+      <Breadcrumbs items={[{ label: 'Industries', href: '/industries' }]} />
       <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
@@ -1560,6 +1602,7 @@ function WorkPage() {
 
   return (
     <main>
+      <Breadcrumbs items={[{ label: 'Work', href: '/work' }]} />
       <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
@@ -1720,6 +1763,7 @@ function AboutPage() {
 
   return (
     <main>
+      <Breadcrumbs items={[{ label: 'About', href: '/about' }]} />
       <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
@@ -1946,6 +1990,7 @@ function CareersPage() {
 
   return (
     <main>
+      <Breadcrumbs items={[{ label: 'Careers', href: '/careers' }]} />
       <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
@@ -2076,6 +2121,7 @@ function ContactPage() {
 
   return (
     <main>
+      <Breadcrumbs items={[{ label: 'Contact', href: '/contact' }]} />
       <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="contact-hero">
@@ -2439,6 +2485,7 @@ function SuccessStoriesPage() {
 
   return (
     <main>
+      <Breadcrumbs items={[{ label: 'Success Stories', href: '/success-stories' }]} />
       <section className="section-wrap border-b border-border bg-card/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionIntro
@@ -2505,6 +2552,62 @@ function SuccessStoriesPage() {
   )
 }
 
+function NotFoundPage() {
+  usePageMeta(
+    '404 — Page Not Found | Vextor',
+    'The page you are looking for does not exist. Return to the Vextor homepage to find Salesforce consulting services, industries, and contact information.',
+    { path: '/404', noindex: true }
+  )
+
+  return (
+    <main>
+      <section className="section-wrap border-b border-border bg-card/60">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="py-10">
+            <p className="eyebrow">404 — Not Found</p>
+            <h1 className="section-title mt-2 max-w-xl">
+              This page doesn't exist
+            </h1>
+            <p className="section-summary max-w-xl">
+              The URL you followed may be mistyped or the page may have moved. Use the navigation above or the links below to find what you need.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/">
+                <Button size="lg" className="btn-solid">
+                  Back to Homepage <ArrowRight className="ml-2 size-4" />
+                </Button>
+              </Link>
+              <Link to="/services">
+                <Button size="lg" variant="outline">
+                  View Services
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button size="lg" variant="outline">
+                  Contact Us
+                </Button>
+              </Link>
+            </div>
+            <nav className="mt-10" aria-label="Helpful links">
+              <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground mb-4">Pages on this site</p>
+              <ul className="flex flex-col gap-2 text-sm">
+                {navItems.map((item) => (
+                  <li key={item.to}>
+                    <Link to={item.to} className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors">
+                      <ChevronRight className="size-3" />
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}
+
 export default function App() {
   return (
     <Layout>
@@ -2518,7 +2621,7 @@ export default function App() {
         <Route path="/careers" element={<CareersPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Layout>
   )

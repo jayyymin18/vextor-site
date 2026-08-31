@@ -4,36 +4,48 @@
     <loc>https://www.vextor.co/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-08-31</lastmod>
   </url>
   <url>
     <loc>https://www.vextor.co/services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-08-31</lastmod>
   </url>
   <url>
     <loc>https://www.vextor.co/industries</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-08-31</lastmod>
   </url>
   <url>
     <loc>https://www.vextor.co/work</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
+    <loc>https://www.vextor.co/success-stories</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-08-31</lastmod>
   </url>
   <url>
     <loc>https://www.vextor.co/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-08-31</lastmod>
+  </url>
+  <url>
+    <loc>https://www.vextor.co/careers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-08-31</lastmod>
   </url>
   <url>
     <loc>https://www.vextor.co/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-08-31</lastmod>
   </url>
 </urlset>

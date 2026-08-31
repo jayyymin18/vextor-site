@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /thank-you
 
 Sitemap: https://www.vextor.co/sitemap.xml
 Host: www.vextor.co

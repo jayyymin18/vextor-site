@@ -9,4 +9,17 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    sourcemap: false,
+    chunkSizeWarningLimit: 600,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-core': ['react', 'react-dom', 'react-router-dom'],
+          'framer': ['framer-motion'],
+          'icons': ['lucide-react'],
+        },
+      },
+    },
+  },
 })

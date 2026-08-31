@@ -4,7 +4,7 @@ import path from 'node:path'
 const distDir = path.resolve('dist')
 const indexPath = path.join(distDir, 'index.html')
 const html = fs.readFileSync(indexPath, 'utf8')
-const lastmod = '2026-07-10'
+const lastmod = '2026-08-31'
 const siteUrl = 'https://www.vextor.co'
 
 const routes = [
