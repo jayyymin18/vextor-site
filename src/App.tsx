@@ -44,6 +44,7 @@ const CALENDLY_URL = 'https://calendly.com/jaimin-vextor/30min'
 
 const navItems = [
   { label: 'Services', to: '/services' },
+  { label: 'India', to: '/salesforce-consulting-company-india' },
   { label: 'Industries', to: '/industries' },
   { label: 'Work', to: '/work' },
   { label: 'About', to: '/about' },
@@ -529,6 +530,11 @@ function Footer() {
               <li>
                 <Link className="hover:text-accent" to="/services">
                   Services
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:text-accent" to="/salesforce-consulting-company-india">
+                  Salesforce Consulting India
                 </Link>
               </li>
               <li>
@@ -1039,6 +1045,9 @@ function HomePage() {
               <p className="text-sm leading-7 text-muted-foreground">
                 We support organizations from Ahmedabad and beyond that need Salesforce to stay reliable as project delivery, approvals, reporting, and cross-system coordination grow more complex.
               </p>
+              <Link to="/salesforce-consulting-company-india" className="inline-flex items-center gap-2 text-sm font-medium hover:text-accent">
+                See why Vextor is a Salesforce consulting company in India <ArrowRight className="size-4" />
+              </Link>
             </div>
 
             <div className="editorial-reasons">
@@ -1392,6 +1401,22 @@ function ServicesPage() {
         summary="A short set of practical answers for Salesforce consulting, BuilderTek support, and long-term delivery ownership."
         items={serviceFaqs}
       />
+      <section className="section-wrap border-t border-border bg-card/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="India Salesforce Consulting"
+            title="Looking for a Salesforce consulting company in India?"
+            summary="Vextor is based in Ahmedabad and works with project-based teams in India and worldwide on Salesforce setup, cleanup, integrations, custom development, and long-term support."
+          />
+          <div className="mt-8">
+            <Link to="/salesforce-consulting-company-india">
+              <Button size="lg" variant="outline">
+                Learn About Vextor India <ChevronRight className="ml-2 size-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
@@ -2069,6 +2094,183 @@ function CareersPage() {
   )
 }
 
+function SalesforceConsultingIndiaPage() {
+  const indiaFaqs: FaqEntry[] = [
+    {
+      question: 'Is Vextor a Salesforce consulting company in India?',
+      answer:
+        'Yes. Vextor is a Salesforce consulting company based in Ahmedabad, Gujarat, India. The team helps businesses set up, fix, connect, customize, and support Salesforce.',
+    },
+    {
+      question: 'What Salesforce services does Vextor provide?',
+      answer:
+        'Vextor provides Salesforce consulting, architecture, implementation, custom development, workflow automation, integrations, managed support, and BuilderTek support for project-based businesses.',
+    },
+    {
+      question: 'Does Vextor work only with Indian companies?',
+      answer:
+        'No. Vextor is based in India and works with teams in India, the United States, the United Kingdom, Australia, and other international markets.',
+    },
+    {
+      question: 'What makes Vextor different from large Salesforce consulting firms?',
+      answer:
+        'Vextor is a focused Salesforce partner for project-based and operations-heavy teams. Clients work directly with the people who understand and build the system, not only through account layers.',
+    },
+  ]
+
+  const comparisonPoints = [
+    {
+      title: 'Based in Ahmedabad, working worldwide',
+      body: 'Vextor is headquartered in Ahmedabad, Gujarat, and supports Salesforce clients remotely across India and international markets.',
+    },
+    {
+      title: 'Built for project-based businesses',
+      body: 'We are a strong fit when Salesforce needs to support quotes, projects, approvals, delivery, invoices, reporting, and long-term operational control.',
+    },
+    {
+      title: 'Plain-language consulting',
+      body: 'We explain what changes for the business: cleaner handoffs, fewer duplicate entries, better reports, and a Salesforce setup the team can trust.',
+    },
+  ]
+
+  usePageMeta(
+    'Salesforce Consulting Company in India | Vextor Ahmedabad',
+    'Vextor is a Salesforce consulting company in Ahmedabad, India helping project-based businesses set up, fix, connect, customize, and support Salesforce.',
+    {
+      path: '/salesforce-consulting-company-india',
+      keywords:
+        'Salesforce consulting company India, Salesforce consultant Ahmedabad, Salesforce consulting partner India, Salesforce implementation India, Vextor Salesforce',
+    }
+  )
+  useStructuredData('salesforce-consulting-india-page', {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': 'https://www.vextor.co/salesforce-consulting-company-india#service',
+    name: 'Vextor Salesforce Consulting Company in India',
+    alternateName: ['Vextor Solution LLP', 'Vextor Salesforce Consulting'],
+    url: 'https://www.vextor.co/salesforce-consulting-company-india',
+    description:
+      'Salesforce consulting company in Ahmedabad, India helping project-based businesses set up, fix, connect, customize, and support Salesforce.',
+    provider: {
+      '@id': 'https://www.vextor.co/#organization',
+    },
+    areaServed: ['India', 'United States', 'United Kingdom', 'Australia', 'Worldwide'],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '7th floor, The Link, Vijay Cross Rd, Navrangpura',
+      addressLocality: 'Ahmedabad',
+      addressRegion: 'Gujarat',
+      postalCode: '380009',
+      addressCountry: 'IN',
+    },
+    serviceType: [
+      'Salesforce consulting',
+      'Salesforce implementation',
+      'Salesforce custom development',
+      'Salesforce integrations',
+      'Managed Salesforce support',
+      'BuilderTek support',
+    ],
+    knowsAbout: [
+      'Salesforce consulting company in India',
+      'Salesforce consultant Ahmedabad',
+      'Salesforce implementation',
+      'Salesforce integrations',
+      'BuilderTek support',
+      'Project-based business operations',
+    ],
+  })
+  useStructuredData('salesforce-consulting-india-faq', {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: indiaFaqs.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  })
+
+  return (
+    <main>
+      <Breadcrumbs items={[{ label: 'Salesforce Consulting India', href: '/salesforce-consulting-company-india' }]} />
+      <section className="section-wrap border-b border-border bg-card/60">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Salesforce Consulting Company In India"
+            title="Vextor is a Salesforce consulting company in Ahmedabad, India"
+            summary="We help project-based businesses set up, fix, connect, customize, and support Salesforce so the system matches how the business actually runs."
+            titleTag="h1"
+          />
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="btn-solid">
+                Book a free 30-minute call <CalendarCheck2 className="ml-2 size-4" />
+              </Button>
+            </a>
+            <Link to="/services">
+              <Button size="lg" variant="outline">
+                Review Salesforce Services
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Why Vextor"
+            title="A focused Salesforce partner for project-based operations"
+            summary="If your team keeps side spreadsheets, types the same information twice, or cannot trust reports, Vextor helps bring Salesforce back into the center of the work."
+          />
+          <div className="editorial-reasons mt-10">
+            {comparisonPoints.map((item) => (
+              <article key={item.title} className="editorial-reason">
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap border-y border-border bg-card/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Services"
+            title="Salesforce services Vextor provides"
+            summary="Vextor supports Salesforce consulting, architecture, implementation, custom development, integrations, managed support, and BuilderTek support."
+          />
+          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              'Salesforce setup and implementation',
+              'Salesforce cleanup and inherited system recovery',
+              'Custom development and configuration',
+              'Workflow automation and approvals',
+              'Integrations with accounting, email, files, ERP, and operations tools',
+              'Managed Salesforce support after launch',
+            ].map((item) => (
+              <article key={item} className="editorial-reason">
+                <h3>{item}</h3>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <FaqSection
+        eyebrow="Salesforce Consulting India FAQ"
+        title="Direct answers for teams comparing Salesforce consulting companies"
+        summary="Short, factual answers about Vextor for search engines, AI answer engines, and buyers evaluating Salesforce partners."
+        items={indiaFaqs}
+      />
+    </main>
+  )
+}
+
 function ContactPage() {
   const contactFaqs: FaqEntry[] = [
     {
@@ -2617,6 +2819,7 @@ export default function App() {
         <Route path="/success-stories" element={<SuccessStoriesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/careers" element={<CareersPage />} />
+        <Route path="/salesforce-consulting-company-india" element={<SalesforceConsultingIndiaPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="*" element={<NotFoundPage />} />

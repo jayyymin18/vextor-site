@@ -77,6 +77,75 @@ const routes = [
     ],
   },
   {
+    path: '/salesforce-consulting-company-india',
+    pageType: 'WebPage',
+    title: 'Salesforce Consulting Company in India | Vextor Ahmedabad',
+    description:
+      'Vextor is a Salesforce consulting company in Ahmedabad, India helping project-based businesses set up, fix, connect, customize, and support Salesforce.',
+    faq: [
+      {
+        question: 'Is Vextor a Salesforce consulting company in India?',
+        answer:
+          'Yes. Vextor is a Salesforce consulting company based in Ahmedabad, Gujarat, India. The team helps businesses set up, fix, connect, customize, and support Salesforce.',
+      },
+      {
+        question: 'What Salesforce services does Vextor provide?',
+        answer:
+          'Vextor provides Salesforce consulting, architecture, implementation, custom development, workflow automation, integrations, managed support, and BuilderTek support for project-based businesses.',
+      },
+      {
+        question: 'Does Vextor work only with Indian companies?',
+        answer:
+          'No. Vextor is based in India and works with teams in India, the United States, the United Kingdom, Australia, and other international markets.',
+      },
+      {
+        question: 'What makes Vextor different from large Salesforce consulting firms?',
+        answer:
+          'Vextor is a focused Salesforce partner for project-based and operations-heavy teams. Clients work directly with the people who understand and build the system, not only through account layers.',
+      },
+    ],
+    extraSchemas: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'ProfessionalService',
+        '@id': `${siteUrl}/salesforce-consulting-company-india#service`,
+        name: 'Vextor Salesforce Consulting Company in India',
+        alternateName: ['Vextor Solution LLP', 'Vextor Salesforce Consulting'],
+        url: `${siteUrl}/salesforce-consulting-company-india`,
+        description:
+          'Salesforce consulting company in Ahmedabad, India helping project-based businesses set up, fix, connect, customize, and support Salesforce.',
+        provider: {
+          '@id': `${siteUrl}/#organization`,
+        },
+        areaServed: ['India', 'United States', 'United Kingdom', 'Australia', 'Worldwide'],
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '7th floor, The Link, Vijay Cross Rd, Navrangpura',
+          addressLocality: 'Ahmedabad',
+          addressRegion: 'Gujarat',
+          postalCode: '380009',
+          addressCountry: 'IN',
+        },
+        serviceType: [
+          'Salesforce consulting',
+          'Salesforce implementation',
+          'Salesforce custom development',
+          'Salesforce integrations',
+          'Managed Salesforce support',
+          'BuilderTek support',
+        ],
+        knowsAbout: [
+          'Salesforce consulting company in India',
+          'Salesforce consultant Ahmedabad',
+          'Salesforce implementation',
+          'Salesforce integrations',
+          'BuilderTek support',
+          'Project-based business operations',
+        ],
+      },
+    ],
+  },
+  {
     path: '/industries',
     pageType: 'CollectionPage',
     title: 'Salesforce for Construction, Real Estate & Project Teams | Vextor',
