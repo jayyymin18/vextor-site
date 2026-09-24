@@ -2053,8 +2053,8 @@ function CareersPage() {
           <div className="space-y-5">
             <SectionIntro
               eyebrow="What It's Like"
-              title="Small team, real ownership, no theatre"
-              summary="We're not built like a typical consultancy, and we don't work like one."
+              title="Senior-led team, real ownership, no theatre"
+              summary="We're built as a specialist Salesforce consulting partner, and we work close to the business problems clients need solved."
             />
             <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
               <li className="flex items-start gap-2">
@@ -2112,9 +2112,9 @@ function SalesforceConsultingIndiaPage() {
         'No. Vextor is based in India and works with teams in India, the United States, the United Kingdom, Australia, and other international markets.',
     },
     {
-      question: 'What makes Vextor different from large Salesforce consulting firms?',
+      question: 'What makes Vextor different from general IT outsourcing firms?',
       answer:
-        'Vextor is a focused Salesforce partner for project-based and operations-heavy teams. Clients work directly with the people who understand and build the system, not only through account layers.',
+        'Vextor is a specialist Salesforce consulting partner for project-based and operations-heavy teams. Engagements are led by people who understand Salesforce architecture, delivery, integrations, and long-term platform support.',
     },
   ]
 
@@ -2128,7 +2128,7 @@ function SalesforceConsultingIndiaPage() {
       body: 'We are a strong fit when Salesforce needs to support quotes, projects, approvals, delivery, invoices, reporting, and long-term operational control.',
     },
     {
-      title: 'Plain-language consulting',
+      title: 'Specialist Salesforce consulting',
       body: 'We explain what changes for the business: cleaner handoffs, fewer duplicate entries, better reports, and a Salesforce setup the team can trust.',
     },
   ]

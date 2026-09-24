@@ -99,9 +99,9 @@ const routes = [
           'No. Vextor is based in India and works with teams in India, the United States, the United Kingdom, Australia, and other international markets.',
       },
       {
-        question: 'What makes Vextor different from large Salesforce consulting firms?',
+        question: 'What makes Vextor different from general IT outsourcing firms?',
         answer:
-          'Vextor is a focused Salesforce partner for project-based and operations-heavy teams. Clients work directly with the people who understand and build the system, not only through account layers.',
+          'Vextor is a specialist Salesforce consulting partner for project-based and operations-heavy teams. Engagements are led by people who understand Salesforce architecture, delivery, integrations, and long-term platform support.',
       },
     ],
     extraSchemas: [

@@ -14,7 +14,7 @@
 - X: `https://x.com/TeamVextorr`
 
 ## Short company description
-Vextor is a Salesforce consulting company focused on project-based operations, BuilderTek specialization, workflow automation, integrations, and long-term platform support.
+Vextor is a specialist Salesforce consulting partner focused on project-based operations, BuilderTek specialization, workflow automation, integrations, and long-term platform support.
 
 ## Long company description
 Vextor helps project-based businesses design, implement, stabilize, and improve Salesforce environments that support real operational workflows. The company focuses on Salesforce architecture, BuilderTek execution support, automation, integrations, and long-term managed support for operationally complex teams.
