@@ -4,16 +4,16 @@ import path from 'node:path'
 const distDir = path.resolve('dist')
 const indexPath = path.join(distDir, 'index.html')
 const html = fs.readFileSync(indexPath, 'utf8')
-const lastmod = '2026-08-31'
+const lastmod = '2026-09-24'
 const siteUrl = 'https://www.vextor.co'
 
 const routes = [
   {
     path: '/',
     pageType: 'WebPage',
-    title: 'Vextor | Salesforce Consulting & BuilderTek Specialists',
+    title: 'Salesforce Experts for Project-Based Businesses | Vextor',
     description:
-      'Ahmedabad-based Salesforce consulting for project-driven teams, with BuilderTek specialization, automation, integrations, and managed support for operational scale.',
+      'We set up, fix and look after Salesforce for construction and project-based businesses. Based in Ahmedabad, working with teams worldwide. Book a free call.',
     faq: [
       {
         question: 'What does Vextor specialize in?',
@@ -186,8 +186,6 @@ const routes = [
     pageType: 'WebPage',
     title: 'Thank You | Vextor',
     description: 'Thank you for contacting Vextor. Your inquiry has been received and the team will contact you soon.',
-    noindex: true,
-    includeInSitemap: false,
   },
 ]
 
@@ -227,15 +225,11 @@ function buildPage(route) {
     .replace(/<meta\s+name="description"\s+content=".*?"\s*\/>/s, `<meta name="description" content="${route.description}" />`)
     .replace(
       /<meta\s+name="robots"\s+content=".*?"\s*\/>/s,
-      `<meta name="robots" content="${
-        route.noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
-      }" />`
+      '<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />'
     )
     .replace(
       /<meta\s+name="googlebot"\s+content=".*?"\s*\/>/s,
-      `<meta name="googlebot" content="${
-        route.noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
-      }" />`
+      '<meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />'
     )
     .replace(/<link\s+rel="canonical"\s+href=".*?"\s*\/>/s, `<link rel="canonical" href="${url}" />`)
     .replace(/<meta\s+property="og:title"\s+content=".*?"\s*\/>/s, `<meta property="og:title" content="${route.title}" />`)
@@ -259,7 +253,6 @@ function buildPage(route) {
 for (const route of routes) buildPage(route)
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes
-  .filter((route) => route.includeInSitemap !== false)
   .map((route, index) => `  <url>\n    <loc>${siteUrl}${route.path === '/' ? '/' : route.path}</loc>\n    <changefreq>${index === 0 ? 'weekly' : 'monthly'}</changefreq>\n    <priority>${index === 0 ? '1.0' : index < 3 ? '0.9' : '0.8'}</priority>\n    <lastmod>${lastmod}</lastmod>\n  </url>`)
   .join('\n')}\n</urlset>\n`
 fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap)

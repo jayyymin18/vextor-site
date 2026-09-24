@@ -1,6 +1,6 @@
 # Vextor
 
-> Ahmedabad-based Salesforce consulting and BuilderTek specialization for project-based businesses.
+> Salesforce experts in Ahmedabad for construction and project-based businesses that need Salesforce set up, fixed, connected, and looked after.
 
 ## Primary site
 - Homepage: https://www.vextor.co/
@@ -13,12 +13,17 @@
 - Contact: https://www.vextor.co/contact
 
 ## What Vextor does
-- Salesforce consulting and architecture
-- Workflow automation and process engineering
-- Apex and Lightning Web Components development
-- Salesforce integrations with finance and operational systems
-- Managed Salesforce support
-- BuilderTek implementation, cleanup, customization, and operational refinement
+- Sets up Salesforce around how a business actually runs
+- Fixes messy Salesforce setups, confusing screens, broken workflows, and reporting trust issues
+- Connects Salesforce with accounting, email, calendar, file, finance, ERP, and operations tools
+- Provides ongoing Salesforce support after launch
+- Supports BuilderTek implementation, cleanup, customization, and operational refinement for project and construction teams
+
+## Plain-language positioning
+- Primary audience: business owners, leaders, operations teams, and project-based companies, not only technical Salesforce teams.
+- Use simple wording: "set up Salesforce", "fix Salesforce", "connect your tools", "we stay and look after it".
+- Avoid jargon unless the reader is clearly technical.
+- Best short description: Vextor sets up, fixes, connects, and looks after Salesforce for construction and project-based businesses.
 
 ## Entity facts
 - Brand: Vextor

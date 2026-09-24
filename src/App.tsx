@@ -205,7 +205,6 @@ type PageMetaOptions = {
   ogDescription?: string
   ogImage?: string
   keywords?: string
-  noindex?: boolean
 }
 
 function usePageMeta(title: string, description: string, options: PageMetaOptions = {}) {
@@ -215,7 +214,6 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
     ogDescription = description,
     ogImage = '/og-image.png',
     keywords = 'Vextor, Salesforce consulting, Salesforce automation, Salesforce custom development, Salesforce integrations, managed Salesforce support, BuilderTek support',
-    noindex = false,
   } = options
 
   useEffect(() => {
@@ -258,11 +256,11 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
     upsertMetaByName('description', description)
     upsertMetaByName(
       'robots',
-      noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
+      'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
     )
     upsertMetaByName(
       'googlebot',
-      noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
+      'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
     )
     upsertMetaByName('keywords', keywords)
     upsertMetaByProperty('og:title', ogTitle)
@@ -279,7 +277,7 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
     upsertMetaByName('twitter:image', ogImageUrl)
     upsertMetaByName('twitter:image:alt', 'Vextor branded Salesforce consulting preview')
     upsertCanonical(canonicalUrl)
-  }, [description, noindex, ogDescription, ogImage, ogTitle, path, title])
+  }, [description, ogDescription, ogImage, ogTitle, path, title])
 }
 
 function useStructuredData(id: string, payload: Record<string, unknown> | undefined) {
@@ -653,8 +651,8 @@ function HomePage() {
   ]
 
   usePageMeta(
-    'Vextor | Salesforce Consulting Partner',
-    'Salesforce consulting, architecture, custom development, automation, integrations, and managed support for project-based teams, with dedicated BuilderTek specialization.',
+    'Salesforce Experts for Project-Based Businesses | Vextor',
+    'We set up, fix and look after Salesforce for construction and project-based businesses. Based in Ahmedabad, working with teams worldwide. Book a free call.',
     { path: '/' }
   )
   useStructuredData('home-faq', {
@@ -2315,7 +2313,7 @@ function ThankYouPage() {
   usePageMeta(
     'Thank You | Vextor',
     'Thank you for contacting Vextor. Your inquiry has been received and the team will contact you soon.',
-    { path: '/thank-you', noindex: true }
+    { path: '/thank-you' }
   )
   useStructuredData('thank-you-page', {
     '@context': 'https://schema.org',
@@ -2556,7 +2554,7 @@ function NotFoundPage() {
   usePageMeta(
     '404 — Page Not Found | Vextor',
     'The page you are looking for does not exist. Return to the Vextor homepage to find Salesforce consulting services, industries, and contact information.',
-    { path: '/404', noindex: true }
+    { path: '/404' }
   )
 
   return (
