@@ -11,9 +11,9 @@ const routes = [
   {
     path: '/',
     pageType: 'WebPage',
-    title: 'Salesforce Experts for Project-Based Businesses | Vextor',
+    title: 'Salesforce for Construction & BuilderTek Support | Vextor',
     description:
-      'We set up, fix and look after Salesforce for construction and project-based businesses. Based in Ahmedabad, working with teams worldwide. Book a free call.',
+      'Vextor sets up, fixes, and supports Salesforce for construction and project-based teams, with BuilderTek implementation and support experience.',
     faq: [
       {
         question: 'What does Vextor specialize in?',
