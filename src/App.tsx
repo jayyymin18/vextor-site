@@ -41,8 +41,6 @@ type SalesforceService = {
 }
 
 const CALENDLY_URL = 'https://calendly.com/jaimin-vextor/30min'
-const SALESFORCE_PARTNER_URL = 'https://appexchange.salesforce.com/appxConsultingListingDetail?listingId=a0NHu00000srO8XMAU'
-const BUILDERTEK_APPEXCHANGE_URL = 'https://appexchange.salesforce.com/appxListingDetail?listingId=a0N300000016cbCEAQ'
 
 const navItems = [
   { label: 'Services', to: '/services' },
@@ -644,38 +642,23 @@ function HomePage() {
     {
       question: 'What does Vextor specialize in?',
       answer:
-        'Vextor specializes in Salesforce for construction and project-based companies: setup, cleanup, custom development, integrations, ongoing support, and BuilderTek implementation.',
-    },
-    {
-      question: 'Are you connected to BuilderTek?',
-      answer:
-        'Yes. Vextor has deep BuilderTek implementation and support experience. BuilderTek is a separate Salesforce ISV, and Vextor is a Salesforce consulting partner that supports BuilderTek customers when it is the right fit.',
+        'Vextor specializes in Salesforce consulting for project-based businesses — architecture, implementation, custom development, integrations, and long-term platform ownership, with dedicated BuilderTek support as one area of deep expertise.',
     },
     {
       question: 'Do you only work with construction or BuilderTek teams?',
       answer:
-        'No. We work with project-based businesses that need Salesforce to run estimating, delivery, approvals, billing, and reporting well.',
+        'No. We work across project-based businesses that need Salesforce to run estimating, delivery, and billing well. BuilderTek is one specialization, not a requirement to work with us.',
     },
     {
-      question: 'Where are you based, and how do you work with teams abroad?',
+      question: 'Where is Vextor based?',
       answer:
-        'Vextor is based in Ahmedabad, India. We work remotely with teams in India and international markets, with a named consultant and a clear delivery rhythm.',
-    },
-    {
-      question: 'How do you handle our data?',
-      answer:
-        'We work in your Salesforce environment or sandbox, with access you control and can remove. We avoid client data in public screenshots unless the client has approved it.',
-    },
-    {
-      question: 'How much does it cost?',
-      answer:
-        'Projects are scoped before work starts. Health-check and discovery conversations are used to define the right plan before a fixed proposal or ongoing support model is agreed.',
+        'Vextor is based in Ahmedabad, Gujarat, and supports teams remotely across India and international project-based operations environments.',
     },
   ]
 
   usePageMeta(
-    'Salesforce for Construction & BuilderTek Support | Vextor',
-    'Vextor sets up, fixes, and supports Salesforce for construction and project-based teams, with BuilderTek implementation and support experience.',
+    'Salesforce Experts for Project-Based Businesses | Vextor',
+    'We set up, fix and look after Salesforce for construction and project-based businesses. Based in Ahmedabad, working with teams worldwide. Book a free call.',
     { path: '/' }
   )
   useStructuredData('home-faq', {
@@ -691,97 +674,55 @@ function HomePage() {
     })),
   })
 
-  const proofLinks = [
-    {
-      title: 'Salesforce partner listing',
-      body: "Vextor's public consulting listing on Salesforce AppExchange.",
-      href: SALESFORCE_PARTNER_URL,
-      label: 'Check Salesforce listing',
-    },
-    {
-      title: 'BuilderTek on AppExchange',
-      body: 'Public BuilderTek listing and reviews on the Salesforce AppExchange.',
-      href: BUILDERTEK_APPEXCHANGE_URL,
-      label: 'See BuilderTek listing',
-    },
-    {
-      title: 'Public company presence',
-      body: 'LinkedIn, address, partner badges, and contact details are shown so buyers can verify the business.',
-      href: 'https://www.linkedin.com/company/teamvextor',
-      label: 'View LinkedIn',
-    },
-    {
-      title: 'Client quotes with names',
-      body: 'Testimonials are shown with real names, roles, and companies instead of anonymous praise.',
-      href: '#client-quotes',
-      label: 'Read client quotes',
-    },
+  const trustLogos = [
+    { src: '/images/trust/quickbooks.png', alt: 'QuickBooks', className: 'trust-logo-image trust-logo-image--quickbooks' },
+    { src: '/images/trust/buildertek.png', alt: 'BuilderTek', className: 'trust-logo-image trust-logo-image--buildertek' },
+    { src: '/images/trust/oracle.svg', alt: 'Oracle', className: 'trust-logo-image trust-logo-image--oracle' },
+    { src: '/images/trust/microsoft.svg', alt: 'Microsoft', className: 'trust-logo-image trust-logo-image--microsoft' },
+    { src: '/images/trust/dropbox.svg', alt: 'Dropbox', className: 'trust-logo-image trust-logo-image--dropbox' },
+    { src: '/images/trust/sage.png', alt: 'Sage', className: 'trust-logo-image trust-logo-image--sage' },
+    { src: '/images/trust/aws.svg', alt: 'AWS', className: 'trust-logo-image trust-logo-image--aws' },
+    { src: '/images/trust/salesforce.svg', alt: 'Salesforce', className: 'trust-logo-image trust-logo-image--salesforce' },
   ]
 
   const serviceOverview = [
     {
-      image: '/images/trust-proof/service-architecture.svg',
-      title: 'Salesforce setup and cleanup',
-      text: 'New implementations, and fixing setups that grew messy: duplicate records, reports nobody trusts, and automation nobody understands.',
+      icon: Layers3,
+      title: 'Salesforce Architecture & Implementation',
+      text: 'Getting the foundation right, so the system stays clear as the business gets more complicated.',
     },
     {
-      image: '/images/trust-proof/service-custom-development.svg',
-      title: 'Custom development',
-      text: "Apex, Flows, and Lightning components for the parts of your process Salesforce doesn't cover out of the box.",
+      icon: HardHat,
+      title: 'Custom Development & Configuration',
+      text: "When the standard setup can't hold your business, we build what it needs.",
     },
     {
-      image: '/images/trust-proof/service-integrations.svg',
-      title: 'Integrations',
-      text: 'Connect Salesforce to accounting, email, file, ERP, and operations tools so nobody re-types invoices or job data.',
+      icon: RouteIcon,
+      title: 'Integrations & Automation',
+      text: 'Connecting the systems your team already relies on, so nobody re-keys anything by hand.',
     },
     {
-      image: '/images/trust-proof/service-managed-support.svg',
-      title: 'Ongoing support',
-      text: 'A team that already knows your system, on a monthly plan, for changes, releases, reports, and new users.',
+      icon: ShieldCheck,
+      title: 'Managed Support',
+      text: "We stay after launch. That's when the real requirements show up.",
     },
   ]
 
-  const jobSteps = [
-    'Bid and lead tracking',
-    'Estimates',
-    'Contracts',
-    'Schedules and site updates',
-    'Change orders',
-    'Job costing',
-    'Invoicing',
-  ]
-
-  const builderTekBullets = [
-    'New BuilderTek implementations',
-    'Cleanup of inherited BuilderTek setups',
-    'Custom extensions for workflows not covered out of the box',
-    'Ongoing BuilderTek support and release management',
-  ]
-
-  const workSnapshots = [
+  const valueProps = [
     {
-      title: 'Inherited Salesforce cleanup',
-      image: '/images/trust-proof/story-architecture-reset.svg',
-      client: 'Project-based operations team',
-      problem: 'Reports were hard to trust and changes carried too much risk.',
-      work: 'Clarified process ownership, cleaned up architecture decisions, and stabilized the system foundation.',
-      result: 'A more maintainable Salesforce setup before new work was layered in.',
+      icon: Layers3,
+      title: 'We listen before we build',
+      text: "We sit with the people who use the system every day — including the ones quietly keeping a spreadsheet because the software couldn't hold it.",
     },
     {
-      title: 'BuilderTek workflow stabilization',
-      image: '/images/trust-proof/story-workflow-stabilization.svg',
-      client: 'Construction and project team',
-      problem: 'Project controls, approvals, and day-to-day workflows needed to match real job execution.',
-      work: 'Tuned BuilderTek workflows around procurement, approvals, visibility, and usability.',
-      result: 'Cleaner execution paths and fewer operational workarounds.',
+      icon: HardHat,
+      title: "We'll tell you if we're not the fit",
+      text: "We'd rather say so early than sell you an engagement that shouldn't happen.",
     },
     {
-      title: 'Cross-system integration recovery',
-      image: '/images/trust-proof/story-integration-recovery.svg',
-      client: 'Operations and finance team',
-      problem: 'Salesforce, finance, and delivery systems were creating duplicate work.',
-      work: 'Designed better data handoffs and controls across the systems around Salesforce.',
-      result: 'Better coordination across teams and stronger confidence in the system.',
+      icon: RouteIcon,
+      title: 'We build for three years from now',
+      text: "Not for the demo. The difference shows up long after we've left the room.",
     },
   ]
 
@@ -803,6 +744,21 @@ function HomePage() {
       icon: Users,
       title: 'Stay',
       text: "The process shifts, the team changes, the requirements you were sure about turn out to be wrong. We're still there.",
+    },
+  ]
+
+  const commonEngagements = [
+    {
+      title: 'Lead-to-Invoice Workflow Design',
+      body: 'Map the full cycle from first inquiry through estimating, contract execution, project delivery, and billing handoff.',
+    },
+    {
+      title: 'Implementation Cleanup & Migration',
+      body: 'Stand up Salesforce correctly, migrate from legacy setups, or rework messy configurations — including specialized platforms like BuilderTek — without losing operating trust.',
+    },
+    {
+      title: 'Support Retainers for Evolving Teams',
+      body: 'Stay ahead of admin backlog, release changes, reporting needs, and process refinements without scrambling for outside help.',
     },
   ]
 
@@ -851,6 +807,45 @@ function HomePage() {
     },
   ]
 
+  const proofPoints = [
+    'Ahmedabad-based consulting team focused on Salesforce delivery for operationally complex businesses',
+    'Salesforce consulting with deep specialization capability for project-driven teams',
+    'Support model built for architecture, implementation, optimization, and ongoing operational ownership',
+  ]
+
+  const caseSnapshots = [
+    {
+      title: 'Inherited Salesforce cleanup',
+      body: 'We step in when automation is brittle, reporting trust is low, and teams need a clearer operating model before scaling further.',
+    },
+    {
+      title: 'BuilderTek delivery recovery',
+      body: 'For BuilderTek teams, we tighten procurement, approvals, job controls, and usability so the platform supports real execution instead of creating friction.',
+    },
+    {
+      title: 'Integration and support ownership',
+      body: 'When accounting, ERP, and Salesforce workflows are disconnected, we redesign the handoffs and stay engaged after launch through managed support.',
+    },
+  ]
+
+  const featuredStories = [
+    {
+      title: 'BuilderTek workflow stabilization',
+      body: 'Representative delivery support for teams that need procurement, approvals, and project controls working cleanly inside Salesforce.',
+      outcome: 'Cleaner execution paths and fewer operational workarounds.',
+    },
+    {
+      title: 'Inherited Salesforce architecture reset',
+      body: 'For teams where reporting trust is weak, automation layers are brittle, and delivery quality depends on clarifying platform structure first.',
+      outcome: 'A more maintainable operating model before new changes are layered in.',
+    },
+    {
+      title: 'Cross-system integration recovery',
+      body: 'Support for Salesforce environments where finance, ERP, estimating, and delivery systems are creating friction instead of shared visibility.',
+      outcome: 'Better coordination across teams and stronger confidence in the system.',
+    },
+  ]
+
   useEffect(() => {
     const interval = window.setInterval(() => {
       setActiveTestimonial((current) => (current + 1) % leadershipTrust.length)
@@ -869,30 +864,47 @@ function HomePage() {
             <motion.div initial="hidden" animate="show" variants={revealUp} className="hero-clean hero-editorial mx-auto text-center">
               <p className="hero-kicker">Salesforce Consulting Partner</p>
               <h1 className="hero-title">
-                Salesforce for construction, from the team that knows <span className="hero-highlight">BuilderTek.</span>
+                Your Salesforce was built for <span className="hero-highlight">someone else's job.</span>
               </h1>
               <p className="hero-copy">
-                We set up, fix and support Salesforce for construction and project-based companies, so bids,
-                schedules, change orders and invoices live in one place.
+                It was designed to close deals. But your business doesn't end when the deal closes — that's when
+                the actual work starts. We rebuild Salesforce around how your projects really run.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="btn-solid">
-                    Book a free health check <CalendarCheck2 className="ml-2 size-4" />
+                    Let's talk <CalendarCheck2 className="ml-2 size-4" />
                   </Button>
                 </a>
-                <Link to="/success-stories">
+                <Link to="/services">
                   <Button size="lg" variant="outline" className="btn-outline-dark">
-                    See our work <ChevronRight className="ml-2 size-4" />
+                    See What We Do <ChevronRight className="ml-2 size-4" />
                   </Button>
                 </Link>
               </div>
               <div className="hero-rail" aria-label="Core delivery themes">
-                <a href={SALESFORCE_PARTNER_URL} target="_blank" rel="noopener noreferrer">Salesforce partner listing</a>
-                <a href={BUILDERTEK_APPEXCHANGE_URL} target="_blank" rel="noopener noreferrer">BuilderTek on AppExchange</a>
-                <Link to="/salesforce-consulting-company-india">Ahmedabad, working worldwide</Link>
+                <span>Salesforce consulting</span>
+                <span>Custom development</span>
+                <span>Long-term support</span>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="trust-strip-wrap border-b border-border">
+        <div className="home-shell px-4 py-5 sm:px-6 lg:px-8">
+          <div className="trust-strip-head">
+            <p className="trust-strip-copy">Connected across the systems project-based teams already rely on.</p>
+          </div>
+          <div className="trust-strip-marquee" aria-label="Platform trust strip">
+            <div className="trust-strip-track">
+              {[...trustLogos, ...trustLogos].map(({ src, alt, className }, index) => (
+                <div key={`${alt}-${index}`} className="trust-logo-card">
+                  <img src={src} alt={alt} className={className} loading="lazy" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -900,211 +912,194 @@ function HomePage() {
       <section className="section-wrap section-after-hero">
         <div className="home-shell px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Check us before you call us"
-            title="Don't take our word for it. Check."
-            summary="Every claim in this section points to somewhere you can verify it yourself."
-          />
-          <div className="success-story-grid mt-12">
-            {proofLinks.map((item) => (
-              <article key={item.title} className="success-story-card">
-                <p className="eyebrow">Verifiable proof</p>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-                <a href={item.href} target={item.href.startsWith('#') ? undefined : '_blank'} rel={item.href.startsWith('#') ? undefined : 'noopener noreferrer'} className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-accent">
-                  {item.label} <ArrowRight className="size-4" />
-                </a>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-wrap border-y border-border bg-card/40">
-        <div className="home-shell home-split grid gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
-          <div>
-            <SectionIntro
-              eyebrow="The problem"
-              title="Sound familiar?"
-              summary="Schedules in a spreadsheet. Site photos in a cloud drive. Approvals in email. Invoices in the accounting tool. Every gap is someone copying information by hand, and a chance for the office and the site to see different numbers."
-            />
-          </div>
-          <Visual
-            src="/images/trust-proof/buildertek-hub.svg"
-            alt="Illustration of connected construction workflows around Salesforce and BuilderTek"
-            caption="The work becomes easier when the same job record connects sales, office, site and finance."
-            className="editorial-visual min-h-[340px]"
-          />
-        </div>
-      </section>
-
-      <section className="section-wrap">
-        <div className="home-shell px-4 sm:px-6 lg:px-8">
-          <SectionIntro
             eyebrow="What We Do"
-            title="What we do"
-            summary="Salesforce work that stays close to how jobs move through your business."
+            title="Salesforce, rebuilt around how you actually work"
+            summary="Some teams come to us at the start. Most come to us after — when the system that was supposed to help has quietly become the thing everyone works around."
           />
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {serviceOverview.map((item) => (
-              <article key={item.title} className="success-story-card">
-                <img src={item.image} alt="" className="mb-5 h-28 w-full rounded-lg object-contain" loading="lazy" />
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
+          <div className="editorial-pillars mt-12">
+            {serviceOverview.map(({ icon: Icon, title, text }) => (
+              <article key={title} className="editorial-pillar">
+                <div className="editorial-pillar-head">
+                  <span className="icon-wrap">
+                    <Icon className="size-4" />
+                  </span>
+                  <h3>{title}</h3>
+                </div>
+                <p>{text}</p>
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="section-wrap border-y border-border bg-card/40">
-        <div className="home-shell home-split grid gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
-          <div className="space-y-5">
-            <SectionIntro
-              eyebrow="From first bid to final invoice"
-              title="From first bid to final invoice"
-              summary="We design Salesforce around the way a job actually moves through your business."
-            />
-            <div className="grid gap-2 text-sm leading-7 text-muted-foreground sm:grid-cols-2">
-              {jobSteps.map((item) => (
-                <p key={item} className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
-                </p>
-              ))}
-            </div>
-            <p className="text-sm leading-7 text-muted-foreground">
-              One connected record, so sales, the office and the site all see the same job.
-            </p>
-          </div>
-          <Visual
-            src="/images/trust-proof/lead-to-invoice.svg"
-            alt="Lead to invoice Salesforce workflow for bids, estimates, schedules, change orders and invoicing"
-            caption="A Salesforce record designed around how the work moves, not just how a deal closes."
-            className="editorial-visual min-h-[340px]"
-          />
-        </div>
-      </section>
-
-      <section className="section-wrap" id="buildertek-home">
-        <div className="home-shell home-split grid gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
-          <div className="space-y-5">
-            <SectionIntro
-              eyebrow="BuilderTek"
-              title="BuilderTek support from people who know how it works"
-              summary="BuilderTek is a Salesforce-native construction platform. Vextor supports teams that need BuilderTek implementation, cleanup, customization and ongoing support, while keeping the BuilderTek company and Vextor consulting relationship clear."
-            />
-            <ul className="grid gap-4 text-sm leading-7 text-muted-foreground sm:grid-cols-2">
-              {builderTekBullets.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
-                </li>
-              ))}
-            </ul>
-            <a href={BUILDERTEK_APPEXCHANGE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium hover:text-accent">
-              See BuilderTek on AppExchange <ArrowRight className="size-4" />
-            </a>
-          </div>
-          <Visual
-            src="/images/about-buildertek-construction.jpg"
-            alt="BuilderTek and construction workflow planning"
-            caption="BuilderTek support for construction and project workflows inside Salesforce."
-            className="min-h-[340px]"
-            objectPosition="center 58%"
-          />
         </div>
       </section>
 
       <section className="section-wrap border-y border-border bg-card/40">
         <div className="home-shell px-4 sm:px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Recent work"
-            title="Recent work"
-            summary="Some client details stay private, so these snapshots focus on the kinds of Salesforce and BuilderTek problems Vextor is brought in to solve."
-          />
-          <div className="success-story-grid mt-12">
-            {workSnapshots.map((item) => (
-              <article key={item.title} className="success-story-card">
-                <img src={item.image} alt="" className="mb-5 h-28 w-full rounded-lg object-contain" loading="lazy" />
-                <p className="eyebrow">Recent work pattern</p>
-                <h3>{item.title}</h3>
-                <p><strong className="text-foreground">Client:</strong> {item.client}</p>
-                <p><strong className="text-foreground">The problem:</strong> {item.problem}</p>
-                <p><strong className="text-foreground">What we did:</strong> {item.work}</p>
-                <p className="success-story-outcome">{item.result}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-wrap">
-        <div className="home-shell home-split grid gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
-          <div className="space-y-5">
+          <div className="editorial-split">
             <SectionIntro
-              eyebrow="The people"
-              title="The people who'll work on your system"
-              summary="You'll work directly with the people building your system. No account managers in between."
+              eyebrow="Why Vextor"
+              title="You'll talk to the people building your system"
+              summary="No account layers. No handoffs to someone you've never met."
             />
-            <p className="text-sm leading-7 text-muted-foreground">
-              You get direct access to consultants who can understand the business process, make the Salesforce changes, and explain what changed in plain language.
-            </p>
-            <Link to="/about" className="inline-flex items-center gap-2 text-sm font-medium hover:text-accent">
-              Learn more about Vextor <ArrowRight className="size-4" />
-            </Link>
-          </div>
-          <Visual
-            src="/images/trust-proof/people-conversation.svg"
-            alt="Conversation between Vextor consultants and a client team"
-            caption="Direct access to the people doing the work is part of the delivery model."
-            className="editorial-visual min-h-[330px]"
-          />
-        </div>
-      </section>
-
-      <section className="section-wrap border-y border-border bg-card/40">
-        <div className="home-shell home-split grid gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
-          <div>
-            <SectionIntro
-              eyebrow="How We Work"
-              title="We start with a conversation, not a proposal"
-              summary="Nobody's trying to close anything. You're allowed to think out loud."
-            />
-            <div className="process-strip mt-10">
-              {deliverySteps.map(({ step, icon: Icon, title, text }) => (
-                <article key={title} className="process-step">
-                  <p className="step-chip">Step {step}</p>
-                  <div className="process-step-title">
-                    <Icon className="size-4 text-accent" />
+            <div className="editorial-reasons">
+              {valueProps.map(({ icon: Icon, title, text }) => (
+                <article key={title} className="editorial-reason">
+                  <div className="editorial-reason-title">
+                    <span className="icon-wrap">
+                      <Icon className="size-4" />
+                    </span>
                     <h3>{title}</h3>
                   </div>
                   <p>{text}</p>
                 </article>
               ))}
             </div>
-            <div className="mt-10 rounded-2xl border border-border bg-white p-5">
-              <h3 className="text-lg font-semibold tracking-tight">What happens after you get in touch</h3>
-              <ol className="mt-4 space-y-2 text-sm leading-7 text-muted-foreground">
-                <li>1. We review the issue and reply with the right next step.</li>
-                <li>2. You speak with someone who understands the Salesforce work, not a generic salesperson.</li>
-                <li>3. If there is a fit, we define a written scope, timeline and price before work starts.</li>
-                <li>4. If we are not the right fit, we will say so early.</li>
-              </ol>
-            </div>
           </div>
-          <Visual
-            src="/images/trust-proof/process-steps.svg"
-            alt="Three step Vextor process: understand, build, stay"
-            caption="Understand, build, and stay: the working model behind each engagement."
-            className="editorial-visual min-h-[360px]"
-          />
         </div>
       </section>
 
-      <section id="client-quotes" className="section-wrap">
+      <section className="section-wrap" id="buildertek-home">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl space-y-5">
+            <SectionIntro
+              eyebrow="BuilderTek Specialization"
+              title="A dedicated BuilderTek practice for teams that run on jobs, not just pipelines"
+              summary="BuilderTek is a serious platform for teams whose work centers on projects and construction. We've built deep expertise in it — one specialization within our broader Salesforce practice."
+            />
+            <ul className="grid gap-5 text-sm leading-7 text-muted-foreground md:grid-cols-2">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> New BuilderTek implementations around estimating, project management, and financial workflows
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Cleanup, migration, and reconfiguration for inherited BuilderTek environments
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Custom objects, automation, and extensions for workflows not covered out of the box
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-1 size-4 text-accent" /> Ongoing BuilderTek support, release management, and optimization for project-driven teams
+              </li>
+            </ul>
+            <Link to="/services#buildertek-specialization" className="inline-flex items-center gap-2 text-sm font-medium hover:text-accent">
+              Explore BuilderTek support <ArrowRight className="size-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap border-y border-border bg-card/40">
         <div className="home-shell px-4 sm:px-6 lg:px-8">
           <SectionIntro
-            eyebrow="What clients say"
-            title="What clients say"
-            summary="Named feedback from leaders and teams who have trusted Vextor with Salesforce, BuilderTek, integrations, and ongoing support."
+            eyebrow="How We Work"
+            title="We start with a conversation, not a proposal"
+            summary="Nobody's trying to close anything. You're allowed to think out loud."
+          />
+          <div className="process-strip mt-12">
+            {deliverySteps.map(({ step, icon: Icon, title, text }) => (
+              <article key={title} className="process-step">
+                <p className="step-chip">Step {step}</p>
+                <div className="process-step-title">
+                  <Icon className="size-4 text-accent" />
+                  <h3>{title}</h3>
+                </div>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Common Engagements"
+            title="Where teams usually find us"
+            summary="Rarely at the beginning. Usually at the point where something has stopped working and nobody can quite say why."
+          />
+          <div className="engagement-list mt-12">
+            {commonEngagements.map((item) => (
+              <article key={item.title} className="engagement-item">
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap border-y border-border bg-card/40">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
+          <div className="editorial-split">
+            <div className="space-y-5">
+              <SectionIntro
+                eyebrow="Proof Of Fit"
+                title="Why project-based teams bring Vextor in"
+                summary="The work is not generic CRM administration. Teams engage Vextor when Salesforce becomes a delivery system that needs stronger architecture, cleaner workflows, and operational accountability."
+              />
+              <ul className="space-y-2 text-sm leading-7 text-muted-foreground">
+                {proofPoints.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <CheckCircle2 className="mt-1 size-4 text-accent" /> {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm leading-7 text-muted-foreground">
+                We support organizations from Ahmedabad and beyond that need Salesforce to stay reliable as project delivery, approvals, reporting, and cross-system coordination grow more complex.
+              </p>
+              <Link to="/salesforce-consulting-company-india" className="inline-flex items-center gap-2 text-sm font-medium hover:text-accent">
+                See why Vextor is a Salesforce consulting company in India <ArrowRight className="size-4" />
+              </Link>
+            </div>
+
+            <div className="editorial-reasons">
+              {caseSnapshots.map((item) => (
+                <article key={item.title} className="editorial-reason">
+                  <div className="editorial-reason-title">
+                    <span className="icon-wrap">
+                      <ShieldCheck className="size-4" />
+                    </span>
+                    <h3>{item.title}</h3>
+                  </div>
+                  <p>{item.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Success Stories"
+            title="Representative engagement stories that show where Vextor adds value"
+            summary="These are the kinds of operating situations where project-based teams bring Vextor in to restore clarity, structure, and long-term platform confidence."
+          />
+          <div className="success-story-grid mt-12">
+            {featuredStories.map((item) => (
+              <article key={item.title} className="success-story-card">
+                <p className="eyebrow">Representative Story</p>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <p className="success-story-outcome">{item.outcome}</p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-8 flex justify-start">
+            <Link to="/success-stories">
+              <Button size="lg" variant="outline">
+                Review Success Stories <ChevronRight className="ml-2 size-4" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-wrap border-y border-border bg-card/40">
+        <div className="home-shell px-4 sm:px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Trusted By Leadership Teams"
+            title="What client leaders say after working with Vextor"
+            summary="Direct feedback from executives and operators who rely on Vextor for Salesforce execution, specialized delivery, and long-term platform ownership."
             align="center"
           />
 
@@ -1162,29 +1157,6 @@ function HomePage() {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-wrap border-y border-border bg-card/40">
-        <div className="home-shell px-4 sm:px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="How We Price"
-            title="No surprises. Every engagement starts with a clear scope."
-            summary="We scope the work before pricing it, so you know what will be done, what it will cost, and what happens after launch."
-          />
-          <div className="success-story-grid mt-12">
-            {[
-              ['Health check', 'A first conversation to understand where Salesforce is helping, where it is getting in the way, and what is worth checking first.'],
-              ['Discovery', 'A focused paid or scoped step when the system needs review before a project can be priced responsibly.'],
-              ['Projects', 'Fixed scope and price agreed before work starts.'],
-              ['Ongoing support', 'Monthly support for changes, releases, reports, new users, and platform questions after launch.'],
-            ].map(([title, body]) => (
-              <article key={title} className="success-story-card">
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </article>
-            ))}
           </div>
         </div>
       </section>
