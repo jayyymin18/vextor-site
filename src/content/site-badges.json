@@ -1,0 +1,12 @@
+{
+  "pageSpeed": {
+    "score": 92,
+    "device": "Mobile",
+    "measuredAt": "2026-11-04",
+    "reportUrl": "https://pagespeed.web.dev/analysis/https-vextor-co/2fpdxn31n3?form_factor=mobile"
+  },
+  "productHunt": {
+    "postUrl": "https://www.producthunt.com/products/vextor?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-vextor",
+    "badgeUrl": "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1304293&theme=light&t=1793799606485"
+  }
+}

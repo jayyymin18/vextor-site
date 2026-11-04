@@ -1,3 +1,6 @@
+import pageMetadata from './content/page-metadata.json'
+import { trackPageView } from './lib/analytics'
+import { SiteBadges } from './components/SiteBadges'
 import React, { useEffect, useState } from 'react'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
@@ -175,7 +178,7 @@ function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.label,
-      item: `https://www.vextor.co${item.href}`,
+      item: `https://vextor.co${item.href}`,
     })),
   })
 
@@ -201,16 +204,15 @@ function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
 }
 
 type PageMetaOptions = {
-  path?: string
   ogTitle?: string
   ogDescription?: string
   ogImage?: string
   keywords?: string
 }
 
-function usePageMeta(title: string, description: string, options: PageMetaOptions = {}) {
+function usePageMeta(path: keyof typeof pageMetadata, options: PageMetaOptions = {}) {
+  const { title, description } = pageMetadata[path]
   const {
-    path = '/',
     ogTitle = title,
     ogDescription = description,
     ogImage = '/og-image.png',
@@ -218,7 +220,7 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
   } = options
 
   useEffect(() => {
-    const siteUrl = 'https://www.vextor.co'
+    const siteUrl = 'https://vextor.co'
     const normalizedPath = path.startsWith('/') ? path : `/${path}`
     const canonicalUrl = new URL(normalizedPath, `${siteUrl}/`).toString()
     const ogImageUrl = new URL(ogImage, `${siteUrl}/`).toString()
@@ -278,6 +280,7 @@ function usePageMeta(title: string, description: string, options: PageMetaOption
     upsertMetaByName('twitter:image', ogImageUrl)
     upsertMetaByName('twitter:image:alt', 'Vextor branded Salesforce consulting preview')
     upsertCanonical(canonicalUrl)
+    trackPageView(window.location.pathname, title)
   }, [description, ogDescription, ogImage, ogTitle, path, title])
 }
 
@@ -607,6 +610,7 @@ function Footer() {
                 />
               </a>
             </div>
+            <SiteBadges />
             <div className="mt-6">
               <p className="text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">Follow Us</p>
               <div className="mt-3 flex items-center gap-2">
@@ -656,11 +660,7 @@ function HomePage() {
     },
   ]
 
-  usePageMeta(
-    'Salesforce Experts for Project-Based Businesses | Vextor',
-    'We set up, fix and look after Salesforce for construction and project-based businesses. Based in Ahmedabad, working with teams worldwide. Book a free call.',
-    { path: '/' }
-  )
+  usePageMeta('/')
   useStructuredData('home-faq', {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -1232,11 +1232,7 @@ function ServicesPage() {
     },
   ]
 
-  usePageMeta(
-    'Salesforce Consulting Services | Vextor',
-    'Salesforce architecture, implementation, automation, custom development, integrations, and managed support — plus dedicated BuilderTek specialization for project-based teams.',
-    { path: '/services' }
-  )
+  usePageMeta('/services')
   useStructuredData('services-faq', {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -1440,11 +1436,7 @@ function IndustriesPage() {
     },
   ]
 
-  usePageMeta(
-    'Salesforce for Construction, Real Estate & Project Teams | Vextor',
-    'Industry-focused Salesforce consulting for construction, real estate, and other project-based operations.',
-    { path: '/industries' }
-  )
+  usePageMeta('/industries')
   useStructuredData('industries-faq', {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -1602,11 +1594,7 @@ function IndustriesPage() {
 }
 
 function WorkPage() {
-  usePageMeta(
-    'Vextor Work | Salesforce Delivery for Project-Based Operations',
-    'See how Vextor approaches Salesforce automation, custom development, integrations, and long-term support for project-based businesses.',
-    { path: '/work' }
-  )
+  usePageMeta('/work')
 
   const workFocus = [
     {
@@ -1756,11 +1744,7 @@ function WorkPage() {
 }
 
 function AboutPage() {
-  usePageMeta(
-    'About Vextor | Salesforce Consulting Partner',
-    'Learn how Ahmedabad-based Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and dedicated BuilderTek specialization.',
-    { path: '/about' }
-  )
+  usePageMeta('/about')
 
   const outcomes = [
     'Clear architecture that scales with your operations',
@@ -1990,11 +1974,7 @@ function AboutPage() {
 }
 
 function CareersPage() {
-  usePageMeta(
-    'Careers | Vextor',
-    'We hire people, not roles. Vextor is a Salesforce consulting firm in Ahmedabad looking for people who think carefully and own their work.',
-    { path: '/careers' }
-  )
+  usePageMeta('/careers')
 
   const careerPrinciples = [
     {
@@ -2133,26 +2113,21 @@ function SalesforceConsultingIndiaPage() {
     },
   ]
 
-  usePageMeta(
-    'Salesforce Consulting Company in India | Vextor Ahmedabad',
-    'Vextor is a Salesforce consulting company in Ahmedabad, India helping project-based businesses set up, fix, connect, customize, and support Salesforce.',
-    {
-      path: '/salesforce-consulting-company-india',
-      keywords:
-        'Salesforce consulting company India, Salesforce consultant Ahmedabad, Salesforce consulting partner India, Salesforce implementation India, Vextor Salesforce',
-    }
-  )
+  usePageMeta('/salesforce-consulting-company-india', {
+    keywords:
+      'Salesforce consulting company India, Salesforce consultant Ahmedabad, Salesforce consulting partner India, Salesforce implementation India, Vextor Salesforce',
+  })
   useStructuredData('salesforce-consulting-india-page', {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    '@id': 'https://www.vextor.co/salesforce-consulting-company-india#service',
+    '@id': 'https://vextor.co/salesforce-consulting-company-india#service',
     name: 'Vextor Salesforce Consulting Company in India',
     alternateName: ['Vextor Solution LLP', 'Vextor Salesforce Consulting'],
-    url: 'https://www.vextor.co/salesforce-consulting-company-india',
+    url: 'https://vextor.co/salesforce-consulting-company-india',
     description:
       'Salesforce consulting company in Ahmedabad, India helping project-based businesses set up, fix, connect, customize, and support Salesforce.',
     provider: {
-      '@id': 'https://www.vextor.co/#organization',
+      '@id': 'https://vextor.co/#organization',
     },
     areaServed: ['India', 'United States', 'United Kingdom', 'Australia', 'Worldwide'],
     address: {
@@ -2290,20 +2265,16 @@ function ContactPage() {
     },
   ]
 
-  usePageMeta(
-    'Contact Vextor | Salesforce Consulting in Ahmedabad',
-    'Contact Vextor for Salesforce consulting, custom development, automation planning, and managed support — including dedicated BuilderTek specialization.',
-    { path: '/contact' }
-  )
+  usePageMeta('/contact')
   useStructuredData('contact-page', {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: 'Contact Vextor',
-    url: 'https://www.vextor.co/contact',
+    url: 'https://vextor.co/contact',
     description:
       'Contact Vextor for Salesforce consulting, custom development, automation planning, and managed support — including dedicated BuilderTek specialization.',
     about: {
-      '@id': 'https://www.vextor.co/#service',
+      '@id': 'https://vextor.co/#service',
     },
   })
   useStructuredData('contact-faq', {
@@ -2369,7 +2340,7 @@ function ContactPage() {
                   className="space-y-5"
                 >
                   <input type="hidden" name="oid" value="00DdN00000t9uBN" />
-                  <input type="hidden" name="retURL" value="https://www.vextor.co/thank-you" />
+                  <input type="hidden" name="retURL" value="https://vextor.co/thank-you" />
                   <input type="hidden" id="lead_source" name="lead_source" value="Web" />
 
                   <div className="webtolead-grid">
@@ -2512,16 +2483,12 @@ function ContactPage() {
 }
 
 function ThankYouPage() {
-  usePageMeta(
-    'Thank You | Vextor',
-    'Thank you for contacting Vextor. Your inquiry has been received and the team will contact you soon.',
-    { path: '/thank-you' }
-  )
+  usePageMeta('/thank-you')
   useStructuredData('thank-you-page', {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: 'Thank You | Vextor',
-    url: 'https://www.vextor.co/thank-you',
+    url: 'https://vextor.co/thank-you',
     description: 'Thank you for contacting Vextor. Your inquiry has been received and the team will contact you soon.',
   })
 
@@ -2646,16 +2613,12 @@ function SuccessStoriesPage() {
     },
   ]
 
-  usePageMeta(
-    'Vextor Success Stories | Salesforce Proof For Project-Based Teams',
-    'Representative Salesforce success stories across architecture, automation, integrations, and specialized delivery.',
-    { path: '/success-stories' }
-  )
+  usePageMeta('/success-stories')
   useStructuredData('success-stories-page', {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Vextor Success Stories',
-    url: 'https://www.vextor.co/success-stories',
+    url: 'https://vextor.co/success-stories',
     description:
       'Representative Salesforce success stories across architecture, automation, integrations, and specialized delivery.',
   })
@@ -2753,11 +2716,7 @@ function SuccessStoriesPage() {
 }
 
 function NotFoundPage() {
-  usePageMeta(
-    '404 — Page Not Found | Vextor',
-    'The page you are looking for does not exist. Return to the Vextor homepage to find Salesforce consulting services, industries, and contact information.',
-    { path: '/404' }
-  )
+  usePageMeta('/404')
 
   return (
     <main>

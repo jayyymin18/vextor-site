@@ -1,0 +1,46 @@
+{
+  "/": {
+    "title": "Salesforce Experts for Project-Based Businesses | Vextor",
+    "description": "We set up, fix and look after Salesforce for construction and project-based businesses. Based in Ahmedabad, working with teams worldwide. Book a free call."
+  },
+  "/services": {
+    "title": "Salesforce Setup, Support & BuilderTek Services | Vextor",
+    "description": "Set up Salesforce, fix broken workflows, connect your tools, and get ongoing support. Vextor helps project-based businesses, with dedicated BuilderTek expertise."
+  },
+  "/salesforce-consulting-company-india": {
+    "title": "Salesforce Consulting Company in India | Vextor Ahmedabad",
+    "description": "Vextor is a Salesforce consulting company in Ahmedabad, India helping project-based businesses set up, fix, connect, customize, and support Salesforce."
+  },
+  "/industries": {
+    "title": "Salesforce for Construction & Project Businesses | Vextor",
+    "description": "Salesforce support for construction, real estate, and project-based businesses. Connect estimating, project delivery, approvals, and billing with Vextor."
+  },
+  "/work": {
+    "title": "Our Salesforce & BuilderTek Work | Vextor",
+    "description": "Explore how Vextor sets up Salesforce, connects business tools, improves BuilderTek workflows, and supports project-based teams after launch."
+  },
+  "/success-stories": {
+    "title": "Salesforce & BuilderTek Success Stories | Vextor",
+    "description": "Explore representative examples of Salesforce recovery, BuilderTek improvements, and connected business tools for construction and project-based teams."
+  },
+  "/about": {
+    "title": "About Vextor | Salesforce Experts in Ahmedabad",
+    "description": "Meet Vextor, an Ahmedabad-based Salesforce consulting team helping project-based businesses set up, fix, connect, and look after Salesforce worldwide."
+  },
+  "/careers": {
+    "title": "Salesforce Careers in Ahmedabad | Join Vextor",
+    "description": "Build your Salesforce career with Vextor in Ahmedabad. We welcome thoughtful people who take ownership and help project-based businesses work better."
+  },
+  "/contact": {
+    "title": "Contact Vextor | Book a Free Salesforce Call",
+    "description": "Talk to Vextor about setting up Salesforce, fixing workflows, connecting your tools, or getting BuilderTek support. Book a free call with our Ahmedabad team."
+  },
+  "/thank-you": {
+    "title": "Thank You for Contacting Vextor | Salesforce Support",
+    "description": "Your message has reached Vextor. Our team will contact you to discuss your Salesforce or BuilderTek needs. Explore our services while you wait."
+  },
+  "/404": {
+    "title": "404 — Page Not Found | Vextor",
+    "description": "The page you are looking for does not exist. Return to the Vextor homepage to find Salesforce consulting services, industries, and contact information."
+  }
+}

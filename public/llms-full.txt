@@ -35,14 +35,14 @@ Vextor provides ongoing support for enhancements, cleanup, release management, i
 Vextor supports BuilderTek implementations, inherited org cleanup, approval workflow refinement, budget visibility improvements, and better day-to-day usability for project teams.
 
 ## Core pages
-- Homepage: https://www.vextor.co/
-- Services: https://www.vextor.co/services
-- Salesforce Consulting Company in India: https://www.vextor.co/salesforce-consulting-company-india
-- Industries: https://www.vextor.co/industries
-- Work: https://www.vextor.co/work
-- Success Stories: https://www.vextor.co/success-stories
-- About: https://www.vextor.co/about
-- Contact: https://www.vextor.co/contact
+- Homepage: https://vextor.co/
+- Services: https://vextor.co/services
+- Salesforce Consulting Company in India: https://vextor.co/salesforce-consulting-company-india
+- Industries: https://vextor.co/industries
+- Work: https://vextor.co/work
+- Success Stories: https://vextor.co/success-stories
+- About: https://vextor.co/about
+- Contact: https://vextor.co/contact
 
 ## Contact facts
 - Email: hello@vextor.co

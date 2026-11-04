@@ -4,16 +4,15 @@ import path from 'node:path'
 const distDir = path.resolve('dist')
 const indexPath = path.join(distDir, 'index.html')
 const html = fs.readFileSync(indexPath, 'utf8')
-const lastmod = '2026-09-24'
-const siteUrl = 'https://www.vextor.co'
+const lastmod = '2026-11-04'
+const pageMetadata = JSON.parse(fs.readFileSync('src/content/page-metadata.json', 'utf8'))
+const siteUrl = 'https://vextor.co'
 
 const routes = [
   {
     path: '/',
     pageType: 'WebPage',
-    title: 'Salesforce Experts for Project-Based Businesses | Vextor',
-    description:
-      'We set up, fix and look after Salesforce for construction and project-based businesses. Based in Ahmedabad, working with teams worldwide. Book a free call.',
+    ...pageMetadata['/'],
     faq: [
       {
         question: 'What does Vextor specialize in?',
@@ -35,9 +34,7 @@ const routes = [
   {
     path: '/services',
     pageType: 'CollectionPage',
-    title: 'Salesforce Consulting Services | Architecture, Automation & BuilderTek | Vextor',
-    description:
-      'Ahmedabad-based Salesforce consulting services for architecture, workflow automation, BuilderTek support, integrations, Apex development, and managed delivery for project-based teams.',
+    ...pageMetadata['/services'],
     faq: [
       {
         question: 'What Salesforce services does Vextor provide?',
@@ -79,9 +76,7 @@ const routes = [
   {
     path: '/salesforce-consulting-company-india',
     pageType: 'WebPage',
-    title: 'Salesforce Consulting Company in India | Vextor Ahmedabad',
-    description:
-      'Vextor is a Salesforce consulting company in Ahmedabad, India helping project-based businesses set up, fix, connect, customize, and support Salesforce.',
+    ...pageMetadata['/salesforce-consulting-company-india'],
     faq: [
       {
         question: 'Is Vextor a Salesforce consulting company in India?',
@@ -148,9 +143,7 @@ const routes = [
   {
     path: '/industries',
     pageType: 'CollectionPage',
-    title: 'Salesforce for Construction, Real Estate & Project Teams | Vextor',
-    description:
-      'Industry-focused Salesforce consulting for construction, real estate, BuilderTek, and project-based operations teams that need stronger workflow control and system reliability.',
+    ...pageMetadata['/industries'],
     faq: [
       {
         question: 'Which industries are the best fit for Vextor?',
@@ -184,16 +177,12 @@ const routes = [
   {
     path: '/work',
     pageType: 'CollectionPage',
-    title: 'Vextor Work | Salesforce Delivery for Project-Based Operations',
-    description:
-      'See how Vextor approaches Salesforce automation, BuilderTek delivery, integrations, and long-term support for project-based businesses.',
+    ...pageMetadata['/work'],
   },
   {
     path: '/success-stories',
     pageType: 'CollectionPage',
-    title: 'Vextor Success Stories | Salesforce Proof For Project-Based Teams',
-    description:
-      'Representative Salesforce and BuilderTek success stories showing how Vextor supports inherited org recovery, BuilderTek execution, and cross-system operational clarity.',
+    ...pageMetadata['/success-stories'],
     faq: [
       {
         question: 'Are these public client case studies?',
@@ -215,23 +204,17 @@ const routes = [
   {
     path: '/about',
     pageType: 'AboutPage',
-    title: 'About Vextor | Salesforce & BuilderTek Consulting Experts',
-    description:
-      'Learn how Ahmedabad-based Vextor designs scalable Salesforce systems with strong architecture, process automation, integration depth, and BuilderTek expertise.',
+    ...pageMetadata['/about'],
   },
   {
     path: '/careers',
     pageType: 'WebPage',
-    title: 'Careers | Vextor',
-    description:
-      'We hire people, not roles. Vextor is a Salesforce consulting firm in Ahmedabad looking for people who think carefully and own their work.',
+    ...pageMetadata['/careers'],
   },
   {
     path: '/contact',
     pageType: 'ContactPage',
-    title: 'Contact Vextor | Salesforce & BuilderTek Consultation in Ahmedabad',
-    description:
-      'Contact Vextor for Salesforce consulting, BuilderTek support, automation planning, integrations, and long-term platform guidance for project-based teams.',
+    ...pageMetadata['/contact'],
     faq: [
       {
         question: 'What should I include before booking a Salesforce consultation?',
@@ -253,8 +236,7 @@ const routes = [
   {
     path: '/thank-you',
     pageType: 'WebPage',
-    title: 'Thank You | Vextor',
-    description: 'Thank you for contacting Vextor. Your inquiry has been received and the team will contact you soon.',
+    ...pageMetadata['/thank-you'],
   },
 ]
 
